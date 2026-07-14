@@ -1,0 +1,832 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Shooting Words</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --sky-top: #75c8f2;
+        --sky-mid: #c8eef6;
+        --grass: #4d9c55;
+        --grass-dark: #26713b;
+        --ink: #17202a;
+        --panel: #ffffff;
+        --laser: #ff294c;
+        --laser-glow: rgba(255, 41, 76, 0.45);
+        --barrel: #42515f;
+        --barrel-dark: #202a33;
+        --orange: #f18f01;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background: var(--sky-mid);
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .arena {
+        position: relative;
+        width: 100vw;
+        height: 100vh;
+        min-height: 460px;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 12% 14%, rgba(255, 247, 185, 0.9) 0 52px, rgba(255, 247, 185, 0) 53px),
+          linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 58%, #dff5d2 82%, var(--grass) 82%, var(--grass-dark) 100%);
+        cursor: crosshair;
+      }
+
+      .word-layer,
+      .laser-layer,
+      .burst-layer {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+
+      .word-token {
+        position: absolute;
+        min-width: clamp(110px, 18vw, 190px);
+        padding: clamp(10px, 1.6vw, 16px) clamp(16px, 2.2vw, 26px);
+        border: 4px solid #17202a;
+        border-radius: 8px;
+        background: var(--panel);
+        box-shadow: 0 12px 28px rgba(23, 32, 42, 0.22);
+        font-size: clamp(38px, 7vmin, 76px);
+        font-weight: 900;
+        line-height: 1;
+        letter-spacing: 0;
+        text-align: center;
+        text-transform: uppercase;
+        transform: translate(-50%, -50%);
+        user-select: none;
+        pointer-events: auto;
+        will-change: transform, opacity;
+      }
+
+      .word-token.exploding {
+        animation: word-pop 420ms ease-out forwards;
+        pointer-events: none;
+      }
+
+      .face {
+        position: absolute;
+        top: clamp(14px, 3vh, 28px);
+        left: 50%;
+        z-index: 7;
+        width: clamp(76px, 13vmin, 118px);
+        height: clamp(76px, 13vmin, 118px);
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.75);
+        box-shadow: 0 14px 32px rgba(23, 32, 42, 0.16);
+        font-size: clamp(50px, 9vmin, 82px);
+        line-height: 1;
+        transform: translateX(-50%) scale(0);
+        transition: transform 140ms ease-out;
+        pointer-events: none;
+      }
+
+      .face.show {
+        transform: translateX(-50%) scale(1);
+      }
+
+      .sound-button {
+        position: absolute;
+        top: clamp(16px, 3vh, 28px);
+        right: clamp(16px, 3vw, 28px);
+        z-index: 8;
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border: 3px solid #17202a;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(23, 32, 42, 0.18);
+        cursor: pointer;
+        font-size: 30px;
+      }
+
+      .sound-button[hidden] {
+        display: none;
+      }
+
+      .start-screen {
+        position: absolute;
+        inset: 0;
+        z-index: 20;
+        display: grid;
+        place-items: center;
+        background: rgba(255, 255, 255, 0.36);
+        backdrop-filter: blur(3px);
+      }
+
+      .start-screen[hidden] {
+        display: none;
+      }
+
+      .start-button {
+        min-width: 190px;
+        min-height: 88px;
+        border: 4px solid #17202a;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #17202a;
+        box-shadow: 0 16px 34px rgba(23, 32, 42, 0.24);
+        cursor: pointer;
+        font-size: clamp(34px, 7vw, 58px);
+        font-weight: 900;
+      }
+
+      .start-button:disabled {
+        cursor: wait;
+        opacity: 0.65;
+      }
+
+      .error {
+        position: absolute;
+        inset: auto clamp(18px, 5vw, 64px) 26vh;
+        z-index: 25;
+        padding: 18px;
+        border: 3px solid #9f241b;
+        border-radius: 8px;
+        background: #fff1ee;
+        color: #62170f;
+        font-size: 18px;
+        line-height: 1.35;
+      }
+
+      .error[hidden] {
+        display: none;
+      }
+
+      .laser-shot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 6px;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #ffffff, var(--laser) 32%, #b80628);
+        box-shadow: 0 0 12px var(--laser-glow), 0 0 24px var(--laser-glow);
+        transform-origin: 0 50%;
+        animation: laser-fade 170ms ease-out forwards;
+      }
+
+      .spark {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #ffe066;
+        box-shadow: 0 0 16px rgba(255, 224, 102, 0.85);
+        transform: translate(-50%, -50%);
+        animation: spark-pop 260ms ease-out forwards;
+      }
+
+      .burst {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        background: var(--orange);
+        transform: translate(-50%, -50%);
+        animation: burst 520ms ease-out forwards;
+      }
+
+      .gun {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        z-index: 6;
+        width: clamp(150px, 22vmin, 210px);
+        height: clamp(132px, 20vmin, 174px);
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .barrel {
+        position: absolute;
+        left: 50%;
+        bottom: 54px;
+        width: clamp(20px, 3.2vmin, 30px);
+        height: clamp(90px, 14vmin, 126px);
+        border: 3px solid #17202a;
+        border-radius: 999px 999px 10px 10px;
+        background: linear-gradient(90deg, var(--barrel-dark), var(--barrel), #718091);
+        transform: translateX(-50%) rotate(0rad);
+        transform-origin: 50% calc(100% - 8px);
+        box-shadow: inset 0 10px 16px rgba(255, 255, 255, 0.14);
+      }
+
+      .barrel-tip {
+        position: absolute;
+        top: -8px;
+        left: 50%;
+        width: 32px;
+        height: 18px;
+        border: 3px solid #17202a;
+        border-radius: 999px;
+        background: #d9e1e8;
+        transform: translateX(-50%);
+      }
+
+      .gun-pivot {
+        position: absolute;
+        left: 50%;
+        bottom: 62px;
+        width: 1px;
+        height: 1px;
+      }
+
+      .gun-body {
+        position: absolute;
+        left: 50%;
+        bottom: 16px;
+        width: clamp(116px, 17vmin, 154px);
+        height: clamp(58px, 8vmin, 78px);
+        border: 4px solid #17202a;
+        border-radius: 40px 40px 14px 14px;
+        background: linear-gradient(180deg, #ffca3a, var(--orange));
+        transform: translateX(-50%);
+        box-shadow: 0 10px 0 rgba(23, 32, 42, 0.1);
+      }
+
+      .gun-body::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: 16px;
+        width: 46%;
+        height: 22px;
+        border: 3px solid #17202a;
+        border-radius: 999px;
+        background: #ffffff;
+        transform: translateX(-50%);
+      }
+
+      .stand {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: clamp(76px, 12vmin, 106px);
+        height: 28px;
+        border: 4px solid #17202a;
+        border-bottom: 0;
+        border-radius: 18px 18px 0 0;
+        background: #3d5a80;
+        transform: translateX(-50%);
+      }
+
+      @keyframes laser-fade {
+        to {
+          opacity: 0;
+          transform: var(--laser-transform) scaleX(0.86);
+        }
+      }
+
+      @keyframes spark-pop {
+        to {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(2.4);
+        }
+      }
+
+      @keyframes word-pop {
+        55% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1.24) rotate(4deg);
+        }
+
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.25) rotate(-12deg);
+        }
+      }
+
+      @keyframes burst {
+        to {
+          opacity: 0;
+          transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(260deg) scale(0.35);
+        }
+      }
+
+      @media (max-width: 640px) {
+        .arena {
+          min-height: 420px;
+        }
+
+        .word-token {
+          min-width: 98px;
+          border-width: 3px;
+        }
+
+        .sound-button {
+          width: 52px;
+          height: 52px;
+          font-size: 27px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="arena" class="arena" aria-label="Shooting words game">
+      <div id="wordLayer" class="word-layer"></div>
+      <div id="laserLayer" class="laser-layer"></div>
+      <div id="burstLayer" class="burst-layer"></div>
+      <div id="face" class="face" aria-live="polite"></div>
+
+      <button id="soundButton" class="sound-button" type="button" aria-label="Hear the word again" hidden>🔊</button>
+
+      <div id="gun" class="gun" aria-hidden="true">
+        <div id="barrel" class="barrel">
+          <div class="barrel-tip"></div>
+        </div>
+        <div id="gunPivot" class="gun-pivot"></div>
+        <div class="gun-body"></div>
+        <div class="stand"></div>
+      </div>
+
+      <div id="startScreen" class="start-screen">
+        <button id="startButton" class="start-button" type="button" disabled>Start</button>
+      </div>
+
+      <div id="error" class="error" role="alert" hidden></div>
+    </main>
+
+    <script>
+      const CSV_FILE = "three_letter_words.csv";
+      const MIN_WORDS = 2;
+      const MAX_WORDS = 4;
+      const RESULT_DELAY_MS = 900;
+      const TIMEOUT_DELAY_MS = 260;
+
+      const state = {
+        words: [],
+        activeWords: [],
+        target: null,
+        running: false,
+        locked: true,
+        roundId: 0,
+        animationId: 0,
+        pointer: {
+          x: window.innerWidth / 2,
+          y: window.innerHeight * 0.28
+        },
+        nextRoundTimer: 0
+      };
+
+      const arenaEl = document.getElementById("arena");
+      const wordLayerEl = document.getElementById("wordLayer");
+      const laserLayerEl = document.getElementById("laserLayer");
+      const burstLayerEl = document.getElementById("burstLayer");
+      const faceEl = document.getElementById("face");
+      const startScreenEl = document.getElementById("startScreen");
+      const startButtonEl = document.getElementById("startButton");
+      const soundButtonEl = document.getElementById("soundButton");
+      const errorEl = document.getElementById("error");
+      const barrelEl = document.getElementById("barrel");
+      const gunPivotEl = document.getElementById("gunPivot");
+
+      init();
+
+      async function init() {
+        try {
+          const response = await fetch(CSV_FILE);
+          if (!response.ok) {
+            throw new Error(`Could not load ${CSV_FILE}.`);
+          }
+
+          const csv = await response.text();
+          state.words = parseCsv(csv)
+            .slice(1)
+            .map(([word]) => (word || "").trim().toLowerCase())
+            .filter((word) => /^[a-z]{3}$/.test(word));
+
+          if (state.words.length < MIN_WORDS) {
+            throw new Error("The CSV needs at least two three-letter words.");
+          }
+
+          startButtonEl.disabled = false;
+          updateAim();
+        } catch (error) {
+          showError(`${error.message} Run this page from a local web server so the browser can read the CSV file.`);
+        }
+      }
+
+      startButtonEl.addEventListener("click", () => {
+        state.running = true;
+        startScreenEl.hidden = true;
+        soundButtonEl.hidden = false;
+        unlockSpeech();
+        startRound();
+      });
+
+      soundButtonEl.addEventListener("click", (event) => {
+        event.stopPropagation();
+        if (state.target) {
+          speakWord(state.target.word);
+        }
+      });
+
+      arenaEl.addEventListener("pointermove", (event) => {
+        state.pointer.x = event.clientX;
+        state.pointer.y = event.clientY;
+        updateAim();
+      });
+
+      arenaEl.addEventListener("pointerdown", (event) => {
+        if (!state.running || state.locked || event.target.closest("button")) {
+          return;
+        }
+
+        state.pointer.x = event.clientX;
+        state.pointer.y = event.clientY;
+        updateAim();
+        shootLaser(event.clientX, event.clientY);
+
+        const hit = findHitWord(event.clientX, event.clientY);
+        if (!hit) {
+          return;
+        }
+
+        if (hit.word === state.target.word) {
+          finishRound("correct", hit);
+        } else {
+          finishRound("wrong", hit);
+        }
+      });
+
+      window.addEventListener("resize", updateAim);
+
+      function startRound() {
+        clearTimeout(state.nextRoundTimer);
+        window.cancelAnimationFrame(state.animationId);
+
+        state.roundId += 1;
+        state.locked = false;
+        state.activeWords = [];
+        wordLayerEl.innerHTML = "";
+        laserLayerEl.innerHTML = "";
+        burstLayerEl.innerHTML = "";
+        hideFace();
+
+        const roundWords = pickRoundWords();
+        state.target = roundWords[randomInt(0, roundWords.length - 1)];
+        const now = performance.now();
+
+        roundWords.forEach((entry, index) => {
+          const token = createWordToken(entry.word, index, roundWords.length, now);
+          state.activeWords.push(token);
+          placeWord(token, 0);
+          wordLayerEl.appendChild(token.el);
+        });
+
+        state.animationId = window.requestAnimationFrame(animateWords);
+        speakWord(state.target.word);
+      }
+
+      function pickRoundWords() {
+        const count = randomInt(MIN_WORDS, Math.min(MAX_WORDS, state.words.length));
+        return shuffle(state.words)
+          .slice(0, count)
+          .map((word) => ({ word }));
+      }
+
+      function createWordToken(word, index, total, now) {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const margin = Math.max(82, width * 0.08);
+        const usableWidth = Math.max(1, width - margin * 2);
+        const laneWidth = usableWidth / total;
+        const bottomY = height + randomInt(58, 108);
+        const apexY = randomInt(72, Math.max(96, Math.min(178, Math.floor(height * 0.27))));
+        const laneCenter = margin + laneWidth * index + laneWidth / 2;
+        const startX = clamp(laneCenter + randomInt(-Math.floor(laneWidth * 0.22), Math.floor(laneWidth * 0.22)), margin, width - margin);
+        const apexX = randomInt(margin, Math.max(margin + 1, width - margin));
+        const endX = clamp(startX + randomInt(-Math.floor(width * 0.34), Math.floor(width * 0.34)), margin, width - margin);
+        const duration = randomInt(5600, 7300);
+        const delay = index * randomInt(80, 180);
+        const el = document.createElement("div");
+
+        el.className = "word-token";
+        el.textContent = word;
+        el.dataset.word = word;
+        el.setAttribute("role", "button");
+        el.setAttribute("aria-label", word);
+
+        return {
+          word,
+          el,
+          startTime: now + delay,
+          duration,
+          bottomY,
+          apexY,
+          startX,
+          apexX,
+          endX,
+          done: false,
+          exploding: false
+        };
+      }
+
+      function animateWords(now) {
+        if (state.locked) {
+          return;
+        }
+
+        let remaining = 0;
+
+        state.activeWords.forEach((token) => {
+          if (token.done || token.exploding) {
+            return;
+          }
+
+          const rawProgress = (now - token.startTime) / token.duration;
+          if (rawProgress < 0) {
+            remaining += 1;
+            placeWord(token, 0);
+            return;
+          }
+
+          if (rawProgress >= 1) {
+            token.done = true;
+            token.el.remove();
+            return;
+          }
+
+          remaining += 1;
+          placeWord(token, rawProgress);
+        });
+
+        if (remaining > 0) {
+          state.animationId = window.requestAnimationFrame(animateWords);
+        } else {
+          finishRound("timeout");
+        }
+      }
+
+      function placeWord(token, progress) {
+        const t = clamp(progress, 0, 1);
+        const oneMinusT = 1 - t;
+        const x = oneMinusT * oneMinusT * token.startX + 2 * oneMinusT * t * token.apexX + t * t * token.endX;
+        const y = token.apexY + (token.bottomY - token.apexY) * Math.pow(2 * t - 1, 2);
+
+        token.el.style.left = `${x}px`;
+        token.el.style.top = `${y}px`;
+      }
+
+      function finishRound(result, hit) {
+        if (state.locked) {
+          return;
+        }
+
+        state.locked = true;
+        window.cancelAnimationFrame(state.animationId);
+        window.speechSynthesis?.cancel();
+
+        let delay = RESULT_DELAY_MS;
+
+        if (result === "correct") {
+          showFace("🙂");
+          explodeWord(hit);
+        } else if (result === "wrong") {
+          showFace("☹️");
+        } else {
+          hideFace();
+          delay = TIMEOUT_DELAY_MS;
+        }
+
+        state.nextRoundTimer = window.setTimeout(startRound, delay);
+      }
+
+      function explodeWord(token) {
+        token.exploding = true;
+        token.el.classList.add("exploding");
+
+        const rect = token.el.getBoundingClientRect();
+        const centerX = rect.left + rect.width / 2;
+        const centerY = rect.top + rect.height / 2;
+
+        for (let index = 0; index < 12; index += 1) {
+          const burst = document.createElement("div");
+          const angle = (Math.PI * 2 * index) / 12;
+          const distance = randomInt(42, 86);
+
+          burst.className = "burst";
+          burst.style.left = `${centerX}px`;
+          burst.style.top = `${centerY}px`;
+          burst.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
+          burst.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
+          burst.style.background = index % 2 === 0 ? "#ffca3a" : "#f18f01";
+          burstLayerEl.appendChild(burst);
+          window.setTimeout(() => burst.remove(), 560);
+        }
+      }
+
+      function findHitWord(x, y) {
+        const tolerance = 12;
+
+        return state.activeWords.find((token) => {
+          if (token.done || token.exploding) {
+            return false;
+          }
+
+          const rect = token.el.getBoundingClientRect();
+          return (
+            x >= rect.left - tolerance &&
+            x <= rect.right + tolerance &&
+            y >= rect.top - tolerance &&
+            y <= rect.bottom + tolerance
+          );
+        });
+      }
+
+      function shootLaser(x, y) {
+        const { x: tipX, y: tipY } = getGunTip();
+        const angle = Math.atan2(y - tipY, x - tipX);
+        const distance = Math.hypot(x - tipX, y - tipY);
+        const shot = document.createElement("div");
+        const spark = document.createElement("div");
+        const transform = `translate(${tipX}px, ${tipY}px) rotate(${angle}rad)`;
+
+        shot.className = "laser-shot";
+        shot.style.width = `${distance}px`;
+        shot.style.transform = transform;
+        shot.style.setProperty("--laser-transform", transform);
+        laserLayerEl.appendChild(shot);
+
+        spark.className = "spark";
+        spark.style.left = `${x}px`;
+        spark.style.top = `${y}px`;
+        laserLayerEl.appendChild(spark);
+
+        window.setTimeout(() => {
+          shot.remove();
+          spark.remove();
+        }, 280);
+      }
+
+      function updateAim() {
+        const pivot = getGunPivot();
+        const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
+        barrelEl.style.transform = `translateX(-50%) rotate(${angle + Math.PI / 2}rad)`;
+      }
+
+      function getGunPivot() {
+        const rect = gunPivotEl.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+      }
+
+      function getGunTip() {
+        const pivot = getGunPivot();
+        const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
+        const length = barrelEl.offsetHeight - 2;
+
+        return {
+          x: pivot.x + Math.cos(angle) * length,
+          y: pivot.y + Math.sin(angle) * length
+        };
+      }
+
+      function speakWord(word) {
+        if (!("speechSynthesis" in window) || !("SpeechSynthesisUtterance" in window)) {
+          return;
+        }
+
+        const utterance = new SpeechSynthesisUtterance(word);
+        const voice = getEnglishVoice();
+
+        utterance.lang = "en-US";
+        utterance.rate = 0.78;
+        utterance.pitch = 1.08;
+        if (voice) {
+          utterance.voice = voice;
+        }
+
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+      }
+
+      function unlockSpeech() {
+        if (!("speechSynthesis" in window)) {
+          return;
+        }
+
+        window.speechSynthesis.resume();
+        window.speechSynthesis.getVoices();
+      }
+
+      function getEnglishVoice() {
+        if (!("speechSynthesis" in window)) {
+          return null;
+        }
+
+        const voices = window.speechSynthesis.getVoices();
+        return (
+          voices.find((voice) => voice.lang === "en-US" && /female|samantha|zira|google/i.test(voice.name)) ||
+          voices.find((voice) => voice.lang === "en-US") ||
+          voices.find((voice) => voice.lang.startsWith("en")) ||
+          null
+        );
+      }
+
+      function showFace(face) {
+        faceEl.textContent = face;
+        faceEl.classList.add("show");
+      }
+
+      function hideFace() {
+        faceEl.classList.remove("show");
+        faceEl.textContent = "";
+      }
+
+      function showError(message) {
+        errorEl.hidden = false;
+        errorEl.textContent = message;
+        startButtonEl.disabled = true;
+      }
+
+      function parseCsv(text) {
+        const rows = [];
+        let row = [];
+        let field = "";
+        let inQuotes = false;
+
+        for (let index = 0; index < text.length; index += 1) {
+          const char = text[index];
+          const next = text[index + 1];
+
+          if (char === '"' && inQuotes && next === '"') {
+            field += '"';
+            index += 1;
+          } else if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === "," && !inQuotes) {
+            row.push(field);
+            field = "";
+          } else if ((char === "\n" || char === "\r") && !inQuotes) {
+            if (char === "\r" && next === "\n") {
+              index += 1;
+            }
+
+            row.push(field);
+            if (row.some((value) => value.trim() !== "")) {
+              rows.push(row);
+            }
+            row = [];
+            field = "";
+          } else {
+            field += char;
+          }
+        }
+
+        row.push(field);
+        if (row.some((value) => value.trim() !== "")) {
+          rows.push(row);
+        }
+
+        return rows;
+      }
+
+      function shuffle(items) {
+        const copy = [...items];
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+          const swapIndex = randomInt(0, index);
+          [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+        }
+        return copy;
+      }
+
+      function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function clamp(value, min, max) {
+        return Math.min(Math.max(value, min), max);
+      }
+    </script>
+  </body>
+</html>

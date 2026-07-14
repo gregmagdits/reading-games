@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Picture Word Game</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f5ee;
+        --ink: #1f2933;
+        --muted: #5b6470;
+        --panel: #ffffff;
+        --line: #d8d2c3;
+        --accent: #157f7b;
+        --accent-dark: #0d5956;
+        --wrong: #d94f42;
+        --shadow: 0 18px 40px rgba(31, 41, 51, 0.14);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, Helvetica, sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(255, 206, 90, 0.35), transparent 32rem),
+          linear-gradient(135deg, #f7f5ee 0%, #e9f4f2 100%);
+      }
+
+      main {
+        width: min(980px, 100%);
+        min-height: 100vh;
+        margin: 0 auto;
+        padding: clamp(18px, 4vw, 36px);
+        display: grid;
+        align-content: center;
+        gap: 22px;
+      }
+
+      .game {
+        display: grid;
+        grid-template-columns: minmax(260px, 1fr) minmax(280px, 0.82fr);
+        gap: clamp(18px, 4vw, 34px);
+        align-items: center;
+      }
+
+      .picture-frame {
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        box-shadow: var(--shadow);
+        padding: clamp(10px, 2vw, 16px);
+      }
+
+      .picture-wrap {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        border-radius: 6px;
+        background: #e8edf0;
+      }
+
+      #wordImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .play-panel {
+        display: grid;
+        gap: 22px;
+      }
+
+      .status-row {
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #face {
+        width: 86px;
+        height: 86px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid var(--line);
+        font-size: 54px;
+        line-height: 1;
+      }
+
+      #face:empty {
+        opacity: 0;
+      }
+
+      .word-row {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(74px, 1fr));
+        gap: clamp(10px, 2.5vw, 16px);
+      }
+
+      .letter-cell {
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border-radius: 8px;
+        border: 3px solid var(--line);
+        background: rgba(255, 255, 255, 0.84);
+        font-size: clamp(52px, 11vw, 82px);
+        font-weight: 800;
+        text-transform: uppercase;
+        user-select: none;
+      }
+
+      .letter-cell.missing {
+        border-color: var(--accent);
+        border-style: dashed;
+        background: rgba(21, 127, 123, 0.08);
+      }
+
+      .letter-cell.over {
+        border-color: var(--accent-dark);
+        background: rgba(21, 127, 123, 0.18);
+      }
+
+      .choices {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(48px, 1fr));
+        gap: clamp(8px, 2vw, 14px);
+      }
+
+      .choice {
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+        border: 0;
+        border-radius: 8px;
+        background: #ffffff;
+        color: var(--ink);
+        box-shadow: 0 10px 22px rgba(31, 41, 51, 0.15);
+        font: inherit;
+        font-size: clamp(34px, 8vw, 54px);
+        font-weight: 800;
+        text-transform: uppercase;
+        touch-action: none;
+        cursor: grab;
+        user-select: none;
+      }
+
+      .choice:active {
+        cursor: grabbing;
+      }
+
+      .choice.dragging {
+        position: fixed;
+        z-index: 20;
+        pointer-events: none;
+        width: var(--drag-size);
+        height: var(--drag-size);
+        opacity: 0.92;
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+
+      .choice.used {
+        visibility: hidden;
+      }
+
+      .choice.shake {
+        animation: shake 0.28s ease-in-out;
+        background: #fff3f1;
+        color: var(--wrong);
+      }
+
+      .message {
+        min-height: 28px;
+        color: var(--muted);
+        text-align: center;
+        font-size: 18px;
+      }
+
+      .error {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 18px;
+        border: 1px solid var(--wrong);
+        border-radius: 8px;
+        background: #fff3f1;
+        color: #7c2119;
+        line-height: 1.4;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-6px); }
+        75% { transform: translateX(6px); }
+      }
+
+      @media (max-width: 760px) {
+        main {
+          align-content: start;
+        }
+
+        .game {
+          grid-template-columns: 1fr;
+        }
+
+        .status-row {
+          min-height: 68px;
+        }
+
+        #face {
+          width: 68px;
+          height: 68px;
+          font-size: 44px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section id="game" class="game" aria-label="Missing letter reading game">
+        <div class="picture-frame">
+          <div class="picture-wrap">
+            <img id="wordImage" alt="">
+          </div>
+        </div>
+
+        <div class="play-panel">
+          <div class="status-row" aria-live="polite">
+            <div id="face"></div>
+          </div>
+
+          <div id="wordRow" class="word-row" aria-label="Word with one missing letter"></div>
+          <div id="choices" class="choices" aria-label="Letter choices"></div>
+          <div id="message" class="message" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <div id="error" class="error hidden" role="alert"></div>
+    </main>
+
+    <script>
+      const CSV_FILE = "three_letter_words.csv";
+      const ALPHABET = "abcdefghijklmnopqrstuvwxyz".split("");
+
+      const state = {
+        words: [],
+        current: null,
+        missingIndex: 0,
+        missingLetter: "",
+        locked: false,
+        drag: null,
+        previousWord: ""
+      };
+
+      const gameEl = document.getElementById("game");
+      const errorEl = document.getElementById("error");
+      const imageEl = document.getElementById("wordImage");
+      const wordRowEl = document.getElementById("wordRow");
+      const choicesEl = document.getElementById("choices");
+      const faceEl = document.getElementById("face");
+      const messageEl = document.getElementById("message");
+
+      init();
+
+      async function init() {
+        try {
+          const response = await fetch(CSV_FILE);
+          if (!response.ok) {
+            throw new Error(`Could not load ${CSV_FILE}.`);
+          }
+
+          const csv = await response.text();
+          state.words = parseCsv(csv)
+            .slice(1)
+            .map(([word, imageUrl]) => ({
+              word: (word || "").trim().toLowerCase(),
+              imageUrl: (imageUrl || "").trim()
+            }))
+            .filter((entry) => /^[a-z]{3}$/.test(entry.word) && entry.imageUrl);
+
+          if (state.words.length === 0) {
+            throw new Error("No three-letter words were found in the CSV file.");
+          }
+
+          startRound();
+        } catch (error) {
+          showError(`${error.message} Run this page from a local web server so the browser can read the CSV file.`);
+        }
+      }
+
+      function startRound() {
+        state.locked = false;
+        faceEl.textContent = "";
+        messageEl.textContent = "";
+
+        state.current = pickWord();
+        state.previousWord = state.current.word;
+        state.missingIndex = randomInt(0, state.current.word.length - 1);
+        state.missingLetter = state.current.word[state.missingIndex];
+
+        imageEl.src = state.current.imageUrl;
+        imageEl.alt = state.current.word;
+
+        renderWord();
+        renderChoices();
+      }
+
+      function pickWord() {
+        if (state.words.length === 1) {
+          return state.words[0];
+        }
+
+        let next = state.words[randomInt(0, state.words.length - 1)];
+        while (next.word === state.previousWord) {
+          next = state.words[randomInt(0, state.words.length - 1)];
+        }
+        return next;
+      }
+
+      function renderWord() {
+        wordRowEl.innerHTML = "";
+
+        [...state.current.word].forEach((letter, index) => {
+          const cell = document.createElement("div");
+          cell.className = "letter-cell";
+          cell.dataset.index = String(index);
+
+          if (index === state.missingIndex) {
+            cell.classList.add("missing");
+            cell.dataset.dropTarget = "true";
+            cell.textContent = "";
+            cell.setAttribute("aria-label", "Missing letter");
+          } else {
+            cell.textContent = letter;
+            cell.setAttribute("aria-label", letter);
+          }
+
+          wordRowEl.appendChild(cell);
+        });
+      }
+
+      function renderChoices() {
+        const letters = createChoices(state.missingLetter);
+        choicesEl.innerHTML = "";
+
+        letters.forEach((letter) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "choice";
+          button.textContent = letter;
+          button.dataset.letter = letter;
+          button.setAttribute("aria-label", `Try letter ${letter}`);
+          button.addEventListener("pointerdown", startDrag);
+          choicesEl.appendChild(button);
+        });
+      }
+
+      function createChoices(correctLetter) {
+        const letters = new Set([correctLetter]);
+
+        while (letters.size < 5) {
+          const letter = ALPHABET[randomInt(0, ALPHABET.length - 1)];
+          if (letter !== correctLetter) {
+            letters.add(letter);
+          }
+        }
+
+        return shuffle([...letters]);
+      }
+
+      function startDrag(event) {
+        if (state.locked || !event.isPrimary) {
+          return;
+        }
+
+        const source = event.currentTarget;
+        const rect = source.getBoundingClientRect();
+        const clone = source.cloneNode(true);
+
+        source.classList.add("used");
+        clone.classList.add("dragging");
+        clone.style.setProperty("--drag-size", `${rect.width}px`);
+        clone.style.left = `${event.clientX}px`;
+        clone.style.top = `${event.clientY}px`;
+        document.body.appendChild(clone);
+
+        state.drag = {
+          source,
+          clone,
+          letter: source.dataset.letter,
+          pointerId: event.pointerId
+        };
+
+        source.setPointerCapture(event.pointerId);
+        source.addEventListener("pointermove", moveDrag);
+        source.addEventListener("pointerup", endDrag);
+        source.addEventListener("pointercancel", cancelDrag);
+      }
+
+      function moveDrag(event) {
+        if (!state.drag || event.pointerId !== state.drag.pointerId) {
+          return;
+        }
+
+        state.drag.clone.style.left = `${event.clientX}px`;
+        state.drag.clone.style.top = `${event.clientY}px`;
+        setDropHighlight(event.clientX, event.clientY);
+      }
+
+      function endDrag(event) {
+        if (!state.drag || event.pointerId !== state.drag.pointerId) {
+          return;
+        }
+
+        const dropTarget = getDropTarget(event.clientX, event.clientY);
+        const source = state.drag.source;
+        const letter = state.drag.letter;
+
+        cleanupDrag();
+        clearDropHighlight();
+
+        if (!dropTarget) {
+          source.classList.remove("used");
+          return;
+        }
+
+        checkAnswer(letter, source);
+      }
+
+      function cancelDrag(event) {
+        if (!state.drag || event.pointerId !== state.drag.pointerId) {
+          return;
+        }
+
+        state.drag.source.classList.remove("used");
+        cleanupDrag();
+        clearDropHighlight();
+      }
+
+      function checkAnswer(letter, source) {
+        if (letter === state.missingLetter) {
+          state.locked = true;
+          document.querySelector(".missing").textContent = letter;
+          faceEl.textContent = "🙂";
+          messageEl.textContent = "";
+          setTimeout(startRound, 1000);
+          return;
+        }
+
+        source.classList.remove("used");
+        source.classList.add("shake");
+        faceEl.textContent = "☹️";
+        messageEl.textContent = "";
+        window.setTimeout(() => source.classList.remove("shake"), 320);
+      }
+
+      function cleanupDrag() {
+        const { source, clone, pointerId } = state.drag;
+        source.releasePointerCapture(pointerId);
+        source.removeEventListener("pointermove", moveDrag);
+        source.removeEventListener("pointerup", endDrag);
+        source.removeEventListener("pointercancel", cancelDrag);
+        clone.remove();
+        state.drag = null;
+      }
+
+      function getDropTarget(x, y) {
+        const target = document.querySelector(".missing");
+        if (!target) {
+          return null;
+        }
+
+        const rect = target.getBoundingClientRect();
+        const padX = rect.width * 0.38;
+        const padY = rect.height * 0.38;
+        const nearX = x >= rect.left - padX && x <= rect.right + padX;
+        const nearY = y >= rect.top - padY && y <= rect.bottom + padY;
+
+        return nearX && nearY ? target : null;
+      }
+
+      function setDropHighlight(x, y) {
+        const target = document.querySelector(".missing");
+        if (!target) {
+          return;
+        }
+
+        target.classList.toggle("over", Boolean(getDropTarget(x, y)));
+      }
+
+      function clearDropHighlight() {
+        document.querySelectorAll(".over").forEach((el) => el.classList.remove("over"));
+      }
+
+      function parseCsv(text) {
+        const rows = [];
+        let row = [];
+        let field = "";
+        let inQuotes = false;
+
+        for (let index = 0; index < text.length; index += 1) {
+          const char = text[index];
+          const next = text[index + 1];
+
+          if (char === '"' && inQuotes && next === '"') {
+            field += '"';
+            index += 1;
+          } else if (char === '"') {
+            inQuotes = !inQuotes;
+          } else if (char === "," && !inQuotes) {
+            row.push(field);
+            field = "";
+          } else if ((char === "\n" || char === "\r") && !inQuotes) {
+            if (char === "\r" && next === "\n") {
+              index += 1;
+            }
+
+            row.push(field);
+            if (row.some((value) => value.trim() !== "")) {
+              rows.push(row);
+            }
+            row = [];
+            field = "";
+          } else {
+            field += char;
+          }
+        }
+
+        row.push(field);
+        if (row.some((value) => value.trim() !== "")) {
+          rows.push(row);
+        }
+
+        return rows;
+      }
+
+      function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function shuffle(items) {
+        const copy = [...items];
+        for (let index = copy.length - 1; index > 0; index -= 1) {
+          const swapIndex = randomInt(0, index);
+          [copy[index], copy[swapIndex]] = [copy[swapIndex], copy[index]];
+        }
+        return copy;
+      }
+
+      function showError(message) {
+        gameEl.classList.add("hidden");
+        errorEl.classList.remove("hidden");
+        errorEl.textContent = message;
+      }
+    </script>
+  </body>
+</html>
