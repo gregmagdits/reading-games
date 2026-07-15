@@ -7,10 +7,10 @@
     <style>
       :root {
         color-scheme: light;
-        --sky-top: #75c8f2;
-        --sky-mid: #c8eef6;
-        --grass: #4d9c55;
-        --grass-dark: #26713b;
+        --sky-top: #07162f;
+        --sky-mid: #112c55;
+        --grass: #1f5a3c;
+        --grass-dark: #123522;
         --ink: #17202a;
         --panel: #ffffff;
         --laser: #ff294c;
@@ -35,7 +35,7 @@
         overflow: hidden;
         font-family: Arial, Helvetica, sans-serif;
         color: var(--ink);
-        background: var(--sky-mid);
+        background: var(--sky-top);
       }
 
       button {
@@ -49,16 +49,37 @@
         min-height: 460px;
         overflow: hidden;
         background:
-          radial-gradient(circle at 12% 14%, rgba(255, 247, 185, 0.9) 0 52px, rgba(255, 247, 185, 0) 53px),
-          linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 58%, #dff5d2 82%, var(--grass) 82%, var(--grass-dark) 100%);
+          radial-gradient(circle at 14% 15%, rgba(255, 255, 230, 0.95) 0 36px, rgba(255, 255, 230, 0) 37px),
+          radial-gradient(circle at 28% 18%, rgba(255, 255, 255, 0.9) 0 2px, rgba(255, 255, 255, 0) 3px),
+          radial-gradient(circle at 46% 10%, rgba(255, 255, 255, 0.8) 0 1px, rgba(255, 255, 255, 0) 2px),
+          radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.82) 0 2px, rgba(255, 255, 255, 0) 3px),
+          radial-gradient(circle at 81% 13%, rgba(255, 255, 255, 0.78) 0 1px, rgba(255, 255, 255, 0) 2px),
+          radial-gradient(circle at 91% 30%, rgba(255, 255, 255, 0.72) 0 2px, rgba(255, 255, 255, 0) 3px),
+          linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 60%, #163c3e 82%, var(--grass) 82%, var(--grass-dark) 100%);
         cursor: crosshair;
       }
 
       .word-layer,
-      .laser-layer,
-      .burst-layer {
+      .laser-layer {
         position: absolute;
         inset: 0;
+        pointer-events: none;
+      }
+
+      .word-layer {
+        z-index: 2;
+      }
+
+      .laser-layer {
+        z-index: 7;
+      }
+
+      .fireworks-canvas {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        width: 100%;
+        height: 100%;
         pointer-events: none;
       }
 
@@ -82,32 +103,8 @@
         will-change: transform, opacity;
       }
 
-      .word-token.exploding {
-        animation: word-pop 420ms ease-out forwards;
-        pointer-events: none;
-      }
-
-      .face {
-        position: absolute;
-        top: clamp(14px, 3vh, 28px);
-        left: 50%;
-        z-index: 7;
-        width: clamp(76px, 13vmin, 118px);
-        height: clamp(76px, 13vmin, 118px);
-        display: grid;
-        place-items: center;
-        border-radius: 50%;
-        background: rgba(255, 255, 255, 0.75);
-        box-shadow: 0 14px 32px rgba(23, 32, 42, 0.16);
-        font-size: clamp(50px, 9vmin, 82px);
-        line-height: 1;
-        transform: translateX(-50%) scale(0);
-        transition: transform 140ms ease-out;
-        pointer-events: none;
-      }
-
-      .face.show {
-        transform: translateX(-50%) scale(1);
+      .word-token.flash {
+        animation: word-flash 1.15s ease-in-out infinite;
       }
 
       .sound-button {
@@ -201,16 +198,6 @@
         box-shadow: 0 0 16px rgba(255, 224, 102, 0.85);
         transform: translate(-50%, -50%);
         animation: spark-pop 260ms ease-out forwards;
-      }
-
-      .burst {
-        position: absolute;
-        width: 14px;
-        height: 14px;
-        border-radius: 3px;
-        background: var(--orange);
-        transform: translate(-50%, -50%);
-        animation: burst 520ms ease-out forwards;
       }
 
       .gun {
@@ -311,22 +298,16 @@
         }
       }
 
-      @keyframes word-pop {
-        55% {
-          opacity: 1;
-          transform: translate(-50%, -50%) scale(1.24) rotate(4deg);
-        }
-
+      @keyframes word-flash {
+        0%,
         100% {
-          opacity: 0;
-          transform: translate(-50%, -50%) scale(0.25) rotate(-12deg);
+          background: #ffffff;
+          box-shadow: 0 12px 28px rgba(23, 32, 42, 0.22);
         }
-      }
 
-      @keyframes burst {
-        to {
-          opacity: 0;
-          transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) rotate(260deg) scale(0.35);
+        50% {
+          background: #fff07a;
+          box-shadow: 0 0 0 8px rgba(255, 240, 122, 0.22), 0 12px 28px rgba(23, 32, 42, 0.22);
         }
       }
 
@@ -352,8 +333,7 @@
     <main id="arena" class="arena" aria-label="Shooting words game">
       <div id="wordLayer" class="word-layer"></div>
       <div id="laserLayer" class="laser-layer"></div>
-      <div id="burstLayer" class="burst-layer"></div>
-      <div id="face" class="face" aria-live="polite"></div>
+      <canvas id="fireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
 
       <button id="soundButton" class="sound-button" type="button" aria-label="Hear the word again" hidden>🔊</button>
 
@@ -377,8 +357,16 @@
       const CSV_FILE = "three_letter_words.csv";
       const MIN_WORDS = 2;
       const MAX_WORDS = 4;
-      const RESULT_DELAY_MS = 900;
+      const RESULT_DELAY_MS = 1200;
       const TIMEOUT_DELAY_MS = 260;
+      const FIREWORK_SERIES_GAP_MS = 120;
+      const FIREWORK_PALETTES = [
+        ["#ffef6e", "#ff7a59", "#ff477e", "#68e1fd", "#7cff8e"],
+        ["#fff4a3", "#ffd166", "#fca311", "#ff6b35", "#ffffff"],
+        ["#70d6ff", "#00b4d8", "#90e0ef", "#b8f7ff", "#bdb2ff"],
+        ["#39ff14", "#f72585", "#7209b7", "#4cc9f0", "#fff200"],
+        ["#ffd6e0", "#caffbf", "#9bf6ff", "#bdb2ff", "#fdffb6"]
+      ];
 
       const state = {
         words: [],
@@ -386,27 +374,37 @@
         target: null,
         running: false,
         locked: true,
+        roundOver: false,
+        waitingForWordsToLeave: false,
+        correctStreak: 0,
         roundId: 0,
         animationId: 0,
         pointer: {
           x: window.innerWidth / 2,
           y: window.innerHeight * 0.28
         },
-        nextRoundTimer: 0
+        nextRoundTimer: 0,
+        fireworkTimers: []
       };
 
       const arenaEl = document.getElementById("arena");
       const wordLayerEl = document.getElementById("wordLayer");
       const laserLayerEl = document.getElementById("laserLayer");
-      const burstLayerEl = document.getElementById("burstLayer");
-      const faceEl = document.getElementById("face");
+      const fireworksCanvasEl = document.getElementById("fireworksCanvas");
+      const fireworksCtx = fireworksCanvasEl.getContext("2d");
       const startScreenEl = document.getElementById("startScreen");
       const startButtonEl = document.getElementById("startButton");
       const soundButtonEl = document.getElementById("soundButton");
       const errorEl = document.getElementById("error");
       const barrelEl = document.getElementById("barrel");
       const gunPivotEl = document.getElementById("gunPivot");
+      const fireworkBursts = [];
+      let fireworkWidth = 0;
+      let fireworkHeight = 0;
+      let lastFireworkFrame = performance.now();
 
+      resizeFireworksCanvas();
+      requestAnimationFrame(drawFireworks);
       init();
 
       async function init() {
@@ -472,11 +470,14 @@
         if (hit.word === state.target.word) {
           finishRound("correct", hit);
         } else {
-          finishRound("wrong", hit);
+          handleWrongGuess();
         }
       });
 
-      window.addEventListener("resize", updateAim);
+      window.addEventListener("resize", () => {
+        updateAim();
+        resizeFireworksCanvas();
+      });
 
       function startRound() {
         clearTimeout(state.nextRoundTimer);
@@ -484,11 +485,12 @@
 
         state.roundId += 1;
         state.locked = false;
+        state.roundOver = false;
+        state.waitingForWordsToLeave = false;
         state.activeWords = [];
         wordLayerEl.innerHTML = "";
         laserLayerEl.innerHTML = "";
-        burstLayerEl.innerHTML = "";
-        hideFace();
+        clearFireworks();
 
         const roundWords = pickRoundWords();
         state.target = roundWords[randomInt(0, roundWords.length - 1)];
@@ -550,7 +552,7 @@
       }
 
       function animateWords(now) {
-        if (state.locked) {
+        if (state.roundOver) {
           return;
         }
 
@@ -581,7 +583,7 @@
         if (remaining > 0) {
           state.animationId = window.requestAnimationFrame(animateWords);
         } else {
-          finishRound("timeout");
+          finishRound(state.waitingForWordsToLeave ? "wrong-timeout" : "timeout");
         }
       }
 
@@ -596,51 +598,161 @@
       }
 
       function finishRound(result, hit) {
-        if (state.locked) {
+        if (state.roundOver) {
           return;
         }
 
+        state.roundOver = true;
         state.locked = true;
         window.cancelAnimationFrame(state.animationId);
         window.speechSynthesis?.cancel();
 
-        let delay = RESULT_DELAY_MS;
+        let delay = TIMEOUT_DELAY_MS;
 
         if (result === "correct") {
-          showFace("🙂");
-          explodeWord(hit);
-        } else if (result === "wrong") {
-          showFace("☹️");
+          state.correctStreak += 1;
+          explodeWord(hit, state.correctStreak);
+          delay = correctRoundDelay(state.correctStreak);
         } else {
-          hideFace();
-          delay = TIMEOUT_DELAY_MS;
+          state.correctStreak = 0;
         }
 
         state.nextRoundTimer = window.setTimeout(startRound, delay);
       }
 
-      function explodeWord(token) {
+      function handleWrongGuess() {
+        state.locked = true;
+        state.waitingForWordsToLeave = true;
+        state.correctStreak = 0;
+        window.speechSynthesis?.cancel();
+
+        state.activeWords.forEach((token) => {
+          if (!token.done && !token.exploding) {
+            token.el.classList.add("flash");
+          }
+        });
+      }
+
+      function correctRoundDelay(streak) {
+        return Math.min(3400, RESULT_DELAY_MS + streak * FIREWORK_SERIES_GAP_MS);
+      }
+
+      function explodeWord(token, fireworkCount) {
         token.exploding = true;
-        token.el.classList.add("exploding");
+        token.done = true;
 
         const rect = token.el.getBoundingClientRect();
         const centerX = rect.left + rect.width / 2;
         const centerY = rect.top + rect.height / 2;
 
-        for (let index = 0; index < 12; index += 1) {
-          const burst = document.createElement("div");
-          const angle = (Math.PI * 2 * index) / 12;
-          const distance = randomInt(42, 86);
+        token.el.remove();
+        spawnFireworkSeries(centerX, centerY, fireworkCount);
+      }
 
-          burst.className = "burst";
-          burst.style.left = `${centerX}px`;
-          burst.style.top = `${centerY}px`;
-          burst.style.setProperty("--dx", `${Math.cos(angle) * distance}px`);
-          burst.style.setProperty("--dy", `${Math.sin(angle) * distance}px`);
-          burst.style.background = index % 2 === 0 ? "#ffca3a" : "#f18f01";
-          burstLayerEl.appendChild(burst);
-          window.setTimeout(() => burst.remove(), 560);
+      function resizeFireworksCanvas() {
+        const ratio = Math.min(window.devicePixelRatio || 1, 2);
+        const rect = arenaEl.getBoundingClientRect();
+
+        fireworkWidth = rect.width || window.innerWidth;
+        fireworkHeight = rect.height || window.innerHeight;
+        fireworksCanvasEl.width = Math.floor(fireworkWidth * ratio);
+        fireworksCanvasEl.height = Math.floor(fireworkHeight * ratio);
+        fireworksCtx.setTransform(ratio, 0, 0, ratio, 0, 0);
+        fireworksCtx.clearRect(0, 0, fireworkWidth, fireworkHeight);
+      }
+
+      function clearFireworks() {
+        state.fireworkTimers.forEach((timer) => clearTimeout(timer));
+        state.fireworkTimers = [];
+        fireworkBursts.length = 0;
+        fireworksCtx.globalCompositeOperation = "source-over";
+        fireworksCtx.globalAlpha = 1;
+        fireworksCtx.clearRect(0, 0, fireworkWidth, fireworkHeight);
+      }
+
+      function spawnFireworkSeries(centerX, centerY, count) {
+        const palette = FIREWORK_PALETTES[randomInt(0, FIREWORK_PALETTES.length - 1)];
+        const spread = Math.min(180, 44 + count * 10);
+
+        for (let index = 0; index < count; index += 1) {
+          const timer = window.setTimeout(() => {
+            const angle = count === 1 ? 0 : (Math.PI * 2 * index) / count + randomBetween(-0.28, 0.28);
+            const distance = count === 1 ? 0 : randomBetween(24, spread);
+            const x = clamp(centerX + Math.cos(angle) * distance, 36, fireworkWidth - 36);
+            const y = clamp(centerY + Math.sin(angle) * distance, 52, fireworkHeight - 120);
+
+            spawnFireworkBurst(x, y, palette);
+          }, index * FIREWORK_SERIES_GAP_MS);
+
+          state.fireworkTimers.push(timer);
         }
+      }
+
+      function spawnFireworkBurst(centerX, centerY, colors) {
+        const particleCount = Math.floor(randomBetween(52, 86));
+        const particles = [];
+
+        for (let index = 0; index < particleCount; index += 1) {
+          const angle = (Math.PI * 2 * index) / particleCount + randomBetween(-0.1, 0.1);
+          const speed = randomBetween(1.4, 5.2);
+
+          particles.push({
+            x: centerX,
+            y: centerY,
+            vx: Math.cos(angle) * speed,
+            vy: Math.sin(angle) * speed,
+            drag: randomBetween(0.982, 0.991),
+            gravity: randomBetween(0.024, 0.044),
+            size: randomBetween(1.2, 2.8),
+            life: 0,
+            maxLife: randomBetween(70, 112),
+            color: colors[randomInt(0, colors.length - 1)]
+          });
+        }
+
+        fireworkBursts.push({ particles });
+      }
+
+      function drawFireworks(now) {
+        const delta = Math.min((now - lastFireworkFrame) / 16.67, 2);
+        lastFireworkFrame = now;
+
+        fireworksCtx.globalCompositeOperation = "source-over";
+        fireworksCtx.globalAlpha = 1;
+        fireworksCtx.clearRect(0, 0, fireworkWidth, fireworkHeight);
+        fireworksCtx.globalCompositeOperation = "lighter";
+
+        for (let index = fireworkBursts.length - 1; index >= 0; index -= 1) {
+          const burst = fireworkBursts[index];
+          let aliveParticles = 0;
+
+          for (const particle of burst.particles) {
+            if (particle.life >= particle.maxLife) {
+              continue;
+            }
+
+            particle.life += delta;
+            particle.vx *= particle.drag;
+            particle.vy = particle.vy * particle.drag + particle.gravity * delta;
+            particle.x += particle.vx * delta;
+            particle.y += particle.vy * delta;
+
+            const fade = Math.max(0, 1 - particle.life / particle.maxLife);
+            fireworksCtx.globalAlpha = fade;
+            fireworksCtx.fillStyle = particle.color;
+            fireworksCtx.beginPath();
+            fireworksCtx.arc(particle.x, particle.y, particle.size * fade + 0.35, 0, Math.PI * 2);
+            fireworksCtx.fill();
+
+            aliveParticles += 1;
+          }
+
+          if (aliveParticles === 0) {
+            fireworkBursts.splice(index, 1);
+          }
+        }
+
+        window.requestAnimationFrame(drawFireworks);
       }
 
       function findHitWord(x, y) {
@@ -753,16 +865,6 @@
         );
       }
 
-      function showFace(face) {
-        faceEl.textContent = face;
-        faceEl.classList.add("show");
-      }
-
-      function hideFace() {
-        faceEl.classList.remove("show");
-        faceEl.textContent = "";
-      }
-
       function showError(message) {
         errorEl.hidden = false;
         errorEl.textContent = message;
@@ -822,6 +924,10 @@
 
       function randomInt(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
+      }
+
+      function randomBetween(min, max) {
+        return Math.random() * (max - min) + min;
       }
 
       function clamp(value, min, max) {
