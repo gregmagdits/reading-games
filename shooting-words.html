@@ -311,6 +311,12 @@
         color: #6b7280;
       }
 
+      .prefix-range {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
       .radio-group {
         display: grid;
         gap: 8px;
@@ -1337,10 +1343,16 @@
             </label>
           </fieldset>
 
-          <label class="field">
-            Prefix length
-            <input id="prefixLengthInput" type="number" min="0" step="1" value="1">
-          </label>
+          <div class="prefix-range" role="group" aria-label="Prefix length range">
+            <label class="field">
+              Min prefix length
+              <input id="minPrefixLengthInput" type="number" min="0" step="1" value="1">
+            </label>
+            <label class="field">
+              Max prefix length
+              <input id="maxPrefixLengthInput" type="number" min="0" step="1" value="1">
+            </label>
+          </div>
 
           <fieldset class="radio-group">
             <legend>Shooter</legend>
@@ -1404,7 +1416,8 @@
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
       const MIN_PREFIX_LENGTH = 0;
-      const DEFAULT_PREFIX_LENGTH = 1;
+      const DEFAULT_MIN_PREFIX_LENGTH = 1;
+      const DEFAULT_MAX_PREFIX_LENGTH = 1;
       const WORD_SPEED_MULTIPLIERS = {
         1: 2.8,
         2: 2.25,
@@ -1438,7 +1451,8 @@
         capitalization: "uppercase",
         shooterType: "laser",
         wordSpeed: MAX_WORD_SPEED,
-        prefixLength: DEFAULT_PREFIX_LENGTH,
+        prefixMinLength: DEFAULT_MIN_PREFIX_LENGTH,
+        prefixMaxLength: DEFAULT_MAX_PREFIX_LENGTH,
         settingsAuthenticated: false,
         activeWords: [],
         target: null,
@@ -1492,7 +1506,8 @@
       const settingsStatusEl = document.getElementById("settingsStatus");
       const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
       const shooterTypeEls = [...document.querySelectorAll("input[name='shooterType']")];
-      const prefixLengthInputEl = document.getElementById("prefixLengthInput");
+      const minPrefixLengthInputEl = document.getElementById("minPrefixLengthInput");
+      const maxPrefixLengthInputEl = document.getElementById("maxPrefixLengthInput");
       const speedControlEl = document.getElementById("speedControl");
       const speedNeedleEl = document.getElementById("speedNeedle");
       const speedValueEl = document.getElementById("speedValue");
@@ -1673,8 +1688,12 @@
         setSpeedSelection(getSelectedWordSpeed());
       });
 
-      prefixLengthInputEl.addEventListener("change", () => {
-        setPrefixLengthSelection(getSelectedPrefixLength());
+      minPrefixLengthInputEl.addEventListener("change", () => {
+        setPrefixRangeSelection(getSelectedPrefixRange());
+      });
+
+      maxPrefixLengthInputEl.addEventListener("change", () => {
+        setPrefixRangeSelection(getSelectedPrefixRange());
       });
 
       settingsFormEl.addEventListener("submit", (event) => {
@@ -1854,7 +1873,9 @@
           }
           state.shooterType = normalizeShooterType(saved.shooterType);
           state.wordSpeed = normalizeWordSpeed(saved.wordSpeed);
-          state.prefixLength = normalizePrefixLength(saved.prefixLength);
+          const prefixRange = normalizeSavedPrefixRange(saved);
+          state.prefixMinLength = prefixRange.min;
+          state.prefixMaxLength = prefixRange.max;
         } catch {
           state.currentFilters = {
             sections: [],
@@ -1863,7 +1884,8 @@
           state.capitalization = "uppercase";
           state.shooterType = "laser";
           state.wordSpeed = MAX_WORD_SPEED;
-          state.prefixLength = DEFAULT_PREFIX_LENGTH;
+          state.prefixMinLength = DEFAULT_MIN_PREFIX_LENGTH;
+          state.prefixMaxLength = DEFAULT_MAX_PREFIX_LENGTH;
         }
       }
 
@@ -1874,7 +1896,8 @@
           capitalization: state.capitalization,
           shooterType: state.shooterType,
           wordSpeed: state.wordSpeed,
-          prefixLength: state.prefixLength
+          prefixMinLength: state.prefixMinLength,
+          prefixMaxLength: state.prefixMaxLength
         }));
       }
 
@@ -1896,7 +1919,10 @@
 
         rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
         setCapitalizationSelection(state.capitalization);
-        setPrefixLengthSelection(state.prefixLength);
+        setPrefixRangeSelection({
+          min: state.prefixMinLength,
+          max: state.prefixMaxLength
+        });
         setShooterTypeSelection(state.shooterType);
         applyShooterType();
         setSpeedSelection(state.wordSpeed);
@@ -1942,7 +1968,7 @@
         const capitalization = getSelectedCapitalization();
         const shooterType = getSelectedShooterType();
         const wordSpeed = getSelectedWordSpeed();
-        const prefixLength = getSelectedPrefixLength();
+        const prefixRange = getSelectedPrefixRange();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
           return false;
@@ -1952,7 +1978,8 @@
         state.capitalization = capitalization;
         state.shooterType = shooterType;
         state.wordSpeed = wordSpeed;
-        state.prefixLength = prefixLength;
+        state.prefixMinLength = prefixRange.min;
+        state.prefixMaxLength = prefixRange.max;
         state.words = selectedWords;
         saveSettings();
         applyShooterType();
@@ -2036,21 +2063,43 @@
         });
       }
 
-      function normalizePrefixLength(length) {
+      function normalizePrefixLength(length, fallback = DEFAULT_MIN_PREFIX_LENGTH) {
         const numericLength = Number(length);
         if (!Number.isFinite(numericLength)) {
-          return DEFAULT_PREFIX_LENGTH;
+          return fallback;
         }
 
         return Math.max(MIN_PREFIX_LENGTH, Math.floor(numericLength));
       }
 
-      function getSelectedPrefixLength() {
-        return normalizePrefixLength(prefixLengthInputEl.value);
+      function normalizePrefixRange(minLength, maxLength) {
+        const min = normalizePrefixLength(minLength, DEFAULT_MIN_PREFIX_LENGTH);
+        const max = Math.max(min, normalizePrefixLength(maxLength, min));
+
+        return { min, max };
       }
 
-      function setPrefixLengthSelection(length) {
-        prefixLengthInputEl.value = String(normalizePrefixLength(length));
+      function normalizeSavedPrefixRange(saved) {
+        if (
+          Object.prototype.hasOwnProperty.call(saved, "prefixMinLength") ||
+          Object.prototype.hasOwnProperty.call(saved, "prefixMaxLength")
+        ) {
+          return normalizePrefixRange(saved.prefixMinLength, saved.prefixMaxLength);
+        }
+
+        const prefixLength = normalizePrefixLength(saved.prefixLength, DEFAULT_MIN_PREFIX_LENGTH);
+        return { min: prefixLength, max: prefixLength };
+      }
+
+      function getSelectedPrefixRange() {
+        return normalizePrefixRange(minPrefixLengthInputEl.value, maxPrefixLengthInputEl.value);
+      }
+
+      function setPrefixRangeSelection(range) {
+        const normalizedRange = normalizePrefixRange(range.min, range.max);
+        minPrefixLengthInputEl.value = String(normalizedRange.min);
+        maxPrefixLengthInputEl.value = String(normalizedRange.max);
+        maxPrefixLengthInputEl.min = String(normalizedRange.min);
       }
 
       function normalizeShooterType(shooterType) {
@@ -2171,7 +2220,8 @@
       }
 
       function pickWordsByPrefix(count) {
-        const prefixLength = normalizePrefixLength(state.prefixLength);
+        const prefixRange = normalizePrefixRange(state.prefixMinLength, state.prefixMaxLength);
+        const prefixLength = randomInt(prefixRange.min, prefixRange.max);
         if (prefixLength === 0) {
           return shuffle(state.words).slice(0, count);
         }
