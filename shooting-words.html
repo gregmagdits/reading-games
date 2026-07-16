@@ -17,6 +17,9 @@
         --laser-glow: rgba(255, 41, 76, 0.45);
         --barrel: #42515f;
         --barrel-dark: #202a33;
+        --cannon: #515c68;
+        --cannon-dark: #252d36;
+        --cannon-wheel: #6f4628;
         --orange: #f18f01;
       }
 
@@ -57,6 +60,77 @@
           radial-gradient(circle at 91% 30%, rgba(255, 255, 255, 0.72) 0 2px, rgba(255, 255, 255, 0) 3px),
           linear-gradient(180deg, var(--sky-top) 0%, var(--sky-mid) 60%, #163c3e 82%, var(--grass) 82%, var(--grass-dark) 100%);
         cursor: crosshair;
+      }
+
+      .arena.laser-scene {
+        background:
+          radial-gradient(circle at 14% 15%, rgba(255, 255, 230, 0.95) 0 36px, rgba(255, 255, 230, 0) 37px),
+          radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.9) 0 2px, rgba(255, 255, 255, 0) 3px),
+          radial-gradient(circle at 48% 10%, rgba(255, 255, 255, 0.82) 0 1px, rgba(255, 255, 255, 0) 2px),
+          radial-gradient(circle at 78% 16%, rgba(255, 255, 255, 0.82) 0 2px, rgba(255, 255, 255, 0) 3px),
+          linear-gradient(180deg, #07162f 0%, #132d58 62%, #18364e 82%, #123522 100%);
+      }
+
+      .arena.dragon-scene {
+        background:
+          radial-gradient(circle at 16% 14%, rgba(255, 240, 178, 0.92) 0 34px, rgba(255, 240, 178, 0) 35px),
+          radial-gradient(circle at 42% 16%, rgba(255, 255, 255, 0.78) 0 2px, rgba(255, 255, 255, 0) 3px),
+          radial-gradient(circle at 72% 11%, rgba(255, 255, 255, 0.8) 0 1px, rgba(255, 255, 255, 0) 2px),
+          linear-gradient(180deg, #07162f 0%, #172e4e 60%, #254b4a 82%, #1f5a3c 100%);
+      }
+
+      .arena.cannon-scene {
+        background:
+          radial-gradient(circle at 14% 15%, rgba(255, 244, 184, 0.86) 0 34px, rgba(255, 244, 184, 0) 35px),
+          linear-gradient(180deg, #08213f 0%, #164b72 48%, #1f78a6 63%, #0f618d 64%, #07476e 100%);
+      }
+
+      .scene-visual {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+        background-repeat: no-repeat;
+      }
+
+      .scene-visual::after {
+        content: "";
+        display: none;
+        position: absolute;
+        pointer-events: none;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+      }
+
+      .arena.laser-scene .scene-visual {
+        opacity: 0.68;
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20700%20380%22%3E%3Cg%20fill%3D%22none%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cellipse%20cx%3D%22350%22%20cy%3D%22190%22%20rx%3D%22250%22%20ry%3D%2278%22%20stroke%3D%22%2375e6ff%22%20stroke-width%3D%2212%22%20opacity%3D%22.72%22%2F%3E%3Cellipse%20cx%3D%22350%22%20cy%3D%22190%22%20rx%3D%22250%22%20ry%3D%2278%22%20stroke%3D%22%23f7f9ff%22%20stroke-width%3D%227%22%20opacity%3D%22.58%22%20transform%3D%22rotate%2860%20350%20190%29%22%2F%3E%3Cellipse%20cx%3D%22350%22%20cy%3D%22190%22%20rx%3D%22250%22%20ry%3D%2278%22%20stroke%3D%22%23ffef6e%22%20stroke-width%3D%228%22%20opacity%3D%22.68%22%20transform%3D%22rotate%28120%20350%20190%29%22%2F%3E%3Ccircle%20cx%3D%22350%22%20cy%3D%22190%22%20r%3D%2242%22%20fill%3D%22%23ff5c8a%22%20stroke%3D%22%23fff4a3%22%20stroke-width%3D%2210%22%2F%3E%3Ccircle%20cx%3D%22585%22%20cy%3D%22190%22%20r%3D%2220%22%20fill%3D%22%23f7f9ff%22%20stroke%3D%22%2317202a%22%20stroke-width%3D%225%22%2F%3E%3Ccircle%20cx%3D%22222%22%20cy%3D%2286%22%20r%3D%2218%22%20fill%3D%22%237cff8e%22%20stroke%3D%22%2317202a%22%20stroke-width%3D%225%22%2F%3E%3Ccircle%20cx%3D%22472%22%20cy%3D%22296%22%20r%3D%2218%22%20fill%3D%22%23ffef6e%22%20stroke%3D%22%2317202a%22%20stroke-width%3D%225%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+        background-position: center 42%;
+        background-size: min(620px, 86vw) auto;
+      }
+
+      .arena.dragon-scene .scene-visual {
+        opacity: 0.88;
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20760%20430%22%3E%3Cpath%20d%3D%22M0%20430H760V318C690%20294%20628%20292%20565%20314C488%20270%20398%20274%20330%20314C244%20282%20160%20290%2092%20326C58%20314%2028%20310%200%20316Z%22%20fill%3D%22%231d5a42%22%2F%3E%3Cg%20stroke%3D%22%2317202a%22%20stroke-width%3D%227%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M186%20388V214H258V388Z%22%20fill%3D%22%239aa7b6%22%2F%3E%3Cpath%20d%3D%22M502%20388V214H574V388Z%22%20fill%3D%22%239aa7b6%22%2F%3E%3Cpath%20d%3D%22M258%20388V170H502V388Z%22%20fill%3D%22%23b9c3cf%22%2F%3E%3Cpath%20d%3D%22M222%20214V152H246V176H270V152H294V214Z%22%20fill%3D%22%23c9d2dc%22%2F%3E%3Cpath%20d%3D%22M466%20214V152H490V176H514V152H538V214Z%22%20fill%3D%22%23c9d2dc%22%2F%3E%3Cpath%20d%3D%22M288%20170V118H314V144H342V118H370V170Z%22%20fill%3D%22%23d7dee7%22%2F%3E%3Cpath%20d%3D%22M390%20170V118H416V144H444V118H472V170Z%22%20fill%3D%22%23d7dee7%22%2F%3E%3Cpath%20d%3D%22M292%20388V272C292%20232%20468%20232%20468%20272V388Z%22%20fill%3D%22%236a4630%22%2F%3E%3Cpath%20d%3D%22M348%20388V286C348%20270%20412%20270%20412%20286V388Z%22%20fill%3D%22%23463022%22%2F%3E%3Cpath%20d%3D%22M186%20214H258M502%20214H574M258%20170H502%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M313%20118L313%2070L376%2094Z%22%20fill%3D%22%23ff6b6b%22%2F%3E%3Cpath%20d%3D%22M415%20118L415%2070L478%2094Z%22%20fill%3D%22%23ffd166%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%23ffe8a3%22%20stroke%3D%22%2317202a%22%20stroke-width%3D%225%22%3E%3Crect%20x%3D%22314%22%20y%3D%22206%22%20width%3D%2238%22%20height%3D%2248%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22408%22%20y%3D%22206%22%20width%3D%2238%22%20height%3D%2248%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22207%22%20y%3D%22254%22%20width%3D%2228%22%20height%3D%2240%22%20rx%3D%228%22%2F%3E%3Crect%20x%3D%22525%22%20y%3D%22254%22%20width%3D%2228%22%20height%3D%2240%22%20rx%3D%228%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
+        background-position: center calc(100% - 38px);
+        background-size: min(720px, 94vw) auto;
+      }
+
+      .arena.cannon-scene .scene-visual {
+        opacity: 0.92;
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20780%20430%22%3E%3Cpath%20d%3D%22M0%20327C50%20306%20100%20306%20150%20327C200%20348%20250%20348%20300%20327C350%20306%20400%20306%20450%20327C500%20348%20550%20348%20600%20327C650%20306%20710%20306%20780%20329V430H0Z%22%20fill%3D%22%231976a3%22%2F%3E%3Cpath%20d%3D%22M0%20370C54%20352%20108%20352%20162%20370C216%20388%20270%20388%20324%20370C378%20352%20432%20352%20486%20370C540%20388%20594%20388%20648%20370C702%20352%20742%20354%20780%20370%22%20fill%3D%22none%22%20stroke%3D%22%23a7f3ff%22%20stroke-width%3D%229%22%20stroke-linecap%3D%22round%22%2F%3E%3Cg%20stroke%3D%22%2317202a%22%20stroke-width%3D%227%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M174%20285C218%20342%20294%20370%20410%20370C526%20370%20620%20340%20656%20285Z%22%20fill%3D%22%237a4326%22%2F%3E%3Cpath%20d%3D%22M230%20285L206%20244H626L598%20285Z%22%20fill%3D%22%239b5a32%22%2F%3E%3Cpath%20d%3D%22M388%20285V88%22%20stroke%3D%22%233b2a1d%22%2F%3E%3Cpath%20d%3D%22M388%20105L502%20260H388Z%22%20fill%3D%22%23f4e3bd%22%2F%3E%3Cpath%20d%3D%22M382%20122L268%20260H382Z%22%20fill%3D%22%23fff0c9%22%2F%3E%3Cpath%20d%3D%22M388%2090L388%2050L464%2074L388%2096Z%22%20fill%3D%22%23171b20%22%2F%3E%3Cpath%20d%3D%22M520%20285V146%22%20stroke%3D%22%233b2a1d%22%2F%3E%3Cpath%20d%3D%22M520%20160L606%20260H520Z%22%20fill%3D%22%23f4e3bd%22%2F%3E%3C%2Fg%3E%3Cg%20fill%3D%22%2317202a%22%3E%3Ccircle%20cx%3D%22292%22%20cy%3D%22318%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%22356%22%20cy%3D%22326%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%22420%22%20cy%3D%22326%22%20r%3D%2210%22%2F%3E%3Ccircle%20cx%3D%22484%22%20cy%3D%22318%22%20r%3D%2210%22%2F%3E%3C%2Fg%3E%3Cpath%20d%3D%22M422%2072C434%2057%20450%2057%20462%2072C450%2087%20434%2087%20422%2072Z%22%20fill%3D%22%23fff%22%2F%3E%3Ccircle%20cx%3D%22442%22%20cy%3D%2272%22%20r%3D%226%22%20fill%3D%22%2317202a%22%2F%3E%3C%2Fsvg%3E");
+        background-position: center calc(100% - 26px);
+        background-size: min(740px, 96vw) auto;
+      }
+
+      .arena.cannon-scene .scene-visual::after {
+        display: block;
+        left: calc(50% - min(255px, 32vw));
+        bottom: clamp(118px, 23vh, 190px);
+        width: clamp(74px, 10vw, 122px);
+        aspect-ratio: 150 / 210;
+        background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20150%20210%22%3E%3Cg%20stroke%3D%22%2317202a%22%20stroke-width%3D%225%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M51%2092C43%20111%2039%20135%2042%20167H108C111%20135%20107%20111%2099%2092Z%22%20fill%3D%22%23b92f2f%22%2F%3E%3Cpath%20d%3D%22M50%20168H72V198H54Z%22%20fill%3D%22%2344302a%22%2F%3E%3Cpath%20d%3D%22M78%20168H100V198H82Z%22%20fill%3D%22%2344302a%22%2F%3E%3Cpath%20d%3D%22M45%20112L23%20142%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M105%20112L127%20142%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2275%22%20cy%3D%2263%22%20r%3D%2234%22%20fill%3D%22%23f0b47c%22%2F%3E%3Cpath%20d%3D%22M41%2055C52%2028%2096%2026%20111%2055C96%2048%2059%2048%2041%2055Z%22%20fill%3D%22%23171b20%22%2F%3E%3Cpath%20d%3D%22M38%2056H112C107%2070%2044%2070%2038%2056Z%22%20fill%3D%22%23171b20%22%2F%3E%3Cpath%20d%3D%22M51%2041C64%2024%2089%2024%20101%2041%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M49%2068H71%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M55%2068L68%2078%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M95%2068H101%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2297%22%20cy%3D%2267%22%20r%3D%223%22%20fill%3D%22%2317202a%22%2F%3E%3Cpath%20d%3D%22M61%2089C70%2096%2081%2096%2090%2089%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M41%2064L27%2080L44%2080%22%20fill%3D%22%23ffd166%22%2F%3E%3Cpath%20d%3D%22M47%2092H103L94%20111H56Z%22%20fill%3D%22%23ffffff%22%2F%3E%3Cpath%20d%3D%22M42%20132H108%22%20fill%3D%22none%22%2F%3E%3Ccircle%20cx%3D%2275%22%20cy%3D%22122%22%20r%3D%225%22%20fill%3D%22%23ffd166%22%2F%3E%3Cpath%20d%3D%22M23%20142L16%20153%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M127%20142C137%20147%20137%20159%20126%20164%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M126%20164C117%20157%20118%20148%20127%20142%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M53%20198H34%22%20fill%3D%22none%22%2F%3E%3Cpath%20d%3D%22M83%20198H103%22%20fill%3D%22none%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E");
       }
 
       .word-layer,
@@ -529,6 +603,33 @@
         animation: ember-pop 360ms ease-out forwards;
       }
 
+      .cannon-ball {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 24px;
+        height: 24px;
+        border: 3px solid #17202a;
+        border-radius: 50%;
+        background: radial-gradient(circle at 32% 28%, #818b96 0 12%, #3a4149 42%, #171b20 100%);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.32);
+        animation: cannon-ball-flight 440ms cubic-bezier(0.18, 0.72, 0.28, 1) forwards;
+      }
+
+      .cannon-smoke {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 32px;
+        height: 24px;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle at 35% 50%, rgba(255, 255, 255, 0.82) 0 34%, rgba(255, 255, 255, 0) 64%),
+          radial-gradient(circle at 66% 48%, rgba(185, 193, 201, 0.72) 0 32%, rgba(185, 193, 201, 0) 66%);
+        transform: translate(-50%, -50%);
+        animation: cannon-smoke-puff 420ms ease-out forwards;
+      }
+
       .gun {
         position: absolute;
         left: 50%;
@@ -621,8 +722,77 @@
 
       .gun.laser-mode .dragon-head,
       .gun.laser-mode .dragon-neck,
-      .gun.laser-mode .dragon-pivot {
+      .gun.laser-mode .dragon-pivot,
+      .gun.cannon-mode .dragon-head,
+      .gun.cannon-mode .dragon-neck,
+      .gun.cannon-mode .dragon-pivot {
         display: none;
+      }
+
+      .gun.cannon-mode .barrel {
+        bottom: 44px;
+        width: clamp(38px, 5.6vmin, 54px);
+        height: clamp(86px, 12vmin, 112px);
+        border-width: 4px;
+        border-radius: 18px 18px 26px 26px;
+        background: linear-gradient(90deg, #171b20, var(--cannon-dark) 26%, var(--cannon) 56%, #87919c);
+        transform-origin: 50% calc(100% - 12px);
+        box-shadow: inset 0 12px 18px rgba(255, 255, 255, 0.12), inset 0 -14px 16px rgba(0, 0, 0, 0.22);
+        z-index: 3;
+      }
+
+      .gun.cannon-mode .barrel-tip {
+        top: -10px;
+        width: clamp(48px, 7vmin, 66px);
+        height: clamp(22px, 3.2vmin, 30px);
+        border-width: 4px;
+        background:
+          radial-gradient(ellipse at 50% 50%, #11161b 0 34%, #343c46 35% 62%, #9099a3 63% 100%);
+      }
+
+      .gun.cannon-mode .gun-pivot {
+        bottom: 56px;
+      }
+
+      .gun.cannon-mode .gun-body {
+        bottom: 20px;
+        width: clamp(126px, 19vmin, 168px);
+        height: clamp(48px, 7vmin, 62px);
+        border-radius: 22px 22px 14px 14px;
+        background: linear-gradient(180deg, #677382, #343e49);
+        z-index: 2;
+      }
+
+      .gun.cannon-mode .gun-body::before,
+      .gun.cannon-mode .gun-body::after {
+        content: "";
+        position: absolute;
+        top: 28px;
+        width: clamp(42px, 6vmin, 56px);
+        height: clamp(42px, 6vmin, 56px);
+        border: 4px solid #17202a;
+        border-radius: 50%;
+        background:
+          radial-gradient(circle, #17202a 0 16%, #c98442 17% 28%, var(--cannon-wheel) 29% 100%);
+      }
+
+      .gun.cannon-mode .gun-body::before {
+        left: -2px;
+        transform: none;
+      }
+
+      .gun.cannon-mode .gun-body::after {
+        right: -2px;
+      }
+
+      .gun.cannon-mode .stand {
+        bottom: 10px;
+        width: clamp(110px, 17vmin, 152px);
+        height: 22px;
+        border: 4px solid #17202a;
+        border-radius: 12px;
+        background: linear-gradient(180deg, #8a5a35, #4f321d);
+        z-index: 1;
       }
 
       .dragon-head {
@@ -793,6 +963,30 @@
         }
       }
 
+      @keyframes cannon-ball-flight {
+        0% {
+          opacity: 1;
+          transform: translate(var(--ball-start-x), var(--ball-start-y)) translate(-50%, -50%) scale(1);
+        }
+
+        60% {
+          transform: translate(var(--ball-mid-x), var(--ball-mid-y)) translate(-50%, -50%) scale(1.04);
+        }
+
+        100% {
+          opacity: 0.96;
+          transform: translate(var(--ball-end-x), var(--ball-end-y)) translate(-50%, -50%) scale(0.9);
+        }
+      }
+
+      @keyframes cannon-smoke-puff {
+        to {
+          opacity: 0;
+          filter: blur(1px);
+          transform: translate(-50%, -50%) scale(2.2);
+        }
+      }
+
       @keyframes word-flash {
         0%,
         100% {
@@ -825,7 +1019,8 @@
     </style>
   </head>
   <body>
-    <main id="arena" class="arena" aria-label="Shooting words game">
+    <main id="arena" class="arena laser-scene" aria-label="Shooting words game">
+      <div class="scene-visual" aria-hidden="true"></div>
       <div id="wordLayer" class="word-layer"></div>
       <div id="laserLayer" class="laser-layer"></div>
       <canvas id="fireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
@@ -925,6 +1120,10 @@
               <input type="radio" name="shooterType" value="dragon">
               Dragon
             </label>
+            <label class="radio-option">
+              <input type="radio" name="shooterType" value="cannon">
+              Cannon
+            </label>
           </fieldset>
 
           <div class="speed-control">
@@ -965,7 +1164,7 @@
       const WORD_STORE = "words";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
-      const SHOOTER_TYPES = new Set(["laser", "dragon"]);
+      const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon"]);
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
       const WORD_SPEED_MULTIPLIERS = {
@@ -1603,6 +1802,10 @@
         state.shooterType = shooterType;
         gunEl.classList.toggle("laser-mode", shooterType === "laser");
         gunEl.classList.toggle("dragon-mode", shooterType === "dragon");
+        gunEl.classList.toggle("cannon-mode", shooterType === "cannon");
+        arenaEl.classList.toggle("laser-scene", shooterType === "laser");
+        arenaEl.classList.toggle("dragon-scene", shooterType === "dragon");
+        arenaEl.classList.toggle("cannon-scene", shooterType === "cannon");
       }
 
       function normalizeWordSpeed(speed) {
@@ -1961,6 +2164,11 @@
           return;
         }
 
+        if (state.shooterType === "cannon") {
+          shootCannonBall(x, y);
+          return;
+        }
+
         shootLaser(x, y);
       }
 
@@ -2014,6 +2222,42 @@
         }
 
         window.setTimeout(() => flame.remove(), 300);
+      }
+
+      function shootCannonBall(x, y) {
+        const { x: tipX, y: tipY } = getGunTip();
+        const distance = Math.hypot(x - tipX, y - tipY);
+        const arcHeight = Math.min(96, Math.max(28, distance * 0.18));
+        const ball = document.createElement("div");
+        const muzzleSmoke = document.createElement("div");
+        const impactSmoke = document.createElement("div");
+
+        ball.className = "cannon-ball";
+        ball.style.setProperty("--ball-start-x", `${tipX}px`);
+        ball.style.setProperty("--ball-start-y", `${tipY}px`);
+        ball.style.setProperty("--ball-mid-x", `${(tipX + x) / 2}px`);
+        ball.style.setProperty("--ball-mid-y", `${(tipY + y) / 2 - arcHeight}px`);
+        ball.style.setProperty("--ball-end-x", `${x}px`);
+        ball.style.setProperty("--ball-end-y", `${y}px`);
+        laserLayerEl.appendChild(ball);
+
+        muzzleSmoke.className = "cannon-smoke";
+        muzzleSmoke.style.left = `${tipX}px`;
+        muzzleSmoke.style.top = `${tipY}px`;
+        laserLayerEl.appendChild(muzzleSmoke);
+
+        window.setTimeout(() => {
+          impactSmoke.className = "cannon-smoke";
+          impactSmoke.style.left = `${x}px`;
+          impactSmoke.style.top = `${y}px`;
+          laserLayerEl.appendChild(impactSmoke);
+          window.setTimeout(() => impactSmoke.remove(), 430);
+        }, 330);
+
+        window.setTimeout(() => {
+          ball.remove();
+          muzzleSmoke.remove();
+        }, 470);
       }
 
       function updateAim() {
