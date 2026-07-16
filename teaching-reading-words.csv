@@ -344,3 +344,580 @@ section,lesson,lesson_description,word,is_sight_word,phonetic_symbol
 3,40,"Review of the Short-Vowel Sounds of A, E, I, O, and U",had,F,/ă/
 3,40,"Review of the Short-Vowel Sounds of A, E, I, O, and U",it,F,/ĭ/
 3,40,"Review of the Short-Vowel Sounds of A, E, I, O, and U",mad,F,/ă/
+4,41,Double Consonants,pass,F,/ă/
+4,41,Double Consonants,mess,F,/ĕ/
+4,41,Double Consonants,miss,F,/ĭ/
+4,41,Double Consonants,toss,F,/ŏ/
+4,41,Double Consonants,fuss,F,/ŭ/
+4,41,Double Consonants,moss,F,/ŏ/
+4,41,Double Consonants,yell,F,/ĕ/
+4,41,Double Consonants,fell,F,/ĕ/
+4,41,Double Consonants,Bill,F,/ĭ/
+4,41,Double Consonants,Jill,F,/ĭ/
+4,41,Double Consonants,will,F,/ĭ/
+4,41,Double Consonants,hill,F,/ĭ/
+4,41,Double Consonants,egg,F,/ĕ/
+4,41,Double Consonants,fuzz,F,/ŭ/
+4,41,Double Consonants,huff,F,/ŭ/
+4,41,Double Consonants,puff,F,/ŭ/
+4,41,Double Consonants,off,F,/ŏ/
+4,41,Double Consonants,odd,F,/ŏ/
+4,41,Double Consonants,mitt,F,/ĭ/
+4,41,Double Consonants,an,F,/ă/
+4,41,Double Consonants,the,T,/ē/
+4,41,Double Consonants,is,F,/ĭ/
+4,41,Double Consonants,a,T,/ā/
+4,41,Double Consonants,not,F,/ŏ/
+4,41,Double Consonants,nod,F,/ŏ/
+4,41,Double Consonants,hug,F,/ŭ/
+4,41,Double Consonants,red,F,/ĕ/
+4,41,Double Consonants,bug,F,/ŭ/
+4,41,Double Consonants,sat,F,/ă/
+4,41,Double Consonants,on,F,/ŏ/
+4,41,Double Consonants,it,F,/ĭ/
+4,41,Double Consonants,did,F,/ĭ/
+4,41,Double Consonants,buzz,F,/ŭ/
+4,41,Double Consonants,in,F,/ĭ/
+4,41,Double Consonants,sun,F,/ŭ/
+4,41,Double Consonants,hop,F,/ŏ/
+4,41,Double Consonants,up,F,/ŭ/
+4,41,Double Consonants,jog,F,/ŏ/
+4,41,Double Consonants,get,F,/ĕ/
+4,41,Double Consonants,van,F,/ă/
+4,41,Double Consonants,zip,F,/ĭ/
+4,41,Double Consonants,nap,F,/ă/
+4,42,The CK Combination,sack,F,/ă/
+4,42,The CK Combination,pack,F,/ă/
+4,42,The CK Combination,quack,F,/ă/
+4,42,The CK Combination,peck,F,/ĕ/
+4,42,The CK Combination,deck,F,/ĕ/
+4,42,The CK Combination,pick,F,/ĭ/
+4,42,The CK Combination,Rick,F,/ĭ/
+4,42,The CK Combination,Nick,F,/ĭ/
+4,42,The CK Combination,rock,F,/ŏ/
+4,42,The CK Combination,duck,F,/ŭ/
+4,42,The CK Combination,will,F,/ĭ/
+4,42,The CK Combination,up,F,/ŭ/
+4,42,The CK Combination,a,T,/ā/
+4,42,The CK Combination,big,F,/ĭ/
+4,42,The CK Combination,nut,F,/ŭ/
+4,42,The CK Combination,it,F,/ĭ/
+4,42,The CK Combination,in,F,/ĭ/
+4,42,The CK Combination,his,F,/ĭ/
+4,42,The CK Combination,set,F,/ĕ/
+4,42,The CK Combination,mat,F,/ă/
+4,42,The CK Combination,on,F,/ŏ/
+4,42,The CK Combination,sit,F,/ĭ/
+4,42,The CK Combination,get,F,/ĕ/
+4,42,The CK Combination,bun,F,/ŭ/
+4,42,The CK Combination,lick,F,/ĭ/
+4,42,The CK Combination,jam,F,/ă/
+4,42,The CK Combination,off,F,/ŏ/
+4,42,The CK Combination,the,T,/ē/
+4,42,The CK Combination,at,F,/ă/
+4,42,The CK Combination,and,F,/ă/
+4,42,The CK Combination,yell,F,/ĕ/
+4,42,The CK Combination,quit,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",milk,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",silk,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",sulk,F,/ŭ/
+4,43,"The Ending Blends LK, LB, and LP",bulb,F,/ŭ/
+4,43,"The Ending Blends LK, LB, and LP",help,F,/ĕ/
+4,43,"The Ending Blends LK, LB, and LP",gulp,F,/ŭ/
+4,43,"The Ending Blends LK, LB, and LP",Rick,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",is,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",sick,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",Mom,F,/ŏ/
+4,43,"The Ending Blends LK, LB, and LP",will,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",get,F,/ĕ/
+4,43,"The Ending Blends LK, LB, and LP",his,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",and,F,/ă/
+4,43,"The Ending Blends LK, LB, and LP",a,T,/ā/
+4,43,"The Ending Blends LK, LB, and LP",pill,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",not,F,/ŏ/
+4,43,"The Ending Blends LK, LB, and LP",hug,F,/ŭ/
+4,43,"The Ending Blends LK, LB, and LP",can,F,/ă/
+4,43,"The Ending Blends LK, LB, and LP",sit,F,/ĭ/
+4,43,"The Ending Blends LK, LB, and LP",up,F,/ŭ/
+4,43,"The Ending Blends LK, LB, and LP",well,F,/ĕ/
+4,44,The Ending Blends ST and NT,fast,F,/ă/
+4,44,The Ending Blends ST and NT,last,F,/ă/
+4,44,The Ending Blends ST and NT,mist,F,/ĭ/
+4,44,The Ending Blends ST and NT,dust,F,/ŭ/
+4,44,The Ending Blends ST and NT,rust,F,/ŭ/
+4,44,The Ending Blends ST and NT,best,F,/ĕ/
+4,44,The Ending Blends ST and NT,rest,F,/ĕ/
+4,44,The Ending Blends ST and NT,cost,F,/ŏ/
+4,44,The Ending Blends ST and NT,just,F,/ŭ/
+4,44,The Ending Blends ST and NT,list,F,/ĭ/
+4,44,The Ending Blends ST and NT,rent,F,/ĕ/
+4,44,The Ending Blends ST and NT,dent,F,/ĕ/
+4,44,The Ending Blends ST and NT,went,F,/ĕ/
+4,44,The Ending Blends ST and NT,lent,F,/ĕ/
+4,44,The Ending Blends ST and NT,hunt,F,/ŭ/
+4,44,The Ending Blends ST and NT,the,T,/ē/
+4,44,The Ending Blends ST and NT,van,F,/ă/
+4,44,The Ending Blends ST and NT,ran,F,/ă/
+4,44,The Ending Blends ST and NT,in,F,/ĭ/
+4,44,The Ending Blends ST and NT,got,F,/ŏ/
+4,44,The Ending Blends ST and NT,stuck,F,/ŭ/
+4,44,The Ending Blends ST and NT,mud,F,/ŭ/
+4,44,The Ending Blends ST and NT,had,F,/ă/
+4,44,The Ending Blends ST and NT,on,F,/ŏ/
+4,44,The Ending Blends ST and NT,fan,F,/ă/
+4,44,The Ending Blends ST and NT,a,T,/ā/
+4,44,The Ending Blends ST and NT,is,F,/ĭ/
+4,44,The Ending Blends ST and NT,tan,F,/ă/
+4,44,The Ending Blends ST and NT,lot,F,/ŏ/
+4,44,The Ending Blends ST and NT,fix,F,/ĭ/
+4,44,The Ending Blends ST and NT,will,F,/ĭ/
+4,44,The Ending Blends ST and NT,not,F,/ŏ/
+4,44,The Ending Blends ST and NT,sit,F,/ĭ/
+4,44,The Ending Blends ST and NT,Mom,F,/ŏ/
+4,44,The Ending Blends ST and NT,red,F,/ĕ/
+4,44,The Ending Blends ST and NT,Dad,F,/ă/
+4,44,The Ending Blends ST and NT,yes,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",left,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",gift,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",lift,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",sift,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",soft,F,/ŏ/
+4,45,"The Ending Blends FT, LT, CT, and PT",Jack,F,/ă/
+4,45,"The Ending Blends FT, LT, CT, and PT",got,F,/ŏ/
+4,45,"The Ending Blends FT, LT, CT, and PT",pup,F,/ŭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",as,F,/ă/
+4,45,"The Ending Blends FT, LT, CT, and PT",his,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",milk,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",in,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",a,T,/ā/
+4,45,"The Ending Blends FT, LT, CT, and PT",cup,F,/ŭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",the,T,/ē/
+4,45,"The Ending Blends FT, LT, CT, and PT",box,F,/ŏ/
+4,45,"The Ending Blends FT, LT, CT, and PT",felt,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",belt,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",melt,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",wilt,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",quilt,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",Mom,F,/ŏ/
+4,45,"The Ending Blends FT, LT, CT, and PT",on,F,/ŏ/
+4,45,"The Ending Blends FT, LT, CT, and PT",bed,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",act,F,/ă/
+4,45,"The Ending Blends FT, LT, CT, and PT",fact,F,/ă/
+4,45,"The Ending Blends FT, LT, CT, and PT",it,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",is,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",if,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",I,T,/ī/
+4,45,"The Ending Blends FT, LT, CT, and PT",fast,F,/ă/
+4,45,"The Ending Blends FT, LT, CT, and PT",can,F,/ă/
+4,45,"The Ending Blends FT, LT, CT, and PT",help,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",him,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",kept,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",wept,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",Jill,F,/ĭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",red,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",pet,F,/ĕ/
+4,45,"The Ending Blends FT, LT, CT, and PT",bug,F,/ŭ/
+4,45,"The Ending Blends FT, LT, CT, and PT",lost,F,/ŏ/
+4,46,"The Ending Blends MP, SP, LF, and LM",lamp,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",damp,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",camp,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",bump,F,/ŭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",jump,F,/ŭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",Mom,F,/ŏ/
+4,46,"The Ending Blends MP, SP, LF, and LM",can,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",set,F,/ĕ/
+4,46,"The Ending Blends MP, SP, LF, and LM",up,F,/ŭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",the,T,/ē/
+4,46,"The Ending Blends MP, SP, LF, and LM",tent,F,/ĕ/
+4,46,"The Ending Blends MP, SP, LF, and LM",at,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",kid,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",will,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",not,F,/ŏ/
+4,46,"The Ending Blends MP, SP, LF, and LM",in,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",and,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",gasp,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",lisp,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",dock,F,/ŏ/
+4,46,"The Ending Blends MP, SP, LF, and LM",sat,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",on,F,/ŏ/
+4,46,"The Ending Blends MP, SP, LF, and LM",a,T,/ā/
+4,46,"The Ending Blends MP, SP, LF, and LM",pin,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",did,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",ran,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",fast,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",huff,F,/ŭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",puff,F,/ŭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",ramp,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",pant,F,/ă/
+4,46,"The Ending Blends MP, SP, LF, and LM",elf,F,/ĕ/
+4,46,"The Ending Blends MP, SP, LF, and LM",self,F,/ĕ/
+4,46,"The Ending Blends MP, SP, LF, and LM",golf,F,/ŏ/
+4,46,"The Ending Blends MP, SP, LF, and LM",win,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",elm,F,/ĕ/
+4,46,"The Ending Blends MP, SP, LF, and LM",film,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",big,F,/ĭ/
+4,46,"The Ending Blends MP, SP, LF, and LM",fell,F,/ĕ/
+4,46,"The Ending Blends MP, SP, LF, and LM",deck,F,/ĕ/
+4,47,"The Ending Blends ND, SK, and XT",and,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",sand,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",land,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",send,F,/ĕ/
+4,47,"The Ending Blends ND, SK, and XT",bend,F,/ĕ/
+4,47,"The Ending Blends ND, SK, and XT",wind,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",pond,F,/ŏ/
+4,47,"The Ending Blends ND, SK, and XT",ask,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",task,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",bask,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",tusk,F,/ŭ/
+4,47,"The Ending Blends ND, SK, and XT",next,F,/ĕ/
+4,47,"The Ending Blends ND, SK, and XT",the,T,/ē/
+4,47,"The Ending Blends ND, SK, and XT",man,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",is,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",on,F,/ŏ/
+4,47,"The Ending Blends ND, SK, and XT",raft,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",sun,F,/ŭ/
+4,47,"The Ending Blends ND, SK, and XT",hot,F,/ŏ/
+4,47,"The Ending Blends ND, SK, and XT",big,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",has,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",a,T,/ā/
+4,47,"The Ending Blends ND, SK, and XT",must,F,/ŭ/
+4,47,"The Ending Blends ND, SK, and XT",stop,F,/ŏ/
+4,47,"The Ending Blends ND, SK, and XT",get,F,/ĕ/
+4,47,"The Ending Blends ND, SK, and XT",did,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",him,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",fast,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",kiss,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",tan,F,/ă/
+4,47,"The Ending Blends ND, SK, and XT",sit,F,/ĭ/
+4,47,"The Ending Blends ND, SK, and XT",in,F,/ĭ/
+4,48,The Ending Blend NK,bank,F,/ă/
+4,48,The Ending Blend NK,sank,F,/ă/
+4,48,The Ending Blend NK,tank,F,/ă/
+4,48,The Ending Blend NK,yank,F,/ă/
+4,48,The Ending Blend NK,sink,F,/ĭ/
+4,48,The Ending Blend NK,wink,F,/ĭ/
+4,48,The Ending Blend NK,link,F,/ĭ/
+4,48,The Ending Blend NK,pink,F,/ĭ/
+4,48,The Ending Blend NK,bonk,F,/ŏ/
+4,48,The Ending Blend NK,honk,F,/ŏ/
+4,48,The Ending Blend NK,bunk,F,/ŭ/
+4,48,The Ending Blend NK,dunk,F,/ŭ/
+4,48,The Ending Blend NK,hunk,F,/ŭ/
+4,48,The Ending Blend NK,junk,F,/ŭ/
+4,48,The Ending Blend NK,the,T,/ē/
+4,48,The Ending Blend NK,went,F,/ĕ/
+4,48,The Ending Blend NK,on,F,/ŏ/
+4,48,The Ending Blend NK,it,F,/ĭ/
+4,48,The Ending Blend NK,in,F,/ĭ/
+4,48,The Ending Blend NK,mud,F,/ŭ/
+4,48,The Ending Blend NK,man,F,/ă/
+4,48,The Ending Blend NK,did,F,/ĭ/
+4,48,The Ending Blend NK,tan,F,/ă/
+4,48,The Ending Blend NK,yell,F,/ĕ/
+4,48,The Ending Blend NK,men,F,/ĕ/
+4,48,The Ending Blend NK,got,F,/ŏ/
+4,48,The Ending Blend NK,a,T,/ā/
+4,48,The Ending Blend NK,huff,F,/ŭ/
+4,48,The Ending Blend NK,and,F,/ă/
+4,48,The Ending Blend NK,puff,F,/ŭ/
+4,48,The Ending Blend NK,yuck,F,/ŭ/
+4,48,The Ending Blend NK,let,F,/ĕ/
+4,48,The Ending Blend NK,bed,F,/ĕ/
+4,48,The Ending Blend NK,is,F,/ĭ/
+4,48,The Ending Blend NK,doll,F,/ŏ/
+4,48,The Ending Blend NK,I,T,/ī/
+4,48,The Ending Blend NK,will,F,/ĭ/
+4,48,The Ending Blend NK,flop,F,/ŏ/
+4,48,The Ending Blend NK,bump,F,/ŭ/
+4,48,The Ending Blend NK,off,F,/ŏ/
+4,48,The Ending Blend NK,pick,F,/ĭ/
+4,48,The Ending Blend NK,up,F,/ŭ/
+4,48,The Ending Blend NK,hug,F,/ŭ/
+4,48,The Ending Blend NK,not,F,/ŏ/
+4,49,Adding the Letter S to Words,cat,F,/ă/
+4,49,Adding the Letter S to Words,lamp,F,/ă/
+4,49,Adding the Letter S to Words,gift,F,/ĭ/
+4,49,Adding the Letter S to Words,belt,F,/ĕ/
+4,49,Adding the Letter S to Words,sock,F,/ŏ/
+4,49,Adding the Letter S to Words,cats,F,/ă/
+4,49,Adding the Letter S to Words,lamps,F,/ă/
+4,49,Adding the Letter S to Words,gifts,F,/ĭ/
+4,49,Adding the Letter S to Words,belts,F,/ĕ/
+4,49,Adding the Letter S to Words,socks,F,/ŏ/
+4,49,Adding the Letter S to Words,kid,F,/ĭ/
+4,49,Adding the Letter S to Words,mitt,F,/ĭ/
+4,49,Adding the Letter S to Words,mint,F,/ĭ/
+4,49,Adding the Letter S to Words,bunk,F,/ŭ/
+4,49,Adding the Letter S to Words,kids,F,/ĭ/
+4,49,Adding the Letter S to Words,mitts,F,/ĭ/
+4,49,Adding the Letter S to Words,mints,F,/ĭ/
+4,49,Adding the Letter S to Words,bunks,F,/ŭ/
+4,49,Adding the Letter S to Words,I,T,/ī/
+4,49,Adding the Letter S to Words,had,F,/ă/
+4,49,Adding the Letter S to Words,a,T,/ā/
+4,49,Adding the Letter S to Words,Kim,F,/ĭ/
+4,49,Adding the Letter S to Words,six,F,/ĭ/
+4,49,Adding the Letter S to Words,fat,F,/ă/
+4,49,Adding the Letter S to Words,will,F,/ĭ/
+4,49,Adding the Letter S to Words,not,F,/ŏ/
+4,49,Adding the Letter S to Words,fit,F,/ĭ/
+4,49,Adding the Letter S to Words,in,F,/ĭ/
+4,49,Adding the Letter S to Words,the,T,/ē/
+4,49,Adding the Letter S to Words,big,F,/ĭ/
+4,49,Adding the Letter S to Words,tub,F,/ŭ/
+4,49,Adding the Letter S to Words,Ted,F,/ĕ/
+4,49,Adding the Letter S to Words,hand,F,/ă/
+4,49,Adding the Letter S to Words,him,F,/ĭ/
+4,49,Adding the Letter S to Words,ten,F,/ĕ/
+4,49,Adding the Letter S to Words,suck,F,/ŭ/
+4,49,Adding the Letter S to Words,on,F,/ŏ/
+4,49,Adding the Letter S to Words,melt,F,/ĕ/
+4,49,Adding the Letter S to Words,Nick,F,/ĭ/
+4,49,Adding the Letter S to Words,is,F,/ĭ/
+4,49,Adding the Letter S to Words,at,F,/ă/
+4,49,Adding the Letter S to Words,camp,F,/ă/
+4,49,Adding the Letter S to Words,his,F,/ĭ/
+4,49,Adding the Letter S to Words,stuff,F,/ŭ/
+4,49,Adding the Letter S to Words,pat,F,/ă/
+4,49,Adding the Letter S to Words,get,F,/ĕ/
+4,49,Adding the Letter S to Words,run,F,/ŭ/
+4,49,Adding the Letter S to Words,pats,F,/ă/
+4,49,Adding the Letter S to Words,gets,F,/ĕ/
+4,49,Adding the Letter S to Words,fits,F,/ĭ/
+4,49,Adding the Letter S to Words,runs,F,/ŭ/
+4,49,Adding the Letter S to Words,sulk,F,/ŭ/
+4,49,Adding the Letter S to Words,peck,F,/ĕ/
+4,49,Adding the Letter S to Words,ask,F,/ă/
+4,49,Adding the Letter S to Words,gasp,F,/ă/
+4,49,Adding the Letter S to Words,sulks,F,/ŭ/
+4,49,Adding the Letter S to Words,pecks,F,/ĕ/
+4,49,Adding the Letter S to Words,asks,F,/ă/
+4,49,Adding the Letter S to Words,gasps,F,/ă/
+4,49,Adding the Letter S to Words,Jim,F,/ĭ/
+4,49,Adding the Letter S to Words,Jen,F,/ĕ/
+4,49,Adding the Letter S to Words,red,F,/ĕ/
+4,49,Adding the Letter S to Words,pink,F,/ĭ/
+4,49,Adding the Letter S to Words,hat,F,/ă/
+4,49,Adding the Letter S to Words,Rick,F,/ĭ/
+4,49,Adding the Letter S to Words,soft,F,/ŏ/
+4,49,Adding the Letter S to Words,Jill,F,/ĭ/
+4,49,Adding the Letter S to Words,got,F,/ŏ/
+4,49,Adding the Letter S to Words,best,F,/ĕ/
+4,49,Adding the Letter S to Words,silk,F,/ĭ/
+4,49,Adding the Letter S to Words,quilt,F,/ĭ/
+4,49,Adding the Letter S to Words,bed,F,/ĕ/
+4,49,Adding the Letter S to Words,yes,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",blob,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",black,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",blend,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",blot,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",bless,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",of,T,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",the,T,/ē/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",jam,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",on,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",rug,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",clock,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",class,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",click,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",clack,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",club,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",tick,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",tock,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",went,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",in,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",flock,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",flap,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",flat,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",flit,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",flag,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",ducks,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",flocks,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",and,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",pond,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",glad,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",glass,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",glint,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",glum,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",Glen,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",spots,F,/ŏ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",a,T,/ā/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",sand,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",plus,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",pluck,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",plump,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",plums,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",Gus,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",will,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",fat,F,/ă/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",figs,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",slim,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",sled,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",slick,F,/ĭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",slug,F,/ŭ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",slept,F,/ĕ/
+4,50,"The Beginning Blends BL, CL, FL, GL, PL, and SL; Sight Word: of",slugs,F,/ŭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",smell,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",smack,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",smug,F,/ŭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",smog,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",Mack,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",smells,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",smacks,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",his,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",mint,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",gum,F,/ŭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spell,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spin,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spit,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spank,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spot,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",speck,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spend,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spill,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",spick-and-span,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",did,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",Glen,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",specks,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",of,T,/ŭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",milk,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",on,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",the,T,/ē/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",deck,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",scab,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",scalp,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",scan,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",scant,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",scoff,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",Scamp,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",Scat,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",dog,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",and,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",cat,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",will,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",flop,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",dock,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",skip,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",skim,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",skin,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",skunk,F,/ŭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",Skip,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",sip,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",snag,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",snack,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",sniff,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",snug,F,/ŭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",a,T,/ā/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",stop,F,/ŏ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",stand,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",step,F,/ĕ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",stick,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",stack,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",still,F,/ĭ/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",stamp,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",Stan,F,/ă/
+4,51,"The Beginning Blends SM, SP, SC, SK, SN, and ST",sticks,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",brag,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",brand,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",brass,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",brick,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",Brad,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",brags,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",has,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",the,T,/ē/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",best,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",of,T,/ŭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",lamps,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",crab,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",crack,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",crisp,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",crept,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",craft,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",in,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",rock,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",drag,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",dress,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",drill,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",drop,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",drum,F,/ŭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",Brent,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",did,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",not,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",and,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",his,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",big,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",on,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",fast,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",up,F,/ŭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",hill,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",Fred,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",frock,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",frill,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",frog,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",frost,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",Jen,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",red,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",will,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",jump,F,/ŭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",Greg,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",grasp,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",grill,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",grin,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",grass,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",a,T,/ā/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",plump,F,/ŭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",hot,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",dog,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",it,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",prank,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",press,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",prick,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",print,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",prod,F,/ŏ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",Frank,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",hands,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",silk,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",quilt,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",left,F,/ĕ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",hand,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",truck,F,/ŭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",track,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",trim,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",trip,F,/ĭ/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",trap,F,/ă/
+4,52,"The Beginning Blends BR, CR, DR, FR, GR, PR, and TR",cross,F,/ŏ/
+4,53,"The Beginning Blends SQU, SW, and TW",squid,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",squint,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",I,T,/ī/
+4,53,"The Beginning Blends SQU, SW, and TW",run,F,/ŭ/
+4,53,"The Beginning Blends SQU, SW, and TW",in,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",the,T,/ē/
+4,53,"The Beginning Blends SQU, SW, and TW",sand,F,/ă/
+4,53,"The Beginning Blends SQU, SW, and TW",sun,F,/ŭ/
+4,53,"The Beginning Blends SQU, SW, and TW",yuck,F,/ŭ/
+4,53,"The Beginning Blends SQU, SW, and TW",did,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",just,F,/ŭ/
+4,53,"The Beginning Blends SQU, SW, and TW",step,F,/ĕ/
+4,53,"The Beginning Blends SQU, SW, and TW",on,F,/ŏ/
+4,53,"The Beginning Blends SQU, SW, and TW",a,T,/ā/
+4,53,"The Beginning Blends SQU, SW, and TW",swift,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",swim,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",swam,F,/ă/
+4,53,"The Beginning Blends SQU, SW, and TW",swept,F,/ĕ/
+4,53,"The Beginning Blends SQU, SW, and TW",Skip,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",fell,F,/ĕ/
+4,53,"The Beginning Blends SQU, SW, and TW",pond,F,/ŏ/
+4,53,"The Beginning Blends SQU, SW, and TW",back,F,/ă/
+4,53,"The Beginning Blends SQU, SW, and TW",drip,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",mud,F,/ŭ/
+4,53,"The Beginning Blends SQU, SW, and TW",dock,F,/ŏ/
+4,53,"The Beginning Blends SQU, SW, and TW",off,F,/ŏ/
+4,53,"The Beginning Blends SQU, SW, and TW",is,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",twins,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",twist,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",twig,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",twill,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",will,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",till,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",it,F,/ĭ/
+4,53,"The Beginning Blends SQU, SW, and TW",snaps,F,/ă/
