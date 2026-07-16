@@ -96,7 +96,6 @@
         line-height: 1;
         letter-spacing: 0;
         text-align: center;
-        text-transform: uppercase;
         transform: translate(-50%, -50%);
         user-select: none;
         pointer-events: auto;
@@ -213,6 +212,33 @@
       .field select:disabled {
         background: #edf0f2;
         color: #6b7280;
+      }
+
+      .radio-group {
+        display: grid;
+        gap: 8px;
+        border: 0;
+        margin: 0;
+        padding: 0;
+      }
+
+      .radio-group legend {
+        margin-bottom: 2px;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .radio-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+      .radio-option input {
+        width: 18px;
+        height: 18px;
       }
 
       .settings-actions {
@@ -529,6 +555,22 @@
             <select id="lessonSelect" multiple disabled></select>
           </label>
 
+          <fieldset class="radio-group">
+            <legend>Capitalization</legend>
+            <label class="radio-option">
+              <input type="radio" name="capitalization" value="uppercase" checked>
+              Uppercase
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="capitalization" value="lowercase">
+              Lowercase
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="capitalization" value="original">
+              As written
+            </label>
+          </fieldset>
+
           <div class="settings-actions">
             <button id="applySettingsButton" class="settings-action primary" type="submit" disabled>Apply</button>
             <button id="cancelSettingsButton" class="settings-action" type="button">Cancel</button>
@@ -549,6 +591,7 @@
       const DB_VERSION = 1;
       const WORD_STORE = "words";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
+      const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
       const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol"];
       const ALLOWED_PHONETIC_SYMBOLS = new Set([
         "/ă/", "/ĕ/", "/ĭ/", "/ŏ/", "/ŭ/", "/ā/", "/ē/", "/ī/", "/ō/", "/ū/", "/o-o/", "/o˘o/",
@@ -572,6 +615,7 @@
           sections: [],
           lessons: []
         },
+        capitalization: "uppercase",
         settingsAuthenticated: false,
         activeWords: [],
         target: null,
@@ -618,6 +662,7 @@
       const applySettingsButtonEl = document.getElementById("applySettingsButton");
       const cancelSettingsButtonEl = document.getElementById("cancelSettingsButton");
       const settingsStatusEl = document.getElementById("settingsStatus");
+      const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
       const fireworkBursts = [];
       let fireworkWidth = 0;
       let fireworkHeight = 0;
@@ -747,8 +792,11 @@
           await replaceRows(rows);
           state.dbRows = rows;
           state.words = [];
-          state.currentFilters = { sections: [], lessons: [] };
-          localStorage.removeItem(SETTINGS_STORAGE_KEY);
+          state.currentFilters = {
+            sections: [],
+            lessons: []
+          };
+          saveSettings();
           resetGameAfterDataChange();
           rebuildSettingsControls({ selectAll: true });
           setSettingsStatus(`Imported ${rows.length} rows. Choose sections and lessons, then Apply.`);
@@ -770,8 +818,11 @@
           await clearRows();
           state.dbRows = [];
           state.words = [];
-          state.currentFilters = { sections: [], lessons: [] };
-          localStorage.removeItem(SETTINGS_STORAGE_KEY);
+          state.currentFilters = {
+            sections: [],
+            lessons: []
+          };
+          saveSettings();
           resetGameAfterDataChange();
           rebuildSettingsControls();
           confirmClearEl.hidden = true;
@@ -953,13 +1004,24 @@
             sections: Array.isArray(saved.sections) ? saved.sections.map(String) : [],
             lessons: Array.isArray(saved.lessons) ? saved.lessons.map(String) : []
           };
+          if (CAPITALIZATION_MODES.has(saved.capitalization)) {
+            state.capitalization = saved.capitalization;
+          }
         } catch {
-          state.currentFilters = { sections: [], lessons: [] };
+          state.currentFilters = {
+            sections: [],
+            lessons: []
+          };
+          state.capitalization = "uppercase";
         }
       }
 
       function saveSettings() {
-        localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(state.currentFilters));
+        localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify({
+          sections: state.currentFilters.sections,
+          lessons: state.currentFilters.lessons,
+          capitalization: state.capitalization
+        }));
       }
 
       function rebuildSettingsControls(options = {}) {
@@ -979,6 +1041,7 @@
         });
 
         rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
+        setCapitalizationSelection(state.capitalization);
 
         sectionSelectEl.disabled = !hasData;
         lessonSelectEl.disabled = !hasData;
@@ -1018,12 +1081,14 @@
 
         const selectedRows = filterRows(sections, lessons);
         const selectedWords = uniqueWords(selectedRows);
+        const capitalization = getSelectedCapitalization();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
           return;
         }
 
         state.currentFilters = { sections, lessons };
+        state.capitalization = capitalization;
         state.words = selectedWords;
         saveSettings();
         startButtonEl.disabled = false;
@@ -1092,6 +1157,29 @@
 
       function getSelectedValues(select) {
         return [...select.selectedOptions].map((option) => option.value);
+      }
+
+      function getSelectedCapitalization() {
+        return capitalizationEls.find((input) => input.checked)?.value || "uppercase";
+      }
+
+      function setCapitalizationSelection(mode) {
+        const selectedMode = CAPITALIZATION_MODES.has(mode) ? mode : "uppercase";
+        capitalizationEls.forEach((input) => {
+          input.checked = input.value === selectedMode;
+        });
+      }
+
+      function formatDisplayWord(word) {
+        if (state.capitalization === "lowercase") {
+          return word.toLocaleLowerCase();
+        }
+
+        if (state.capitalization === "original") {
+          return word;
+        }
+
+        return word.toLocaleUpperCase();
       }
 
       function resetGameAfterDataChange() {
@@ -1164,7 +1252,7 @@
         const el = document.createElement("div");
 
         el.className = "word-token";
-        el.textContent = word;
+        el.textContent = formatDisplayWord(word);
         el.dataset.word = word;
         el.setAttribute("role", "button");
         el.setAttribute("aria-label", word);
