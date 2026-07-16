@@ -1655,13 +1655,14 @@
         updateAim();
         shootAt(event.clientX, event.clientY);
 
-        const hit = findHitWord(event.clientX, event.clientY);
-        if (!hit) {
+        const hits = findHitWords(event.clientX, event.clientY);
+        if (hits.length === 0) {
           return;
         }
 
-        if (hit.word === state.target.word) {
-          finishRound("correct", hit);
+        const correctHit = hits.find((token) => token.word === state.target.word);
+        if (correctHit) {
+          finishRound("correct", correctHit);
         } else {
           handleWrongGuess();
         }
@@ -2631,10 +2632,10 @@
         window.requestAnimationFrame(drawFireworks);
       }
 
-      function findHitWord(x, y) {
+      function findHitWords(x, y) {
         const tolerance = 12;
 
-        return state.activeWords.find((token) => {
+        return state.activeWords.filter((token) => {
           if (token.done || token.exploding) {
             return false;
           }
