@@ -128,6 +128,145 @@
         display: none;
       }
 
+      .settings-toggle {
+        position: absolute;
+        right: clamp(16px, 3vw, 28px);
+        bottom: clamp(16px, 3vw, 28px);
+        z-index: 32;
+        width: 58px;
+        height: 58px;
+        display: grid;
+        place-items: center;
+        border: 3px solid #17202a;
+        border-radius: 50%;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(23, 32, 42, 0.28);
+        color: #17202a;
+        cursor: pointer;
+        font-size: 30px;
+      }
+
+      .settings-panel {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 31;
+        width: min(420px, 100vw);
+        padding: 22px;
+        overflow-y: auto;
+        background: rgba(255, 255, 255, 0.96);
+        border-left: 3px solid #17202a;
+        box-shadow: -18px 0 42px rgba(0, 0, 0, 0.28);
+        transform: translateX(104%);
+        transition: transform 220ms ease-out;
+      }
+
+      .settings-panel.open {
+        transform: translateX(0);
+      }
+
+      .settings-panel[hidden] {
+        display: block;
+      }
+
+      .settings-form {
+        display: grid;
+        gap: 16px;
+      }
+
+      .settings-form[hidden],
+      .confirm-clear[hidden] {
+        display: none;
+      }
+
+      .settings-title {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+      }
+
+      .field {
+        display: grid;
+        gap: 7px;
+        font-size: 16px;
+        font-weight: 700;
+      }
+
+      .field input,
+      .field select {
+        width: 100%;
+        border: 2px solid #7d8791;
+        border-radius: 8px;
+        padding: 10px 12px;
+        background: #ffffff;
+        color: #17202a;
+        font: inherit;
+        font-weight: 500;
+      }
+
+      .field select {
+        min-height: 128px;
+      }
+
+      .field input:disabled,
+      .field select:disabled {
+        background: #edf0f2;
+        color: #6b7280;
+      }
+
+      .settings-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+
+      .settings-action {
+        min-height: 44px;
+        border: 2px solid #17202a;
+        border-radius: 8px;
+        padding: 9px 13px;
+        background: #ffffff;
+        color: #17202a;
+        cursor: pointer;
+        font-weight: 800;
+      }
+
+      .settings-action.primary {
+        background: #17202a;
+        color: #ffffff;
+      }
+
+      .settings-action.danger {
+        border-color: #a8281e;
+        color: #7c2119;
+      }
+
+      .settings-action:disabled {
+        cursor: not-allowed;
+        opacity: 0.48;
+      }
+
+      .settings-status {
+        min-height: 22px;
+        color: #374151;
+        font-size: 15px;
+        line-height: 1.35;
+      }
+
+      .settings-status.error-text {
+        color: #9f241b;
+      }
+
+      .confirm-clear {
+        display: grid;
+        gap: 10px;
+        padding: 12px;
+        border: 2px solid #a8281e;
+        border-radius: 8px;
+        background: #fff1ee;
+      }
+
       .start-screen {
         position: absolute;
         inset: 0;
@@ -351,15 +490,72 @@
       </div>
 
       <div id="error" class="error" role="alert" hidden></div>
+
+      <button id="settingsToggle" class="settings-toggle" type="button" aria-label="Open settings">⚙</button>
+
+      <aside id="settingsPanel" class="settings-panel" aria-label="Game settings" aria-hidden="true">
+        <form id="passwordForm" class="settings-form">
+          <h2 class="settings-title">Settings</h2>
+          <label class="field">
+            Password
+            <input id="settingsPassword" type="password" autocomplete="current-password">
+          </label>
+          <div id="passwordStatus" class="settings-status" aria-live="polite"></div>
+        </form>
+
+        <form id="settingsForm" class="settings-form" hidden>
+          <h2 class="settings-title">Word Data</h2>
+          <div class="settings-actions">
+            <button id="importButton" class="settings-action" type="button">Import data</button>
+            <button id="clearDatabaseButton" class="settings-action danger" type="button">Clear database</button>
+          </div>
+          <input id="importFileInput" type="file" accept=".csv,text/csv" hidden>
+
+          <div id="confirmClear" class="confirm-clear" hidden>
+            <div>Are you sure you want to clear the data?</div>
+            <div class="settings-actions">
+              <button id="confirmClearYes" class="settings-action danger" type="button">Yes</button>
+              <button id="confirmClearCancel" class="settings-action" type="button">Cancel</button>
+            </div>
+          </div>
+
+          <label class="field">
+            Section(s)
+            <select id="sectionSelect" multiple disabled></select>
+          </label>
+
+          <label class="field">
+            Lesson(s)
+            <select id="lessonSelect" multiple disabled></select>
+          </label>
+
+          <div class="settings-actions">
+            <button id="applySettingsButton" class="settings-action primary" type="submit" disabled>Apply</button>
+            <button id="cancelSettingsButton" class="settings-action" type="button">Cancel</button>
+          </div>
+          <div id="settingsStatus" class="settings-status" aria-live="polite"></div>
+        </form>
+      </aside>
     </main>
 
     <script>
-      const CSV_FILE = "three_letter_words.csv";
       const MIN_WORDS = 2;
       const MAX_WORDS = 4;
       const RESULT_DELAY_MS = 1200;
       const TIMEOUT_DELAY_MS = 260;
       const FIREWORK_SERIES_GAP_MS = 120;
+      const SETTINGS_PASSWORD = "password";
+      const DB_NAME = "shootingWordsReadingDb";
+      const DB_VERSION = 1;
+      const WORD_STORE = "words";
+      const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
+      const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol"];
+      const ALLOWED_PHONETIC_SYMBOLS = new Set([
+        "/ă/", "/ĕ/", "/ĭ/", "/ŏ/", "/ŭ/", "/ā/", "/ē/", "/ī/", "/ō/", "/ū/", "/o-o/", "/o˘o/",
+        "/ô/", "/ou/", "/oi/", "/är/", "/ôr/", "/âr/", "/ûr/", "/ə/", "/b/", "/d/", "/f/",
+        "/g/", "/h/", "/j/", "/k/", "/l/", "/m/", "/n/", "/p/", "/kw/", "/r/", "/s/", "/t/",
+        "/v/", "/w/", "/ks/", "/y/", "/z/", "/sh/", "/th/", "/zh/", "/ch/", "/ng/", "/hw/"
+      ]);
       const FIREWORK_PALETTES = [
         ["#ffef6e", "#ff7a59", "#ff477e", "#68e1fd", "#7cff8e"],
         ["#fff4a3", "#ffd166", "#fca311", "#ff6b35", "#ffffff"],
@@ -370,6 +566,13 @@
 
       const state = {
         words: [],
+        db: null,
+        dbRows: [],
+        currentFilters: {
+          sections: [],
+          lessons: []
+        },
+        settingsAuthenticated: false,
         activeWords: [],
         target: null,
         running: false,
@@ -398,6 +601,23 @@
       const errorEl = document.getElementById("error");
       const barrelEl = document.getElementById("barrel");
       const gunPivotEl = document.getElementById("gunPivot");
+      const settingsToggleEl = document.getElementById("settingsToggle");
+      const settingsPanelEl = document.getElementById("settingsPanel");
+      const passwordFormEl = document.getElementById("passwordForm");
+      const settingsPasswordEl = document.getElementById("settingsPassword");
+      const passwordStatusEl = document.getElementById("passwordStatus");
+      const settingsFormEl = document.getElementById("settingsForm");
+      const importButtonEl = document.getElementById("importButton");
+      const clearDatabaseButtonEl = document.getElementById("clearDatabaseButton");
+      const importFileInputEl = document.getElementById("importFileInput");
+      const confirmClearEl = document.getElementById("confirmClear");
+      const confirmClearYesEl = document.getElementById("confirmClearYes");
+      const confirmClearCancelEl = document.getElementById("confirmClearCancel");
+      const sectionSelectEl = document.getElementById("sectionSelect");
+      const lessonSelectEl = document.getElementById("lessonSelect");
+      const applySettingsButtonEl = document.getElementById("applySettingsButton");
+      const cancelSettingsButtonEl = document.getElementById("cancelSettingsButton");
+      const settingsStatusEl = document.getElementById("settingsStatus");
       const fireworkBursts = [];
       let fireworkWidth = 0;
       let fireworkHeight = 0;
@@ -409,29 +629,32 @@
 
       async function init() {
         try {
-          const response = await fetch(CSV_FILE);
-          if (!response.ok) {
-            throw new Error(`Could not load ${CSV_FILE}.`);
-          }
-
-          const csv = await response.text();
-          state.words = parseCsv(csv)
-            .slice(1)
-            .map(([word]) => (word || "").trim().toLowerCase())
-            .filter((word) => /^[a-z]{3}$/.test(word));
-
-          if (state.words.length < MIN_WORDS) {
-            throw new Error("The CSV needs at least two three-letter words.");
-          }
-
-          startButtonEl.disabled = false;
+          state.db = await openDatabase();
+          state.dbRows = await readAllRows();
+          loadSavedSettings();
+          applyCurrentFilters();
+          rebuildSettingsControls();
           updateAim();
+
+          if (state.dbRows.length === 0) {
+            startButtonEl.disabled = true;
+            openSettingsPanel();
+            showPasswordForm();
+            setPasswordStatus("Import teaching-reading-words.csv to choose words for the game.");
+          }
         } catch (error) {
-          showError(`${error.message} Run this page from a local web server so the browser can read the CSV file.`);
+          showError(`${error.message} IndexedDB needs a normal browser page context; run this page from the local web server.`);
         }
       }
 
       startButtonEl.addEventListener("click", () => {
+        if (state.words.length < MIN_WORDS) {
+          openSettingsPanel();
+          showPasswordForm();
+          setPasswordStatus("Import data and apply a word set before starting.");
+          return;
+        }
+
         state.running = true;
         startScreenEl.hidden = true;
         soundButtonEl.hidden = false;
@@ -453,7 +676,13 @@
       });
 
       arenaEl.addEventListener("pointerdown", (event) => {
-        if (!state.running || state.locked || event.target.closest("button")) {
+        if (
+          !state.running ||
+          state.locked ||
+          event.target.closest("button") ||
+          event.target.closest(".settings-panel") ||
+          event.target.closest(".settings-toggle")
+        ) {
           return;
         }
 
@@ -474,10 +703,414 @@
         }
       });
 
+      settingsToggleEl.addEventListener("click", () => {
+        if (settingsPanelEl.classList.contains("open")) {
+          closeSettingsPanel();
+          return;
+        }
+
+        openSettingsPanel();
+        if (state.settingsAuthenticated) {
+          showSettingsForm();
+        } else {
+          showPasswordForm();
+        }
+      });
+
+      passwordFormEl.addEventListener("submit", (event) => {
+        event.preventDefault();
+        if (settingsPasswordEl.value === SETTINGS_PASSWORD) {
+          state.settingsAuthenticated = true;
+          settingsPasswordEl.value = "";
+          showSettingsForm();
+          return;
+        }
+
+        setPasswordStatus("Incorrect password.", true);
+        settingsPasswordEl.select();
+      });
+
+      importButtonEl.addEventListener("click", () => {
+        importFileInputEl.value = "";
+        importFileInputEl.click();
+      });
+
+      importFileInputEl.addEventListener("change", async () => {
+        const [file] = importFileInputEl.files;
+        if (!file) {
+          return;
+        }
+
+        try {
+          const text = await file.text();
+          const rows = validateTeachingCsv(text);
+          await replaceRows(rows);
+          state.dbRows = rows;
+          state.words = [];
+          state.currentFilters = { sections: [], lessons: [] };
+          localStorage.removeItem(SETTINGS_STORAGE_KEY);
+          resetGameAfterDataChange();
+          rebuildSettingsControls({ selectAll: true });
+          setSettingsStatus(`Imported ${rows.length} rows. Choose sections and lessons, then Apply.`);
+        } catch (error) {
+          setSettingsStatus(error.message, true);
+        }
+      });
+
+      clearDatabaseButtonEl.addEventListener("click", () => {
+        confirmClearEl.hidden = false;
+      });
+
+      confirmClearCancelEl.addEventListener("click", () => {
+        confirmClearEl.hidden = true;
+      });
+
+      confirmClearYesEl.addEventListener("click", async () => {
+        try {
+          await clearRows();
+          state.dbRows = [];
+          state.words = [];
+          state.currentFilters = { sections: [], lessons: [] };
+          localStorage.removeItem(SETTINGS_STORAGE_KEY);
+          resetGameAfterDataChange();
+          rebuildSettingsControls();
+          confirmClearEl.hidden = true;
+          setSettingsStatus("Database cleared. Import data to play.");
+        } catch (error) {
+          setSettingsStatus(error.message, true);
+        }
+      });
+
+      sectionSelectEl.addEventListener("change", () => {
+        rebuildLessonOptions(getSelectedValues(sectionSelectEl), getSelectedValues(lessonSelectEl));
+      });
+
+      settingsFormEl.addEventListener("submit", (event) => {
+        event.preventDefault();
+        applySelectedSettings();
+      });
+
+      cancelSettingsButtonEl.addEventListener("click", () => {
+        rebuildSettingsControls();
+        closeSettingsPanel();
+      });
+
       window.addEventListener("resize", () => {
         updateAim();
         resizeFireworksCanvas();
       });
+
+      function openSettingsPanel() {
+        settingsPanelEl.classList.add("open");
+        settingsPanelEl.setAttribute("aria-hidden", "false");
+      }
+
+      function closeSettingsPanel() {
+        settingsPanelEl.classList.remove("open");
+        settingsPanelEl.setAttribute("aria-hidden", "true");
+        confirmClearEl.hidden = true;
+      }
+
+      function showPasswordForm() {
+        passwordFormEl.hidden = false;
+        settingsFormEl.hidden = true;
+        window.setTimeout(() => settingsPasswordEl.focus(), 80);
+      }
+
+      function showSettingsForm() {
+        passwordFormEl.hidden = true;
+        settingsFormEl.hidden = false;
+        rebuildSettingsControls();
+        setSettingsStatus(state.dbRows.length ? `${state.dbRows.length} rows loaded.` : "No data loaded.");
+      }
+
+      function setPasswordStatus(message, isError = false) {
+        passwordStatusEl.textContent = message;
+        passwordStatusEl.classList.toggle("error-text", isError);
+      }
+
+      function setSettingsStatus(message, isError = false) {
+        settingsStatusEl.textContent = message;
+        settingsStatusEl.classList.toggle("error-text", isError);
+      }
+
+      function openDatabase() {
+        if (!("indexedDB" in window)) {
+          return Promise.reject(new Error("This browser does not support IndexedDB."));
+        }
+
+        return new Promise((resolve, reject) => {
+          const request = indexedDB.open(DB_NAME, DB_VERSION);
+
+          request.onupgradeneeded = () => {
+            const db = request.result;
+            if (!db.objectStoreNames.contains(WORD_STORE)) {
+              db.createObjectStore(WORD_STORE, { keyPath: "id", autoIncrement: true });
+            }
+          };
+
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => reject(request.error || new Error("Could not open IndexedDB."));
+        });
+      }
+
+      function readAllRows() {
+        return new Promise((resolve, reject) => {
+          const transaction = state.db.transaction(WORD_STORE, "readonly");
+          const store = transaction.objectStore(WORD_STORE);
+          const request = store.getAll();
+
+          request.onsuccess = () => resolve(request.result || []);
+          request.onerror = () => reject(request.error || new Error("Could not read IndexedDB rows."));
+        });
+      }
+
+      function replaceRows(rows) {
+        return new Promise((resolve, reject) => {
+          const transaction = state.db.transaction(WORD_STORE, "readwrite");
+          const store = transaction.objectStore(WORD_STORE);
+
+          store.clear();
+          rows.forEach((row) => store.add(row));
+
+          transaction.oncomplete = () => resolve();
+          transaction.onerror = () => reject(transaction.error || new Error("Could not import rows."));
+        });
+      }
+
+      function clearRows() {
+        return new Promise((resolve, reject) => {
+          const transaction = state.db.transaction(WORD_STORE, "readwrite");
+          transaction.objectStore(WORD_STORE).clear();
+          transaction.oncomplete = () => resolve();
+          transaction.onerror = () => reject(transaction.error || new Error("Could not clear IndexedDB."));
+        });
+      }
+
+      function validateTeachingCsv(text) {
+        const rows = parseCsv(text);
+        if (rows.length < 2) {
+          throw new Error("The CSV must include a header and at least one data row.");
+        }
+
+        const headers = rows[0].map((header) => header.trim());
+        if (headers.length !== EXPECTED_HEADERS.length || headers.some((header, index) => header !== EXPECTED_HEADERS[index])) {
+          throw new Error(`Invalid header. Expected: ${EXPECTED_HEADERS.join(",")}`);
+        }
+
+        return rows.slice(1).map((row, index) => {
+          if (row.length !== EXPECTED_HEADERS.length) {
+            throw new Error(`Row ${index + 2} has ${row.length} columns; expected ${EXPECTED_HEADERS.length}.`);
+          }
+
+          const [sectionText, lessonText, lessonDescription, word, isSightWord, phoneticSymbol] = row.map((value) => value.trim());
+          const section = Number(sectionText);
+          const lesson = Number(lessonText);
+
+          if (!Number.isInteger(section) || section < 1) {
+            throw new Error(`Row ${index + 2} has an invalid section.`);
+          }
+
+          if (!Number.isInteger(lesson) || lesson < 1) {
+            throw new Error(`Row ${index + 2} has an invalid lesson.`);
+          }
+
+          if (!lessonDescription) {
+            throw new Error(`Row ${index + 2} is missing lesson_description.`);
+          }
+
+          if (!word) {
+            throw new Error(`Row ${index + 2} is missing word.`);
+          }
+
+          if (isSightWord !== "T" && isSightWord !== "F") {
+            throw new Error(`Row ${index + 2} has invalid is_sight_word; use T or F.`);
+          }
+
+          if (!ALLOWED_PHONETIC_SYMBOLS.has(phoneticSymbol)) {
+            throw new Error(`Row ${index + 2} has an unknown phonetic_symbol.`);
+          }
+
+          return {
+            section,
+            lesson,
+            lesson_description: lessonDescription,
+            word,
+            is_sight_word: isSightWord,
+            phonetic_symbol: phoneticSymbol
+          };
+        });
+      }
+
+      function loadSavedSettings() {
+        try {
+          const saved = JSON.parse(localStorage.getItem(SETTINGS_STORAGE_KEY) || "null");
+          if (!saved) {
+            return;
+          }
+
+          state.currentFilters = {
+            sections: Array.isArray(saved.sections) ? saved.sections.map(String) : [],
+            lessons: Array.isArray(saved.lessons) ? saved.lessons.map(String) : []
+          };
+        } catch {
+          state.currentFilters = { sections: [], lessons: [] };
+        }
+      }
+
+      function saveSettings() {
+        localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify(state.currentFilters));
+      }
+
+      function rebuildSettingsControls(options = {}) {
+        const hasData = state.dbRows.length > 0;
+        const sections = uniqueSections();
+        const selectedSections = options.selectAll || state.currentFilters.sections.length === 0
+          ? sections
+          : state.currentFilters.sections.filter((section) => sections.includes(section));
+
+        sectionSelectEl.innerHTML = "";
+        sections.forEach((section) => {
+          const option = document.createElement("option");
+          option.value = section;
+          option.textContent = section;
+          option.selected = selectedSections.includes(section);
+          sectionSelectEl.appendChild(option);
+        });
+
+        rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
+
+        sectionSelectEl.disabled = !hasData;
+        lessonSelectEl.disabled = !hasData;
+        applySettingsButtonEl.disabled = !hasData;
+        clearDatabaseButtonEl.disabled = !hasData;
+      }
+
+      function rebuildLessonOptions(selectedSections, selectedLessons) {
+        const sectionSet = new Set(selectedSections.map(String));
+        const rows = state.dbRows.filter((row) => sectionSet.size === 0 || sectionSet.has(String(row.section)));
+        const lessons = uniqueLessons(rows);
+        const selectedSet = new Set(selectedLessons.map(String).filter((lesson) => lessons.some((item) => item.value === lesson)));
+        const shouldSelectAll = selectedSet.size === 0;
+
+        lessonSelectEl.innerHTML = "";
+        lessons.forEach((lesson) => {
+          const option = document.createElement("option");
+          option.value = lesson.value;
+          option.textContent = lesson.label;
+          option.selected = shouldSelectAll || selectedSet.has(lesson.value);
+          lessonSelectEl.appendChild(option);
+        });
+      }
+
+      function applySelectedSettings() {
+        if (state.dbRows.length === 0) {
+          setSettingsStatus("Import data before applying settings.", true);
+          return;
+        }
+
+        const sections = getSelectedValues(sectionSelectEl);
+        const lessons = getSelectedValues(lessonSelectEl);
+        if (sections.length === 0 || lessons.length === 0) {
+          setSettingsStatus("Choose at least one section and one lesson.", true);
+          return;
+        }
+
+        const selectedRows = filterRows(sections, lessons);
+        const selectedWords = uniqueWords(selectedRows);
+        if (selectedWords.length < MIN_WORDS) {
+          setSettingsStatus("The selected data must contain at least two unique words.", true);
+          return;
+        }
+
+        state.currentFilters = { sections, lessons };
+        state.words = selectedWords;
+        saveSettings();
+        startButtonEl.disabled = false;
+        setSettingsStatus(`${selectedWords.length} words selected.`);
+        closeSettingsPanel();
+      }
+
+      function applyCurrentFilters() {
+        if (state.dbRows.length === 0) {
+          state.words = [];
+          startButtonEl.disabled = true;
+          return;
+        }
+
+        const sections = normalizeStoredValues(state.currentFilters.sections, uniqueSections());
+        const lessons = normalizeStoredValues(state.currentFilters.lessons, uniqueLessons(state.dbRows).map((lesson) => lesson.value));
+        let selectedRows = filterRows(sections, lessons);
+        let selectedWords = uniqueWords(selectedRows);
+
+        if (selectedWords.length < MIN_WORDS) {
+          state.currentFilters = { sections: [], lessons: [] };
+          selectedRows = state.dbRows;
+          selectedWords = uniqueWords(selectedRows);
+        }
+
+        state.words = selectedWords;
+        startButtonEl.disabled = selectedWords.length < MIN_WORDS;
+      }
+
+      function filterRows(sections, lessons) {
+        const sectionSet = new Set(sections.map(String));
+        const lessonSet = new Set(lessons.map(String));
+        return state.dbRows.filter((row) => {
+          return sectionSet.has(String(row.section)) && lessonSet.has(String(row.lesson));
+        });
+      }
+
+      function uniqueSections() {
+        return [...new Set(state.dbRows.map((row) => String(row.section)))]
+          .sort((a, b) => Number(a) - Number(b));
+      }
+
+      function uniqueLessons(rows) {
+        const lessons = new Map();
+        rows.forEach((row) => {
+          const key = String(row.lesson);
+          if (!lessons.has(key)) {
+            lessons.set(key, {
+              value: key,
+              label: `#${row.lesson} - ${row.lesson_description}`
+            });
+          }
+        });
+
+        return [...lessons.values()].sort((a, b) => Number(a.value) - Number(b.value));
+      }
+
+      function uniqueWords(rows) {
+        return [...new Set(rows.map((row) => row.word.trim()).filter(Boolean))];
+      }
+
+      function normalizeStoredValues(values, allowedValues) {
+        const allowedSet = new Set(allowedValues.map(String));
+        return values.map(String).filter((value) => allowedSet.has(value));
+      }
+
+      function getSelectedValues(select) {
+        return [...select.selectedOptions].map((option) => option.value);
+      }
+
+      function resetGameAfterDataChange() {
+        clearTimeout(state.nextRoundTimer);
+        window.cancelAnimationFrame(state.animationId);
+        window.speechSynthesis?.cancel();
+        state.running = false;
+        state.locked = true;
+        state.roundOver = true;
+        state.waitingForWordsToLeave = false;
+        state.activeWords = [];
+        state.target = null;
+        wordLayerEl.innerHTML = "";
+        laserLayerEl.innerHTML = "";
+        clearFireworks();
+        startScreenEl.hidden = false;
+        soundButtonEl.hidden = true;
+        startButtonEl.disabled = state.words.length < MIN_WORDS;
+      }
 
       function startRound() {
         clearTimeout(state.nextRoundTimer);
