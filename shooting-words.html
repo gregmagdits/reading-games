@@ -241,6 +241,127 @@
         height: 18px;
       }
 
+      .speed-control {
+        display: grid;
+        justify-items: center;
+        gap: 8px;
+        padding-top: 2px;
+      }
+
+      .speed-title {
+        justify-self: start;
+        font-size: 16px;
+        font-weight: 800;
+      }
+
+      .speed-gauge {
+        position: relative;
+        width: min(100%, 210px);
+        aspect-ratio: 2 / 1;
+        margin-top: 4px;
+      }
+
+      .speed-arc {
+        position: absolute;
+        inset: 0;
+        border-radius: 210px 210px 0 0;
+        background: conic-gradient(from 270deg at 50% 100%, #6fd08c 0deg 36deg, #f6d365 36deg 108deg, #ff715b 108deg 180deg, transparent 180deg);
+        overflow: hidden;
+      }
+
+      .speed-arc::after {
+        content: "";
+        position: absolute;
+        left: 12%;
+        right: 12%;
+        bottom: 0;
+        height: 76%;
+        border-radius: 160px 160px 0 0;
+        background: #f7f9fc;
+      }
+
+      .speed-needle {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        z-index: 2;
+        width: 5px;
+        height: 82%;
+        border-radius: 999px;
+        background: #17202a;
+        transform: translateX(-50%) rotate(72deg);
+        transform-origin: 50% 100%;
+        transition: transform 160ms ease-out;
+      }
+
+      .speed-needle::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -8px;
+        width: 18px;
+        height: 18px;
+        border: 3px solid #17202a;
+        border-radius: 50%;
+        background: #ffffff;
+        transform: translateX(-50%);
+      }
+
+      .speed-labels {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+        font-size: 14px;
+        font-weight: 900;
+        color: #17202a;
+      }
+
+      .speed-labels span {
+        position: absolute;
+        transform: translate(-50%, -50%);
+      }
+
+      .speed-labels span:nth-child(1) {
+        left: 8%;
+        bottom: -7px;
+      }
+
+      .speed-labels span:nth-child(2) {
+        left: 22%;
+        top: 42%;
+      }
+
+      .speed-labels span:nth-child(3) {
+        left: 50%;
+        top: 18%;
+      }
+
+      .speed-labels span:nth-child(4) {
+        left: 78%;
+        top: 42%;
+      }
+
+      .speed-labels span:nth-child(5) {
+        left: 92%;
+        bottom: -7px;
+      }
+
+      .speed-range {
+        width: min(100%, 210px);
+        accent-color: #ff715b;
+      }
+
+      .speed-value {
+        min-width: 70px;
+        border: 2px solid #17202a;
+        border-radius: 8px;
+        padding: 5px 10px;
+        background: #ffffff;
+        text-align: center;
+        font-weight: 900;
+      }
+
       .settings-actions {
         display: flex;
         flex-wrap: wrap;
@@ -571,6 +692,23 @@
             </label>
           </fieldset>
 
+          <div class="speed-control">
+            <div class="speed-title">Word speed</div>
+            <div class="speed-gauge" aria-hidden="true">
+              <div class="speed-arc"></div>
+              <div id="speedNeedle" class="speed-needle"></div>
+              <div class="speed-labels">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
+                <span>5</span>
+              </div>
+            </div>
+            <input id="speedControl" class="speed-range" type="range" min="1" max="5" step="1" value="5" aria-label="Word speed">
+            <div id="speedValue" class="speed-value">Speed 5</div>
+          </div>
+
           <div class="settings-actions">
             <button id="applySettingsButton" class="settings-action primary" type="submit" disabled>Apply</button>
             <button id="cancelSettingsButton" class="settings-action" type="button">Cancel</button>
@@ -592,6 +730,15 @@
       const WORD_STORE = "words";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
+      const MIN_WORD_SPEED = 1;
+      const MAX_WORD_SPEED = 5;
+      const WORD_SPEED_MULTIPLIERS = {
+        1: 2.8,
+        2: 2.25,
+        3: 1.75,
+        4: 1.35,
+        5: 1
+      };
       const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol"];
       const ALLOWED_PHONETIC_SYMBOLS = new Set([
         "/ă/", "/ĕ/", "/ĭ/", "/ŏ/", "/ŭ/", "/ā/", "/ē/", "/ī/", "/ō/", "/ū/", "/o-o/", "/o˘o/",
@@ -616,6 +763,7 @@
           lessons: []
         },
         capitalization: "uppercase",
+        wordSpeed: MAX_WORD_SPEED,
         settingsAuthenticated: false,
         activeWords: [],
         target: null,
@@ -663,6 +811,9 @@
       const cancelSettingsButtonEl = document.getElementById("cancelSettingsButton");
       const settingsStatusEl = document.getElementById("settingsStatus");
       const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
+      const speedControlEl = document.getElementById("speedControl");
+      const speedNeedleEl = document.getElementById("speedNeedle");
+      const speedValueEl = document.getElementById("speedValue");
       const fireworkBursts = [];
       let fireworkWidth = 0;
       let fireworkHeight = 0;
@@ -836,6 +987,10 @@
         rebuildLessonOptions(getSelectedValues(sectionSelectEl), getSelectedValues(lessonSelectEl));
       });
 
+      speedControlEl.addEventListener("input", () => {
+        setSpeedSelection(getSelectedWordSpeed());
+      });
+
       settingsFormEl.addEventListener("submit", (event) => {
         event.preventDefault();
         applySelectedSettings();
@@ -1007,12 +1162,14 @@
           if (CAPITALIZATION_MODES.has(saved.capitalization)) {
             state.capitalization = saved.capitalization;
           }
+          state.wordSpeed = normalizeWordSpeed(saved.wordSpeed);
         } catch {
           state.currentFilters = {
             sections: [],
             lessons: []
           };
           state.capitalization = "uppercase";
+          state.wordSpeed = MAX_WORD_SPEED;
         }
       }
 
@@ -1020,7 +1177,8 @@
         localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify({
           sections: state.currentFilters.sections,
           lessons: state.currentFilters.lessons,
-          capitalization: state.capitalization
+          capitalization: state.capitalization,
+          wordSpeed: state.wordSpeed
         }));
       }
 
@@ -1042,6 +1200,7 @@
 
         rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
         setCapitalizationSelection(state.capitalization);
+        setSpeedSelection(state.wordSpeed);
 
         sectionSelectEl.disabled = !hasData;
         lessonSelectEl.disabled = !hasData;
@@ -1082,6 +1241,7 @@
         const selectedRows = filterRows(sections, lessons);
         const selectedWords = uniqueWords(selectedRows);
         const capitalization = getSelectedCapitalization();
+        const wordSpeed = getSelectedWordSpeed();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
           return;
@@ -1089,6 +1249,7 @@
 
         state.currentFilters = { sections, lessons };
         state.capitalization = capitalization;
+        state.wordSpeed = wordSpeed;
         state.words = selectedWords;
         saveSettings();
         startButtonEl.disabled = false;
@@ -1170,6 +1331,32 @@
         });
       }
 
+      function normalizeWordSpeed(speed) {
+        const numericSpeed = Number(speed);
+        if (!Number.isFinite(numericSpeed)) {
+          return MAX_WORD_SPEED;
+        }
+
+        return clamp(Math.round(numericSpeed), MIN_WORD_SPEED, MAX_WORD_SPEED);
+      }
+
+      function getSelectedWordSpeed() {
+        return normalizeWordSpeed(speedControlEl.value);
+      }
+
+      function setSpeedSelection(speed) {
+        const normalizedSpeed = normalizeWordSpeed(speed);
+        const speedAngle = -72 + (normalizedSpeed - MIN_WORD_SPEED) * 36;
+
+        speedControlEl.value = String(normalizedSpeed);
+        speedValueEl.textContent = `Speed ${normalizedSpeed}`;
+        speedNeedleEl.style.transform = `translateX(-50%) rotate(${speedAngle}deg)`;
+      }
+
+      function getWordSpeedMultiplier() {
+        return WORD_SPEED_MULTIPLIERS[state.wordSpeed] || WORD_SPEED_MULTIPLIERS[MAX_WORD_SPEED];
+      }
+
       function formatDisplayWord(word) {
         if (state.capitalization === "lowercase") {
           return word.toLocaleLowerCase();
@@ -1247,7 +1434,7 @@
         const startX = clamp(laneCenter + randomInt(-Math.floor(laneWidth * 0.22), Math.floor(laneWidth * 0.22)), margin, width - margin);
         const apexX = randomInt(margin, Math.max(margin + 1, width - margin));
         const endX = clamp(startX + randomInt(-Math.floor(width * 0.34), Math.floor(width * 0.34)), margin, width - margin);
-        const duration = randomInt(5600, 7300);
+        const duration = Math.round(randomInt(5600, 7300) * getWordSpeedMultiplier());
         const delay = index * randomInt(80, 180);
         const el = document.createElement("div");
 
