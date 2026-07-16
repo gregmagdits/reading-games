@@ -1337,6 +1337,11 @@
             </label>
           </fieldset>
 
+          <label class="field">
+            Prefix length
+            <input id="prefixLengthInput" type="number" min="0" step="1" value="1">
+          </label>
+
           <fieldset class="radio-group">
             <legend>Shooter</legend>
             <label class="radio-option">
@@ -1398,6 +1403,8 @@
       const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket"]);
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
+      const MIN_PREFIX_LENGTH = 0;
+      const DEFAULT_PREFIX_LENGTH = 1;
       const WORD_SPEED_MULTIPLIERS = {
         1: 2.8,
         2: 2.25,
@@ -1431,6 +1438,7 @@
         capitalization: "uppercase",
         shooterType: "laser",
         wordSpeed: MAX_WORD_SPEED,
+        prefixLength: DEFAULT_PREFIX_LENGTH,
         settingsAuthenticated: false,
         activeWords: [],
         target: null,
@@ -1484,6 +1492,7 @@
       const settingsStatusEl = document.getElementById("settingsStatus");
       const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
       const shooterTypeEls = [...document.querySelectorAll("input[name='shooterType']")];
+      const prefixLengthInputEl = document.getElementById("prefixLengthInput");
       const speedControlEl = document.getElementById("speedControl");
       const speedNeedleEl = document.getElementById("speedNeedle");
       const speedValueEl = document.getElementById("speedValue");
@@ -1664,6 +1673,10 @@
         setSpeedSelection(getSelectedWordSpeed());
       });
 
+      prefixLengthInputEl.addEventListener("change", () => {
+        setPrefixLengthSelection(getSelectedPrefixLength());
+      });
+
       settingsFormEl.addEventListener("submit", (event) => {
         event.preventDefault();
         if (applySelectedSettings()) {
@@ -1841,6 +1854,7 @@
           }
           state.shooterType = normalizeShooterType(saved.shooterType);
           state.wordSpeed = normalizeWordSpeed(saved.wordSpeed);
+          state.prefixLength = normalizePrefixLength(saved.prefixLength);
         } catch {
           state.currentFilters = {
             sections: [],
@@ -1849,6 +1863,7 @@
           state.capitalization = "uppercase";
           state.shooterType = "laser";
           state.wordSpeed = MAX_WORD_SPEED;
+          state.prefixLength = DEFAULT_PREFIX_LENGTH;
         }
       }
 
@@ -1858,7 +1873,8 @@
           lessons: state.currentFilters.lessons,
           capitalization: state.capitalization,
           shooterType: state.shooterType,
-          wordSpeed: state.wordSpeed
+          wordSpeed: state.wordSpeed,
+          prefixLength: state.prefixLength
         }));
       }
 
@@ -1880,6 +1896,7 @@
 
         rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
         setCapitalizationSelection(state.capitalization);
+        setPrefixLengthSelection(state.prefixLength);
         setShooterTypeSelection(state.shooterType);
         applyShooterType();
         setSpeedSelection(state.wordSpeed);
@@ -1925,6 +1942,7 @@
         const capitalization = getSelectedCapitalization();
         const shooterType = getSelectedShooterType();
         const wordSpeed = getSelectedWordSpeed();
+        const prefixLength = getSelectedPrefixLength();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
           return false;
@@ -1934,6 +1952,7 @@
         state.capitalization = capitalization;
         state.shooterType = shooterType;
         state.wordSpeed = wordSpeed;
+        state.prefixLength = prefixLength;
         state.words = selectedWords;
         saveSettings();
         applyShooterType();
@@ -2015,6 +2034,23 @@
         capitalizationEls.forEach((input) => {
           input.checked = input.value === selectedMode;
         });
+      }
+
+      function normalizePrefixLength(length) {
+        const numericLength = Number(length);
+        if (!Number.isFinite(numericLength)) {
+          return DEFAULT_PREFIX_LENGTH;
+        }
+
+        return Math.max(MIN_PREFIX_LENGTH, Math.floor(numericLength));
+      }
+
+      function getSelectedPrefixLength() {
+        return normalizePrefixLength(prefixLengthInputEl.value);
+      }
+
+      function setPrefixLengthSelection(length) {
+        prefixLengthInputEl.value = String(normalizePrefixLength(length));
       }
 
       function normalizeShooterType(shooterType) {
@@ -2131,9 +2167,59 @@
 
       function pickRoundWords() {
         const count = randomInt(MIN_WORDS, Math.min(MAX_WORDS, state.words.length));
-        return shuffle(state.words)
-          .slice(0, count)
-          .map((word) => ({ word }));
+        return pickWordsByPrefix(count).map((word) => ({ word }));
+      }
+
+      function pickWordsByPrefix(count) {
+        const prefixLength = normalizePrefixLength(state.prefixLength);
+        if (prefixLength === 0) {
+          return shuffle(state.words).slice(0, count);
+        }
+
+        const groups = prefixGroups(prefixLength);
+        if (groups.length === 0) {
+          return shuffle(state.words).slice(0, count);
+        }
+
+        const completeGroups = groups.filter((group) => group.words.length >= count);
+        if (completeGroups.length > 0) {
+          const group = completeGroups[randomInt(0, completeGroups.length - 1)];
+          return shuffle(group.words).slice(0, count);
+        }
+
+        const largestSize = Math.max(...groups.map((group) => group.words.length));
+        const largestGroups = groups.filter((group) => group.words.length === largestSize);
+        const group = largestGroups[randomInt(0, largestGroups.length - 1)];
+        const selected = shuffle(group.words);
+        const selectedSet = new Set(selected);
+        const filler = shuffle(state.words.filter((word) => !selectedSet.has(word))).slice(0, count - selected.length);
+
+        return selected.concat(filler);
+      }
+
+      function prefixGroups(prefixLength) {
+        const groupsByPrefix = new Map();
+        state.words.forEach((word) => {
+          const prefix = wordPrefix(word, prefixLength);
+          if (prefix.length !== prefixLength) {
+            return;
+          }
+
+          if (!groupsByPrefix.has(prefix)) {
+            groupsByPrefix.set(prefix, []);
+          }
+          groupsByPrefix.get(prefix).push(word);
+        });
+
+        return [...groupsByPrefix.entries()].map(([prefix, words]) => ({ prefix, words }));
+      }
+
+      function wordPrefix(word, prefixLength) {
+        if (prefixLength <= 0) {
+          return "";
+        }
+
+        return word.trim().toLocaleLowerCase().slice(0, prefixLength);
       }
 
       function createWordToken(word, index, total, now) {
