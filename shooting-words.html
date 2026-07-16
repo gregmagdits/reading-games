@@ -486,6 +486,49 @@
         animation: spark-pop 260ms ease-out forwards;
       }
 
+      .fire-shot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 34px;
+        border-radius: 999px 70% 70% 999px;
+        background:
+          radial-gradient(circle at 92% 50%, #fff7a8 0 8%, rgba(255, 247, 168, 0) 28%),
+          linear-gradient(90deg, #fff7a8 0%, #ffda3d 22%, #ff7a1a 52%, #d7261e 100%);
+        box-shadow: 0 0 18px rgba(255, 130, 26, 0.75), 0 0 34px rgba(255, 45, 18, 0.42);
+        transform-origin: 0 50%;
+        animation: fire-burst 260ms ease-out forwards;
+      }
+
+      .fire-shot::before,
+      .fire-shot::after {
+        content: "";
+        position: absolute;
+        inset: 7px 10% 7px 8%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #ffffff 0%, #ffe66d 42%, rgba(255, 230, 109, 0) 100%);
+        opacity: 0.82;
+      }
+
+      .fire-shot::after {
+        inset: -7px 20% auto 34%;
+        height: 17px;
+        background: #ff8a1c;
+        opacity: 0.9;
+        transform: skewX(-22deg);
+      }
+
+      .ember {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ffd166;
+        box-shadow: 0 0 14px rgba(255, 150, 30, 0.9);
+        transform: translate(-50%, -50%);
+        animation: ember-pop 360ms ease-out forwards;
+      }
+
       .gun {
         position: absolute;
         left: 50%;
@@ -570,6 +613,157 @@
         transform: translateX(-50%);
       }
 
+      .gun.dragon-mode .barrel,
+      .gun.dragon-mode .gun-body,
+      .gun.dragon-mode .stand {
+        display: none;
+      }
+
+      .gun.laser-mode .dragon-head,
+      .gun.laser-mode .dragon-neck,
+      .gun.laser-mode .dragon-pivot {
+        display: none;
+      }
+
+      .dragon-head {
+        position: absolute;
+        left: 50%;
+        bottom: 34px;
+        width: clamp(126px, 19vmin, 178px);
+        height: clamp(108px, 17vmin, 152px);
+        border: 4px solid #17202a;
+        border-radius: 48% 48% 55% 55%;
+        background:
+          radial-gradient(circle at 34% 42%, rgba(255, 255, 255, 0.32) 0 16%, rgba(255, 255, 255, 0) 17%),
+          linear-gradient(135deg, #79d96f, #28a745 58%, #176f36);
+        box-shadow: 0 12px 0 rgba(23, 32, 42, 0.12);
+        transform: translateX(-50%) rotate(0rad);
+        transform-origin: 50% 100%;
+      }
+
+      .dragon-crest {
+        position: absolute;
+        left: 50%;
+        top: -22px;
+        width: 56%;
+        height: 34px;
+        background: linear-gradient(180deg, #ff715b, #d7261e);
+        clip-path: polygon(0 100%, 15% 20%, 30% 100%, 50% 0, 70% 100%, 85% 20%, 100% 100%);
+        transform: translateX(-50%);
+      }
+
+      .dragon-horn {
+        position: absolute;
+        top: -14px;
+        width: 22px;
+        height: 34px;
+        border: 3px solid #17202a;
+        border-radius: 70% 70% 20% 20%;
+        background: #fff1c2;
+      }
+
+      .dragon-horn-left {
+        left: 24px;
+        transform: rotate(-24deg);
+      }
+
+      .dragon-horn-right {
+        right: 24px;
+        transform: rotate(24deg);
+      }
+
+      .dragon-eye {
+        position: absolute;
+        top: 36%;
+        width: 20px;
+        height: 20px;
+        border: 3px solid #17202a;
+        border-radius: 50%;
+        background: #ffffff;
+      }
+
+      .dragon-eye::after {
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 4px;
+        width: 7px;
+        height: 10px;
+        border-radius: 50%;
+        background: #17202a;
+      }
+
+      .dragon-eye-left {
+        left: 28%;
+      }
+
+      .dragon-eye-right {
+        right: 28%;
+      }
+
+      .dragon-snout {
+        position: absolute;
+        left: 50%;
+        top: -6px;
+        width: 54%;
+        height: 42%;
+        border: 3px solid #17202a;
+        border-radius: 48% 48% 58% 58%;
+        background: linear-gradient(180deg, #b8f48a, #63c95c);
+        transform: translateX(-50%);
+      }
+
+      .dragon-nostril {
+        position: absolute;
+        top: 42%;
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #17202a;
+      }
+
+      .dragon-nostril-left {
+        left: 30%;
+      }
+
+      .dragon-nostril-right {
+        right: 30%;
+      }
+
+      .dragon-mouth {
+        position: absolute;
+        left: 50%;
+        top: -8px;
+        width: 20px;
+        height: 12px;
+        border: 3px solid #17202a;
+        border-bottom: 0;
+        border-radius: 999px 999px 0 0;
+        background: #ff715b;
+        transform: translateX(-50%);
+      }
+
+      .dragon-neck {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: clamp(58px, 9vmin, 86px);
+        height: 58px;
+        border: 4px solid #17202a;
+        border-bottom: 0;
+        border-radius: 42px 42px 0 0;
+        background: linear-gradient(180deg, #28a745, #176f36);
+        transform: translateX(-50%);
+      }
+
+      .dragon-pivot {
+        position: absolute;
+        left: 50%;
+        bottom: 34px;
+        width: 1px;
+        height: 1px;
+      }
+
       @keyframes laser-fade {
         to {
           opacity: 0;
@@ -581,6 +775,21 @@
         to {
           opacity: 0;
           transform: translate(-50%, -50%) scale(2.4);
+        }
+      }
+
+      @keyframes fire-burst {
+        to {
+          opacity: 0;
+          filter: blur(1px);
+          transform: var(--fire-transform) scaleX(0.82) scaleY(1.28);
+        }
+      }
+
+      @keyframes ember-pop {
+        to {
+          opacity: 0;
+          transform: translate(var(--ember-x), var(--ember-y)) scale(0.35);
         }
       }
 
@@ -623,13 +832,27 @@
 
       <button id="soundButton" class="sound-button" type="button" aria-label="Hear the word again" hidden>🔊</button>
 
-      <div id="gun" class="gun" aria-hidden="true">
+      <div id="gun" class="gun laser-mode" aria-hidden="true">
         <div id="barrel" class="barrel">
           <div class="barrel-tip"></div>
         </div>
         <div id="gunPivot" class="gun-pivot"></div>
         <div class="gun-body"></div>
         <div class="stand"></div>
+        <div class="dragon-neck"></div>
+        <div id="dragonHead" class="dragon-head">
+          <div class="dragon-crest"></div>
+          <div class="dragon-horn dragon-horn-left"></div>
+          <div class="dragon-horn dragon-horn-right"></div>
+          <div class="dragon-snout">
+            <span class="dragon-nostril dragon-nostril-left"></span>
+            <span class="dragon-nostril dragon-nostril-right"></span>
+            <div id="dragonMouth" class="dragon-mouth"></div>
+          </div>
+          <div class="dragon-eye dragon-eye-left"></div>
+          <div class="dragon-eye dragon-eye-right"></div>
+        </div>
+        <div id="dragonPivot" class="dragon-pivot"></div>
       </div>
 
       <div id="startScreen" class="start-screen">
@@ -692,6 +915,18 @@
             </label>
           </fieldset>
 
+          <fieldset class="radio-group">
+            <legend>Shooter</legend>
+            <label class="radio-option">
+              <input type="radio" name="shooterType" value="laser" checked>
+              Laser gun
+            </label>
+            <label class="radio-option">
+              <input type="radio" name="shooterType" value="dragon">
+              Dragon
+            </label>
+          </fieldset>
+
           <div class="speed-control">
             <div class="speed-title">Word speed</div>
             <div class="speed-gauge" aria-hidden="true">
@@ -730,6 +965,7 @@
       const WORD_STORE = "words";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
+      const SHOOTER_TYPES = new Set(["laser", "dragon"]);
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
       const WORD_SPEED_MULTIPLIERS = {
@@ -763,6 +999,7 @@
           lessons: []
         },
         capitalization: "uppercase",
+        shooterType: "laser",
         wordSpeed: MAX_WORD_SPEED,
         settingsAuthenticated: false,
         activeWords: [],
@@ -791,8 +1028,11 @@
       const startButtonEl = document.getElementById("startButton");
       const soundButtonEl = document.getElementById("soundButton");
       const errorEl = document.getElementById("error");
+      const gunEl = document.getElementById("gun");
       const barrelEl = document.getElementById("barrel");
       const gunPivotEl = document.getElementById("gunPivot");
+      const dragonHeadEl = document.getElementById("dragonHead");
+      const dragonPivotEl = document.getElementById("dragonPivot");
       const settingsToggleEl = document.getElementById("settingsToggle");
       const settingsPanelEl = document.getElementById("settingsPanel");
       const passwordFormEl = document.getElementById("passwordForm");
@@ -811,6 +1051,7 @@
       const cancelSettingsButtonEl = document.getElementById("cancelSettingsButton");
       const settingsStatusEl = document.getElementById("settingsStatus");
       const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
+      const shooterTypeEls = [...document.querySelectorAll("input[name='shooterType']")];
       const speedControlEl = document.getElementById("speedControl");
       const speedNeedleEl = document.getElementById("speedNeedle");
       const speedValueEl = document.getElementById("speedValue");
@@ -885,7 +1126,7 @@
         state.pointer.x = event.clientX;
         state.pointer.y = event.clientY;
         updateAim();
-        shootLaser(event.clientX, event.clientY);
+        shootAt(event.clientX, event.clientY);
 
         const hit = findHitWord(event.clientX, event.clientY);
         if (!hit) {
@@ -1164,6 +1405,7 @@
           if (CAPITALIZATION_MODES.has(saved.capitalization)) {
             state.capitalization = saved.capitalization;
           }
+          state.shooterType = normalizeShooterType(saved.shooterType);
           state.wordSpeed = normalizeWordSpeed(saved.wordSpeed);
         } catch {
           state.currentFilters = {
@@ -1171,6 +1413,7 @@
             lessons: []
           };
           state.capitalization = "uppercase";
+          state.shooterType = "laser";
           state.wordSpeed = MAX_WORD_SPEED;
         }
       }
@@ -1180,6 +1423,7 @@
           sections: state.currentFilters.sections,
           lessons: state.currentFilters.lessons,
           capitalization: state.capitalization,
+          shooterType: state.shooterType,
           wordSpeed: state.wordSpeed
         }));
       }
@@ -1202,6 +1446,8 @@
 
         rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
         setCapitalizationSelection(state.capitalization);
+        setShooterTypeSelection(state.shooterType);
+        applyShooterType();
         setSpeedSelection(state.wordSpeed);
 
         sectionSelectEl.disabled = !hasData;
@@ -1243,6 +1489,7 @@
         const selectedRows = filterRows(sections, lessons);
         const selectedWords = uniqueWords(selectedRows);
         const capitalization = getSelectedCapitalization();
+        const shooterType = getSelectedShooterType();
         const wordSpeed = getSelectedWordSpeed();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
@@ -1251,9 +1498,12 @@
 
         state.currentFilters = { sections, lessons };
         state.capitalization = capitalization;
+        state.shooterType = shooterType;
         state.wordSpeed = wordSpeed;
         state.words = selectedWords;
         saveSettings();
+        applyShooterType();
+        updateAim();
         startButtonEl.disabled = false;
         setSettingsStatus(`${selectedWords.length} words selected.`);
         return true;
@@ -1331,6 +1581,28 @@
         capitalizationEls.forEach((input) => {
           input.checked = input.value === selectedMode;
         });
+      }
+
+      function normalizeShooterType(shooterType) {
+        return SHOOTER_TYPES.has(shooterType) ? shooterType : "laser";
+      }
+
+      function getSelectedShooterType() {
+        return normalizeShooterType(shooterTypeEls.find((input) => input.checked)?.value);
+      }
+
+      function setShooterTypeSelection(shooterType) {
+        const selectedShooterType = normalizeShooterType(shooterType);
+        shooterTypeEls.forEach((input) => {
+          input.checked = input.value === selectedShooterType;
+        });
+      }
+
+      function applyShooterType() {
+        const shooterType = normalizeShooterType(state.shooterType);
+        state.shooterType = shooterType;
+        gunEl.classList.toggle("laser-mode", shooterType === "laser");
+        gunEl.classList.toggle("dragon-mode", shooterType === "dragon");
       }
 
       function normalizeWordSpeed(speed) {
@@ -1683,6 +1955,15 @@
         });
       }
 
+      function shootAt(x, y) {
+        if (state.shooterType === "dragon") {
+          shootFire(x, y);
+          return;
+        }
+
+        shootLaser(x, y);
+      }
+
       function shootLaser(x, y) {
         const { x: tipX, y: tipY } = getGunTip();
         const angle = Math.atan2(y - tipY, x - tipX);
@@ -1708,10 +1989,43 @@
         }, 280);
       }
 
+      function shootFire(x, y) {
+        const { x: tipX, y: tipY } = getDragonTip();
+        const angle = Math.atan2(y - tipY, x - tipX);
+        const distance = Math.hypot(x - tipX, y - tipY);
+        const flame = document.createElement("div");
+        const transform = `translate(${tipX}px, ${tipY - 17}px) rotate(${angle}rad)`;
+
+        flame.className = "fire-shot";
+        flame.style.width = `${Math.max(48, distance)}px`;
+        flame.style.transform = transform;
+        flame.style.setProperty("--fire-transform", transform);
+        laserLayerEl.appendChild(flame);
+
+        for (let index = 0; index < 8; index += 1) {
+          const ember = document.createElement("div");
+          ember.className = "ember";
+          ember.style.left = `${x + randomInt(-10, 10)}px`;
+          ember.style.top = `${y + randomInt(-10, 10)}px`;
+          ember.style.setProperty("--ember-x", `${randomInt(-38, 38)}px`);
+          ember.style.setProperty("--ember-y", `${randomInt(-42, 28)}px`);
+          laserLayerEl.appendChild(ember);
+          window.setTimeout(() => ember.remove(), 390);
+        }
+
+        window.setTimeout(() => flame.remove(), 300);
+      }
+
       function updateAim() {
-        const pivot = getGunPivot();
+        const pivot = state.shooterType === "dragon" ? getDragonPivot() : getGunPivot();
         const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
-        barrelEl.style.transform = `translateX(-50%) rotate(${angle + Math.PI / 2}rad)`;
+        const transform = `translateX(-50%) rotate(${angle + Math.PI / 2}rad)`;
+
+        if (state.shooterType === "dragon") {
+          dragonHeadEl.style.transform = transform;
+        } else {
+          barrelEl.style.transform = transform;
+        }
       }
 
       function getGunPivot() {
@@ -1726,6 +2040,25 @@
         const pivot = getGunPivot();
         const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
         const length = barrelEl.offsetHeight - 2;
+
+        return {
+          x: pivot.x + Math.cos(angle) * length,
+          y: pivot.y + Math.sin(angle) * length
+        };
+      }
+
+      function getDragonPivot() {
+        const rect = dragonPivotEl.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+      }
+
+      function getDragonTip() {
+        const pivot = getDragonPivot();
+        const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
+        const length = dragonHeadEl.offsetHeight + 2;
 
         return {
           x: pivot.x + Math.cos(angle) * length,
