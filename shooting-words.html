@@ -993,7 +993,9 @@
 
       settingsFormEl.addEventListener("submit", (event) => {
         event.preventDefault();
-        applySelectedSettings();
+        if (applySelectedSettings()) {
+          closeSettingsPanel();
+        }
       });
 
       cancelSettingsButtonEl.addEventListener("click", () => {
@@ -1228,14 +1230,14 @@
       function applySelectedSettings() {
         if (state.dbRows.length === 0) {
           setSettingsStatus("Import data before applying settings.", true);
-          return;
+          return false;
         }
 
         const sections = getSelectedValues(sectionSelectEl);
         const lessons = getSelectedValues(lessonSelectEl);
         if (sections.length === 0 || lessons.length === 0) {
           setSettingsStatus("Choose at least one section and one lesson.", true);
-          return;
+          return false;
         }
 
         const selectedRows = filterRows(sections, lessons);
@@ -1244,7 +1246,7 @@
         const wordSpeed = getSelectedWordSpeed();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
-          return;
+          return false;
         }
 
         state.currentFilters = { sections, lessons };
@@ -1254,7 +1256,7 @@
         saveSettings();
         startButtonEl.disabled = false;
         setSettingsStatus(`${selectedWords.length} words selected.`);
-        closeSettingsPanel();
+        return true;
       }
 
       function applyCurrentFilters() {
