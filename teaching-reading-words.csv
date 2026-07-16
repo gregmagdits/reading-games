@@ -921,3 +921,2284 @@ section,lesson,lesson_description,word,is_sight_word,phonetic_symbol
 4,53,"The Beginning Blends SQU, SW, and TW",till,F,/ĭ/
 4,53,"The Beginning Blends SQU, SW, and TW",it,F,/ĭ/
 4,53,"The Beginning Blends SQU, SW, and TW",snaps,F,/ă/
+5,54,The Digraph NG,hang,F,/ng/
+5,54,The Digraph NG,bang,F,/ng/
+5,54,The Digraph NG,rang,F,/ng/
+5,54,The Digraph NG,sang,F,/ng/
+5,54,The Digraph NG,king,F,/ng/
+5,54,The Digraph NG,ding,F,/ng/
+5,54,The Digraph NG,ring,F,/ng/
+5,54,The Digraph NG,sing,F,/ng/
+5,54,The Digraph NG,dong,F,/ng/
+5,54,The Digraph NG,gong,F,/ng/
+5,54,The Digraph NG,long,F,/ng/
+5,54,The Digraph NG,song,F,/ng/
+5,54,The Digraph NG,hung,F,/ng/
+5,54,The Digraph NG,lung,F,/ng/
+5,54,The Digraph NG,rung,F,/ng/
+5,54,The Digraph NG,sung,F,/ng/
+5,54,The Digraph NG,the,T,/ē/
+5,54,The Digraph NG,man,F,/ă/
+5,54,The Digraph NG,a,T,/ā/
+5,54,The Digraph NG,did,F,/ĭ/
+5,54,The Digraph NG,nap,F,/ă/
+5,54,The Digraph NG,went,F,/ĕ/
+5,54,The Digraph NG,bell,F,/ĕ/
+5,54,The Digraph NG,yelp,F,/ĕ/
+5,54,The Digraph NG,sat,F,/ă/
+5,54,The Digraph NG,up,F,/ŭ/
+5,54,The Digraph NG,and,F,/ă/
+5,54,The Digraph NG,clang,F,/ng/
+5,54,The Digraph NG,drum,F,/ŭ/
+5,54,The Digraph NG,kids,F,/ĭ/
+5,54,The Digraph NG,in,F,/ĭ/
+5,54,The Digraph NG,band,F,/ă/
+5,54,The Digraph NG,glad,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,ship,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shop,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shed,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shut,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shall,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shack,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shell,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shelf,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,Sam,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,the,T,/ē/
+5,55,The Digraph SH; The Digraph Blend SHR,in,F,/ĭ/
+5,55,The Digraph SH; The Digraph Blend SHR,and,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,Shell,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,Shack,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrug,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrink,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrank,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shred,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrill,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrimp,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrub,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,shrunk,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,crab,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,back,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,crack,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,on,F,/ŏ/
+5,55,The Digraph SH; The Digraph Blend SHR,rock,F,/ŏ/
+5,55,The Digraph SH; The Digraph Blend SHR,swam,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,smack,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,had,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,his,F,/ĭ/
+5,55,The Digraph SH; The Digraph Blend SHR,snack,F,/ă/
+5,55,The Digraph SH; The Digraph Blend SHR,a,T,/ā/
+5,55,The Digraph SH; The Digraph Blend SHR,flash,F,/sh/
+5,55,The Digraph SH; The Digraph Blend SHR,yum,F,/ŭ/
+5,56,The Digraph SH,fish,F,/sh/
+5,56,The Digraph SH,wish,F,/sh/
+5,56,The Digraph SH,dish,F,/sh/
+5,56,The Digraph SH,rush,F,/sh/
+5,56,The Digraph SH,cash,F,/sh/
+5,56,The Digraph SH,stash,F,/sh/
+5,56,The Digraph SH,trash,F,/sh/
+5,56,The Digraph SH,flash,F,/sh/
+5,56,The Digraph SH,fresh,F,/sh/
+5,56,The Digraph SH,crash,F,/sh/
+5,56,The Digraph SH,Trish,F,/sh/
+5,56,The Digraph SH,swish,F,/sh/
+5,56,The Digraph SH,the,T,/ē/
+5,56,The Digraph SH,sun,F,/ŭ/
+5,56,The Digraph SH,sets,F,/ĕ/
+5,56,The Digraph SH,on,F,/ŏ/
+5,56,The Digraph SH,Shell,F,/sh/
+5,56,The Digraph SH,Shack,F,/sh/
+5,56,The Digraph SH,Sam,F,/ă/
+5,56,The Digraph SH,shall,F,/sh/
+5,56,The Digraph SH,shelf,F,/sh/
+5,56,The Digraph SH,ships,F,/sh/
+5,56,The Digraph SH,in,F,/ĭ/
+5,56,The Digraph SH,shed,F,/sh/
+5,56,The Digraph SH,tank,F,/ă/
+5,56,The Digraph SH,she,F,/sh/
+5,56,The Digraph SH,had,F,/ă/
+5,56,The Digraph SH,a,T,/ā/
+5,56,The Digraph SH,will,F,/ĭ/
+5,56,The Digraph SH,can,F,/ă/
+5,56,The Digraph SH,and,F,/ă/
+5,56,The Digraph SH,shut,F,/sh/
+5,56,The Digraph SH,shop,F,/sh/
+5,56,The Digraph SH,Scamp,F,/ă/
+5,56,The Digraph SH,dog,F,/ŏ/
+5,56,The Digraph SH,Scat,F,/ă/
+5,56,The Digraph SH,cat,F,/ă/
+5,56,The Digraph SH,flop,F,/ŏ/
+5,56,The Digraph SH,dock,F,/ŏ/
+5,56,The Digraph SH,smell,F,/ĕ/
+5,56,The Digraph SH,of,T,/ŭ/
+5,56,The Digraph SH,drifts,F,/ĭ/
+5,56,The Digraph SH,past,F,/ă/
+5,56,The Digraph SH,pets,F,/ĕ/
+5,56,The Digraph SH,spot,F,/ŏ/
+5,56,The Digraph SH,run,F,/ŭ/
+5,56,The Digraph SH,fast,F,/ă/
+5,56,The Digraph SH,hits,F,/ĭ/
+5,56,The Digraph SH,deck,F,/ĕ/
+5,56,The Digraph SH,grab,F,/ă/
+5,57,The Digraph CH,chat,F,/ch/
+5,57,The Digraph CH,chip,F,/ch/
+5,57,The Digraph CH,chin,F,/ch/
+5,57,The Digraph CH,chug,F,/ch/
+5,57,The Digraph CH,chum,F,/ch/
+5,57,The Digraph CH,check,F,/ch/
+5,57,The Digraph CH,chess,F,/ch/
+5,57,The Digraph CH,chill,F,/ch/
+5,57,The Digraph CH,chuck,F,/ch/
+5,57,The Digraph CH,Frank,F,/ă/
+5,57,The Digraph CH,and,F,/ă/
+5,57,The Digraph CH,Greg,F,/ĕ/
+5,57,The Digraph CH,will,F,/ĭ/
+5,57,The Digraph CH,get,F,/ĕ/
+5,57,The Digraph CH,on,F,/ŏ/
+5,57,The Digraph CH,a,T,/ā/
+5,57,The Digraph CH,ship,F,/ĭ/
+5,57,The Digraph CH,the,T,/ē/
+5,57,The Digraph CH,his,F,/ĭ/
+5,57,The Digraph CH,set,F,/ĕ/
+5,57,The Digraph CH,up,F,/ŭ/
+5,57,The Digraph CH,in,F,/ĭ/
+5,57,The Digraph CH,hand,F,/ă/
+5,57,The Digraph CH,win,F,/ĭ/
+5,57,The Digraph CH,at,F,/ă/
+5,57,The Digraph CH,off,F,/ŏ/
+5,57,The Digraph CH,bad,F,/ă/
+5,57,The Digraph CH,rich,F,/ch/
+5,57,The Digraph CH,much,F,/ch/
+5,57,The Digraph CH,such,F,/ch/
+5,57,The Digraph CH,Chad,F,/ch/
+5,57,The Digraph CH,sells,F,/ĕ/
+5,57,The Digraph CH,lot,F,/ŏ/
+5,57,The Digraph CH,of,T,/ŭ/
+5,57,The Digraph CH,rings,F,/ĭ/
+5,57,The Digraph CH,shop,F,/ŏ/
+5,57,The Digraph CH,man,F,/ă/
+5,57,The Digraph CH,got,F,/ŏ/
+5,57,The Digraph CH,ring,F,/ĭ/
+5,57,The Digraph CH,spent,F,/ĕ/
+5,57,The Digraph CH,cash,F,/ă/
+5,58,The Digraph Blends TCH and NCH,catch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,match,F,/ch/
+5,58,The Digraph Blends TCH and NCH,hatch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,patch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,batch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,fetch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,pitch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,ditch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,switch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,twitch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,Rich,F,/ch/
+5,58,The Digraph Blends TCH and NCH,will,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,the,T,/ē/
+5,58,The Digraph Blends TCH and NCH,stick,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,land,F,/ă/
+5,58,The Digraph Blends TCH and NCH,in,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,a,T,/ā/
+5,58,The Digraph Blends TCH and NCH,dog,F,/ŏ/
+5,58,The Digraph Blends TCH and NCH,it,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,and,F,/ă/
+5,58,The Digraph Blends TCH and NCH,bring,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,back,F,/ă/
+5,58,The Digraph Blends TCH and NCH,ranch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,pinch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,lunch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,bunch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,munch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,branch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,clench,F,/ch/
+5,58,The Digraph Blends TCH and NCH,crunch,F,/ch/
+5,58,The Digraph Blends TCH and NCH,quench,F,/ch/
+5,58,The Digraph Blends TCH and NCH,Tex,F,/ĕ/
+5,58,The Digraph Blends TCH and NCH,his,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,on,F,/ŏ/
+5,58,The Digraph Blends TCH and NCH,drink,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,with,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,left,F,/ĕ/
+5,58,The Digraph Blends TCH and NCH,hand,F,/ă/
+5,58,The Digraph Blends TCH and NCH,thin,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,chips,F,/ch/
+5,58,The Digraph Blends TCH and NCH,sip,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,soft,F,/ŏ/
+5,58,The Digraph Blends TCH and NCH,pick,F,/ĭ/
+5,58,The Digraph Blends TCH and NCH,up,F,/ŭ/
+5,58,The Digraph Blends TCH and NCH,trash,F,/ă/
+5,58,The Digraph Blends TCH and NCH,toss,F,/ŏ/
+5,58,The Digraph Blends TCH and NCH,can,F,/ă/
+5,59,The Digraph TH (Voiced),this,F,/th/
+5,59,The Digraph TH (Voiced),that,F,/th/
+5,59,The Digraph TH (Voiced),than,F,/th/
+5,59,The Digraph TH (Voiced),them,F,/th/
+5,59,The Digraph TH (Voiced),then,F,/th/
+5,59,The Digraph TH (Voiced),the,T,/ē/
+5,59,The Digraph TH (Voiced),man,F,/ă/
+5,59,The Digraph TH (Voiced),will,F,/ĭ/
+5,59,The Digraph TH (Voiced),set,F,/ĕ/
+5,59,The Digraph TH (Voiced),in,F,/ĭ/
+5,59,The Digraph TH (Voiced),pen,F,/ĕ/
+5,59,The Digraph TH (Voiced),fish,F,/ĭ/
+5,59,The Digraph TH (Voiced),swish,F,/ĭ/
+5,59,The Digraph TH (Voiced),tan,F,/ă/
+5,59,The Digraph TH (Voiced),and,F,/ă/
+5,59,The Digraph TH (Voiced),red,F,/ĕ/
+5,59,The Digraph TH (Voiced),dish,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thank,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,think,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thin,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thick,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thing,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,Chad,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thinks,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,the,T,/ē/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,stick,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,will,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,help,F,/ĕ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,Chip,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,jump,F,/ŭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,a,T,/ā/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,is,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,not,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,to,T,/ū/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,him,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,drop,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,pick,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,up,F,/ŭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,run,F,/ŭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,and,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,path,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,bath,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,math,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,with,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,moth,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,cloth,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,Beth,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,Seth,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,shop,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,pink,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,off,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,shelf,F,/ĕ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,get,F,/ĕ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,checks,F,/ĕ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,on,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,it,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,black,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,plush,F,/ŭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,silk,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,costs,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,lot,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,had,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,class,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,in,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,add,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,cash,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,much,F,/ŭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,of,T,/ŭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thrill,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,throb,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,thrust,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,kid,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,his,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,hand,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,crack,F,/ă/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,fish,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,bit,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,did,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,length,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,strength,F,/th/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,fetch,F,/ĕ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,strong,F,/ŏ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,string,F,/ĭ/
+5,60,The Digraph TH (Unvoiced); The Digraph Blends THR and NGTH,has,F,/ă/
+5,61,The Digraphs WH and PH,when,F,/hw/
+5,61,The Digraphs WH and PH,whim,F,/hw/
+5,61,The Digraphs WH and PH,whip,F,/hw/
+5,61,The Digraphs WH and PH,whiff,F,/hw/
+5,61,The Digraphs WH and PH,whack,F,/hw/
+5,61,The Digraphs WH and PH,whisk,F,/hw/
+5,61,The Digraphs WH and PH,which,F,/hw/
+5,61,The Digraphs WH and PH,whiz,F,/hw/
+5,61,The Digraphs WH and PH,the,T,/ē/
+5,61,The Digraphs WH and PH,wind,F,/ĭ/
+5,61,The Digraphs WH and PH,whips,F,/hw/
+5,61,The Digraphs WH and PH,elm,F,/ĕ/
+5,61,The Digraphs WH and PH,cracks,F,/ă/
+5,61,The Digraphs WH and PH,and,F,/ă/
+5,61,The Digraphs WH and PH,dips,F,/ĭ/
+5,61,The Digraphs WH and PH,its,F,/ĭ/
+5,61,The Digraphs WH and PH,trunk,F,/ŭ/
+5,61,The Digraphs WH and PH,cannot,F,/ă/
+5,61,The Digraphs WH and PH,bend,F,/ĕ/
+5,61,The Digraphs WH and PH,will,F,/ĭ/
+5,61,The Digraphs WH and PH,this,F,/ĭ/
+5,61,The Digraphs WH and PH,end,F,/ĕ/
+5,61,The Digraphs WH and PH,Phil,F,/f/
+5,61,The Digraphs WH and PH,graph,F,/f/
+5,61,The Digraphs WH and PH,Steph,F,/f/
+5,61,The Digraphs WH and PH,phone,F,/f/
+5,61,The Digraphs WH and PH,photograph,F,/f/
+5,61,The Digraphs WH and PH,phonics,F,/f/
+5,61,The Digraphs WH and PH,physical,F,/f/
+5,61,The Digraphs WH and PH,Ralph,F,/f/
+5,61,The Digraphs WH and PH,dolphin,F,/f/
+5,61,The Digraphs WH and PH,alphabet,F,/f/
+5,61,The Digraphs WH and PH,telephone,F,/f/
+5,62,Review the Ending Blend NK,tank,F,/ă/
+5,62,Review the Ending Blend NK,bank,F,/ă/
+5,62,Review the Ending Blend NK,sank,F,/ă/
+5,62,Review the Ending Blend NK,yank,F,/ă/
+5,62,Review the Ending Blend NK,link,F,/ĭ/
+5,62,Review the Ending Blend NK,sink,F,/ĭ/
+5,62,Review the Ending Blend NK,pink,F,/ĭ/
+5,62,Review the Ending Blend NK,honk,F,/ŏ/
+5,62,Review the Ending Blend NK,bonk,F,/ŏ/
+5,62,Review the Ending Blend NK,hunk,F,/ŭ/
+5,62,Review the Ending Blend NK,junk,F,/ŭ/
+5,62,Review the Ending Blend NK,bunk,F,/ŭ/
+5,62,Review the Ending Blend NK,the,T,/ē/
+5,62,Review the Ending Blend NK,went,F,/ĕ/
+5,62,Review the Ending Blend NK,on,F,/ŏ/
+5,62,Review the Ending Blend NK,it,F,/ĭ/
+5,62,Review the Ending Blend NK,in,F,/ĭ/
+5,62,Review the Ending Blend NK,mud,F,/ŭ/
+5,62,Review the Ending Blend NK,man,F,/ă/
+5,62,Review the Ending Blend NK,did,F,/ĭ/
+5,62,Review the Ending Blend NK,tan,F,/ă/
+5,62,Review the Ending Blend NK,yell,F,/ĕ/
+5,62,Review the Ending Blend NK,men,F,/ĕ/
+5,62,Review the Ending Blend NK,put,F,/ŭ/
+5,62,Review the Ending Blend NK,a,T,/ā/
+5,62,Review the Ending Blend NK,huff,F,/ŭ/
+5,62,Review the Ending Blend NK,and,F,/ă/
+5,62,Review the Ending Blend NK,puff,F,/ŭ/
+5,62,Review the Ending Blend NK,of,T,/ŭ/
+5,62,Review the Ending Blend NK,got,F,/ŏ/
+5,62,Review the Ending Blend NK,yuck,F,/ŭ/
+5,62,Review the Ending Blend NK,let,F,/ĕ/
+5,62,Review the Ending Blend NK,doll,F,/ŏ/
+5,62,Review the Ending Blend NK,is,F,/ĭ/
+5,62,Review the Ending Blend NK,bed,F,/ĕ/
+5,62,Review the Ending Blend NK,left,F,/ĕ/
+5,62,Review the Ending Blend NK,rug,F,/ŭ/
+5,62,Review the Ending Blend NK,she,F,/ē/
+5,62,Review the Ending Blend NK,not,F,/ŏ/
+5,62,Review the Ending Blend NK,I,T,/ī/
+5,62,Review the Ending Blend NK,will,F,/ĭ/
+5,62,Review the Ending Blend NK,pick,F,/ĭ/
+5,62,Review the Ending Blend NK,up,F,/ŭ/
+5,62,Review the Ending Blend NK,hug,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,scram,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,scrap,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,script,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,scrub,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,Scruff,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,I,T,/ī/
+6,63,The Three-Consonant Blends SCR and STR,will,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,the,T,/ē/
+6,63,The Three-Consonant Blends SCR and STR,dog,F,/ŏ/
+6,63,The Three-Consonant Blends SCR and STR,in,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,tub,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,has,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,a,T,/ā/
+6,63,The Three-Consonant Blends SCR and STR,of,T,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,mud,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,on,F,/ŏ/
+6,63,The Three-Consonant Blends SCR and STR,his,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,neck,F,/ĕ/
+6,63,The Three-Consonant Blends SCR and STR,rub,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,it,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,with,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,suds,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,fast,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,strap,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,strand,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,strong,F,/ŏ/
+6,63,The Three-Consonant Blends SCR and STR,stress,F,/ĕ/
+6,63,The Three-Consonant Blends SCR and STR,strict,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,string,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,strut,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,struck,F,/ŭ/
+6,63,The Three-Consonant Blends SCR and STR,strip,F,/ĭ/
+6,63,The Three-Consonant Blends SCR and STR,Gramps,F,/ă/
+6,63,The Three-Consonant Blends SCR and STR,box,F,/ŏ/
+6,64,The Three-Consonant Blends SPL and SPR,split,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,splat,F,/ă/
+6,64,The Three-Consonant Blends SPL and SPR,splint,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,splash,F,/ă/
+6,64,The Three-Consonant Blends SPL and SPR,when,F,/ĕ/
+6,64,The Three-Consonant Blends SPL and SPR,Scruff,F,/ŭ/
+6,64,The Three-Consonant Blends SPL and SPR,splits,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,I,T,/ī/
+6,64,The Three-Consonant Blends SPL and SPR,will,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,grab,F,/ă/
+6,64,The Three-Consonant Blends SPL and SPR,him,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,stick,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,back,F,/ă/
+6,64,The Three-Consonant Blends SPL and SPR,in,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,the,T,/ē/
+6,64,The Three-Consonant Blends SPL and SPR,tub,F,/ŭ/
+6,64,The Three-Consonant Blends SPL and SPR,dog,F,/ŏ/
+6,64,The Three-Consonant Blends SPL and SPR,scrub,F,/ŭ/
+6,64,The Three-Consonant Blends SPL and SPR,sprig,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,sprint,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,spring,F,/ĭ/
+6,64,The Three-Consonant Blends SPL and SPR,sprang,F,/ă/
+6,64,The Three-Consonant Blends SPL and SPR,sprung,F,/ŭ/
+6,64,The Three-Consonant Blends SPL and SPR,a,T,/ā/
+6,64,The Three-Consonant Blends SPL and SPR,of,T,/ŭ/
+6,64,The Three-Consonant Blends SPL and SPR,grass,F,/ă/
+6,64,The Three-Consonant Blends SPL and SPR,up,F,/ŭ/
+7,65,Words with the Long-A Vowel Sound,mad,F,/ă/
+7,65,Words with the Long-A Vowel Sound,made,F,/ā/
+7,65,Words with the Long-A Vowel Sound,at,F,/ă/
+7,65,Words with the Long-A Vowel Sound,cap,F,/ă/
+7,65,Words with the Long-A Vowel Sound,can,F,/ă/
+7,65,Words with the Long-A Vowel Sound,ate,F,/ā/
+7,65,Words with the Long-A Vowel Sound,cape,F,/ā/
+7,65,Words with the Long-A Vowel Sound,cane,F,/ā/
+7,65,Words with the Long-A Vowel Sound,Sam,F,/ă/
+7,65,Words with the Long-A Vowel Sound,tap,F,/ă/
+7,65,Words with the Long-A Vowel Sound,pan,F,/ă/
+7,65,Words with the Long-A Vowel Sound,rat,F,/ă/
+7,65,Words with the Long-A Vowel Sound,same,F,/ā/
+7,65,Words with the Long-A Vowel Sound,tape,F,/ā/
+7,65,Words with the Long-A Vowel Sound,pane,F,/ā/
+7,65,Words with the Long-A Vowel Sound,rate,F,/ā/
+7,65,Words with the Long-A Vowel Sound,gap,F,/ă/
+7,65,Words with the Long-A Vowel Sound,fat,F,/ă/
+7,65,Words with the Long-A Vowel Sound,past,F,/ă/
+7,65,Words with the Long-A Vowel Sound,plan,F,/ă/
+7,65,Words with the Long-A Vowel Sound,gape,F,/ā/
+7,65,Words with the Long-A Vowel Sound,fate,F,/ā/
+7,65,Words with the Long-A Vowel Sound,paste,F,/ā/
+7,65,Words with the Long-A Vowel Sound,plane,F,/ā/
+7,65,Words with the Long-A Vowel Sound,I,T,/ī/
+7,65,Words with the Long-A Vowel Sound,the,T,/ē/
+7,65,Words with the Long-A Vowel Sound,a,T,/ā/
+7,65,Words with the Long-A Vowel Sound,in,F,/ĭ/
+7,65,Words with the Long-A Vowel Sound,will,F,/ĭ/
+7,65,Words with the Long-A Vowel Sound,get,F,/ĕ/
+7,65,Words with the Long-A Vowel Sound,wet,F,/ĕ/
+7,65,Words with the Long-A Vowel Sound,catch,F,/ă/
+7,65,Words with the Long-A Vowel Sound,drip,F,/ĭ/
+7,65,Words with the Long-A Vowel Sound,split,F,/ĭ/
+7,65,Words with the Long-A Vowel Sound,stop,F,/ŏ/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,rat,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,mad,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,Sam,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,rate,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,made,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,same,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,the,T,/ē/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,that,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,ran,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,at,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,a,T,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,quick,F,/ŭ/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,have,T,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,I,T,/ī/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,cap,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,and,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,cape,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,as,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,can,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,ate,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,cane,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,tap,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,pan,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,tape,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,pane,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,gap,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,fat,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,past,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,plan,F,/ă/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,gape,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,fate,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,paste,F,/ā/
+7,66,Words with the Long-A Vowel Sound; Sight Word: have,plane,F,/ā/
+7,67,Words with the Long-E Vowel Sound,pet,F,/ĕ/
+7,67,Words with the Long-E Vowel Sound,Pete,F,/ē/
+7,67,Words with the Long-E Vowel Sound,fat,F,/ă/
+7,67,Words with the Long-E Vowel Sound,at,F,/ă/
+7,67,Words with the Long-E Vowel Sound,fate,F,/ā/
+7,67,Words with the Long-E Vowel Sound,ate,F,/ā/
+7,67,Words with the Long-E Vowel Sound,had,F,/ă/
+7,67,Words with the Long-E Vowel Sound,a,T,/ā/
+7,67,Words with the Long-E Vowel Sound,pig,F,/ĭ/
+7,67,Words with the Long-E Vowel Sound,the,T,/ē/
+7,67,Words with the Long-E Vowel Sound,bad,F,/ă/
+7,67,Words with the Long-E Vowel Sound,big,F,/ĭ/
+7,67,Words with the Long-E Vowel Sound,pan,F,/ă/
+7,67,Words with the Long-E Vowel Sound,and,F,/ă/
+7,67,Words with the Long-E Vowel Sound,will,F,/ĭ/
+7,67,Words with the Long-E Vowel Sound,have,T,/ă/
+7,67,Words with the Long-E Vowel Sound,it,F,/ĭ/
+7,67,Words with the Long-E Vowel Sound,is,F,/ĭ/
+7,67,Words with the Long-E Vowel Sound,mad,F,/ă/
+7,67,Words with the Long-E Vowel Sound,plan,F,/ă/
+7,67,Words with the Long-E Vowel Sound,Sam,F,/ă/
+7,67,Words with the Long-E Vowel Sound,made,F,/ā/
+7,67,Words with the Long-E Vowel Sound,plane,F,/ā/
+7,67,Words with the Long-E Vowel Sound,same,F,/ā/
+7,67,Words with the Long-E Vowel Sound,mat,F,/ă/
+7,67,Words with the Long-E Vowel Sound,can,F,/ă/
+7,67,Words with the Long-E Vowel Sound,tap,F,/ă/
+7,67,Words with the Long-E Vowel Sound,mate,F,/ă/
+7,67,Words with the Long-E Vowel Sound,cane,F,/ā/
+7,67,Words with the Long-E Vowel Sound,tape,F,/ā/
+7,68,Words with the Long-E Vowel Sound,me,F,/ē/
+7,68,Words with the Long-E Vowel Sound,he,F,/ē/
+7,68,Words with the Long-E Vowel Sound,we,F,/ē/
+7,68,Words with the Long-E Vowel Sound,she,F,/ē/
+7,68,Words with the Long-E Vowel Sound,be,F,/ē/
+7,68,Words with the Long-E Vowel Sound,the,T,/ē/
+7,68,Words with the Long-E Vowel Sound,Will,F,/ĭ/
+7,68,Words with the Long-E Vowel Sound,Kate,F,/ă/
+7,68,Words with the Long-E Vowel Sound,at,F,/ă/
+7,68,Words with the Long-E Vowel Sound,match,F,/ă/
+7,68,Words with the Long-E Vowel Sound,yes,F,/ĕ/
+7,68,Words with the Long-E Vowel Sound,and,F,/ă/
+7,68,Words with the Long-E Vowel Sound,Kat,F,/ă/
+7,68,Words with the Long-E Vowel Sound,will,F,/ĭ/
+7,68,Words with the Long-E Vowel Sound,when,F,/ĕ/
+7,68,Words with the Long-E Vowel Sound,Pete,F,/ē/
+7,68,Words with the Long-E Vowel Sound,get,F,/ĕ/
+7,68,Words with the Long-E Vowel Sound,in,F,/ĭ/
+7,68,Words with the Long-E Vowel Sound,six,F,/ĭ/
+7,68,Words with the Long-E Vowel Sound,with,F,/ĭ/
+7,68,Words with the Long-E Vowel Sound,track,F,/ă/
+7,68,Words with the Long-E Vowel Sound,have,T,/ă/
+7,68,Words with the Long-E Vowel Sound,fun,F,/ŭ/
+7,68,Words with the Long-E Vowel Sound,run,F,/ŭ/
+7,68,Words with the Long-E Vowel Sound,ten,F,/ĕ/
+7,68,Words with the Long-E Vowel Sound,laps,F,/ă/
+7,68,Words with the Long-E Vowel Sound,cap,F,/ă/
+7,68,Words with the Long-E Vowel Sound,plan,F,/ă/
+7,68,Words with the Long-E Vowel Sound,past,F,/ă/
+7,68,Words with the Long-E Vowel Sound,cape,F,/ā/
+7,68,Words with the Long-E Vowel Sound,plane,F,/ā/
+7,68,Words with the Long-E Vowel Sound,paste,F,/ā/
+7,68,Words with the Long-E Vowel Sound,mad,F,/ă/
+7,68,Words with the Long-E Vowel Sound,can,F,/ă/
+7,68,Words with the Long-E Vowel Sound,pet,F,/ĕ/
+7,68,Words with the Long-E Vowel Sound,made,F,/ā/
+7,68,Words with the Long-E Vowel Sound,cane,F,/ā/
+7,69,Words with the Long-I Vowel Sound,bit,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,bite,F,/ī/
+7,69,Words with the Long-I Vowel Sound,rip,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,fin,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,hid,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,din,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,ripe,F,/ī/
+7,69,Words with the Long-I Vowel Sound,fine,F,/ī/
+7,69,Words with the Long-I Vowel Sound,hide,F,/ī/
+7,69,Words with the Long-I Vowel Sound,dine,F,/ī/
+7,69,Words with the Long-I Vowel Sound,rid,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,kit,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,pin,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,dim,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,sit,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,ride,F,/ī/
+7,69,Words with the Long-I Vowel Sound,kite,F,/ī/
+7,69,Words with the Long-I Vowel Sound,pine,F,/ī/
+7,69,Words with the Long-I Vowel Sound,dime,F,/ī/
+7,69,Words with the Long-I Vowel Sound,site,F,/ī/
+7,69,Words with the Long-I Vowel Sound,Tim,F,/ī/
+7,69,Words with the Long-I Vowel Sound,Liv,F,/ī/
+7,69,Words with the Long-I Vowel Sound,shin,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,spin,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,quit,F,/ŭ/
+7,69,Words with the Long-I Vowel Sound,time,F,/ī/
+7,69,Words with the Long-I Vowel Sound,live,F,/ī/
+7,69,Words with the Long-I Vowel Sound,shine,F,/ī/
+7,69,Words with the Long-I Vowel Sound,spine,F,/ī/
+7,69,Words with the Long-I Vowel Sound,quite,F,/ī/
+7,69,Words with the Long-I Vowel Sound,hi,F,/ī/
+7,69,Words with the Long-I Vowel Sound,ring,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,yes,F,/ĕ/
+7,69,Words with the Long-I Vowel Sound,this,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,is,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,he,F,/ē/
+7,69,Words with the Long-I Vowel Sound,she,F,/ē/
+7,69,Words with the Long-I Vowel Sound,I,T,/ī/
+7,69,Words with the Long-I Vowel Sound,have,T,/ă/
+7,69,Words with the Long-I Vowel Sound,to,T,/ū/
+7,69,Words with the Long-I Vowel Sound,ask,F,/ă/
+7,69,Words with the Long-I Vowel Sound,Mom,F,/ŏ/
+7,69,Words with the Long-I Vowel Sound,and,F,/ă/
+7,69,Words with the Long-I Vowel Sound,Dad,F,/ă/
+7,69,Words with the Long-I Vowel Sound,will,F,/ĭ/
+7,69,Words with the Long-I Vowel Sound,call,F,/ă/
+7,69,Words with the Long-I Vowel Sound,back,F,/ă/
+7,69,Words with the Long-I Vowel Sound,let,F,/ĕ/
+7,69,Words with the Long-I Vowel Sound,me,F,/ē/
+7,69,Words with the Long-I Vowel Sound,that,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Tim,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,kit,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,sit,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,time,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,kite,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,site,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,had,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,a,T,/ā/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,made,F,/ā/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,the,T,/ē/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,with,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,cloth,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,and,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,string,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,his,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,will,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,catch,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,wind,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,in,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,at,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,on,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,hill,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,bit,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,fin,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,bite,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,ate,F,/ā/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,fine,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,din,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,mad,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Jan,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,dine,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Jane,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,line,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,plate,F,/ā/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,late,F,/ā/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Steve,F,/ē/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,cast,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,dock,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,did,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,fish,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,yes,F,/ĕ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,grab,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,set,F,/ĕ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,net,F,/ĕ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,can,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,of,T,/ŭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,back,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,tent,F,/ĕ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,kids,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,got,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,them,F,/ĕ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,stop,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Liv,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,pet,F,/ĕ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,have,T,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,live,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Pete,F,/ē/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,as,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Sam,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,spots,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,snake,F,/ā/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,tank,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,Will,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,plant,F,/ă/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,pot,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,I,T,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,hope,F,/ō/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,my,F,/ī/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,dog,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,long,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,he,F,/ē/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,sings,F,/ĭ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,song,F,/ŏ/
+7,70,Words with the Long-I Vowel Sound; Review Long-A and Long-E Vowel Sounds; Sight Word: give,give,T,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",take,F,/ā/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",prize,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",late,F,/ā/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",case,F,/ā/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",Dad,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",Steve,F,/ē/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",and,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",I,T,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",a,T,/ā/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",fine,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",trip,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",in,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",plane,F,/ā/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",we,F,/ē/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",get,F,/ĕ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",bite,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",gives,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",dime,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",to,T,/ū/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",spends,F,/ĕ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",his,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",must,F,/ŭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",not,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",be,F,/ē/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",have,T,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",time,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",rest,F,/ĕ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",as,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",stand,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",line,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",at,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",the,T,/ē/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",man,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",with,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",big,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",black,F,/ă/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",is,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",quite,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",will,F,/ĭ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",on,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",ride,F,/ī/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",note,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",hop,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",rob,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",mop,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",rod,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",hope,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",robe,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",mope,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",rode,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",cop,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",cod,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",con,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",glob,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",slop,F,/ŏ/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",cope,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",code,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",cone,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",globe,F,/ō/
+7,71,"Words with the Long-O Vowel Sound; Review Words with the Long-Vowel Sounds of A, E, and I",slope,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",mop,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",Rob,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",glob,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",bad,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",not,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",past,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",mope,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",robe,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",globe,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",bade,F,/ā/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",note,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",paste,F,/ā/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",Shane,F,/ā/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",home,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",Zeke,F,/ē/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",phone,F,/ō/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",game,F,/ā/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",Mom,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",left,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",and,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",at,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",had,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",on,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",his,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",red,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",he,F,/ē/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",a,T,/ā/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",of,T,/ŭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",gum,F,/ŭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",stuck,F,/ŭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",the,T,/ē/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",must,F,/ŭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",fix,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",this,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",mess,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",did,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",ask,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",that,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",deck,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",spilt,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",went,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",it,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",up,F,/ŭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",big,F,/ĭ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",help,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",chat,F,/ă/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",when,F,/ĕ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",got,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",she,F,/ē/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",spot,F,/ŏ/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",made,F,/ā/
+7,72,"Review Words with the Long-Vowel Sounds of A, E, I, and O",them,F,/ĕ/
+7,73,Words with the Long-O Vowel Sound,go,F,/ō/
+7,73,Words with the Long-O Vowel Sound,so,F,/ō/
+7,73,Words with the Long-O Vowel Sound,no,F,/ō/
+7,73,Words with the Long-O Vowel Sound,pro,F,/ō/
+7,73,Words with the Long-O Vowel Sound,yo-yo,F,/ō/
+7,73,Words with the Long-O Vowel Sound,Hal,F,/ă/
+7,73,Words with the Long-O Vowel Sound,is,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,a,T,/ā/
+7,73,Words with the Long-O Vowel Sound,golf,F,/ŏ/
+7,73,Words with the Long-O Vowel Sound,he,F,/ē/
+7,73,Words with the Long-O Vowel Sound,swings,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,his,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,club,F,/ŭ/
+7,73,Words with the Long-O Vowel Sound,with,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,much,F,/ŭ/
+7,73,Words with the Long-O Vowel Sound,strength,F,/ĕ/
+7,73,Words with the Long-O Vowel Sound,Will,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,the,T,/ē/
+7,73,Words with the Long-O Vowel Sound,win,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,match,F,/ă/
+7,73,Words with the Long-O Vowel Sound,will,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,not,F,/ŏ/
+7,73,Words with the Long-O Vowel Sound,has,F,/ă/
+7,73,Words with the Long-O Vowel Sound,time,F,/ī/
+7,73,Words with the Long-O Vowel Sound,Trish,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,she,F,/ē/
+7,73,Words with the Long-O Vowel Sound,can,F,/ă/
+7,73,Words with the Long-O Vowel Sound,swish,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,and,F,/ă/
+7,73,Words with the Long-O Vowel Sound,twist,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,fast,F,/ă/
+7,73,Words with the Long-O Vowel Sound,fling,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,length,F,/ĕ/
+7,73,Words with the Long-O Vowel Sound,of,T,/ŭ/
+7,73,Words with the Long-O Vowel Sound,string,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,then,F,/ĕ/
+7,73,Words with the Long-O Vowel Sound,catch,F,/ă/
+7,73,Words with the Long-O Vowel Sound,whiz,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,stretch,F,/ĕ/
+7,73,Words with the Long-O Vowel Sound,toss,F,/ŏ/
+7,73,Words with the Long-O Vowel Sound,swing,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,springs,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,back,F,/ă/
+7,73,Words with the Long-O Vowel Sound,I,T,/ī/
+7,73,Words with the Long-O Vowel Sound,think,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,it,F,/ĭ/
+7,73,Words with the Long-O Vowel Sound,such,F,/ŭ/
+7,73,Words with the Long-O Vowel Sound,fun,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,hole,F,/ŏ/
+7,74,Words with the Long-U Vowel Sound,side,F,/ī/
+7,74,Words with the Long-U Vowel Sound,make,F,/ă/
+7,74,Words with the Long-U Vowel Sound,cake,F,/ă/
+7,74,Words with the Long-U Vowel Sound,bike,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,cub,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,cube,F,/ū/
+7,74,Words with the Long-U Vowel Sound,us,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,cut,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,tub,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,use,F,/ū/
+7,74,Words with the Long-U Vowel Sound,cute,F,/ū/
+7,74,Words with the Long-U Vowel Sound,tube,F,/ū/
+7,74,Words with the Long-U Vowel Sound,the,T,/ē/
+7,74,Words with the Long-U Vowel Sound,sits,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,on,F,/ŏ/
+7,74,Words with the Long-U Vowel Sound,a,T,/ā/
+7,74,Words with the Long-U Vowel Sound,big,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,red,F,/ĕ/
+7,74,Words with the Long-U Vowel Sound,has,F,/ă/
+7,74,Words with the Long-U Vowel Sound,in,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,Jim,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,of,T,/ŭ/
+7,74,Words with the Long-U Vowel Sound,club,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,he,F,/ē/
+7,74,Words with the Long-U Vowel Sound,will,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,ask,F,/ă/
+7,74,Words with the Long-U Vowel Sound,if,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,we,F,/ē/
+7,74,Words with the Long-U Vowel Sound,go,F,/ō/
+7,74,Words with the Long-U Vowel Sound,with,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,him,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,Pete,F,/ē/
+7,74,Words with the Long-U Vowel Sound,did,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,drop,F,/ŏ/
+7,74,Words with the Long-U Vowel Sound,his,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,paste,F,/ā/
+7,74,Words with the Long-U Vowel Sound,must,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,pick,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,it,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,up,F,/ŭ/
+7,74,Words with the Long-U Vowel Sound,and,F,/ă/
+7,74,Words with the Long-U Vowel Sound,then,F,/ĕ/
+7,74,Words with the Long-U Vowel Sound,mute,F,/ū/
+7,74,Words with the Long-U Vowel Sound,mule,F,/ū/
+7,74,Words with the Long-U Vowel Sound,June,F,/ū/
+7,74,Words with the Long-U Vowel Sound,tune,F,/ū/
+7,74,Words with the Long-U Vowel Sound,Jude,F,/ū/
+7,74,Words with the Long-U Vowel Sound,Duke,F,/ū/
+7,74,Words with the Long-U Vowel Sound,likes,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,to,T,/ū/
+7,74,Words with the Long-U Vowel Sound,sing,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,made,F,/ā/
+7,74,Words with the Long-U Vowel Sound,tape,F,/ā/
+7,74,Words with the Long-U Vowel Sound,which,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,sang,F,/ă/
+7,74,Words with the Long-U Vowel Sound,is,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,not,F,/ŏ/
+7,74,Words with the Long-U Vowel Sound,miss,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,note,F,/ō/
+7,74,Words with the Long-U Vowel Sound,two,T,/ū/
+7,74,Words with the Long-U Vowel Sound,songs,F,/ŏ/
+7,74,Words with the Long-U Vowel Sound,help,F,/ĕ/
+7,74,Words with the Long-U Vowel Sound,sis,F,/ĭ/
+7,74,Words with the Long-U Vowel Sound,rest,F,/ĕ/
+7,75,Long-Vowel Words: CK to KE,back,F,/ă/
+7,75,Long-Vowel Words: CK to KE,bake,F,/ā/
+7,75,Long-Vowel Words: CK to KE,lack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,tack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,snack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,stack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,lake,F,/ā/
+7,75,Long-Vowel Words: CK to KE,take,F,/ā/
+7,75,Long-Vowel Words: CK to KE,snake,F,/ā/
+7,75,Long-Vowel Words: CK to KE,stake,F,/ā/
+7,75,Long-Vowel Words: CK to KE,sack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,shack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,Mick,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,hick,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,lick,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,sake,F,/ā/
+7,75,Long-Vowel Words: CK to KE,shake,F,/ā/
+7,75,Long-Vowel Words: CK to KE,Mike,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,hike,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,like,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,Mack,F,/ă/
+7,75,Long-Vowel Words: CK to KE,and,F,/ă/
+7,75,Long-Vowel Words: CK to KE,I,T,/ī/
+7,75,Long-Vowel Words: CK to KE,will,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,go,F,/ō/
+7,75,Long-Vowel Words: CK to KE,on,F,/ŏ/
+7,75,Long-Vowel Words: CK to KE,a,T,/ā/
+7,75,Long-Vowel Words: CK to KE,trip,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,we,F,/ē/
+7,75,Long-Vowel Words: CK to KE,live,F,/ī/
+7,75,Long-Vowel Words: CK to KE,in,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,at,F,/ă/
+7,75,Long-Vowel Words: CK to KE,the,T,/ē/
+7,75,Long-Vowel Words: CK to KE,spot,F,/ŏ/
+7,75,Long-Vowel Words: CK to KE,grass,F,/ă/
+7,75,Long-Vowel Words: CK to KE,catch,F,/ă/
+7,75,Long-Vowel Words: CK to KE,bring,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,it,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,with,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,us,F,/ŭ/
+7,75,Long-Vowel Words: CK to KE,Will,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,he,F,/ē/
+7,75,Long-Vowel Words: CK to KE,make,F,/ă/
+7,75,Long-Vowel Words: CK to KE,cake,F,/ă/
+7,75,Long-Vowel Words: CK to KE,hope,F,/ō/
+7,75,Long-Vowel Words: CK to KE,not,F,/ŏ/
+7,75,Long-Vowel Words: CK to KE,luck,F,/ŭ/
+7,75,Long-Vowel Words: CK to KE,get,F,/ĕ/
+7,75,Long-Vowel Words: CK to KE,of,T,/ŭ/
+7,75,Long-Vowel Words: CK to KE,chips,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,think,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,my,F,/ī/
+7,75,Long-Vowel Words: CK to KE,lips,F,/ĭ/
+7,75,Long-Vowel Words: CK to KE,tell,F,/ĕ/
+7,75,Long-Vowel Words: CK to KE,to,T,/ū/
+7,75,Long-Vowel Words: CK to KE,let,F,/ĕ/
+7,75,Long-Vowel Words: CK to KE,camp,F,/ă/
+7,76,"Sight Words: to, two, too",to,T,/ū/
+7,76,"Sight Words: to, two, too",too,T,/ū/
+7,76,"Sight Words: to, two, too",two,T,/ū/
+7,76,"Sight Words: to, two, too",Mike,F,/ĭ/
+7,76,"Sight Words: to, two, too",has,F,/ă/
+7,76,"Sight Words: to, two, too",hands,F,/ă/
+7,76,"Sight Words: to, two, too",he,F,/ē/
+7,76,"Sight Words: to, two, too",legs,F,/ĕ/
+7,76,"Sight Words: to, two, too",I,T,/ī/
+7,76,"Sight Words: to, two, too",like,F,/ĭ/
+7,76,"Sight Words: to, two, too",you,F,/ŏ/
+7,76,"Sight Words: to, two, too",can,F,/ă/
+7,76,"Sight Words: to, two, too",go,F,/ō/
+7,76,"Sight Words: to, two, too",ate,F,/ā/
+7,76,"Sight Words: to, two, too",much,F,/ŭ/
+7,76,"Sight Words: to, two, too",slept,F,/ĕ/
+7,76,"Sight Words: to, two, too",late,F,/ā/
+7,76,"Sight Words: to, two, too",will,F,/ĭ/
+7,76,"Sight Words: to, two, too",the,T,/ē/
+7,76,"Sight Words: to, two, too",shop,F,/ŏ/
+7,76,"Sight Words: to, two, too",she,F,/ē/
+7,76,"Sight Words: to, two, too",be,F,/ē/
+7,76,"Sight Words: to, two, too",at,F,/ă/
+7,76,"Sight Words: to, two, too",home,F,/ō/
+7,76,"Sight Words: to, two, too",Luke,F,/ŭ/
+7,76,"Sight Words: to, two, too",on,F,/ŏ/
+7,76,"Sight Words: to, two, too",socks,F,/ŏ/
+7,76,"Sight Words: to, two, too",is,F,/ĭ/
+7,76,"Sight Words: to, two, too",miss,F,/ĭ/
+7,76,"Sight Words: to, two, too",bus,F,/ŭ/
+7,76,"Sight Words: to, two, too",bank,F,/ă/
+7,76,"Sight Words: to, two, too",lunch,F,/ŭ/
+7,76,"Sight Words: to, two, too",Jane,F,/ă/
+7,76,"Sight Words: to, two, too",take,F,/ā/
+7,76,"Sight Words: to, two, too",trash,F,/ă/
+7,76,"Sight Words: to, two, too",dump,F,/ŭ/
+7,76,"Sight Words: to, two, too",got,F,/ŏ/
+7,76,"Sight Words: to, two, too",six,F,/ĭ/
+7,76,"Sight Words: to, two, too",gifts,F,/ĭ/
+7,76,"Sight Words: to, two, too",but,F,/ŭ/
+7,76,"Sight Words: to, two, too",Will,F,/ĭ/
+7,76,"Sight Words: to, two, too",time,F,/ī/
+7,76,"Sight Words: to, two, too",brush,F,/ŭ/
+7,76,"Sight Words: to, two, too",dog,F,/ŏ/
+7,76,"Sight Words: to, two, too",bed,F,/ĕ/
+7,76,"Sight Words: to, two, too",Mom,F,/ŏ/
+7,76,"Sight Words: to, two, too",get,F,/ĕ/
+7,76,"Sight Words: to, two, too",games,F,/ă/
+7,76,"Sight Words: to, two, too",Fred,F,/ĕ/
+7,76,"Sight Words: to, two, too",hats,F,/ă/
+7,76,"Sight Words: to, two, too",cakes,F,/ă/
+7,76,"Sight Words: to, two, too",eat,F,/ē/
+7,76,"Sight Words: to, two, too",lick,F,/ĭ/
+7,76,"Sight Words: to, two, too",cones,F,/ŏ/
+7,76,"Sight Words: to, two, too",am,F,/ă/
+7,76,"Sight Words: to, two, too",match,F,/ă/
+7,77,The Hard and Soft Sounds of C,cat,F,/k/
+7,77,The Hard and Soft Sounds of C,catch,F,/k/
+7,77,The Hard and Soft Sounds of C,cane,F,/k/
+7,77,The Hard and Soft Sounds of C,cost,F,/k/
+7,77,The Hard and Soft Sounds of C,cot,F,/k/
+7,77,The Hard and Soft Sounds of C,cone,F,/k/
+7,77,The Hard and Soft Sounds of C,cut,F,/k/
+7,77,The Hard and Soft Sounds of C,cute,F,/k/
+7,77,The Hard and Soft Sounds of C,cell,F,/s/
+7,77,The Hard and Soft Sounds of C,cent,F,/s/
+7,77,The Hard and Soft Sounds of C,cite,F,/s/
+7,77,The Hard and Soft Sounds of C,cinch,F,/s/
+7,77,The Hard and Soft Sounds of C,I,T,/ī/
+7,77,The Hard and Soft Sounds of C,can,F,/k/
+7,77,The Hard and Soft Sounds of C,call,F,/k/
+7,77,The Hard and Soft Sounds of C,Dad,F,/ă/
+7,77,The Hard and Soft Sounds of C,on,F,/ŏ/
+7,77,The Hard and Soft Sounds of C,the,T,/ē/
+7,77,The Hard and Soft Sounds of C,phone,F,/ō/
+7,77,The Hard and Soft Sounds of C,a,T,/ā/
+7,77,The Hard and Soft Sounds of C,pack,F,/ă/
+7,77,The Hard and Soft Sounds of C,of,T,/ŭ/
+7,77,The Hard and Soft Sounds of C,gum,F,/ŭ/
+7,77,The Hard and Soft Sounds of C,costs,F,/k/
+7,77,The Hard and Soft Sounds of C,ten,F,/ĕ/
+7,77,The Hard and Soft Sounds of C,cents,F,/s/
+7,77,The Hard and Soft Sounds of C,it,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,is,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,to,T,/ū/
+7,77,The Hard and Soft Sounds of C,ride,F,/ī/
+7,77,The Hard and Soft Sounds of C,bike,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,race,F,/s/
+7,77,The Hard and Soft Sounds of C,face,F,/s/
+7,77,The Hard and Soft Sounds of C,place,F,/s/
+7,77,The Hard and Soft Sounds of C,space,F,/s/
+7,77,The Hard and Soft Sounds of C,brace,F,/s/
+7,77,The Hard and Soft Sounds of C,trace,F,/s/
+7,77,The Hard and Soft Sounds of C,grace,F,/s/
+7,77,The Hard and Soft Sounds of C,mice,F,/s/
+7,77,The Hard and Soft Sounds of C,rice,F,/s/
+7,77,The Hard and Soft Sounds of C,spice,F,/s/
+7,77,The Hard and Soft Sounds of C,slice,F,/s/
+7,77,The Hard and Soft Sounds of C,price,F,/s/
+7,77,The Hard and Soft Sounds of C,we,F,/ē/
+7,77,The Hard and Soft Sounds of C,will,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,drop,F,/ŏ/
+7,77,The Hard and Soft Sounds of C,an,F,/ă/
+7,77,The Hard and Soft Sounds of C,ice,F,/s/
+7,77,The Hard and Soft Sounds of C,cube,F,/k/
+7,77,The Hard and Soft Sounds of C,in,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,drink,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,add,F,/ă/
+7,77,The Hard and Soft Sounds of C,two,T,/ū/
+7,77,The Hard and Soft Sounds of C,white,F,/ī/
+7,77,The Hard and Soft Sounds of C,hid,F,/ĭ/
+7,77,The Hard and Soft Sounds of C,snack,F,/ă/
+7,78,The Hard and Soft Sounds of G,gap,F,/g/
+7,78,The Hard and Soft Sounds of G,game,F,/g/
+7,78,The Hard and Soft Sounds of G,go,F,/g/
+7,78,The Hard and Soft Sounds of G,got,F,/g/
+7,78,The Hard and Soft Sounds of G,god,F,/g/
+7,78,The Hard and Soft Sounds of G,gum,F,/g/
+7,78,The Hard and Soft Sounds of G,gun,F,/g/
+7,78,The Hard and Soft Sounds of G,gulf,F,/g/
+7,78,The Hard and Soft Sounds of G,gel,F,/j/
+7,78,The Hard and Soft Sounds of G,gem,F,/j/
+7,78,The Hard and Soft Sounds of G,Gene,F,/j/
+7,78,The Hard and Soft Sounds of G,gist,F,/j/
+7,78,The Hard and Soft Sounds of G,the,T,/ē/
+7,78,The Hard and Soft Sounds of G,is,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,on,F,/ŏ/
+7,78,The Hard and Soft Sounds of G,ring,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,it,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,will,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,shine,F,/ī/
+7,78,The Hard and Soft Sounds of G,in,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,sun,F,/ŭ/
+7,78,The Hard and Soft Sounds of G,fix,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,a,T,/ā/
+7,78,The Hard and Soft Sounds of G,hole,F,/ŏ/
+7,78,The Hard and Soft Sounds of G,shelf,F,/ĕ/
+7,78,The Hard and Soft Sounds of G,at,F,/ă/
+7,78,The Hard and Soft Sounds of G,his,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,home,F,/ō/
+7,78,The Hard and Soft Sounds of G,rub,F,/ŭ/
+7,78,The Hard and Soft Sounds of G,glob,F,/g/
+7,78,The Hard and Soft Sounds of G,of,T,/ŭ/
+7,78,The Hard and Soft Sounds of G,crust,F,/ŭ/
+7,78,The Hard and Soft Sounds of G,and,F,/ă/
+7,78,The Hard and Soft Sounds of G,hide,F,/ī/
+7,78,The Hard and Soft Sounds of G,cinch,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,age,F,/j/
+7,78,The Hard and Soft Sounds of G,cage,F,/j/
+7,78,The Hard and Soft Sounds of G,page,F,/j/
+7,78,The Hard and Soft Sounds of G,rage,F,/j/
+7,78,The Hard and Soft Sounds of G,huge,F,/j/
+7,78,The Hard and Soft Sounds of G,strange,F,/j/
+7,78,The Hard and Soft Sounds of G,change,F,/j/
+7,78,The Hard and Soft Sounds of G,stage,F,/j/
+7,78,The Hard and Soft Sounds of G,snake,F,/ā/
+7,78,The Hard and Soft Sounds of G,he,F,/ē/
+7,78,The Hard and Soft Sounds of G,slides,F,/ĭ/
+7,78,The Hard and Soft Sounds of G,to,T,/ū/
+7,78,The Hard and Soft Sounds of G,log,F,/ŏ/
+7,78,The Hard and Soft Sounds of G,tag,F,/ă/
+7,78,The Hard and Soft Sounds of G,tells,F,/ĕ/
+7,78,The Hard and Soft Sounds of G,two,T,/ū/
+7,78,The Hard and Soft Sounds of G,man,F,/ă/
+7,78,The Hard and Soft Sounds of G,white,F,/ī/
+7,78,The Hard and Soft Sounds of G,I,T,/ī/
+7,78,The Hard and Soft Sounds of G,hope,F,/ō/
+7,78,The Hard and Soft Sounds of G,that,F,/ă/
+7,78,The Hard and Soft Sounds of G,not,F,/ŏ/
+7,78,The Hard and Soft Sounds of G,be,F,/ē/
+7,79,Review of the Soft Sounds of C and G,hand,F,/ă/
+7,79,Review of the Soft Sounds of C and G,face,F,/ā/
+7,79,Review of the Soft Sounds of C and G,place,F,/ā/
+7,79,Review of the Soft Sounds of C and G,trace,F,/ā/
+7,79,Review of the Soft Sounds of C and G,age,F,/ă/
+7,79,Review of the Soft Sounds of C and G,change,F,/ă/
+7,79,Review of the Soft Sounds of C and G,strange,F,/ă/
+7,79,Review of the Soft Sounds of C and G,cent,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,cell,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,rice,F,/ĭ/
+7,79,Review of the Soft Sounds of C and G,slice,F,/ī/
+7,79,Review of the Soft Sounds of C and G,mice,F,/ĭ/
+7,79,Review of the Soft Sounds of C and G,huge,F,/ū/
+7,79,Review of the Soft Sounds of C and G,do,T,/ū/
+7,79,Review of the Soft Sounds of C and G,seven,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,jumping,F,/ŭ/
+7,79,Review of the Soft Sounds of C and G,jacks,F,/ă/
+7,79,Review of the Soft Sounds of C and G,in,F,/ĭ/
+7,79,Review of the Soft Sounds of C and G,Trace,F,/ā/
+7,79,Review of the Soft Sounds of C and G,your,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,on,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,a,T,/ā/
+7,79,Review of the Soft Sounds of C and G,piece,F,/ē/
+7,79,Review of the Soft Sounds of C and G,of,T,/ŭ/
+7,79,Review of the Soft Sounds of C and G,paper,F,/ă/
+7,79,Review of the Soft Sounds of C and G,hold,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,up,F,/ŭ/
+7,79,Review of the Soft Sounds of C and G,the,T,/ē/
+7,79,Review of the Soft Sounds of C and G,number,F,/ŭ/
+7,79,Review of the Soft Sounds of C and G,fingers,F,/ĭ/
+7,79,Review of the Soft Sounds of C and G,that,F,/ă/
+7,79,Review of the Soft Sounds of C and G,tell,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,voice,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,to,T,/ū/
+7,79,Review of the Soft Sounds of C and G,pretend,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,you,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,are,F,/ă/
+7,79,Review of the Soft Sounds of C and G,baby,F,/ă/
+7,79,Review of the Soft Sounds of C and G,dance,F,/ă/
+7,79,Review of the Soft Sounds of C and G,balance,F,/ă/
+7,79,Review of the Soft Sounds of C and G,one,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,head,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,call,F,/ă/
+7,79,Review of the Soft Sounds of C and G,me,F,/ē/
+7,79,Review of the Soft Sounds of C and G,phone,F,/ō/
+7,79,Review of the Soft Sounds of C and G,both,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,hands,F,/ă/
+7,79,Review of the Soft Sounds of C and G,nibble,F,/ĭ/
+7,79,Review of the Soft Sounds of C and G,bread,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,let,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,we,F,/ē/
+7,79,Review of the Soft Sounds of C and G,escaping,F,/ĕ/
+7,79,Review of the Soft Sounds of C and G,from,F,/ŏ/
+7,79,Review of the Soft Sounds of C and G,cat,F,/ă/
+7,79,Review of the Soft Sounds of C and G,catching,F,/ă/
+7,79,Review of the Soft Sounds of C and G,fish,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,as,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,has,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,is,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,his,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,wise,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,rise,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,rose,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,pose,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,nose,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,chose,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,close,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,use,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,fuse,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,these,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,those,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,phrase,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,Trace,F,/ā/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,a,T,/ā/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,huge,F,/ū/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,red,F,/ĕ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,at,F,/ă/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,the,T,/ē/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,shop,F,/ŏ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,tag,F,/ă/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,on,F,/ŏ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,tells,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,its,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,price,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,will,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,snips,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,to,T,/ū/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,clip,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,lift,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,face,F,/ā/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,sniff,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,with,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,it,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,smells,F,/z/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,nice,F,/ĭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,he,F,/ē/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,take,F,/ā/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,mom,F,/ŏ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,she,F,/ē/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,hug,F,/ŭ/
+7,80,Long-Vowel Words: S Stands for the /z/ Sound,him,F,/ĭ/
+7,81,Adding S to the Ends of Words,kits,F,/ĭ/
+7,81,Adding S to the Ends of Words,grins,F,/ĭ/
+7,81,Adding S to the Ends of Words,pile,F,/ĭ/
+7,81,Adding S to the Ends of Words,grape,F,/ă/
+7,81,Adding S to the Ends of Words,date,F,/ă/
+7,81,Adding S to the Ends of Words,lime,F,/ī/
+7,81,Adding S to the Ends of Words,piles,F,/ĭ/
+7,81,Adding S to the Ends of Words,grapes,F,/ă/
+7,81,Adding S to the Ends of Words,dates,F,/ă/
+7,81,Adding S to the Ends of Words,limes,F,/ī/
+7,81,Adding S to the Ends of Words,a,T,/ā/
+7,81,Adding S to the Ends of Words,cloth,F,/ŏ/
+7,81,Adding S to the Ends of Words,is,F,/ĭ/
+7,81,Adding S to the Ends of Words,set,F,/ĕ/
+7,81,Adding S to the Ends of Words,on,F,/ŏ/
+7,81,Adding S to the Ends of Words,the,T,/ē/
+7,81,Adding S to the Ends of Words,grass,F,/ă/
+7,81,Adding S to the Ends of Words,of,T,/ŭ/
+7,81,Adding S to the Ends of Words,and,F,/ă/
+7,81,Adding S to the Ends of Words,sit,F,/ĭ/
+7,81,Adding S to the Ends of Words,plates,F,/ă/
+7,81,Adding S to the Ends of Words,name,F,/ā/
+7,81,Adding S to the Ends of Words,state,F,/ā/
+7,81,Adding S to the Ends of Words,drive,F,/ĭ/
+7,81,Adding S to the Ends of Words,names,F,/ă/
+7,81,Adding S to the Ends of Words,states,F,/ă/
+7,81,Adding S to the Ends of Words,drives,F,/ī/
+7,81,Adding S to the Ends of Words,I,T,/ī/
+7,81,Adding S to the Ends of Words,spot,F,/ŏ/
+7,81,Adding S to the Ends of Words,six,F,/ĭ/
+7,81,Adding S to the Ends of Words,van,F,/ă/
+7,81,Adding S to the Ends of Words,that,F,/ă/
+7,81,Adding S to the Ends of Words,past,F,/ă/
+7,81,Adding S to the Ends of Words,us,F,/ŭ/
+7,81,Adding S to the Ends of Words,chime,F,/ĭ/
+7,81,Adding S to the Ends of Words,wake,F,/ă/
+7,81,Adding S to the Ends of Words,pane,F,/ā/
+7,81,Adding S to the Ends of Words,flake,F,/ă/
+7,81,Adding S to the Ends of Words,chimes,F,/ĭ/
+7,81,Adding S to the Ends of Words,wakes,F,/ă/
+7,81,Adding S to the Ends of Words,panes,F,/ă/
+7,81,Adding S to the Ends of Words,flakes,F,/ă/
+7,81,Adding S to the Ends of Words,pipe,F,/ĭ/
+7,81,Adding S to the Ends of Words,scrape,F,/ă/
+7,81,Adding S to the Ends of Words,sale,F,/ā/
+7,81,Adding S to the Ends of Words,pipes,F,/ī/
+7,81,Adding S to the Ends of Words,scrapes,F,/ă/
+7,81,Adding S to the Ends of Words,sales,F,/ă/
+7,81,Adding S to the Ends of Words,bell,F,/ĕ/
+7,81,Adding S to the Ends of Words,it,F,/ĭ/
+7,81,Adding S to the Ends of Words,me,F,/ē/
+7,81,Adding S to the Ends of Words,up,F,/ŭ/
+7,81,Adding S to the Ends of Words,ice,F,/ĭ/
+7,81,Adding S to the Ends of Words,clings,F,/ĭ/
+7,81,Adding S to the Ends of Words,to,T,/ū/
+7,81,Adding S to the Ends of Words,glass,F,/ă/
+7,81,Adding S to the Ends of Words,drift,F,/ĭ/
+7,81,Adding S to the Ends of Words,must,F,/ŭ/
+7,81,Adding S to the Ends of Words,off,F,/ŏ/
+7,81,Adding S to the Ends of Words,check,F,/ĕ/
+7,81,Adding S to the Ends of Words,if,F,/ĭ/
+7,81,Adding S to the Ends of Words,froze,F,/ŏ/
+7,81,Adding S to the Ends of Words,get,F,/ĕ/
+7,81,Adding S to the Ends of Words,chill,F,/ĭ/
+7,81,Adding S to the Ends of Words,when,F,/ĕ/
+7,81,Adding S to the Ends of Words,think,F,/ĭ/
+7,81,Adding S to the Ends of Words,will,F,/ĭ/
+7,81,Adding S to the Ends of Words,go,F,/ō/
+7,81,Adding S to the Ends of Words,thick,F,/ĭ/
+7,81,Adding S to the Ends of Words,socks,F,/ŏ/
+7,82,Review of Long-Vowel Words,nine,F,/ĭ/
+7,82,Review of Long-Vowel Words,shape,F,/ă/
+7,82,Review of Long-Vowel Words,close,F,/ō/
+7,82,Review of Long-Vowel Words,side,F,/ī/
+7,82,Review of Long-Vowel Words,gaze,F,/ă/
+7,82,Review of Long-Vowel Words,whale,F,/ă/
+7,82,Review of Long-Vowel Words,white,F,/ī/
+7,82,Review of Long-Vowel Words,five,F,/ī/
+7,82,Review of Long-Vowel Words,twice,F,/ī/
+7,82,Review of Long-Vowel Words,size,F,/ī/
+7,82,Review of Long-Vowel Words,stride,F,/ī/
+7,82,Review of Long-Vowel Words,wide,F,/ī/
+7,82,Review of Long-Vowel Words,while,F,/ī/
+7,82,Review of Long-Vowel Words,strike,F,/ī/
+7,82,Review of Long-Vowel Words,game,F,/ā/
+7,82,Review of Long-Vowel Words,smile,F,/ī/
+7,82,Review of Long-Vowel Words,shine,F,/ī/
+7,82,Review of Long-Vowel Words,stripe,F,/ī/
+7,82,Review of Long-Vowel Words,make,F,/ă/
+7,82,Review of Long-Vowel Words,wave,F,/ă/
+7,82,Review of Long-Vowel Words,shake,F,/ā/
+7,82,Review of Long-Vowel Words,shines,F,/ī/
+7,82,Review of Long-Vowel Words,stripes,F,/ī/
+7,82,Review of Long-Vowel Words,makes,F,/ă/
+7,82,Review of Long-Vowel Words,waves,F,/ă/
+7,82,Review of Long-Vowel Words,shakes,F,/ă/
+7,82,Review of Long-Vowel Words,the,T,/ē/
+7,82,Review of Long-Vowel Words,men,F,/ĕ/
+7,82,Review of Long-Vowel Words,on,F,/ŏ/
+7,82,Review of Long-Vowel Words,ship,F,/ĭ/
+7,82,Review of Long-Vowel Words,spot,F,/ŏ/
+7,82,Review of Long-Vowel Words,a,T,/ā/
+7,82,Review of Long-Vowel Words,huge,F,/ū/
+7,82,Review of Long-Vowel Words,in,F,/ĭ/
+7,82,Review of Long-Vowel Words,sun,F,/ŭ/
+7,82,Review of Long-Vowel Words,drifts,F,/ĭ/
+7,82,Review of Long-Vowel Words,to,T,/ū/
+7,82,Review of Long-Vowel Words,of,T,/ŭ/
+7,82,Review of Long-Vowel Words,at,F,/ă/
+7,82,Review of Long-Vowel Words,it,F,/ĭ/
+7,82,Review of Long-Vowel Words,is,F,/ĭ/
+7,82,Review of Long-Vowel Words,strange,F,/ă/
+7,82,Review of Long-Vowel Words,with,F,/ĭ/
+7,82,Review of Long-Vowel Words,its,F,/ĭ/
+7,82,Review of Long-Vowel Words,back,F,/ă/
+7,82,Review of Long-Vowel Words,yell,F,/ĕ/
+7,82,Review of Long-Vowel Words,and,F,/ă/
+7,82,Review of Long-Vowel Words,deck,F,/ĕ/
+7,82,Review of Long-Vowel Words,dives,F,/ĭ/
+7,82,Review of Long-Vowel Words,two,T,/ū/
+7,82,Review of Long-Vowel Words,swims,F,/ĭ/
+7,82,Review of Long-Vowel Words,off,F,/ŏ/
+7,82,Review of Long-Vowel Words,that,F,/ă/
+7,82,Review of Long-Vowel Words,was,F,/ă/
+7,83,Review of Long-Vowel Words,wife,F,/ī/
+7,83,Review of Long-Vowel Words,came,F,/ā/
+7,83,Review of Long-Vowel Words,bride,F,/ī/
+7,83,Review of Long-Vowel Words,name,F,/ā/
+7,83,Review of Long-Vowel Words,plate,F,/ā/
+7,83,Review of Long-Vowel Words,shine,F,/ī/
+7,83,Review of Long-Vowel Words,state,F,/ā/
+7,83,Review of Long-Vowel Words,brave,F,/ā/
+7,83,Review of Long-Vowel Words,flame,F,/ā/
+7,83,Review of Long-Vowel Words,mile,F,/ī/
+7,83,Review of Long-Vowel Words,wide,F,/ī/
+7,83,Review of Long-Vowel Words,save,F,/ā/
+7,83,Review of Long-Vowel Words,life,F,/ī/
+7,83,Review of Long-Vowel Words,maze,F,/ā/
+7,83,Review of Long-Vowel Words,slice,F,/ī/
+7,83,Review of Long-Vowel Words,rope,F,/ŏ/
+7,83,Review of Long-Vowel Words,prize,F,/ī/
+7,83,Review of Long-Vowel Words,throne,F,/ŏ/
+7,83,Review of Long-Vowel Words,line,F,/ī/
+7,83,Review of Long-Vowel Words,thrones,F,/ŏ/
+7,83,Review of Long-Vowel Words,lines,F,/ĭ/
+7,83,Review of Long-Vowel Words,quest,F,/ŭ/
+7,83,Review of Long-Vowel Words,depth,F,/ĕ/
+7,83,Review of Long-Vowel Words,quests,F,/ŭ/
+7,83,Review of Long-Vowel Words,depths,F,/ĕ/
+7,83,Review of Long-Vowel Words,the,T,/ē/
+7,83,Review of Long-Vowel Words,rich,F,/ĭ/
+7,83,Review of Long-Vowel Words,king,F,/ĭ/
+7,83,Review of Long-Vowel Words,and,F,/ă/
+7,83,Review of Long-Vowel Words,his,F,/ĭ/
+7,83,Review of Long-Vowel Words,up,F,/ŭ/
+7,83,Review of Long-Vowel Words,path,F,/ă/
+7,83,Review of Long-Vowel Words,had,F,/ă/
+7,83,Review of Long-Vowel Words,of,T,/ŭ/
+7,83,Review of Long-Vowel Words,red,F,/ĕ/
+7,83,Review of Long-Vowel Words,gems,F,/ĕ/
+7,83,Review of Long-Vowel Words,on,F,/ŏ/
+7,83,Review of Long-Vowel Words,them,F,/ĕ/
+7,83,Review of Long-Vowel Words,a,T,/ā/
+7,83,Review of Long-Vowel Words,that,F,/ă/
+7,83,Review of Long-Vowel Words,did,F,/ĭ/
+7,83,Review of Long-Vowel Words,in,F,/ĭ/
+7,83,Review of Long-Vowel Words,sun,F,/ŭ/
+7,83,Review of Long-Vowel Words,rose,F,/ō/
+7,83,Review of Long-Vowel Words,I,T,/ī/
+7,83,Review of Long-Vowel Words,shall,F,/ă/
+7,83,Review of Long-Vowel Words,test,F,/ĕ/
+7,83,Review of Long-Vowel Words,man,F,/ă/
+7,83,Review of Long-Vowel Words,strength,F,/ĕ/
+7,83,Review of Long-Vowel Words,send,F,/ĕ/
+7,83,Review of Long-Vowel Words,him,F,/ĭ/
+7,83,Review of Long-Vowel Words,can,F,/ă/
+7,83,Review of Long-Vowel Words,he,F,/ē/
+7,83,Review of Long-Vowel Words,quench,F,/ŭ/
+7,83,Review of Long-Vowel Words,is,F,/ĭ/
+7,83,Review of Long-Vowel Words,stuck,F,/ŭ/
+7,83,Review of Long-Vowel Words,black,F,/ă/
+7,83,Review of Long-Vowel Words,run,F,/ŭ/
+7,83,Review of Long-Vowel Words,strong,F,/ŏ/
+7,83,Review of Long-Vowel Words,no,F,/ō/
+7,83,Review of Long-Vowel Words,cut,F,/ŭ/
+7,83,Review of Long-Vowel Words,grant,F,/ă/
+7,83,Review of Long-Vowel Words,to,T,/ū/
+7,83,Review of Long-Vowel Words,this,F,/ĭ/
+7,83,Review of Long-Vowel Words,be,F,/ē/
+7,83,Review of Long-Vowel Words,next,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,to,T,/ū/
+8,84,The Vowel Pair AI as /ā/,two,T,/ū/
+8,84,The Vowel Pair AI as /ā/,too,T,/ū/
+8,84,The Vowel Pair AI as /ā/,made,F,/ā/
+8,84,The Vowel Pair AI as /ā/,plane,F,/ā/
+8,84,The Vowel Pair AI as /ā/,tale,F,/ā/
+8,84,The Vowel Pair AI as /ā/,male,F,/ā/
+8,84,The Vowel Pair AI as /ā/,sale,F,/ā/
+8,84,The Vowel Pair AI as /ā/,pale,F,/ā/
+8,84,The Vowel Pair AI as /ā/,pane,F,/ā/
+8,84,The Vowel Pair AI as /ā/,mane,F,/ā/
+8,84,The Vowel Pair AI as /ā/,waste,F,/ā/
+8,84,The Vowel Pair AI as /ā/,gale,F,/ā/
+8,84,The Vowel Pair AI as /ā/,maid,F,/ā/
+8,84,The Vowel Pair AI as /ā/,plain,F,/ā/
+8,84,The Vowel Pair AI as /ā/,tail,F,/ā/
+8,84,The Vowel Pair AI as /ā/,mail,F,/ā/
+8,84,The Vowel Pair AI as /ā/,sail,F,/ā/
+8,84,The Vowel Pair AI as /ā/,pail,F,/ā/
+8,84,The Vowel Pair AI as /ā/,pain,F,/ā/
+8,84,The Vowel Pair AI as /ā/,main,F,/ā/
+8,84,The Vowel Pair AI as /ā/,waist,F,/ā/
+8,84,The Vowel Pair AI as /ā/,Gail,F,/ā/
+8,84,The Vowel Pair AI as /ā/,is,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,a,T,/ā/
+8,84,The Vowel Pair AI as /ā/,cute,F,/ū/
+8,84,The Vowel Pair AI as /ā/,has,F,/ă/
+8,84,The Vowel Pair AI as /ā/,belt,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,on,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,her,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,thin,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,she,F,/ē/
+8,84,The Vowel Pair AI as /ā/,will,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,take,F,/ā/
+8,84,The Vowel Pair AI as /ā/,and,F,/ă/
+8,84,The Vowel Pair AI as /ā/,get,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,the,T,/ē/
+8,84,The Vowel Pair AI as /ā/,cat,F,/ă/
+8,84,The Vowel Pair AI as /ā/,with,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,black,F,/ă/
+8,84,The Vowel Pair AI as /ā/,go,F,/ō/
+8,84,The Vowel Pair AI as /ā/,run,F,/ŭ/
+8,84,The Vowel Pair AI as /ā/,back,F,/ă/
+8,84,The Vowel Pair AI as /ā/,home,F,/ō/
+8,84,The Vowel Pair AI as /ā/,when,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,bed,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,Shane,F,/ā/
+8,84,The Vowel Pair AI as /ā/,man,F,/ă/
+8,84,The Vowel Pair AI as /ā/,rode,F,/ō/
+8,84,The Vowel Pair AI as /ā/,in,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,did,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,tell,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,you,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,of,T,/ŭ/
+8,84,The Vowel Pair AI as /ā/,fox,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,lost,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,his,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,soft,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,long,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,pride,F,/ī/
+8,84,The Vowel Pair AI as /ā/,had,F,/ă/
+8,84,The Vowel Pair AI as /ā/,fresh,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,white,F,/ī/
+8,84,The Vowel Pair AI as /ā/,milk,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,ship,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,big,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,red,F,/ĕ/
+8,84,The Vowel Pair AI as /ā/,dog,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,yaps,F,/ă/
+8,84,The Vowel Pair AI as /ā/,at,F,/ă/
+8,84,The Vowel Pair AI as /ā/,he,F,/ē/
+8,84,The Vowel Pair AI as /ā/,brings,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,us,F,/ŭ/
+8,84,The Vowel Pair AI as /ā/,it,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,not,F,/ŏ/
+8,84,The Vowel Pair AI as /ā/,time,F,/ī/
+8,84,The Vowel Pair AI as /ā/,cinch,F,/ĭ/
+8,84,The Vowel Pair AI as /ā/,your,F,/ŏ/
+8,85,The Vowel Pair AI as /ā/,rain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,pain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,vain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,rail,F,/ā/
+8,85,The Vowel Pair AI as /ā/,nail,F,/ā/
+8,85,The Vowel Pair AI as /ā/,snail,F,/ā/
+8,85,The Vowel Pair AI as /ā/,frail,F,/ā/
+8,85,The Vowel Pair AI as /ā/,trail,F,/ā/
+8,85,The Vowel Pair AI as /ā/,train,F,/ā/
+8,85,The Vowel Pair AI as /ā/,brain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,chain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,sprain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,Spain,F,/ā/
+8,85,The Vowel Pair AI as /ā/,wait,F,/ā/
+8,85,The Vowel Pair AI as /ā/,faith,F,/ā/
+8,85,The Vowel Pair AI as /ā/,raise,F,/ā/
+8,85,The Vowel Pair AI as /ā/,praise,F,/ā/
+8,85,The Vowel Pair AI as /ā/,Gail,F,/ā/
+8,85,The Vowel Pair AI as /ā/,is,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,quite,F,/ī/
+8,85,The Vowel Pair AI as /ā/,she,F,/ē/
+8,85,The Vowel Pair AI as /ā/,has,F,/ă/
+8,85,The Vowel Pair AI as /ā/,a,T,/ā/
+8,85,The Vowel Pair AI as /ā/,waits,F,/ă/
+8,85,The Vowel Pair AI as /ā/,with,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,Steph,F,/ĕ/
+8,85,The Vowel Pair AI as /ā/,and,F,/ă/
+8,85,The Vowel Pair AI as /ā/,Ralph,F,/ă/
+8,85,The Vowel Pair AI as /ā/,to,T,/ū/
+8,85,The Vowel Pair AI as /ā/,take,F,/ā/
+8,85,The Vowel Pair AI as /ā/,the,T,/ē/
+8,85,The Vowel Pair AI as /ā/,job,F,/ŏ/
+8,85,The Vowel Pair AI as /ā/,that,F,/ă/
+8,85,The Vowel Pair AI as /ā/,will,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,stop,F,/ŏ/
+8,85,The Vowel Pair AI as /ā/,hiss,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,slides,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,like,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,help,F,/ĕ/
+8,85,The Vowel Pair AI as /ā/,so,F,/ō/
+8,85,The Vowel Pair AI as /ā/,can,F,/ă/
+8,85,The Vowel Pair AI as /ā/,get,F,/ĕ/
+8,85,The Vowel Pair AI as /ā/,on,F,/ŏ/
+8,85,The Vowel Pair AI as /ā/,grips,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,as,F,/ă/
+8,85,The Vowel Pair AI as /ā/,steps,F,/ĕ/
+8,85,The Vowel Pair AI as /ā/,up,F,/ŭ/
+8,85,The Vowel Pair AI as /ā/,chugs,F,/ŭ/
+8,85,The Vowel Pair AI as /ā/,life,F,/ī/
+8,85,The Vowel Pair AI as /ā/,of,T,/ŭ/
+8,85,The Vowel Pair AI as /ā/,smoke,F,/ŏ/
+8,85,The Vowel Pair AI as /ā/,trails,F,/ă/
+8,85,The Vowel Pair AI as /ā/,in,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,wind,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,zips,F,/ĭ/
+8,85,The Vowel Pair AI as /ā/,off,F,/ŏ/
+8,86,The Vowel Pair AY as /ā/,yes,F,/ĕ/
+8,86,The Vowel Pair AY as /ā/,yet,F,/ĕ/
+8,86,The Vowel Pair AY as /ā/,yap,F,/ă/
+8,86,The Vowel Pair AY as /ā/,yam,F,/ă/
+8,86,The Vowel Pair AY as /ā/,yoke,F,/ŏ/
+8,86,The Vowel Pair AY as /ā/,day,F,/ā/
+8,86,The Vowel Pair AY as /ā/,way,F,/ā/
+8,86,The Vowel Pair AY as /ā/,pay,F,/ā/
+8,86,The Vowel Pair AY as /ā/,ray,F,/ā/
+8,86,The Vowel Pair AY as /ā/,say,F,/ā/
+8,86,The Vowel Pair AY as /ā/,bay,F,/ā/
+8,86,The Vowel Pair AY as /ā/,gray,F,/ā/
+8,86,The Vowel Pair AY as /ā/,clay,F,/ā/
+8,86,The Vowel Pair AY as /ā/,stay,F,/ā/
+8,86,The Vowel Pair AY as /ā/,play,F,/ā/
+8,86,The Vowel Pair AY as /ā/,stray,F,/ā/
+8,86,The Vowel Pair AY as /ā/,Clay,F,/ā/
+8,86,The Vowel Pair AY as /ā/,May,F,/ā/
+8,86,The Vowel Pair AY as /ā/,Kay,F,/ā/
+8,86,The Vowel Pair AY as /ā/,and,F,/ă/
+8,86,The Vowel Pair AY as /ā/,will,F,/ĭ/
+8,86,The Vowel Pair AY as /ā/,at,F,/ă/
+8,86,The Vowel Pair AY as /ā/,a,T,/ā/
+8,86,The Vowel Pair AY as /ā/,home,F,/ō/
+8,86,The Vowel Pair AY as /ā/,on,F,/ŏ/
+8,86,The Vowel Pair AY as /ā/,the,T,/ē/
+8,86,The Vowel Pair AY as /ā/,for,F,/ŏ/
+8,86,The Vowel Pair AY as /ā/,two,T,/ū/
+8,86,The Vowel Pair AY as /ā/,days,F,/ă/
+8,86,The Vowel Pair AY as /ā/,games,F,/ă/
+8,86,The Vowel Pair AY as /ā/,with,F,/ĭ/
+8,86,The Vowel Pair AY as /ā/,nice,F,/ĭ/
+8,86,The Vowel Pair AY as /ā/,in,F,/ĭ/
+8,86,The Vowel Pair AY as /ā/,ping-pong,F,/ĭ/
+8,86,The Vowel Pair AY as /ā/,lay,F,/ă/
+8,86,The Vowel Pair AY as /ā/,cloth,F,/ŏ/
+8,86,The Vowel Pair AY as /ā/,sand,F,/ă/
+8,86,The Vowel Pair AY as /ā/,bask,F,/ă/
+8,86,The Vowel Pair AY as /ā/,rays,F,/ă/
+8,86,The Vowel Pair AY as /ā/,of,T,/ŭ/
+8,86,The Vowel Pair AY as /ā/,sun,F,/ŭ/
+8,86,The Vowel Pair AY as /ā/,go,F,/ō/
+8,86,The Vowel Pair AY as /ā/,back,F,/ă/
+8,86,The Vowel Pair AY as /ā/,when,F,/ĕ/
+8,86,The Vowel Pair AY as /ā/,it,F,/ĭ/
+8,86,The Vowel Pair AY as /ā/,rains,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",great,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",break,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",steak,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",I,T,/ī/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",will,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",take,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",a,T,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",and,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",munch,F,/ŭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",on,F,/ŏ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",veil,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",vein,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",rein,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",the,T,/ē/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",bride,F,/ī/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",flick,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",reins,F,/ĕ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",set,F,/ĕ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",off,F,/ŏ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",to,T,/ū/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",be,F,/ē/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",wed,F,/ĕ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",trail,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",in,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",wind,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",hey,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",prey,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",grey,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",they,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",black,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",snake,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",did,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",wish,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",that,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",he,F,/ē/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",had,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",snack,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",of,T,/ŭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",mice,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",scan,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",grass,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",sat,F,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",rock,F,/ŏ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",ate,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",nuts,F,/ŭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",came,F,/ā/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",fled,F,/ĕ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",hid,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",holes,F,/ŏ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",have,T,/ă/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",no,F,/ō/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",this,F,/ĭ/
+8,87,"The Vowel Pairs EA, EI, and EY as /ā/",day,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,bake,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,shake,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,made,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,place,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,face,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,game,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,page,F,/ă/
+8,88,Review of the Long-A Vowel Pairs,waist,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,plain,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,rail,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,train,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,nail,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,brain,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,May,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,play,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,ray,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,break,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,great,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,veins,F,/ā/
+8,88,Review of the Long-A Vowel Pairs,gray,F,/ā/
+9,89,The Vowel Pair EE as /ē/,these,F,/ē/
+9,89,The Vowel Pair EE as /ē/,theme,F,/ē/
+9,89,The Vowel Pair EE as /ē/,eve,F,/ē/
+9,89,The Vowel Pair EE as /ē/,Steve,F,/ē/
+9,89,The Vowel Pair EE as /ē/,Pete,F,/ē/
+9,89,The Vowel Pair EE as /ē/,Zeke,F,/ē/
+9,89,The Vowel Pair EE as /ē/,see,F,/ē/
+9,89,The Vowel Pair EE as /ē/,seed,F,/ē/
+9,89,The Vowel Pair EE as /ē/,peek,F,/ē/
+9,89,The Vowel Pair EE as /ē/,peep,F,/ē/
+9,89,The Vowel Pair EE as /ē/,tree,F,/ē/
+9,89,The Vowel Pair EE as /ē/,green,F,/ē/
+9,89,The Vowel Pair EE as /ē/,sleep,F,/ē/
+9,89,The Vowel Pair EE as /ē/,creep,F,/ē/
+9,89,The Vowel Pair EE as /ē/,sweet,F,/ē/
+9,89,The Vowel Pair EE as /ē/,queen,F,/ē/
+9,89,The Vowel Pair EE as /ē/,three,F,/ē/
+9,89,The Vowel Pair EE as /ē/,street,F,/ē/
+9,89,The Vowel Pair EE as /ē/,breeze,F,/ē/
+9,89,The Vowel Pair EE as /ē/,sneeze,F,/ē/
+9,89,The Vowel Pair EE as /ē/,freeze,F,/ē/
+9,89,The Vowel Pair EE as /ē/,the,T,/ē/
+9,89,The Vowel Pair EE as /ē/,creeps,F,/ĕ/
+9,89,The Vowel Pair EE as /ē/,to,T,/ū/
+9,89,The Vowel Pair EE as /ē/,a,T,/ā/
+9,89,The Vowel Pair EE as /ē/,plum,F,/ŭ/
+9,89,The Vowel Pair EE as /ē/,she,F,/ē/
+9,89,The Vowel Pair EE as /ē/,sits,F,/ĭ/
+9,89,The Vowel Pair EE as /ē/,on,F,/ŏ/
+9,89,The Vowel Pair EE as /ē/,grass,F,/ă/
+9,89,The Vowel Pair EE as /ē/,plop,F,/ŏ/
+9,89,The Vowel Pair EE as /ē/,seeds,F,/ĕ/
+9,89,The Vowel Pair EE as /ē/,drop,F,/ŏ/
+9,89,The Vowel Pair EE as /ē/,peeks,F,/ĕ/
+9,89,The Vowel Pair EE as /ē/,at,F,/ă/
+9,89,The Vowel Pair EE as /ē/,strange,F,/ă/
+9,89,The Vowel Pair EE as /ē/,make,F,/ă/
+9,89,The Vowel Pair EE as /ē/,bites,F,/ĭ/
+9,89,The Vowel Pair EE as /ē/,makes,F,/ă/
+9,89,The Vowel Pair EE as /ē/,wakes,F,/ă/
+9,89,The Vowel Pair EE as /ē/,up,F,/ŭ/
+9,89,The Vowel Pair EE as /ē/,and,F,/ă/
+9,89,The Vowel Pair EE as /ē/,peeps,F,/ē/
+9,89,The Vowel Pair EE as /ē/,nap,F,/ă/
+9,89,The Vowel Pair EE as /ē/,has,F,/ă/
+9,89,The Vowel Pair EE as /ē/,made,F,/ā/
+9,89,The Vowel Pair EE as /ē/,late,F,/ā/
+9,89,The Vowel Pair EE as /ē/,rush,F,/ŭ/
+9,89,The Vowel Pair EE as /ē/,get,F,/ĕ/
+9,89,The Vowel Pair EE as /ē/,home,F,/ō/
+9,89,The Vowel Pair EE as /ē/,time,F,/ī/
+9,90,The Vowel Pair EA as /ē/,I,T,/ī/
+9,90,The Vowel Pair EA as /ē/,will,F,/ĭ/
+9,90,The Vowel Pair EA as /ē/,take,F,/ā/
+9,90,The Vowel Pair EA as /ē/,a,T,/ā/
+9,90,The Vowel Pair EA as /ē/,break,F,/ā/
+9,90,The Vowel Pair EA as /ē/,and,F,/ă/
+9,90,The Vowel Pair EA as /ē/,munch,F,/ŭ/
+9,90,The Vowel Pair EA as /ē/,on,F,/ŏ/
+9,90,The Vowel Pair EA as /ē/,great,F,/ā/
+9,90,The Vowel Pair EA as /ē/,steak,F,/ā/
+9,90,The Vowel Pair EA as /ē/,up,F,/ŭ/
+9,90,The Vowel Pair EA as /ē/,that,F,/ă/
+9,90,The Vowel Pair EA as /ē/,so,F,/ō/
+9,90,The Vowel Pair EA as /ē/,may,F,/ă/
+9,90,The Vowel Pair EA as /ē/,bite,F,/ī/
+9,90,The Vowel Pair EA as /ē/,eat,F,/ē/
+9,90,The Vowel Pair EA as /ē/,meat,F,/ē/
+9,90,The Vowel Pair EA as /ē/,seat,F,/ē/
+9,90,The Vowel Pair EA as /ē/,beat,F,/ē/
+9,90,The Vowel Pair EA as /ē/,treat,F,/ē/
+9,90,The Vowel Pair EA as /ē/,tea,F,/ē/
+9,90,The Vowel Pair EA as /ē/,team,F,/ē/
+9,90,The Vowel Pair EA as /ē/,read,F,/ē/
+9,90,The Vowel Pair EA as /ē/,leaf,F,/ē/
+9,90,The Vowel Pair EA as /ē/,lean,F,/ē/
+9,90,The Vowel Pair EA as /ē/,clean,F,/ē/
+9,90,The Vowel Pair EA as /ē/,each,F,/ē/
+9,90,The Vowel Pair EA as /ē/,beach,F,/ē/
+9,90,The Vowel Pair EA as /ē/,cheap,F,/ē/
+9,90,The Vowel Pair EA as /ē/,speak,F,/ē/
+9,90,The Vowel Pair EA as /ē/,dream,F,/ē/
+9,90,The Vowel Pair EA as /ē/,steam,F,/ē/
+9,90,The Vowel Pair EA as /ē/,stream,F,/ē/
+9,90,The Vowel Pair EA as /ē/,ease,F,/ē/
+9,90,The Vowel Pair EA as /ē/,tease,F,/ē/
+9,90,The Vowel Pair EA as /ē/,please,F,/ē/
+9,90,The Vowel Pair EA as /ē/,breathe,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",great,F,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",steak,F,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",seat,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",steam,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",clean,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",please,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",eat,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",scream,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",lean,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",speak,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",meat,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",tea,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",tease,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",read,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",meal,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",sit,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",still,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",in,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",the,T,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",beets,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",do,T,/ū/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",not,F,/ŏ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",whine,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",with,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",a,T,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",smile,F,/ī/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",cut,F,/ŭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",while,F,/ī/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",you,F,/ŏ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",chomp,F,/ŏ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",on,F,/ŏ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",play,F,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",that,F,/ă/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",glass,F,/ă/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",sip,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",gulp,F,/ŭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",it,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",is,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",nice,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",to,T,/ū/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",Sis,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",toss,F,/ŏ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",grapes,F,/ă/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",at,F,/ă/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",wait,F,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",till,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",end,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",of,T,/ŭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",and,F,/ă/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",then,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",who,T,/ū/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",go,F,/ō/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",no,F,/ō/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",so,F,/ō/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",pro,F,/ō/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",yo-yo,F,/ō/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",beats,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",rug,F,/ŭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",ease,F,/ē/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",I,T,/ī/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",eats,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",cleans,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",pane,F,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",like,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",swings,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",flings,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",well,F,/ĕ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",likes,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",game,F,/ā/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",win,F,/ĭ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",prize,F,/ī/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",shall,F,/ă/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",stop,F,/ŏ/
+9,91,"Review the Vowel Pair EA; Sight Words: do, who",yes,F,/ĕ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,veil,F,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,vein,F,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,rein,F,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,field,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,yield,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,brief,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,grief,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,thief,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,chief,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,priest,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,shield,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,shriek,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,piece,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,niece,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,friend,T,/ĕ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,the,T,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,of,T,/ŭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,is,F,/ĭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,my,F,/ī/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,she,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,gave,F,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,me,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,a,T,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,cake,F,/ă/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,I,T,/ī/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,went,F,/ĕ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,to,T,/ū/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,eat,F,/ē/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,it,F,/ĭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,in,F,/ĭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,strange,F,/ă/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,snake,F,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,made,F,/ā/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,slide,F,/ĭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,back,F,/ă/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,its,F,/ĭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,hole,F,/ŏ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,ran,F,/ă/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,will,F,/ĭ/
+9,92,The Vowel Pair IE as /ē/; Sight Word: friend,that,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,deep,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,sleep,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,peeps,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,weeps,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,creep,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,flees,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,glee,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,Jean,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,speak,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,dream,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,breathes,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,steal,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,brief,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,shriek,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,thief,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,grief,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,break,F,/ā/
+9,93,Review of the Long-E Vowel Pairs,great,F,/ā/
+9,93,Review of the Long-E Vowel Pairs,friend,T,/ĕ/
+9,93,Review of the Long-E Vowel Pairs,and,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,Kate,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,lay,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,in,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,bed,F,/ĕ/
+9,93,Review of the Long-E Vowel Pairs,crash,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,wakes,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,up,F,/ŭ/
+9,93,Review of the Long-E Vowel Pairs,with,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,a,T,/ā/
+9,93,Review of the Long-E Vowel Pairs,jumps,F,/ŭ/
+9,93,Review of the Long-E Vowel Pairs,too,T,/ū/
+9,93,Review of the Long-E Vowel Pairs,hush,F,/ŭ/
+9,93,Review of the Long-E Vowel Pairs,is,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,this,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,asks,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,who,T,/ū/
+9,93,Review of the Long-E Vowel Pairs,will,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,the,T,/ē/
+9,93,Review of the Long-E Vowel Pairs,cash,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,I,T,/ī/
+9,93,Review of the Long-E Vowel Pairs,do,T,/ū/
+9,93,Review of the Long-E Vowel Pairs,not,F,/ŏ/
+9,93,Review of the Long-E Vowel Pairs,think,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,it,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,to,T,/ū/
+9,93,Review of the Long-E Vowel Pairs,phone,F,/ō/
+9,93,Review of the Long-E Vowel Pairs,see,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,if,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,safe,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,states,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,just,F,/ŭ/
+9,93,Review of the Long-E Vowel Pairs,then,F,/ĕ/
+9,93,Review of the Long-E Vowel Pairs,they,F,/ā/
+9,93,Review of the Long-E Vowel Pairs,spot,F,/ŏ/
+9,93,Review of the Long-E Vowel Pairs,grey,F,/ā/
+9,93,Review of the Long-E Vowel Pairs,pet,F,/ĕ/
+9,93,Review of the Long-E Vowel Pairs,past,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,beds,F,/ĕ/
+9,93,Review of the Long-E Vowel Pairs,he,F,/ē/
+9,93,Review of the Long-E Vowel Pairs,on,F,/ŏ/
+9,93,Review of the Long-E Vowel Pairs,quest,F,/ŭ/
+9,93,Review of the Long-E Vowel Pairs,for,F,/ŏ/
+9,93,Review of the Long-E Vowel Pairs,white,F,/ī/
+9,93,Review of the Long-E Vowel Pairs,mice,F,/ĭ/
+9,93,Review of the Long-E Vowel Pairs,gasp,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,as,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,gaze,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,at,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,cat,F,/ă/
+9,93,Review of the Long-E Vowel Pairs,yells,F,/ĕ/
+9,93,Review of the Long-E Vowel Pairs,smile,F,/ī/
+9,93,Review of the Long-E Vowel Pairs,go,F,/ō/
+9,93,Review of the Long-E Vowel Pairs,back,F,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,chief,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,shield,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,priest,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,field,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,piece,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,the,T,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,held,F,/ĕ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,up,F,/ŭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,his,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,did,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,cross,F,/ŏ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,to,T,/ū/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,get,F,/ĕ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,die,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,pie,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,tie,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,lie,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,I,T,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,will,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,if,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,do,T,/ū/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,not,F,/ŏ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,eat,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,that,F,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,of,T,/ŭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,is,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,a,T,/ā/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,joke,F,/ŏ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,but,F,/ŭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,like,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,and,F,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,no,F,/ō/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,my,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,by,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,fly,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,sly,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,cry,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,dry,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,fry,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,try,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,sky,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,spy,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,shy,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,why,F,/ī/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,choke,F,/ŏ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,neck,F,/ĕ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,make,F,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,me,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,must,F,/ŭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,keep,F,/ĕ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,this,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,on,F,/ŏ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,it,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,just,F,/ŭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,lunch,F,/ŭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,be,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,in,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,am,F,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,cute,F,/ū/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,bet,F,/ĕ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,we,F,/ē/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,have,T,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,at,F,/ă/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,Will,F,/ĭ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,spot,F,/ŏ/
+10,94,The Vowel Pair IE as /ī/; Y Alone as /ī/,clean,F,/ē/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,dye,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,bye,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,rye,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,type,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,style,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,eye,T,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,is,F,/ĭ/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,dry,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,can,F,/ă/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,fly,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,will,F,/ĭ/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,cry,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,black,F,/ă/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,gleams,F,/ĕ/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,a,T,/ā/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,treat,F,/ē/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,I,T,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,feed,F,/ĕ/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,great,F,/ā/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,wide,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,shakes,F,/ă/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,made,F,/ā/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,play,F,/ā/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,with,F,/ĭ/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,by,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,me,F,/ē/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,white,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,eat,F,/ē/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,seat,F,/ē/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,spy,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,my,F,/ī/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,thing,F,/ĭ/
+10,95,Y Plus a Silent E as /ī/; Sight Word: eye,that,F,/ă/
+10,96,I Alone as /ī/,Kate,F,/ă/
+10,96,I Alone as /ī/,Jean,F,/ē/
+10,96,I Alone as /ī/,Steve,F,/ē/
+10,96,I Alone as /ī/,Jill,F,/ĭ/
+10,96,I Alone as /ī/,and,F,/ă/
+10,96,I Alone as /ī/,Phil,F,/ĭ/
+10,96,I Alone as /ī/,will,F,/ĭ/
+10,96,I Alone as /ī/,plan,F,/ă/
+10,96,I Alone as /ī/,a,T,/ā/
+10,96,I Alone as /ī/,great,F,/ā/
+10,96,I Alone as /ī/,play,F,/ā/
+10,96,I Alone as /ī/,it,F,/ĭ/
+10,96,I Alone as /ī/,be,F,/ē/
+10,96,I Alone as /ī/,treat,F,/ē/
+10,96,I Alone as /ī/,to,T,/ū/
+10,96,I Alone as /ī/,make,F,/ă/
+10,96,I Alone as /ī/,with,F,/ĭ/
+10,96,I Alone as /ī/,script,F,/ĭ/
+10,96,I Alone as /ī/,plays,F,/ă/
+10,96,I Alone as /ī/,the,T,/ē/
+10,96,I Alone as /ī/,boss,F,/ŏ/
+10,96,I Alone as /ī/,at,F,/ă/
+10,96,I Alone as /ī/,place,F,/ā/
+10,96,I Alone as /ī/,eat,F,/ē/
+10,96,I Alone as /ī/,sit,F,/ĭ/
+10,96,I Alone as /ī/,in,F,/ĭ/
+10,96,I Alone as /ī/,seats,F,/ē/
+10,96,I Alone as /ī/,reads,F,/ē/
+10,96,I Alone as /ī/,I,T,/ī/
+10,96,I Alone as /ī/,fish,F,/ĭ/
+10,96,I Alone as /ī/,rice,F,/ĭ/
+10,96,I Alone as /ī/,side,F,/ī/
+10,96,I Alone as /ī/,of,T,/ŭ/
+10,96,I Alone as /ī/,peas,F,/ē/
+10,96,I Alone as /ī/,buy,T,/ī/
+10,96,I Alone as /ī/,slice,F,/ī/
+10,96,I Alone as /ī/,pie,F,/ī/
+10,96,I Alone as /ī/,say,F,/ā/
+10,96,I Alone as /ī/,please,F,/ē/
+10,96,I Alone as /ī/,give,T,/ĭ/
+10,96,I Alone as /ī/,me,F,/ē/
+10,96,I Alone as /ī/,tip,F,/ĭ/
+10,96,I Alone as /ī/,sneeze,F,/ē/
+10,96,I Alone as /ī/,on,F,/ŏ/
+10,96,I Alone as /ī/,who,T,/ū/
+10,96,I Alone as /ī/,that,F,/ă/
+10,96,I Alone as /ī/,drops,F,/ŏ/
+10,96,I Alone as /ī/,pipes,F,/ī/
+10,96,I Alone as /ī/,up,F,/ŭ/
+10,96,I Alone as /ī/,clean,F,/ē/
+10,96,I Alone as /ī/,mess,F,/ĕ/
+10,96,I Alone as /ī/,thanks,F,/ă/
+10,96,I Alone as /ī/,Mom,F,/ŏ/
+10,96,I Alone as /ī/,tells,F,/ĕ/
+10,96,I Alone as /ī/,switch,F,/ĭ/
+10,96,I Alone as /ī/,roles,F,/ŏ/
+10,96,I Alone as /ī/,when,F,/ĕ/
+10,96,I Alone as /ī/,ends,F,/ĕ/
+10,96,I Alone as /ī/,smiles,F,/ĭ/
+10,96,I Alone as /ī/,pride,F,/ī/
+10,96,I Alone as /ī/,rind,F,/ī/
+10,96,I Alone as /ī/,kind,F,/ī/
+10,96,I Alone as /ī/,mind,F,/ī/
+10,96,I Alone as /ī/,find,F,/ī/
+10,96,I Alone as /ī/,blind,F,/ī/
+10,96,I Alone as /ī/,grind,F,/ī/
+10,96,I Alone as /ī/,wild,F,/ī/
+10,96,I Alone as /ī/,mild,F,/ī/
+10,96,I Alone as /ī/,child,F,/ī/
+10,96,I Alone as /ī/,wind,F,/ĭ/
+10,96,I Alone as /ī/,is,F,/ĭ/
+10,96,I Alone as /ī/,strong,F,/ŏ/
+10,96,I Alone as /ī/,string,F,/ĭ/
+10,96,I Alone as /ī/,kite,F,/ī/
+10,96,I Alone as /ī/,whips,F,/ĭ/
+10,96,I Alone as /ī/,past,F,/ă/
+10,96,I Alone as /ī/,trees,F,/ĕ/
+10,96,I Alone as /ī/,must,F,/ŭ/
+10,96,I Alone as /ī/,this,F,/ĭ/
+10,96,I Alone as /ī/,man,F,/ă/
+10,96,I Alone as /ī/,take,F,/ā/
+10,96,I Alone as /ī/,off,F,/ŏ/
+10,96,I Alone as /ī/,bag,F,/ă/
+10,96,I Alone as /ī/,limes,F,/ī/
+10,96,I Alone as /ī/,he,F,/ē/
+10,96,I Alone as /ī/,his,F,/ĭ/
+10,96,I Alone as /ī/,hand,F,/ă/
+10,96,I Alone as /ī/,so,F,/ō/
+10,96,I Alone as /ī/,not,F,/ŏ/
+10,96,I Alone as /ī/,fly,F,/ī/
+10,96,I Alone as /ī/,lime,F,/ī/
+10,96,I Alone as /ī/,shy,F,/ī/
+10,96,I Alone as /ī/,peel,F,/ĕ/
+10,96,I Alone as /ī/,tastes,F,/ă/
+10,96,I Alone as /ī/,quite,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,by,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,buy,T,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,the,T,/ē/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,man,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,will,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,go,F,/ō/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,sweet,F,/ē/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,shop,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,and,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,a,T,/ā/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,cream,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,pie,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,price,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,is,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,not,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,cheap,F,/ē/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,it,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,quite,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,steep,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,he,F,/ē/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,pay,F,/ā/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,take,F,/ā/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,home,F,/ō/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,I,T,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,sit,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,at,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,stop,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,gaze,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,track,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,hear,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,approaching,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,click,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,clack,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,squint,F,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,my,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,eyes,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,tight,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,so,F,/ō/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,can,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,read,F,/ē/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,sign,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,says,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,in,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,white,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,letters,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,long-i,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,line,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,five,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,cars,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,on,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,that,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,train,F,/ā/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,have,T,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,strange,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,shape,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,size,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,blink,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,wink,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,rub,F,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,two,T,/ū/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,first,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,car,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,pink,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,filled,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,with,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,shy,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,little,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,mice,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,they,F,/ā/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,squiggle,F,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,wiggle,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,dine,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,rice,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,an,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,odd,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,kind,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,of,T,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,makes,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,me,F,/ē/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,look,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,twice,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,to,T,/ū/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,brim,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,peach,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,slice,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,third,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,blue,F,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,stocked,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,kites,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,you,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,fly,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,few,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,escaped,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,now,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,float,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,sky,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,fourth,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,red,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,packed,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,fruit,F,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,ripe,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,limes,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,grapes,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,oranges,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,every,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,good,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,type,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,last,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,has,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,black,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,stripes,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,its,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,side,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,wild,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,zebras,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,tigers,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,blend,F,/ĕ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,hide,F,/ī/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,pulls,F,/ŭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,away,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,fast,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,fading,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,light,F,/ĭ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,wave,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,good-bye,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,as,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,travels,F,/ă/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,from,F,/ŏ/
+10,97,Review of the Long-I Vowel Pairs and Patterns; Sight Word: buy,sight,F,/ĭ/
