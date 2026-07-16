@@ -1690,6 +1690,8 @@
         settingsPanelEl.classList.remove("open");
         settingsPanelEl.setAttribute("aria-hidden", "true");
         confirmClearEl.hidden = true;
+        state.settingsAuthenticated = false;
+        settingsPasswordEl.value = "";
       }
 
       function showPasswordForm() {
