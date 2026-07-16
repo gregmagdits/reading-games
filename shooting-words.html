@@ -224,6 +224,51 @@
         display: none;
       }
 
+      .shooter-picker {
+        position: absolute;
+        right: clamp(14px, 3vw, 28px);
+        top: 50%;
+        z-index: 9;
+        display: grid;
+        gap: 8px;
+        transform: translateY(-50%);
+        pointer-events: auto;
+      }
+
+      .shooter-picker[hidden] {
+        display: none;
+      }
+
+      .shooter-choice-button {
+        width: clamp(108px, 26vw, 124px);
+        min-height: 54px;
+        display: grid;
+        grid-template-columns: 28px 1fr;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border: 3px solid #17202a;
+        border-radius: 8px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(23, 32, 42, 0.2);
+        color: #17202a;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 900;
+        line-height: 1;
+        text-align: left;
+      }
+
+      .shooter-choice-button.is-active {
+        background: #ffef6e;
+      }
+
+      .shooter-choice-icon {
+        font-size: 24px;
+        line-height: 1;
+        text-align: center;
+      }
+
       .settings-toggle {
         position: absolute;
         right: clamp(16px, 3vw, 28px);
@@ -1250,6 +1295,25 @@
 
       <button id="soundButton" class="sound-button" type="button" aria-label="Hear the word again" hidden>🔊</button>
 
+      <div id="shooterPicker" class="shooter-picker" aria-label="Choose shooter" hidden>
+        <button class="shooter-choice-button" type="button" data-shooter-choice="laser" aria-label="Use laser gun">
+          <span class="shooter-choice-icon" aria-hidden="true">⚡</span>
+          <span>Laser</span>
+        </button>
+        <button class="shooter-choice-button" type="button" data-shooter-choice="dragon" aria-label="Use dragon">
+          <span class="shooter-choice-icon" aria-hidden="true">🐉</span>
+          <span>Dragon</span>
+        </button>
+        <button class="shooter-choice-button" type="button" data-shooter-choice="cannon" aria-label="Use cannon">
+          <span class="shooter-choice-icon" aria-hidden="true">●</span>
+          <span>Cannon</span>
+        </button>
+        <button class="shooter-choice-button" type="button" data-shooter-choice="rocket" aria-label="Use rocket">
+          <span class="shooter-choice-icon" aria-hidden="true">🚀</span>
+          <span>Rocket</span>
+        </button>
+      </div>
+
       <div id="gun" class="gun laser-mode" aria-hidden="true">
         <div id="barrel" class="barrel">
           <div class="barrel-tip"></div>
@@ -1413,6 +1477,7 @@
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
       const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket"]);
+      const SHOOTER_PICKER_STREAK_COUNT = 2;
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
       const MIN_PREFIX_LENGTH = 0;
@@ -1461,6 +1526,7 @@
         roundOver: false,
         waitingForWordsToLeave: false,
         correctStreak: 0,
+        shooterPickerBaseStreak: 0,
         roundId: 0,
         animationId: 0,
         pointer: {
@@ -1479,6 +1545,8 @@
       const startScreenEl = document.getElementById("startScreen");
       const startButtonEl = document.getElementById("startButton");
       const soundButtonEl = document.getElementById("soundButton");
+      const shooterPickerEl = document.getElementById("shooterPicker");
+      const shooterChoiceButtonEls = [...document.querySelectorAll("[data-shooter-choice]")];
       const errorEl = document.getElementById("error");
       const gunEl = document.getElementById("gun");
       const barrelEl = document.getElementById("barrel");
@@ -1549,6 +1617,8 @@
         }
 
         state.running = true;
+        state.correctStreak = 0;
+        resetShooterPickerProgress();
         startScreenEl.hidden = true;
         soundButtonEl.hidden = false;
         unlockSpeech();
@@ -1573,6 +1643,7 @@
           !state.running ||
           state.locked ||
           event.target.closest("button") ||
+          event.target.closest(".shooter-picker") ||
           event.target.closest(".settings-panel") ||
           event.target.closest(".settings-toggle")
         ) {
@@ -1594,6 +1665,15 @@
         } else {
           handleWrongGuess();
         }
+      });
+
+      shooterPickerEl.addEventListener("click", (event) => {
+        const button = event.target.closest("[data-shooter-choice]");
+        if (!button) {
+          return;
+        }
+
+        chooseShooterFromPicker(button.dataset.shooterChoice);
       });
 
       settingsToggleEl.addEventListener("click", () => {
@@ -2128,6 +2208,39 @@
         arenaEl.classList.toggle("dragon-scene", shooterType === "dragon");
         arenaEl.classList.toggle("cannon-scene", shooterType === "cannon");
         arenaEl.classList.toggle("rocket-scene", shooterType === "rocket");
+        updateShooterChoiceButtons();
+      }
+
+      function chooseShooterFromPicker(shooterType) {
+        state.shooterType = normalizeShooterType(shooterType);
+        state.shooterPickerBaseStreak = state.correctStreak;
+        setShooterTypeSelection(state.shooterType);
+        applyShooterType();
+        saveSettings();
+        updateAim();
+        hideShooterPicker();
+      }
+
+      function updateShooterChoiceButtons() {
+        shooterChoiceButtonEls.forEach((button) => {
+          const isActive = button.dataset.shooterChoice === state.shooterType;
+          button.classList.toggle("is-active", isActive);
+          button.setAttribute("aria-pressed", String(isActive));
+        });
+      }
+
+      function updateShooterPickerVisibility() {
+        const earnedChoices = state.correctStreak - state.shooterPickerBaseStreak;
+        shooterPickerEl.hidden = !state.running || earnedChoices < SHOOTER_PICKER_STREAK_COUNT;
+      }
+
+      function hideShooterPicker() {
+        shooterPickerEl.hidden = true;
+      }
+
+      function resetShooterPickerProgress() {
+        state.shooterPickerBaseStreak = 0;
+        hideShooterPicker();
       }
 
       function normalizeWordSpeed(speed) {
@@ -2178,6 +2291,8 @@
         state.waitingForWordsToLeave = false;
         state.activeWords = [];
         state.target = null;
+        state.correctStreak = 0;
+        resetShooterPickerProgress();
         wordLayerEl.innerHTML = "";
         laserLayerEl.innerHTML = "";
         clearFireworks();
@@ -2370,9 +2485,11 @@
         if (result === "correct") {
           state.correctStreak += 1;
           explodeWord(hit, state.correctStreak);
+          updateShooterPickerVisibility();
           delay = correctRoundDelay(state.correctStreak);
         } else {
           state.correctStreak = 0;
+          resetShooterPickerProgress();
         }
 
         state.nextRoundTimer = window.setTimeout(startRound, delay);
@@ -2382,6 +2499,7 @@
         state.locked = true;
         state.waitingForWordsToLeave = true;
         state.correctStreak = 0;
+        resetShooterPickerProgress();
         window.speechSynthesis?.cancel();
 
         state.activeWords.forEach((token) => {
