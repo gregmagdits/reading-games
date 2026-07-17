@@ -380,6 +380,7 @@
       }
 
       .metrics-chart-scroll {
+        position: relative;
         max-width: 100%;
         overflow-x: auto;
         border: 2px solid #17202a;
@@ -391,6 +392,44 @@
         display: block;
         min-width: 100%;
         height: auto;
+      }
+
+      .metrics-chart-bar {
+        cursor: help;
+      }
+
+      .metrics-chart-bar:hover,
+      .metrics-chart-bar:focus {
+        filter: brightness(1.08);
+        outline: none;
+        stroke-width: 2.5;
+      }
+
+      .metrics-chart-tooltip {
+        position: absolute;
+        z-index: 4;
+        max-width: min(260px, calc(100% - 24px));
+        border: 2px solid #17202a;
+        border-radius: 8px;
+        padding: 9px 11px;
+        background: #ffffff;
+        box-shadow: 0 10px 24px rgba(23, 32, 42, 0.24);
+        color: #17202a;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.35;
+        overflow-wrap: anywhere;
+        pointer-events: none;
+        transform: translate(-50%, calc(-100% - 10px));
+      }
+
+      .metrics-chart-tooltip[hidden] {
+        display: none;
+      }
+
+      .metrics-tooltip-title {
+        margin-bottom: 4px;
+        font-weight: 900;
       }
 
       .metrics-empty {
@@ -3298,7 +3337,7 @@
             margin.top + plotHeight - 8
           );
 
-          svg.appendChild(createSvgElement("rect", {
+          svg.appendChild(createMetricsBar(summary, "incorrect", {
             x: redX,
             y: baselineY - incorrectHeight,
             width: barWidth,
@@ -3307,7 +3346,7 @@
             stroke: "#17202a",
             "stroke-width": 1.5
           }));
-          svg.appendChild(createSvgElement("rect", {
+          svg.appendChild(createMetricsBar(summary, "correct", {
             x: blueX,
             y: baselineY - correctHeight,
             width: barWidth,
@@ -3338,8 +3377,14 @@
 
         const scroll = document.createElement("div");
         scroll.className = "metrics-chart-scroll";
+        const tooltip = document.createElement("div");
+        tooltip.className = "metrics-chart-tooltip";
+        tooltip.hidden = true;
+        tooltip.setAttribute("role", "tooltip");
         scroll.appendChild(svg);
+        scroll.appendChild(tooltip);
         metricsChartOutputEl.appendChild(scroll);
+        wireMetricsTooltips(scroll, tooltip);
       }
 
       function summarizeMetricsByLesson(metrics) {
@@ -3355,15 +3400,20 @@
             lessonGroups.set(lesson, {
               lesson,
               correct: 0,
-              incorrect: 0
+              incorrect: 0,
+              correctWords: [],
+              incorrectWords: []
             });
           }
 
           const group = lessonGroups.get(lesson);
+          const word = normalizeMetricWord(metric.word);
           if (isCorrectMetric(metric.correct)) {
             group.correct += 1;
+            group.correctWords.push(word);
           } else {
             group.incorrect += 1;
+            group.incorrectWords.push(word);
           }
         });
 
@@ -3377,6 +3427,96 @@
             };
           })
           .sort((a, b) => a.percent - b.percent || a.lesson - b.lesson);
+      }
+
+      function createMetricsBar(summary, result, attributes) {
+        const isCorrect = result === "correct";
+        const count = isCorrect ? summary.correct : summary.incorrect;
+        const words = isCorrect ? summary.correctWords : summary.incorrectWords;
+        const wordSummary = formatMetricWordSummary(words);
+        const label = `Lesson ${summary.lesson} ${result} guesses: ${count}. ${wordSummary}`;
+        const bar = createSvgElement("rect", {
+          ...attributes,
+          class: "metrics-chart-bar",
+          tabindex: "0",
+          role: "img",
+          "aria-label": label,
+          "data-lesson": summary.lesson,
+          "data-result": result,
+          "data-count": count,
+          "data-words": wordSummary
+        });
+        const title = createSvgElement("title");
+        title.textContent = label;
+        bar.appendChild(title);
+        return bar;
+      }
+
+      function wireMetricsTooltips(scroll, tooltip) {
+        scroll.querySelectorAll(".metrics-chart-bar").forEach((bar) => {
+          bar.addEventListener("mouseenter", (event) => showMetricsTooltip(event, scroll, tooltip));
+          bar.addEventListener("mousemove", (event) => positionMetricsTooltip(event, scroll, tooltip));
+          bar.addEventListener("mouseleave", () => hideMetricsTooltip(tooltip));
+          bar.addEventListener("focus", (event) => showMetricsTooltip(event, scroll, tooltip));
+          bar.addEventListener("blur", () => hideMetricsTooltip(tooltip));
+        });
+      }
+
+      function showMetricsTooltip(event, scroll, tooltip) {
+        const bar = event.currentTarget;
+        const resultLabel = bar.dataset.result === "correct" ? "Correct" : "Incorrect";
+        const title = document.createElement("div");
+        const words = document.createElement("div");
+
+        title.className = "metrics-tooltip-title";
+        title.textContent = `Lesson ${bar.dataset.lesson}: ${resultLabel} (${bar.dataset.count})`;
+        words.textContent = bar.dataset.words;
+        tooltip.replaceChildren(title, words);
+        tooltip.hidden = false;
+        positionMetricsTooltip(event, scroll, tooltip);
+      }
+
+      function positionMetricsTooltip(event, scroll, tooltip) {
+        const scrollRect = scroll.getBoundingClientRect();
+        const sourceRect = event.currentTarget.getBoundingClientRect();
+        const clientX = Number.isFinite(event.clientX)
+          ? event.clientX
+          : sourceRect.left + sourceRect.width / 2;
+        const clientY = Number.isFinite(event.clientY)
+          ? event.clientY
+          : sourceRect.top;
+        const minLeft = scroll.scrollLeft + 130;
+        const maxLeft = scroll.scrollLeft + scroll.clientWidth - 130;
+        const left = clientX - scrollRect.left + scroll.scrollLeft;
+        const top = clientY - scrollRect.top + scroll.scrollTop;
+
+        tooltip.style.left = `${clamp(left, minLeft, Math.max(minLeft, maxLeft))}px`;
+        tooltip.style.top = `${Math.max(scroll.scrollTop + 42, top)}px`;
+      }
+
+      function hideMetricsTooltip(tooltip) {
+        tooltip.hidden = true;
+      }
+
+      function normalizeMetricWord(word) {
+        const value = String(word ?? "").trim();
+        return value || "(unknown word)";
+      }
+
+      function formatMetricWordSummary(words) {
+        if (words.length === 0) {
+          return "No words.";
+        }
+
+        const counts = new Map();
+        words.forEach((word) => {
+          counts.set(word, (counts.get(word) || 0) + 1);
+        });
+
+        return [...counts.entries()]
+          .sort((a, b) => a[0].localeCompare(b[0], undefined, { sensitivity: "base" }))
+          .map(([word, count]) => count > 1 ? `${word} (${count})` : word)
+          .join(", ");
       }
 
       function isCorrectMetric(value) {
