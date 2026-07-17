@@ -2177,14 +2177,13 @@
         if (
           !state.running ||
           state.locked ||
-          event.target.closest("button") ||
-          event.target.closest(".shooter-picker") ||
-          event.target.closest(".settings-panel") ||
-          event.target.closest(".settings-toggle")
+          !isAllowedShotPointer(event) ||
+          isShotControlTarget(event.target)
         ) {
           return;
         }
 
+        event.preventDefault();
         state.pointer.x = event.clientX;
         state.pointer.y = event.clientY;
         updateAim();
@@ -2202,6 +2201,12 @@
         } else {
           recordGuess(false);
           handleWrongGuess();
+        }
+      });
+
+      arenaEl.addEventListener("contextmenu", (event) => {
+        if (isGameShotTarget(event.target)) {
+          event.preventDefault();
         }
       });
 
@@ -3634,6 +3639,26 @@
         }
 
         window.requestAnimationFrame(drawFireworks);
+      }
+
+      function isAllowedShotPointer(event) {
+        return event.pointerType !== "mouse" || event.button === 0 || event.button === 2;
+      }
+
+      function isShotControlTarget(target) {
+        return (
+          target instanceof Element &&
+          (
+            target.closest("button") ||
+            target.closest(".shooter-picker") ||
+            target.closest(".settings-panel") ||
+            target.closest(".settings-toggle")
+          )
+        );
+      }
+
+      function isGameShotTarget(target) {
+        return state.running && !isShotControlTarget(target);
       }
 
       function findHitWords(x, y) {
