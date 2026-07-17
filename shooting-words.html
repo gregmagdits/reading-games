@@ -333,6 +333,18 @@
         line-height: 1.1;
       }
 
+      .settings-section {
+        display: grid;
+        gap: 10px;
+        padding-top: 4px;
+      }
+
+      .settings-section-title {
+        margin: 0;
+        font-size: 20px;
+        line-height: 1.1;
+      }
+
       .field {
         display: grid;
         gap: 7px;
@@ -1794,6 +1806,15 @@
             <button id="clearDatabaseButton" class="settings-action danger" type="button">Clear database</button>
           </div>
           <input id="importFileInput" type="file" accept=".csv,text/csv" hidden>
+
+          <section class="settings-section" aria-labelledby="metricsSettingsTitle">
+            <h3 id="metricsSettingsTitle" class="settings-section-title">Metrics</h3>
+            <div class="settings-actions">
+              <button id="importMetricsButton" class="settings-action" type="button">Import metrics</button>
+              <button id="exportMetricsButton" class="settings-action" type="button">Export metrics</button>
+            </div>
+            <input id="importMetricsFileInput" type="file" accept=".csv,text/csv" hidden>
+          </section>
 
           <div id="confirmClear" class="confirm-clear" hidden>
             <div>Are you sure you want to clear the data?</div>
