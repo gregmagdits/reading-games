@@ -1923,8 +1923,9 @@
       const FIREWORK_SERIES_GAP_MS = 120;
       const SETTINGS_PASSWORD = "password";
       const DB_NAME = "shootingWordsReadingDb";
-      const DB_VERSION = 1;
+      const DB_VERSION = 2;
       const WORD_STORE = "words";
+      const METRICS_STORE = "metrics";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
       const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket", "bow", "cowboy"]);
@@ -1958,6 +1959,7 @@
 
       const state = {
         words: [],
+        wordLessons: new Map(),
         db: null,
         dbRows: [],
         currentFilters: {
@@ -2117,8 +2119,10 @@
 
         const correctHit = hits.find((token) => token.word === state.target.word);
         if (correctHit) {
+          recordGuess(true);
           finishRound("correct", correctHit);
         } else {
+          recordGuess(false);
           handleWrongGuess();
         }
       });
@@ -2176,6 +2180,7 @@
           await replaceRows(rows);
           state.dbRows = rows;
           state.words = [];
+          state.wordLessons = new Map();
           state.currentFilters = {
             sections: [],
             lessons: []
@@ -2202,6 +2207,7 @@
           await clearRows();
           state.dbRows = [];
           state.words = [];
+          state.wordLessons = new Map();
           state.currentFilters = {
             sections: [],
             lessons: []
@@ -2298,6 +2304,12 @@
             if (!db.objectStoreNames.contains(WORD_STORE)) {
               db.createObjectStore(WORD_STORE, { keyPath: "id", autoIncrement: true });
             }
+            if (!db.objectStoreNames.contains(METRICS_STORE)) {
+              const metricsStore = db.createObjectStore(METRICS_STORE, { keyPath: "id", autoIncrement: true });
+              metricsStore.createIndex("timestamp", "timestamp");
+              metricsStore.createIndex("word", "word");
+              metricsStore.createIndex("lesson", "lesson");
+            }
           };
 
           request.onsuccess = () => resolve(request.result);
@@ -2335,6 +2347,15 @@
           transaction.objectStore(WORD_STORE).clear();
           transaction.oncomplete = () => resolve();
           transaction.onerror = () => reject(transaction.error || new Error("Could not clear IndexedDB."));
+        });
+      }
+
+      function addMetric(metric) {
+        return new Promise((resolve, reject) => {
+          const transaction = state.db.transaction(METRICS_STORE, "readwrite");
+          transaction.objectStore(METRICS_STORE).add(metric);
+          transaction.oncomplete = () => resolve();
+          transaction.onerror = () => reject(transaction.error || new Error("Could not save metric."));
         });
       }
 
@@ -2516,7 +2537,7 @@
         state.wordSpeed = wordSpeed;
         state.prefixMinLength = prefixRange.min;
         state.prefixMaxLength = prefixRange.max;
-        state.words = selectedWords;
+        setSelectedWordRows(selectedRows);
         saveSettings();
         applyShooterType();
         updateAim();
@@ -2528,6 +2549,7 @@
       function applyCurrentFilters() {
         if (state.dbRows.length === 0) {
           state.words = [];
+          state.wordLessons = new Map();
           startButtonEl.disabled = true;
           return;
         }
@@ -2543,7 +2565,7 @@
           selectedWords = uniqueWords(selectedRows);
         }
 
-        state.words = selectedWords;
+        setSelectedWordRows(selectedRows);
         startButtonEl.disabled = selectedWords.length < MIN_WORDS;
       }
 
@@ -2577,6 +2599,30 @@
 
       function uniqueWords(rows) {
         return [...new Set(rows.map((row) => row.word.trim()).filter(Boolean))];
+      }
+
+      function setSelectedWordRows(rows) {
+        state.words = uniqueWords(rows);
+        state.wordLessons = lessonLookup(rows);
+      }
+
+      function lessonLookup(rows) {
+        const lessons = new Map();
+
+        rows.forEach((row) => {
+          const word = row.word.trim();
+          if (!word || lessons.has(word)) {
+            return;
+          }
+
+          lessons.set(word, row.lesson);
+        });
+
+        return lessons;
+      }
+
+      function lessonForWord(word) {
+        return state.wordLessons.get(word) || null;
       }
 
       function normalizeStoredValues(values, allowedValues) {
@@ -2789,7 +2835,10 @@
 
       function pickRoundWords() {
         const count = randomInt(MIN_WORDS, Math.min(MAX_WORDS, state.words.length));
-        return pickWordsByPrefix(count).map((word) => ({ word }));
+        return pickWordsByPrefix(count).map((word) => ({
+          word,
+          lesson: lessonForWord(word)
+        }));
       }
 
       function pickWordsByPrefix(count) {
@@ -2964,6 +3013,25 @@
           if (!token.done && !token.exploding) {
             token.el.classList.add("flash");
           }
+        });
+      }
+
+      function recordGuess(correct) {
+        if (!state.db || !state.target) {
+          return;
+        }
+
+        const lesson = state.target.lesson ?? lessonForWord(state.target.word);
+        const lessonNumber = Number(lesson);
+        const metric = {
+          timestamp: new Date().toISOString(),
+          word: state.target.word,
+          lesson: lesson !== null && lesson !== "" && Number.isInteger(lessonNumber) ? lessonNumber : null,
+          correct: Boolean(correct)
+        };
+
+        addMetric(metric).catch((error) => {
+          console.warn(error.message || "Could not save metric.");
         });
       }
 
