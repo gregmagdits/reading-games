@@ -22,6 +22,8 @@
         --cannon-wheel: #6f4628;
         --rocket-red: #ef476f;
         --rocket-blue: #70d6ff;
+        --bow-wood: #9b5a32;
+        --bow-dark: #5b341f;
         --orange: #f18f01;
       }
 
@@ -727,6 +729,55 @@
         animation: rocket-trail-fade 430ms ease-out forwards;
       }
 
+      .arrow-shot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 84px;
+        height: 18px;
+        animation: arrow-flight 360ms cubic-bezier(0.18, 0.72, 0.28, 1) forwards;
+        filter: drop-shadow(0 5px 8px rgba(0, 0, 0, 0.26));
+      }
+
+      .arrow-shot::before {
+        content: "";
+        position: absolute;
+        left: 2px;
+        top: 50%;
+        width: 66px;
+        height: 5px;
+        border: 2px solid #17202a;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #f1c27d, #8a5a35);
+        transform: translateY(-50%);
+      }
+
+      .arrow-shot::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 0;
+        height: 0;
+        border-top: 9px solid transparent;
+        border-bottom: 9px solid transparent;
+        border-left: 18px solid #d6a23a;
+        filter: drop-shadow(0 0 0 #17202a);
+        transform: translateY(-50%);
+      }
+
+      .arrow-feather {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        width: 18px;
+        height: 18px;
+        background:
+          linear-gradient(135deg, transparent 0 42%, #ef476f 43% 100%),
+          linear-gradient(45deg, transparent 0 42%, #70d6ff 43% 100%);
+        transform: translateY(-50%);
+      }
+
       .gun {
         position: absolute;
         left: 50%;
@@ -816,7 +867,10 @@
       .gun.dragon-mode .stand,
       .gun.rocket-mode .barrel,
       .gun.rocket-mode .gun-body,
-      .gun.rocket-mode .stand {
+      .gun.rocket-mode .stand,
+      .gun.bow-mode .barrel,
+      .gun.bow-mode .gun-body,
+      .gun.bow-mode .stand {
         display: none;
       }
 
@@ -828,19 +882,29 @@
       .gun.cannon-mode .dragon-pivot,
       .gun.rocket-mode .dragon-head,
       .gun.rocket-mode .dragon-neck,
-      .gun.rocket-mode .dragon-pivot {
+      .gun.rocket-mode .dragon-pivot,
+      .gun.bow-mode .dragon-head,
+      .gun.bow-mode .dragon-neck,
+      .gun.bow-mode .dragon-pivot {
         display: none;
       }
 
       .rocket-vehicle,
       .rocket-pivot,
-      .launch-pad {
+      .launch-pad,
+      .bow-weapon,
+      .bow-pivot {
         display: none;
       }
 
       .gun.rocket-mode .rocket-vehicle,
       .gun.rocket-mode .rocket-pivot,
       .gun.rocket-mode .launch-pad {
+        display: block;
+      }
+
+      .gun.bow-mode .bow-weapon,
+      .gun.bow-mode .bow-pivot {
         display: block;
       }
 
@@ -971,6 +1035,87 @@
 
       .launch-pad::after {
         right: 18px;
+      }
+
+      .bow-weapon {
+        position: absolute;
+        left: 50%;
+        bottom: 26px;
+        width: clamp(88px, 13vmin, 122px);
+        height: clamp(124px, 18vmin, 164px);
+        transform: translateX(-50%) rotate(0rad);
+        transform-origin: 50% calc(100% - 14px);
+        z-index: 3;
+      }
+
+      .bow-arc {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        width: 54%;
+        height: 100%;
+        border: 8px solid var(--bow-dark);
+        border-left: 0;
+        border-radius: 0 999px 999px 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0));
+        transform: translateX(-10%);
+      }
+
+      .bow-string {
+        position: absolute;
+        left: 50%;
+        top: 8px;
+        width: 4px;
+        height: calc(100% - 16px);
+        border-radius: 999px;
+        background: #f8edc8;
+        transform: translateX(-50%);
+        box-shadow: 0 0 0 2px rgba(23, 32, 42, 0.18);
+      }
+
+      .bow-ready-arrow {
+        position: absolute;
+        left: 50%;
+        top: 5px;
+        width: 6px;
+        height: calc(100% - 28px);
+        border: 2px solid #17202a;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #e3b46e, #734a2b);
+        transform: translateX(-50%);
+      }
+
+      .bow-ready-arrow::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        top: -15px;
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 18px solid #d6a23a;
+        transform: translateX(-50%);
+      }
+
+      .bow-grip {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        width: 24px;
+        height: 38px;
+        border: 4px solid #17202a;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #c98442, var(--bow-wood));
+        transform: translate(-50%, -50%);
+      }
+
+      .bow-pivot {
+        position: absolute;
+        left: 50%;
+        bottom: 40px;
+        width: 1px;
+        height: 1px;
       }
 
       .gun.cannon-mode .barrel {
@@ -1255,6 +1400,18 @@
         }
       }
 
+      @keyframes arrow-flight {
+        0% {
+          opacity: 1;
+          transform: var(--arrow-start-transform) scale(0.92);
+        }
+
+        100% {
+          opacity: 0.96;
+          transform: var(--arrow-end-transform) scale(1);
+        }
+      }
+
       @keyframes word-flash {
         0%,
         100% {
@@ -1312,6 +1469,10 @@
           <span class="shooter-choice-icon" aria-hidden="true">🚀</span>
           <span>Rocket</span>
         </button>
+        <button class="shooter-choice-button" type="button" data-shooter-choice="bow" aria-label="Use bow">
+          <span class="shooter-choice-icon" aria-hidden="true">🏹</span>
+          <span>Bow</span>
+        </button>
       </div>
 
       <div id="gun" class="gun laser-mode" aria-hidden="true">
@@ -1331,6 +1492,13 @@
         </div>
         <div id="rocketPivot" class="rocket-pivot"></div>
         <div class="launch-pad"></div>
+        <div id="bowWeapon" class="bow-weapon">
+          <div class="bow-arc"></div>
+          <div class="bow-string"></div>
+          <div class="bow-ready-arrow"></div>
+          <div class="bow-grip"></div>
+        </div>
+        <div id="bowPivot" class="bow-pivot"></div>
         <div class="dragon-neck"></div>
         <div id="dragonHead" class="dragon-head">
           <div class="dragon-crest"></div>
@@ -1436,6 +1604,10 @@
               <input type="radio" name="shooterType" value="rocket">
               Rocket
             </label>
+            <label class="radio-option">
+              <input type="radio" name="shooterType" value="bow">
+              Bow
+            </label>
           </fieldset>
 
           <div class="speed-control">
@@ -1476,7 +1648,7 @@
       const WORD_STORE = "words";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
-      const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket"]);
+      const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket", "bow"]);
       const SHOOTER_PICKER_STREAK_COUNT = 2;
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
@@ -1555,6 +1727,8 @@
       const dragonPivotEl = document.getElementById("dragonPivot");
       const rocketVehicleEl = document.getElementById("rocketVehicle");
       const rocketPivotEl = document.getElementById("rocketPivot");
+      const bowWeaponEl = document.getElementById("bowWeapon");
+      const bowPivotEl = document.getElementById("bowPivot");
       const settingsToggleEl = document.getElementById("settingsToggle");
       const settingsPanelEl = document.getElementById("settingsPanel");
       const passwordFormEl = document.getElementById("passwordForm");
@@ -2205,6 +2379,7 @@
         gunEl.classList.toggle("dragon-mode", shooterType === "dragon");
         gunEl.classList.toggle("cannon-mode", shooterType === "cannon");
         gunEl.classList.toggle("rocket-mode", shooterType === "rocket");
+        gunEl.classList.toggle("bow-mode", shooterType === "bow");
         arenaEl.classList.toggle("laser-scene", shooterType === "laser");
         arenaEl.classList.toggle("dragon-scene", shooterType === "dragon");
         arenaEl.classList.toggle("cannon-scene", shooterType === "cannon");
@@ -2666,6 +2841,11 @@
           return;
         }
 
+        if (state.shooterType === "bow") {
+          shootArrow(x, y);
+          return;
+        }
+
         shootLaser(x, y);
       }
 
@@ -2789,6 +2969,24 @@
         }, 540);
       }
 
+      function shootArrow(x, y) {
+        const { x: tipX, y: tipY } = getBowTip();
+        const angle = Math.atan2(y - tipY, x - tipX);
+        const arrow = document.createElement("div");
+        const feather = document.createElement("div");
+        const startTransform = `translate(${tipX}px, ${tipY}px) translate(-50%, -50%) rotate(${angle}rad)`;
+        const endTransform = `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${angle}rad)`;
+
+        arrow.className = "arrow-shot";
+        arrow.style.setProperty("--arrow-start-transform", startTransform);
+        arrow.style.setProperty("--arrow-end-transform", endTransform);
+        feather.className = "arrow-feather";
+        arrow.appendChild(feather);
+        laserLayerEl.appendChild(arrow);
+
+        window.setTimeout(() => arrow.remove(), 380);
+      }
+
       function updateAim() {
         const pivot = getAimPivot();
         const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
@@ -2798,6 +2996,8 @@
           dragonHeadEl.style.transform = transform;
         } else if (state.shooterType === "rocket") {
           rocketVehicleEl.style.transform = transform;
+        } else if (state.shooterType === "bow") {
+          bowWeaponEl.style.transform = transform;
         } else {
           barrelEl.style.transform = transform;
         }
@@ -2810,6 +3010,10 @@
 
         if (state.shooterType === "rocket") {
           return getRocketPivot();
+        }
+
+        if (state.shooterType === "bow") {
+          return getBowPivot();
         }
 
         return getGunPivot();
@@ -2865,6 +3069,25 @@
         const pivot = getRocketPivot();
         const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
         const length = rocketVehicleEl.offsetHeight - 10;
+
+        return {
+          x: pivot.x + Math.cos(angle) * length,
+          y: pivot.y + Math.sin(angle) * length
+        };
+      }
+
+      function getBowPivot() {
+        const rect = bowPivotEl.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+      }
+
+      function getBowTip() {
+        const pivot = getBowPivot();
+        const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
+        const length = bowWeaponEl.offsetHeight - 8;
 
         return {
           x: pivot.x + Math.cos(angle) * length,
