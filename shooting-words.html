@@ -24,6 +24,10 @@
         --rocket-blue: #70d6ff;
         --bow-wood: #9b5a32;
         --bow-dark: #5b341f;
+        --cowboy-hat: #8a5a35;
+        --cowboy-shirt: #d62828;
+        --cowboy-denim: #2f5d8c;
+        --skin: #f1c27d;
         --orange: #f18f01;
       }
 
@@ -778,6 +782,32 @@
         transform: translateY(-50%);
       }
 
+      .bullet-shot {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 22px;
+        height: 11px;
+        border: 2px solid #17202a;
+        border-radius: 999px 70% 70% 999px;
+        background: linear-gradient(90deg, #fef3c7, #d6a23a 54%, #8a5a12);
+        box-shadow: 0 0 12px rgba(255, 239, 110, 0.74);
+        animation: bullet-flight 230ms cubic-bezier(0.18, 0.72, 0.28, 1) forwards;
+      }
+
+      .six-shooter-flash {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 34px;
+        height: 34px;
+        background:
+          radial-gradient(circle, #ffffff 0 16%, #ffef6e 17% 38%, #ff7a1a 39% 62%, rgba(255, 122, 26, 0) 63%);
+        clip-path: polygon(50% 0, 60% 32%, 95% 18%, 70% 50%, 100% 62%, 62% 64%, 72% 100%, 50% 72%, 24% 100%, 38% 64%, 0 62%, 30% 50%, 5% 18%, 40% 32%);
+        transform: translate(-50%, -50%) rotate(var(--flash-rotation));
+        animation: six-shooter-flash-fade 180ms ease-out forwards;
+      }
+
       .gun {
         position: absolute;
         left: 50%;
@@ -870,7 +900,10 @@
       .gun.rocket-mode .stand,
       .gun.bow-mode .barrel,
       .gun.bow-mode .gun-body,
-      .gun.bow-mode .stand {
+      .gun.bow-mode .stand,
+      .gun.cowboy-mode .barrel,
+      .gun.cowboy-mode .gun-body,
+      .gun.cowboy-mode .stand {
         display: none;
       }
 
@@ -885,7 +918,10 @@
       .gun.rocket-mode .dragon-pivot,
       .gun.bow-mode .dragon-head,
       .gun.bow-mode .dragon-neck,
-      .gun.bow-mode .dragon-pivot {
+      .gun.bow-mode .dragon-pivot,
+      .gun.cowboy-mode .dragon-head,
+      .gun.cowboy-mode .dragon-neck,
+      .gun.cowboy-mode .dragon-pivot {
         display: none;
       }
 
@@ -893,7 +929,9 @@
       .rocket-pivot,
       .launch-pad,
       .bow-weapon,
-      .bow-pivot {
+      .bow-pivot,
+      .cowboy-figure,
+      .cowboy-pivot {
         display: none;
       }
 
@@ -905,6 +943,11 @@
 
       .gun.bow-mode .bow-weapon,
       .gun.bow-mode .bow-pivot {
+        display: block;
+      }
+
+      .gun.cowboy-mode .cowboy-figure,
+      .gun.cowboy-mode .cowboy-pivot {
         display: block;
       }
 
@@ -1114,6 +1157,183 @@
         position: absolute;
         left: 50%;
         bottom: 40px;
+        width: 1px;
+        height: 1px;
+      }
+
+      .cowboy-figure {
+        position: absolute;
+        left: 50%;
+        bottom: 0;
+        width: clamp(128px, 19vmin, 174px);
+        height: clamp(144px, 21vmin, 190px);
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+
+      .cowboy-head {
+        position: absolute;
+        left: 50%;
+        bottom: 88px;
+        width: clamp(42px, 6.5vmin, 58px);
+        height: clamp(42px, 6.5vmin, 58px);
+        border: 4px solid #17202a;
+        border-radius: 48% 48% 52% 52%;
+        background: var(--skin);
+        transform: translateX(-50%);
+        z-index: 3;
+      }
+
+      .cowboy-head::before,
+      .cowboy-head::after {
+        content: "";
+        position: absolute;
+        top: 42%;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #17202a;
+      }
+
+      .cowboy-head::before {
+        left: 28%;
+      }
+
+      .cowboy-head::after {
+        right: 28%;
+      }
+
+      .cowboy-hat {
+        position: absolute;
+        left: 50%;
+        bottom: 126px;
+        width: clamp(78px, 11vmin, 106px);
+        height: 22px;
+        border: 4px solid #17202a;
+        border-radius: 999px;
+        background: var(--cowboy-hat);
+        transform: translateX(-50%);
+        z-index: 4;
+      }
+
+      .cowboy-hat::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 9px;
+        width: 48%;
+        height: 32px;
+        border: 4px solid #17202a;
+        border-bottom: 0;
+        border-radius: 22px 22px 8px 8px;
+        background: linear-gradient(180deg, #b77944, var(--cowboy-hat));
+        transform: translateX(-50%);
+      }
+
+      .cowboy-body {
+        position: absolute;
+        left: 50%;
+        bottom: 32px;
+        width: clamp(68px, 10vmin, 92px);
+        height: clamp(66px, 10vmin, 88px);
+        border: 4px solid #17202a;
+        border-radius: 24px 24px 12px 12px;
+        background:
+          linear-gradient(90deg, transparent 0 46%, #ffffff 47% 53%, transparent 54% 100%),
+          linear-gradient(180deg, #ff595e, var(--cowboy-shirt));
+        transform: translateX(-50%);
+        z-index: 2;
+      }
+
+      .cowboy-body::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -20px;
+        width: 112%;
+        height: 22px;
+        border: 4px solid #17202a;
+        border-radius: 10px;
+        background: linear-gradient(90deg, var(--cowboy-denim) 0 45%, #17202a 46% 54%, var(--cowboy-denim) 55% 100%);
+        transform: translateX(-50%);
+      }
+
+      .cowboy-arm {
+        position: absolute;
+        left: calc(50% + 18px);
+        bottom: 92px;
+        width: clamp(112px, 16vmin, 148px);
+        height: 30px;
+        transform: translateY(-50%) rotate(0rad);
+        transform-origin: 12px 50%;
+        z-index: 5;
+      }
+
+      .cowboy-sleeve {
+        position: absolute;
+        left: 0;
+        top: 7px;
+        width: 52px;
+        height: 17px;
+        border: 3px solid #17202a;
+        border-radius: 999px;
+        background: var(--cowboy-shirt);
+      }
+
+      .cowboy-hand {
+        position: absolute;
+        left: 42px;
+        top: 4px;
+        width: 22px;
+        height: 22px;
+        border: 3px solid #17202a;
+        border-radius: 50%;
+        background: var(--skin);
+        z-index: 2;
+      }
+
+      .six-shooter {
+        position: absolute;
+        left: 56px;
+        top: 6px;
+        width: 42px;
+        height: 18px;
+        border: 3px solid #17202a;
+        border-radius: 12px 8px 8px 12px;
+        background: linear-gradient(180deg, #c5ced8, #5b6470);
+        z-index: 3;
+      }
+
+      .six-shooter::before {
+        content: "";
+        position: absolute;
+        left: 32px;
+        top: 4px;
+        width: 36px;
+        height: 8px;
+        border: 3px solid #17202a;
+        border-radius: 999px;
+        background: linear-gradient(180deg, #dbe3ec, #65717d);
+      }
+
+      .six-shooter::after {
+        content: "";
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        width: 15px;
+        height: 24px;
+        border: 3px solid #17202a;
+        border-top: 0;
+        border-radius: 4px 4px 999px 999px;
+        background: linear-gradient(180deg, #8a5a35, #4f321d);
+        transform: rotate(-18deg);
+      }
+
+      .cowboy-pivot {
+        position: absolute;
+        left: calc(50% + 30px);
+        bottom: 92px;
         width: 1px;
         height: 1px;
       }
@@ -1412,6 +1632,25 @@
         }
       }
 
+      @keyframes bullet-flight {
+        0% {
+          opacity: 1;
+          transform: var(--bullet-start-transform) scale(0.85);
+        }
+
+        100% {
+          opacity: 0.94;
+          transform: var(--bullet-end-transform) scale(1);
+        }
+      }
+
+      @keyframes six-shooter-flash-fade {
+        to {
+          opacity: 0;
+          transform: translate(-50%, -50%) rotate(var(--flash-rotation)) scale(1.8);
+        }
+      }
+
       @keyframes word-flash {
         0%,
         100% {
@@ -1473,6 +1712,10 @@
           <span class="shooter-choice-icon" aria-hidden="true">🏹</span>
           <span>Bow</span>
         </button>
+        <button class="shooter-choice-button" type="button" data-shooter-choice="cowboy" aria-label="Use cowboy">
+          <span class="shooter-choice-icon" aria-hidden="true">🤠</span>
+          <span>Cowboy</span>
+        </button>
       </div>
 
       <div id="gun" class="gun laser-mode" aria-hidden="true">
@@ -1499,6 +1742,17 @@
           <div class="bow-grip"></div>
         </div>
         <div id="bowPivot" class="bow-pivot"></div>
+        <div class="cowboy-figure">
+          <div class="cowboy-hat"></div>
+          <div class="cowboy-head"></div>
+          <div class="cowboy-body"></div>
+          <div id="cowboyArm" class="cowboy-arm">
+            <div class="cowboy-sleeve"></div>
+            <div class="cowboy-hand"></div>
+            <div class="six-shooter"></div>
+          </div>
+        </div>
+        <div id="cowboyPivot" class="cowboy-pivot"></div>
         <div class="dragon-neck"></div>
         <div id="dragonHead" class="dragon-head">
           <div class="dragon-crest"></div>
@@ -1608,6 +1862,10 @@
               <input type="radio" name="shooterType" value="bow">
               Bow
             </label>
+            <label class="radio-option">
+              <input type="radio" name="shooterType" value="cowboy">
+              Cowboy
+            </label>
           </fieldset>
 
           <div class="speed-control">
@@ -1648,7 +1906,7 @@
       const WORD_STORE = "words";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
-      const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket", "bow"]);
+      const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket", "bow", "cowboy"]);
       const SHOOTER_PICKER_STREAK_COUNT = 2;
       const MIN_WORD_SPEED = 1;
       const MAX_WORD_SPEED = 5;
@@ -1729,6 +1987,8 @@
       const rocketPivotEl = document.getElementById("rocketPivot");
       const bowWeaponEl = document.getElementById("bowWeapon");
       const bowPivotEl = document.getElementById("bowPivot");
+      const cowboyArmEl = document.getElementById("cowboyArm");
+      const cowboyPivotEl = document.getElementById("cowboyPivot");
       const settingsToggleEl = document.getElementById("settingsToggle");
       const settingsPanelEl = document.getElementById("settingsPanel");
       const passwordFormEl = document.getElementById("passwordForm");
@@ -2380,6 +2640,7 @@
         gunEl.classList.toggle("cannon-mode", shooterType === "cannon");
         gunEl.classList.toggle("rocket-mode", shooterType === "rocket");
         gunEl.classList.toggle("bow-mode", shooterType === "bow");
+        gunEl.classList.toggle("cowboy-mode", shooterType === "cowboy");
         arenaEl.classList.toggle("laser-scene", shooterType === "laser");
         arenaEl.classList.toggle("dragon-scene", shooterType === "dragon");
         arenaEl.classList.toggle("cannon-scene", shooterType === "cannon");
@@ -2846,6 +3107,11 @@
           return;
         }
 
+        if (state.shooterType === "cowboy") {
+          shootSixShooter(x, y);
+          return;
+        }
+
         shootLaser(x, y);
       }
 
@@ -2987,6 +3253,31 @@
         window.setTimeout(() => arrow.remove(), 380);
       }
 
+      function shootSixShooter(x, y) {
+        const { x: tipX, y: tipY } = getCowboyTip();
+        const angle = Math.atan2(y - tipY, x - tipX);
+        const bullet = document.createElement("div");
+        const flash = document.createElement("div");
+        const startTransform = `translate(${tipX}px, ${tipY}px) translate(-50%, -50%) rotate(${angle}rad)`;
+        const endTransform = `translate(${x}px, ${y}px) translate(-50%, -50%) rotate(${angle}rad)`;
+
+        bullet.className = "bullet-shot";
+        bullet.style.setProperty("--bullet-start-transform", startTransform);
+        bullet.style.setProperty("--bullet-end-transform", endTransform);
+        laserLayerEl.appendChild(bullet);
+
+        flash.className = "six-shooter-flash";
+        flash.style.left = `${tipX}px`;
+        flash.style.top = `${tipY}px`;
+        flash.style.setProperty("--flash-rotation", `${angle}rad`);
+        laserLayerEl.appendChild(flash);
+
+        window.setTimeout(() => {
+          bullet.remove();
+          flash.remove();
+        }, 260);
+      }
+
       function updateAim() {
         const pivot = getAimPivot();
         const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
@@ -2998,6 +3289,8 @@
           rocketVehicleEl.style.transform = transform;
         } else if (state.shooterType === "bow") {
           bowWeaponEl.style.transform = transform;
+        } else if (state.shooterType === "cowboy") {
+          cowboyArmEl.style.transform = `translateY(-50%) rotate(${angle}rad)`;
         } else {
           barrelEl.style.transform = transform;
         }
@@ -3014,6 +3307,10 @@
 
         if (state.shooterType === "bow") {
           return getBowPivot();
+        }
+
+        if (state.shooterType === "cowboy") {
+          return getCowboyPivot();
         }
 
         return getGunPivot();
@@ -3088,6 +3385,25 @@
         const pivot = getBowPivot();
         const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
         const length = bowWeaponEl.offsetHeight - 8;
+
+        return {
+          x: pivot.x + Math.cos(angle) * length,
+          y: pivot.y + Math.sin(angle) * length
+        };
+      }
+
+      function getCowboyPivot() {
+        const rect = cowboyPivotEl.getBoundingClientRect();
+        return {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+      }
+
+      function getCowboyTip() {
+        const pivot = getCowboyPivot();
+        const angle = Math.atan2(state.pointer.y - pivot.y, state.pointer.x - pivot.x);
+        const length = cowboyArmEl.offsetWidth + 10;
 
         return {
           x: pivot.x + Math.cos(angle) * length,
