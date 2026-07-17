@@ -313,6 +313,22 @@
         transform: translateX(0);
       }
 
+      .settings-panel.fullscreen {
+        left: 0;
+        z-index: 35;
+        width: 100vw;
+        max-width: none;
+        border-left: 0;
+        background: rgba(255, 255, 255, 0.98);
+        box-shadow: none;
+        transform: translateX(0);
+      }
+
+      .settings-panel.fullscreen .settings-form {
+        width: min(920px, 100%);
+        margin: 0 auto;
+      }
+
       .settings-panel[hidden] {
         display: block;
       }
@@ -343,6 +359,50 @@
         margin: 0;
         font-size: 20px;
         line-height: 1.1;
+      }
+
+      .metrics-chart-panel {
+        display: grid;
+        gap: 8px;
+        max-width: 100%;
+      }
+
+      .metrics-chart-panel[hidden] {
+        display: none;
+      }
+
+      .metrics-chart-note {
+        margin: 0;
+        color: #17202a;
+        font-size: 13px;
+        font-weight: 700;
+        line-height: 1.3;
+      }
+
+      .metrics-chart-scroll {
+        max-width: 100%;
+        overflow-x: auto;
+        border: 2px solid #17202a;
+        border-radius: 8px;
+        background: #ffffff;
+      }
+
+      .metrics-chart {
+        display: block;
+        min-width: 100%;
+        height: auto;
+      }
+
+      .metrics-empty {
+        margin: 0;
+        padding: 12px;
+        border: 2px solid #7d8791;
+        border-radius: 8px;
+        background: #f7f9fc;
+        color: #17202a;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 1.3;
       }
 
       .field {
@@ -1802,6 +1862,9 @@
         <form id="settingsForm" class="settings-form" hidden>
           <h2 class="settings-title">Word Data</h2>
           <div class="settings-actions">
+            <button id="fullscreenSettingsButton" class="settings-action" type="button">Full screen settings</button>
+          </div>
+          <div class="settings-actions">
             <button id="importButton" class="settings-action" type="button">Import data</button>
             <button id="clearDatabaseButton" class="settings-action danger" type="button">Clear database</button>
           </div>
@@ -1812,9 +1875,14 @@
             <div class="settings-actions">
               <button id="importMetricsButton" class="settings-action" type="button">Import metrics</button>
               <button id="exportMetricsButton" class="settings-action" type="button">Export metrics</button>
+              <button id="showMetricsButton" class="settings-action" type="button">Show metrics</button>
               <button id="clearMetricsButton" class="settings-action danger" type="button">Clear metrics</button>
             </div>
             <input id="importMetricsFileInput" type="file" accept=".csv,text/csv" hidden>
+            <div id="metricsChartPanel" class="metrics-chart-panel" hidden>
+              <p class="metrics-chart-note">Percent labels show percent correct.</p>
+              <div id="metricsChartOutput"></div>
+            </div>
           </section>
 
           <div id="confirmClear" class="confirm-clear" hidden>
@@ -1976,6 +2044,9 @@
         activeWords: [],
         target: null,
         running: false,
+        paused: false,
+        pauseStartedAt: 0,
+        pausedNextRoundRemaining: 0,
         locked: true,
         roundOver: false,
         waitingForWordsToLeave: false,
@@ -1988,6 +2059,7 @@
           y: window.innerHeight * 0.28
         },
         nextRoundTimer: 0,
+        nextRoundDueAt: 0,
         fireworkTimers: []
       };
 
@@ -2019,9 +2091,13 @@
       const settingsPasswordEl = document.getElementById("settingsPassword");
       const passwordStatusEl = document.getElementById("passwordStatus");
       const settingsFormEl = document.getElementById("settingsForm");
+      const fullscreenSettingsButtonEl = document.getElementById("fullscreenSettingsButton");
       const importButtonEl = document.getElementById("importButton");
       const clearDatabaseButtonEl = document.getElementById("clearDatabaseButton");
+      const showMetricsButtonEl = document.getElementById("showMetricsButton");
       const clearMetricsButtonEl = document.getElementById("clearMetricsButton");
+      const metricsChartPanelEl = document.getElementById("metricsChartPanel");
+      const metricsChartOutputEl = document.getElementById("metricsChartOutput");
       const importFileInputEl = document.getElementById("importFileInput");
       const confirmClearEl = document.getElementById("confirmClear");
       const confirmClearYesEl = document.getElementById("confirmClearYes");
@@ -2165,6 +2241,10 @@
         settingsPasswordEl.select();
       });
 
+      fullscreenSettingsButtonEl.addEventListener("click", () => {
+        showFullscreenSettings();
+      });
+
       importButtonEl.addEventListener("click", () => {
         importFileInputEl.value = "";
         importFileInputEl.click();
@@ -2200,6 +2280,16 @@
         confirmClearEl.hidden = false;
       });
 
+      showMetricsButtonEl.addEventListener("click", async () => {
+        try {
+          const metrics = await readMetrics();
+          renderMetricsChart(metrics);
+          setSettingsStatus(metrics.length ? `Showing ${metrics.length} metrics.` : "No metrics recorded yet.");
+        } catch (error) {
+          setSettingsStatus(error.message, true);
+        }
+      });
+
       clearMetricsButtonEl.addEventListener("click", async () => {
         if (!window.confirm("Are you sure you want to clear the metrics?")) {
           return;
@@ -2207,6 +2297,7 @@
 
         try {
           await clearMetrics();
+          renderMetricsChart([]);
           setSettingsStatus("Metrics cleared.");
         } catch (error) {
           setSettingsStatus(error.message, true);
@@ -2275,12 +2366,28 @@
         settingsPanelEl.setAttribute("aria-hidden", "false");
       }
 
+      function showFullscreenSettings() {
+        pauseGameForSettings();
+        settingsPanelEl.classList.add("fullscreen");
+        openSettingsPanel();
+        if (state.settingsAuthenticated) {
+          showSettingsForm();
+        } else {
+          showPasswordForm();
+        }
+      }
+
       function closeSettingsPanel() {
+        const wasFullscreen = settingsPanelEl.classList.contains("fullscreen");
         settingsPanelEl.classList.remove("open");
+        settingsPanelEl.classList.remove("fullscreen");
         settingsPanelEl.setAttribute("aria-hidden", "true");
         confirmClearEl.hidden = true;
         state.settingsAuthenticated = false;
         settingsPasswordEl.value = "";
+        if (wasFullscreen) {
+          resumeGameFromSettings();
+        }
       }
 
       function showPasswordForm() {
@@ -2371,6 +2478,16 @@
           transaction.objectStore(METRICS_STORE).clear();
           transaction.oncomplete = () => resolve();
           transaction.onerror = () => reject(transaction.error || new Error("Could not clear metrics."));
+        });
+      }
+
+      function readMetrics() {
+        return new Promise((resolve, reject) => {
+          const transaction = state.db.transaction(METRICS_STORE, "readonly");
+          const request = transaction.objectStore(METRICS_STORE).getAll();
+
+          request.onsuccess = () => resolve(request.result || []);
+          request.onerror = () => reject(request.error || new Error("Could not read metrics."));
         });
       }
 
@@ -2771,6 +2888,68 @@
         hideShooterPicker();
       }
 
+      function pauseGameForSettings() {
+        if (!state.running || state.paused) {
+          return;
+        }
+
+        const now = performance.now();
+        state.paused = true;
+        state.pauseStartedAt = now;
+        state.pausedNextRoundRemaining = 0;
+        window.cancelAnimationFrame(state.animationId);
+        window.speechSynthesis?.cancel();
+
+        if (state.nextRoundTimer) {
+          clearTimeout(state.nextRoundTimer);
+          state.nextRoundTimer = 0;
+          state.pausedNextRoundRemaining = Math.max(1, state.nextRoundDueAt - now);
+          state.nextRoundDueAt = 0;
+        }
+      }
+
+      function resumeGameFromSettings() {
+        if (!state.paused) {
+          return;
+        }
+
+        const pausedFor = performance.now() - state.pauseStartedAt;
+        state.activeWords.forEach((token) => {
+          if (!token.done && !token.exploding) {
+            token.startTime += pausedFor;
+          }
+        });
+
+        state.paused = false;
+        state.pauseStartedAt = 0;
+
+        if (!state.running) {
+          state.pausedNextRoundRemaining = 0;
+          return;
+        }
+
+        if (state.pausedNextRoundRemaining > 0) {
+          scheduleNextRound(state.pausedNextRoundRemaining);
+          state.pausedNextRoundRemaining = 0;
+          return;
+        }
+
+        state.pausedNextRoundRemaining = 0;
+        if (!state.roundOver) {
+          state.animationId = window.requestAnimationFrame(animateWords);
+        }
+      }
+
+      function scheduleNextRound(delay) {
+        clearTimeout(state.nextRoundTimer);
+        state.nextRoundDueAt = performance.now() + delay;
+        state.nextRoundTimer = window.setTimeout(() => {
+          state.nextRoundTimer = 0;
+          state.nextRoundDueAt = 0;
+          startRound();
+        }, delay);
+      }
+
       function normalizeWordSpeed(speed) {
         const numericSpeed = Number(speed);
         if (!Number.isFinite(numericSpeed)) {
@@ -2814,6 +2993,9 @@
         window.cancelAnimationFrame(state.animationId);
         window.speechSynthesis?.cancel();
         state.running = false;
+        state.paused = false;
+        state.pauseStartedAt = 0;
+        state.pausedNextRoundRemaining = 0;
         state.locked = true;
         state.roundOver = true;
         state.waitingForWordsToLeave = false;
@@ -2824,6 +3006,7 @@
         wordLayerEl.innerHTML = "";
         laserLayerEl.innerHTML = "";
         clearFireworks();
+        state.nextRoundDueAt = 0;
         startScreenEl.hidden = false;
         soundButtonEl.hidden = true;
         startButtonEl.disabled = state.words.length < MIN_WORDS;
@@ -2832,6 +3015,8 @@
       function startRound() {
         clearTimeout(state.nextRoundTimer);
         window.cancelAnimationFrame(state.animationId);
+        state.nextRoundTimer = 0;
+        state.nextRoundDueAt = 0;
 
         state.roundId += 1;
         state.locked = false;
@@ -2956,7 +3141,7 @@
       }
 
       function animateWords(now) {
-        if (state.roundOver) {
+        if (state.roundOver || state.paused) {
           return;
         }
 
@@ -3023,7 +3208,7 @@
           resetShooterPickerProgress();
         }
 
-        state.nextRoundTimer = window.setTimeout(startRound, delay);
+        scheduleNextRound(delay);
       }
 
       function handleWrongGuess() {
@@ -3057,6 +3242,276 @@
         addMetric(metric).catch((error) => {
           console.warn(error.message || "Could not save metric.");
         });
+      }
+
+      function renderMetricsChart(metrics) {
+        const summaries = summarizeMetricsByLesson(metrics);
+        metricsChartPanelEl.hidden = false;
+        metricsChartOutputEl.innerHTML = "";
+
+        if (summaries.length === 0) {
+          const empty = document.createElement("p");
+          empty.className = "metrics-empty";
+          empty.textContent = "No lesson metrics to show yet.";
+          metricsChartOutputEl.appendChild(empty);
+          return;
+        }
+
+        const chartWidth = Math.max(520, 120 + summaries.length * 78);
+        const chartHeight = 410;
+        const margin = {
+          top: 78,
+          right: 28,
+          bottom: 68,
+          left: 54
+        };
+        const plotWidth = chartWidth - margin.left - margin.right;
+        const plotHeight = chartHeight - margin.top - margin.bottom;
+        const maxCount = Math.max(1, ...summaries.map((summary) => Math.max(summary.correct, summary.incorrect)));
+        const yMax = niceMax(maxCount);
+        const groupWidth = plotWidth / summaries.length;
+        const barWidth = Math.min(22, Math.max(12, groupWidth * 0.28));
+        const svg = createSvgElement("svg", {
+          class: "metrics-chart",
+          width: chartWidth,
+          height: chartHeight,
+          viewBox: `0 0 ${chartWidth} ${chartHeight}`,
+          role: "img",
+          "aria-label": "Metrics by lesson"
+        });
+
+        drawChartAxes(svg, margin, plotWidth, plotHeight, yMax, chartWidth, chartHeight);
+        summaries.forEach((summary, index) => {
+          const centerX = margin.left + groupWidth * index + groupWidth / 2;
+          const redX = centerX - barWidth - 3;
+          const blueX = centerX + 3;
+          const correctHeight = (summary.correct / yMax) * plotHeight;
+          const incorrectHeight = (summary.incorrect / yMax) * plotHeight;
+          const baselineY = margin.top + plotHeight;
+          const percentY = Math.min(
+            baselineY - Math.max(correctHeight, incorrectHeight) - 12,
+            margin.top + plotHeight - 8
+          );
+
+          svg.appendChild(createSvgElement("rect", {
+            x: redX,
+            y: baselineY - incorrectHeight,
+            width: barWidth,
+            height: incorrectHeight,
+            fill: "#ef2424",
+            stroke: "#17202a",
+            "stroke-width": 1.5
+          }));
+          svg.appendChild(createSvgElement("rect", {
+            x: blueX,
+            y: baselineY - correctHeight,
+            width: barWidth,
+            height: correctHeight,
+            fill: "#14aee8",
+            stroke: "#17202a",
+            "stroke-width": 1.5
+          }));
+          svg.appendChild(createSvgText(`${summary.percent.toFixed(2)}%`, {
+            x: centerX,
+            y: Math.max(18, percentY),
+            "text-anchor": "middle",
+            "font-size": 12,
+            "font-weight": 800,
+            fill: "#17202a"
+          }));
+          svg.appendChild(createSvgText(String(summary.lesson), {
+            x: centerX,
+            y: baselineY + 28,
+            "text-anchor": "middle",
+            "font-size": 14,
+            "font-weight": 900,
+            fill: "#1f3fff"
+          }));
+        });
+
+        drawChartLegend(svg, chartWidth, margin.top - 36);
+
+        const scroll = document.createElement("div");
+        scroll.className = "metrics-chart-scroll";
+        scroll.appendChild(svg);
+        metricsChartOutputEl.appendChild(scroll);
+      }
+
+      function summarizeMetricsByLesson(metrics) {
+        const lessonGroups = new Map();
+
+        metrics.forEach((metric) => {
+          const lesson = Number(metric.lesson);
+          if (!Number.isInteger(lesson)) {
+            return;
+          }
+
+          if (!lessonGroups.has(lesson)) {
+            lessonGroups.set(lesson, {
+              lesson,
+              correct: 0,
+              incorrect: 0
+            });
+          }
+
+          const group = lessonGroups.get(lesson);
+          if (isCorrectMetric(metric.correct)) {
+            group.correct += 1;
+          } else {
+            group.incorrect += 1;
+          }
+        });
+
+        return [...lessonGroups.values()]
+          .map((group) => {
+            const total = group.correct + group.incorrect;
+            return {
+              ...group,
+              total,
+              percent: total === 0 ? 0 : (group.correct / total) * 100
+            };
+          })
+          .sort((a, b) => a.percent - b.percent || a.lesson - b.lesson);
+      }
+
+      function isCorrectMetric(value) {
+        return value === true || value === "true" || value === "T" || value === "1" || value === 1;
+      }
+
+      function drawChartAxes(svg, margin, plotWidth, plotHeight, yMax, chartWidth, chartHeight) {
+        const baselineY = margin.top + plotHeight;
+        const axisEndX = margin.left + plotWidth;
+        const tickCount = Math.min(5, yMax);
+
+        svg.appendChild(createSvgElement("line", {
+          x1: margin.left,
+          y1: margin.top - 10,
+          x2: margin.left,
+          y2: baselineY,
+          stroke: "#17202a",
+          "stroke-width": 2
+        }));
+        svg.appendChild(createSvgElement("line", {
+          x1: margin.left,
+          y1: baselineY,
+          x2: axisEndX + 12,
+          y2: baselineY,
+          stroke: "#17202a",
+          "stroke-width": 2
+        }));
+        svg.appendChild(createSvgElement("path", {
+          d: `M${margin.left - 5} ${margin.top - 6} L${margin.left} ${margin.top - 18} L${margin.left + 5} ${margin.top - 6}`,
+          fill: "#17202a"
+        }));
+        svg.appendChild(createSvgElement("path", {
+          d: `M${axisEndX + 18} ${baselineY} L${axisEndX + 6} ${baselineY - 5} L${axisEndX + 6} ${baselineY + 5}`,
+          fill: "#17202a"
+        }));
+
+        for (let index = 0; index <= tickCount; index += 1) {
+          const value = Math.round((yMax / tickCount) * index);
+          const y = baselineY - (plotHeight / tickCount) * index;
+
+          svg.appendChild(createSvgElement("line", {
+            x1: margin.left - 7,
+            y1: y,
+            x2: margin.left,
+            y2: y,
+            stroke: "#17202a",
+            "stroke-width": 1.5
+          }));
+          svg.appendChild(createSvgText(String(value), {
+            x: margin.left - 12,
+            y: y + 4,
+            "text-anchor": "end",
+            "font-size": 12,
+            "font-weight": 700,
+            fill: "#17202a"
+          }));
+        }
+
+        svg.appendChild(createSvgText("Count", {
+          x: 18,
+          y: margin.top + plotHeight / 2,
+          transform: `rotate(-90 18 ${margin.top + plotHeight / 2})`,
+          "text-anchor": "middle",
+          "font-size": 16,
+          "font-weight": 900,
+          fill: "#ef2424"
+        }));
+        svg.appendChild(createSvgText("Lesson", {
+          x: margin.left + plotWidth / 2,
+          y: chartHeight - 18,
+          "text-anchor": "middle",
+          "font-size": 16,
+          "font-weight": 900,
+          fill: "#ef2424"
+        }));
+        svg.appendChild(createSvgText("Percent labels show percent correct", {
+          x: chartWidth / 2,
+          y: 20,
+          "text-anchor": "middle",
+          "font-size": 13,
+          "font-weight": 800,
+          fill: "#17202a"
+        }));
+      }
+
+      function drawChartLegend(svg, chartWidth, y) {
+        const legendX = Math.max(110, chartWidth - 210);
+
+        svg.appendChild(createSvgElement("rect", {
+          x: legendX,
+          y,
+          width: 12,
+          height: 12,
+          fill: "#ef2424",
+          stroke: "#17202a"
+        }));
+        svg.appendChild(createSvgText("Incorrect", {
+          x: legendX + 18,
+          y: y + 11,
+          "font-size": 12,
+          "font-weight": 800,
+          fill: "#17202a"
+        }));
+        svg.appendChild(createSvgElement("rect", {
+          x: legendX + 86,
+          y,
+          width: 12,
+          height: 12,
+          fill: "#14aee8",
+          stroke: "#17202a"
+        }));
+        svg.appendChild(createSvgText("Correct", {
+          x: legendX + 104,
+          y: y + 11,
+          "font-size": 12,
+          "font-weight": 800,
+          fill: "#17202a"
+        }));
+      }
+
+      function niceMax(value) {
+        const magnitude = 10 ** Math.floor(Math.log10(value));
+        const normalized = value / magnitude;
+        const niceNormalized = normalized <= 2 ? 2 : normalized <= 5 ? 5 : 10;
+
+        return niceNormalized * magnitude;
+      }
+
+      function createSvgElement(tagName, attributes = {}) {
+        const element = document.createElementNS("http://www.w3.org/2000/svg", tagName);
+        Object.entries(attributes).forEach(([name, value]) => {
+          element.setAttribute(name, value);
+        });
+        return element;
+      }
+
+      function createSvgText(text, attributes = {}) {
+        const element = createSvgElement("text", attributes);
+        element.textContent = text;
+        return element;
       }
 
       function correctRoundDelay(streak) {
