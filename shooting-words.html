@@ -592,6 +592,29 @@
         height: 18px;
       }
 
+      .shooter-option-row {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .shooter-visibility-option {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        min-width: 72px;
+        justify-content: flex-end;
+        color: #4b5563;
+        font-size: 14px;
+        font-weight: 800;
+      }
+
+      .shooter-visibility-option input {
+        width: 18px;
+        height: 18px;
+      }
+
       .speed-control {
         display: grid;
         justify-items: center;
@@ -2779,42 +2802,96 @@
 
           <fieldset class="radio-group">
             <legend>Shooter</legend>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="laser" checked>
-              Laser gun
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="dragon">
-              Dragon
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="cannon">
-              Cannon
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="rocket">
-              Rocket
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="bow">
-              Bow
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="cowboy">
-              Cowboy
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="ninja">
-              Ninja
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="zeus">
-              Zeus
-            </label>
-            <label class="radio-option">
-              <input type="radio" name="shooterType" value="firefighter">
-              Firefighter
-            </label>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="laser" checked>
+                Laser gun
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="laser" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="dragon">
+                Dragon
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="dragon" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="cannon">
+                Cannon
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="cannon" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="rocket">
+                Rocket
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="rocket" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="bow">
+                Bow
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="bow" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="cowboy">
+                Cowboy
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="cowboy" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="ninja">
+                Ninja
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="ninja" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="zeus">
+                Zeus
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="zeus" checked>
+                Show
+              </label>
+            </div>
+            <div class="shooter-option-row">
+              <label class="radio-option">
+                <input type="radio" name="shooterType" value="firefighter">
+                Firefighter
+              </label>
+              <label class="shooter-visibility-option">
+                <input type="checkbox" name="shooterVisible" value="firefighter" checked>
+                Show
+              </label>
+            </div>
           </fieldset>
 
           <div class="speed-control">
@@ -2896,6 +2973,7 @@
         },
         capitalization: "uppercase",
         shooterType: "laser",
+        shooterVisibility: defaultShooterVisibility(),
         wordSpeed: MAX_WORD_SPEED,
         prefixMinLength: DEFAULT_MIN_PREFIX_LENGTH,
         prefixMaxLength: DEFAULT_MAX_PREFIX_LENGTH,
@@ -2977,6 +3055,7 @@
       const settingsStatusEl = document.getElementById("settingsStatus");
       const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
       const shooterTypeEls = [...document.querySelectorAll("input[name='shooterType']")];
+      const shooterVisibilityEls = [...document.querySelectorAll("input[name='shooterVisible']")];
       const minPrefixLengthInputEl = document.getElementById("minPrefixLengthInput");
       const maxPrefixLengthInputEl = document.getElementById("maxPrefixLengthInput");
       const speedControlEl = document.getElementById("speedControl");
@@ -3453,6 +3532,7 @@
             state.capitalization = saved.capitalization;
           }
           state.shooterType = normalizeShooterType(saved.shooterType);
+          state.shooterVisibility = normalizeShooterVisibility(saved.shooterVisibility);
           state.wordSpeed = normalizeWordSpeed(saved.wordSpeed);
           const prefixRange = normalizeSavedPrefixRange(saved);
           state.prefixMinLength = prefixRange.min;
@@ -3464,6 +3544,7 @@
           };
           state.capitalization = "uppercase";
           state.shooterType = "laser";
+          state.shooterVisibility = defaultShooterVisibility();
           state.wordSpeed = MAX_WORD_SPEED;
           state.prefixMinLength = DEFAULT_MIN_PREFIX_LENGTH;
           state.prefixMaxLength = DEFAULT_MAX_PREFIX_LENGTH;
@@ -3476,6 +3557,7 @@
           lessons: state.currentFilters.lessons,
           capitalization: state.capitalization,
           shooterType: state.shooterType,
+          shooterVisibility: state.shooterVisibility,
           wordSpeed: state.wordSpeed,
           prefixMinLength: state.prefixMinLength,
           prefixMaxLength: state.prefixMaxLength
@@ -3505,6 +3587,7 @@
           max: state.prefixMaxLength
         });
         setShooterTypeSelection(state.shooterType);
+        setShooterVisibilitySelection(state.shooterVisibility);
         applyShooterType();
         setSpeedSelection(state.wordSpeed);
 
@@ -3548,6 +3631,7 @@
         const selectedWords = uniqueWords(selectedRows);
         const capitalization = getSelectedCapitalization();
         const shooterType = getSelectedShooterType();
+        const shooterVisibility = getSelectedShooterVisibility();
         const wordSpeed = getSelectedWordSpeed();
         const prefixRange = getSelectedPrefixRange();
         if (selectedWords.length < MIN_WORDS) {
@@ -3558,6 +3642,7 @@
         state.currentFilters = { sections, lessons };
         state.capitalization = capitalization;
         state.shooterType = shooterType;
+        state.shooterVisibility = shooterVisibility;
         state.wordSpeed = wordSpeed;
         state.prefixMinLength = prefixRange.min;
         state.prefixMaxLength = prefixRange.max;
@@ -3712,6 +3797,25 @@
         return SHOOTER_TYPES.has(shooterType) ? shooterType : "laser";
       }
 
+      function defaultShooterVisibility() {
+        return Object.fromEntries([...SHOOTER_TYPES].map((shooterType) => [shooterType, true]));
+      }
+
+      function normalizeShooterVisibility(visibility) {
+        const normalized = defaultShooterVisibility();
+        if (!visibility || typeof visibility !== "object") {
+          return normalized;
+        }
+
+        Object.entries(visibility).forEach(([shooterType, isVisible]) => {
+          if (SHOOTER_TYPES.has(shooterType)) {
+            normalized[shooterType] = isVisible !== false;
+          }
+        });
+
+        return normalized;
+      }
+
       function getSelectedShooterType() {
         return normalizeShooterType(shooterTypeEls.find((input) => input.checked)?.value);
       }
@@ -3721,6 +3825,25 @@
         shooterTypeEls.forEach((input) => {
           input.checked = input.value === selectedShooterType;
         });
+      }
+
+      function getSelectedShooterVisibility() {
+        const visibility = defaultShooterVisibility();
+        shooterVisibilityEls.forEach((input) => {
+          visibility[normalizeShooterType(input.value)] = input.checked;
+        });
+        return visibility;
+      }
+
+      function setShooterVisibilitySelection(visibility) {
+        const selectedVisibility = normalizeShooterVisibility(visibility);
+        shooterVisibilityEls.forEach((input) => {
+          input.checked = selectedVisibility[normalizeShooterType(input.value)] !== false;
+        });
+      }
+
+      function isShooterVisible(shooterType) {
+        return state.shooterVisibility[normalizeShooterType(shooterType)] !== false;
       }
 
       function applyShooterType() {
@@ -3743,9 +3866,14 @@
         arenaEl.classList.toggle("zeus-scene", shooterType === "zeus");
         arenaEl.classList.toggle("firefighter-scene", shooterType === "firefighter");
         updateShooterChoiceButtons();
+        updateShooterPickerVisibility();
       }
 
       function chooseShooterFromPicker(shooterType) {
+        if (!isShooterVisible(shooterType)) {
+          return;
+        }
+
         state.shooterType = normalizeShooterType(shooterType);
         state.shooterPickerBaseStreak = state.correctStreak;
         setShooterTypeSelection(state.shooterType);
@@ -3757,7 +3885,10 @@
 
       function updateShooterChoiceButtons() {
         shooterChoiceButtonEls.forEach((button) => {
-          const isActive = button.dataset.shooterChoice === state.shooterType;
+          const shooterType = button.dataset.shooterChoice;
+          const isVisible = isShooterVisible(shooterType);
+          const isActive = shooterType === state.shooterType;
+          button.hidden = !isVisible;
           button.classList.toggle("is-active", isActive);
           button.setAttribute("aria-pressed", String(isActive));
         });
@@ -3765,7 +3896,8 @@
 
       function updateShooterPickerVisibility() {
         const earnedChoices = state.correctStreak - state.shooterPickerBaseStreak;
-        shooterPickerEl.hidden = !state.running || earnedChoices < SHOOTER_PICKER_STREAK_COUNT;
+        const hasVisibleChoices = shooterChoiceButtonEls.some((button) => isShooterVisible(button.dataset.shooterChoice));
+        shooterPickerEl.hidden = !state.running || earnedChoices < SHOOTER_PICKER_STREAK_COUNT || !hasVisibleChoices;
       }
 
       function hideShooterPicker() {
