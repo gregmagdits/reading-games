@@ -3066,7 +3066,7 @@
         const correctHit = hits.find((token) => token.word === state.target.word);
         if (correctHit) {
           recordGuess(true);
-          finishRound("correct", correctHit);
+          handleCorrectGuess(correctHit);
         } else {
           recordGuess(false);
           handleWrongGuess();
@@ -3976,16 +3976,16 @@
         clearFireworks();
 
         const roundWords = pickRoundWords();
-        state.target = roundWords[randomInt(0, roundWords.length - 1)];
         const now = performance.now();
 
         roundWords.forEach((entry, index) => {
-          const token = createWordToken(entry.word, index, roundWords.length, now);
+          const token = createWordToken(entry.word, entry.lesson, index, roundWords.length, now);
           state.activeWords.push(token);
           placeWord(token, 0);
           wordLayerEl.appendChild(token.el);
         });
 
+        state.target = state.activeWords[randomInt(0, state.activeWords.length - 1)];
         state.animationId = window.requestAnimationFrame(animateWords);
         speakWord(state.target.word);
       }
@@ -4051,7 +4051,7 @@
         return word.trim().toLocaleLowerCase().slice(0, prefixLength);
       }
 
-      function createWordToken(word, index, total, now) {
+      function createWordToken(word, lesson, index, total, now) {
         const width = window.innerWidth;
         const height = window.innerHeight;
         const margin = Math.max(82, width * 0.08);
@@ -4075,6 +4075,7 @@
 
         return {
           word,
+          lesson,
           el,
           startTime: now + delay,
           duration,
@@ -4134,7 +4135,52 @@
         token.el.style.top = `${y}px`;
       }
 
-      function finishRound(result, hit) {
+      function handleCorrectGuess(hit) {
+        if (state.roundOver || hit.done || hit.exploding) {
+          return;
+        }
+
+        window.speechSynthesis?.cancel();
+        state.correctStreak += 1;
+        explodeWord(hit, state.correctStreak);
+        updateShooterPickerVisibility();
+
+        const nextTarget = pickVisibleTargetWord();
+        if (nextTarget) {
+          state.target = nextTarget;
+          speakWord(state.target.word);
+          return;
+        }
+
+        finishRound("cleared");
+      }
+
+      function pickVisibleTargetWord() {
+        const candidates = state.activeWords.filter((token) => (
+          !token.done &&
+          !token.exploding &&
+          token.el.isConnected &&
+          isTokenOnScreen(token)
+        ));
+
+        if (candidates.length === 0) {
+          return null;
+        }
+
+        return candidates[randomInt(0, candidates.length - 1)];
+      }
+
+      function isTokenOnScreen(token) {
+        const rect = token.el.getBoundingClientRect();
+        return (
+          rect.right > 0 &&
+          rect.left < window.innerWidth &&
+          rect.bottom > 0 &&
+          rect.top < window.innerHeight
+        );
+      }
+
+      function finishRound(result) {
         if (state.roundOver) {
           return;
         }
@@ -4146,10 +4192,7 @@
 
         let delay = TIMEOUT_DELAY_MS;
 
-        if (result === "correct") {
-          state.correctStreak += 1;
-          explodeWord(hit, state.correctStreak);
-          updateShooterPickerVisibility();
+        if (result === "cleared") {
           delay = correctRoundDelay(state.correctStreak);
         } else {
           state.correctStreak = 0;
