@@ -266,6 +266,32 @@
         animation: word-flash 1.15s ease-in-out infinite;
       }
 
+      .pause-overlay {
+        position: absolute;
+        inset: 0;
+        z-index: 30;
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+
+      .pause-overlay[hidden] {
+        display: none;
+      }
+
+      .pause-message {
+        padding: clamp(14px, 3vmin, 22px) clamp(24px, 5vmin, 44px);
+        border: 4px solid #17202a;
+        border-radius: 8px;
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.34);
+        color: #17202a;
+        font-size: clamp(44px, 10vmin, 88px);
+        font-weight: 900;
+        line-height: 1;
+        text-transform: lowercase;
+      }
+
       .sound-button {
         position: absolute;
         top: clamp(16px, 3vh, 28px);
@@ -2530,6 +2556,9 @@
       <div id="wordLayer" class="word-layer"></div>
       <div id="laserLayer" class="laser-layer"></div>
       <canvas id="fireworksCanvas" class="fireworks-canvas" aria-hidden="true"></canvas>
+      <div id="pauseOverlay" class="pause-overlay" hidden>
+        <div class="pause-message">paused</div>
+      </div>
 
       <button id="soundButton" class="sound-button" type="button" aria-label="Hear the word again" hidden>🔊</button>
 
@@ -2875,6 +2904,8 @@
         target: null,
         running: false,
         paused: false,
+        pausedByPlayer: false,
+        pausedForSettings: false,
         pauseStartedAt: 0,
         pausedNextRoundRemaining: 0,
         locked: true,
@@ -2901,6 +2932,7 @@
       const startScreenEl = document.getElementById("startScreen");
       const startButtonEl = document.getElementById("startButton");
       const soundButtonEl = document.getElementById("soundButton");
+      const pauseOverlayEl = document.getElementById("pauseOverlay");
       const shooterPickerEl = document.getElementById("shooterPicker");
       const shooterChoiceButtonEls = [...document.querySelectorAll("[data-shooter-choice]")];
       const errorEl = document.getElementById("error");
@@ -2998,7 +3030,7 @@
 
       soundButtonEl.addEventListener("click", (event) => {
         event.stopPropagation();
-        if (state.target) {
+        if (!state.paused && state.target) {
           speakWord(state.target.word);
         }
       });
@@ -3012,6 +3044,7 @@
       arenaEl.addEventListener("pointerdown", (event) => {
         if (
           !state.running ||
+          state.paused ||
           state.locked ||
           !isAllowedShotPointer(event) ||
           isShotControlTarget(event.target)
@@ -3044,6 +3077,15 @@
         if (isGameShotTarget(event.target)) {
           event.preventDefault();
         }
+      });
+
+      window.addEventListener("keydown", (event) => {
+        if (event.code !== "Space" || shouldIgnorePauseKey(event.target)) {
+          return;
+        }
+
+        event.preventDefault();
+        togglePlayerPause();
       });
 
       shooterPickerEl.addEventListener("click", (event) => {
@@ -3736,7 +3778,34 @@
       }
 
       function pauseGameForSettings() {
-        if (!state.running || state.paused) {
+        pauseGame("settings");
+      }
+
+      function resumeGameFromSettings() {
+        resumeGame("settings");
+      }
+
+      function togglePlayerPause() {
+        if (!state.running) {
+          return;
+        }
+
+        if (state.pausedByPlayer) {
+          resumeGame("player");
+        } else {
+          pauseGame("player");
+        }
+      }
+
+      function pauseGame(reason) {
+        if (!state.running) {
+          return;
+        }
+
+        setPauseReason(reason, true);
+        updatePauseOverlay();
+
+        if (state.paused) {
           return;
         }
 
@@ -3755,8 +3824,11 @@
         }
       }
 
-      function resumeGameFromSettings() {
-        if (!state.paused) {
+      function resumeGame(reason) {
+        setPauseReason(reason, false);
+        updatePauseOverlay();
+
+        if (!state.paused || state.pausedByPlayer || state.pausedForSettings) {
           return;
         }
 
@@ -3785,6 +3857,32 @@
         if (!state.roundOver) {
           state.animationId = window.requestAnimationFrame(animateWords);
         }
+      }
+
+      function setPauseReason(reason, isPaused) {
+        if (reason === "player") {
+          state.pausedByPlayer = isPaused;
+        } else if (reason === "settings") {
+          state.pausedForSettings = isPaused;
+        }
+      }
+
+      function updatePauseOverlay() {
+        pauseOverlayEl.hidden = !state.pausedByPlayer;
+      }
+
+      function shouldIgnorePauseKey(target) {
+        return (
+          target instanceof Element &&
+          (
+            target.closest("input") ||
+            target.closest("textarea") ||
+            target.closest("select") ||
+            target.closest("button") ||
+            target.closest(".settings-panel") ||
+            target.isContentEditable
+          )
+        );
       }
 
       function scheduleNextRound(delay) {
@@ -3841,8 +3939,11 @@
         window.speechSynthesis?.cancel();
         state.running = false;
         state.paused = false;
+        state.pausedByPlayer = false;
+        state.pausedForSettings = false;
         state.pauseStartedAt = 0;
         state.pausedNextRoundRemaining = 0;
+        updatePauseOverlay();
         state.locked = true;
         state.roundOver = true;
         state.waitingForWordsToLeave = false;
