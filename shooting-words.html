@@ -585,6 +585,12 @@
         gap: 10px;
       }
 
+      .word-text-filters {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
       .radio-group {
         display: grid;
         gap: 8px;
@@ -855,6 +861,34 @@
 
       .error[hidden] {
         display: none;
+      }
+
+      .match-message {
+        position: absolute;
+        inset: 0;
+        z-index: 24;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        pointer-events: none;
+      }
+
+      .match-message[hidden] {
+        display: none;
+      }
+
+      .match-message-text {
+        max-width: min(760px, 92vw);
+        border: 4px solid #17202a;
+        border-radius: 8px;
+        padding: clamp(18px, 4vmin, 30px) clamp(22px, 5vmin, 42px);
+        background: rgba(255, 255, 255, 0.94);
+        box-shadow: 0 18px 42px rgba(0, 0, 0, 0.32);
+        color: #17202a;
+        font-size: clamp(32px, 7vmin, 72px);
+        font-weight: 900;
+        line-height: 1.05;
+        text-align: center;
       }
 
       .laser-shot {
@@ -3008,6 +3042,9 @@
       </div>
 
       <div id="error" class="error" role="alert" hidden></div>
+      <div id="noMatchingWords" class="match-message" hidden>
+        <div class="match-message-text">No Matching Words</div>
+      </div>
 
       <button id="settingsToggle" class="settings-toggle" type="button" aria-label="Open settings">⚙</button>
 
@@ -3089,6 +3126,17 @@
             <label class="field">
               Max prefix length
               <input id="maxPrefixLengthInput" type="number" min="0" step="1" value="1">
+            </label>
+          </div>
+
+          <div class="word-text-filters" role="group" aria-label="Word text filters">
+            <label class="field">
+              prefix
+              <input id="wordFilterPrefixInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false">
+            </label>
+            <label class="field">
+              suffix
+              <input id="wordFilterSuffixInput" type="text" autocomplete="off" autocapitalize="none" spellcheck="false">
             </label>
           </div>
 
@@ -3279,6 +3327,8 @@
         wordSpeed: MAX_WORD_SPEED,
         prefixMinLength: DEFAULT_MIN_PREFIX_LENGTH,
         prefixMaxLength: DEFAULT_MAX_PREFIX_LENGTH,
+        wordFilterPrefix: "",
+        wordFilterSuffix: "",
         settingsAuthenticated: false,
         activeWords: [],
         target: null,
@@ -3313,6 +3363,7 @@
       const startButtonEl = document.getElementById("startButton");
       const soundButtonEl = document.getElementById("soundButton");
       const pauseOverlayEl = document.getElementById("pauseOverlay");
+      const noMatchingWordsEl = document.getElementById("noMatchingWords");
       const shooterPickerEl = document.getElementById("shooterPicker");
       const shooterChoiceButtonEls = [...document.querySelectorAll("[data-shooter-choice]")];
       const errorEl = document.getElementById("error");
@@ -3362,6 +3413,8 @@
       const shooterVisibilityEls = [...document.querySelectorAll("input[name='shooterVisible']")];
       const minPrefixLengthInputEl = document.getElementById("minPrefixLengthInput");
       const maxPrefixLengthInputEl = document.getElementById("maxPrefixLengthInput");
+      const wordFilterPrefixInputEl = document.getElementById("wordFilterPrefixInput");
+      const wordFilterSuffixInputEl = document.getElementById("wordFilterSuffixInput");
       const speedControlEl = document.getElementById("speedControl");
       const speedNeedleEl = document.getElementById("speedNeedle");
       const speedValueEl = document.getElementById("speedValue");
@@ -3841,6 +3894,8 @@
           const prefixRange = normalizeSavedPrefixRange(saved);
           state.prefixMinLength = prefixRange.min;
           state.prefixMaxLength = prefixRange.max;
+          state.wordFilterPrefix = normalizeWordTextFilter(saved.wordFilterPrefix);
+          state.wordFilterSuffix = normalizeWordTextFilter(saved.wordFilterSuffix);
         } catch {
           state.currentFilters = {
             sections: [],
@@ -3852,6 +3907,8 @@
           state.wordSpeed = MAX_WORD_SPEED;
           state.prefixMinLength = DEFAULT_MIN_PREFIX_LENGTH;
           state.prefixMaxLength = DEFAULT_MAX_PREFIX_LENGTH;
+          state.wordFilterPrefix = "";
+          state.wordFilterSuffix = "";
         }
       }
 
@@ -3864,7 +3921,9 @@
           shooterVisibility: state.shooterVisibility,
           wordSpeed: state.wordSpeed,
           prefixMinLength: state.prefixMinLength,
-          prefixMaxLength: state.prefixMaxLength
+          prefixMaxLength: state.prefixMaxLength,
+          wordFilterPrefix: state.wordFilterPrefix,
+          wordFilterSuffix: state.wordFilterSuffix
         }));
       }
 
@@ -3890,6 +3949,7 @@
           min: state.prefixMinLength,
           max: state.prefixMaxLength
         });
+        setWordTextFilterSelection(state.wordFilterPrefix, state.wordFilterSuffix);
         setShooterTypeSelection(state.shooterType);
         setShooterVisibilitySelection(state.shooterVisibility);
         applyShooterType();
@@ -3938,6 +3998,7 @@
         const shooterVisibility = getSelectedShooterVisibility();
         const wordSpeed = getSelectedWordSpeed();
         const prefixRange = getSelectedPrefixRange();
+        const wordTextFilters = getSelectedWordTextFilters();
         if (selectedWords.length < MIN_WORDS) {
           setSettingsStatus("The selected data must contain at least two unique words.", true);
           return false;
@@ -3950,12 +4011,17 @@
         state.wordSpeed = wordSpeed;
         state.prefixMinLength = prefixRange.min;
         state.prefixMaxLength = prefixRange.max;
+        state.wordFilterPrefix = wordTextFilters.prefix;
+        state.wordFilterSuffix = wordTextFilters.suffix;
         setSelectedWordRows(selectedRows);
         saveSettings();
         applyShooterType();
         updateAim();
         startButtonEl.disabled = false;
-        setSettingsStatus(`${selectedWords.length} words selected.`);
+        setSettingsStatus(settingsWordCountMessage(selectedWords));
+        if (state.running && state.roundOver && state.activeWords.length === 0) {
+          startRound();
+        }
         return true;
       }
 
@@ -4097,6 +4163,47 @@
         maxPrefixLengthInputEl.min = String(normalizedRange.min);
       }
 
+      function normalizeWordTextFilter(value) {
+        return String(value ?? "").trim().toLocaleLowerCase();
+      }
+
+      function getSelectedWordTextFilters() {
+        return {
+          prefix: normalizeWordTextFilter(wordFilterPrefixInputEl.value),
+          suffix: normalizeWordTextFilter(wordFilterSuffixInputEl.value)
+        };
+      }
+
+      function setWordTextFilterSelection(prefix, suffix) {
+        wordFilterPrefixInputEl.value = normalizeWordTextFilter(prefix);
+        wordFilterSuffixInputEl.value = normalizeWordTextFilter(suffix);
+      }
+
+      function filteredGameWords(words = state.words) {
+        const prefix = normalizeWordTextFilter(state.wordFilterPrefix);
+        const suffix = normalizeWordTextFilter(state.wordFilterSuffix);
+        if (!prefix && !suffix) {
+          return words;
+        }
+
+        return words.filter((word) => {
+          const normalizedWord = normalizeWordTextFilter(word);
+          return (
+            (!prefix || normalizedWord.startsWith(prefix)) &&
+            (!suffix || normalizedWord.endsWith(suffix))
+          );
+        });
+      }
+
+      function settingsWordCountMessage(words) {
+        const matchingCount = filteredGameWords(words).length;
+        if (!state.wordFilterPrefix && !state.wordFilterSuffix) {
+          return `${words.length} words selected.`;
+        }
+
+        return `${words.length} words selected. ${matchingCount} match the prefix/suffix filters.`;
+      }
+
       function normalizeShooterType(shooterType) {
         return SHOOTER_TYPES.has(shooterType) ? shooterType : "laser";
       }
@@ -4224,7 +4331,7 @@
       }
 
       function togglePlayerPause() {
-        if (!state.running) {
+        if (!state.running || !noMatchingWordsEl.hidden) {
           return;
         }
 
@@ -4371,6 +4478,29 @@
         return word.toLocaleUpperCase();
       }
 
+      function showNoMatchingWords() {
+        clearTimeout(state.nextRoundTimer);
+        window.cancelAnimationFrame(state.animationId);
+        window.speechSynthesis?.cancel();
+        state.nextRoundTimer = 0;
+        state.nextRoundDueAt = 0;
+        state.locked = true;
+        state.roundOver = true;
+        state.waitingForWordsToLeave = false;
+        state.activeWords = [];
+        state.target = null;
+        state.correctStreak = 0;
+        soundButtonEl.hidden = true;
+        resetShooterPickerProgress();
+        wordLayerEl.innerHTML = "";
+        laserLayerEl.innerHTML = "";
+        noMatchingWordsEl.hidden = false;
+      }
+
+      function hideNoMatchingWords() {
+        noMatchingWordsEl.hidden = true;
+      }
+
       function resetGameAfterDataChange() {
         clearTimeout(state.nextRoundTimer);
         window.cancelAnimationFrame(state.animationId);
@@ -4391,6 +4521,7 @@
         resetShooterPickerProgress();
         wordLayerEl.innerHTML = "";
         laserLayerEl.innerHTML = "";
+        hideNoMatchingWords();
         clearFireworks();
         state.nextRoundDueAt = 0;
         startScreenEl.hidden = false;
@@ -4411,9 +4542,16 @@
         state.activeWords = [];
         wordLayerEl.innerHTML = "";
         laserLayerEl.innerHTML = "";
+        hideNoMatchingWords();
         clearFireworks();
 
         const roundWords = pickRoundWords();
+        if (roundWords.length === 0) {
+          showNoMatchingWords();
+          return;
+        }
+
+        soundButtonEl.hidden = false;
         const now = performance.now();
 
         roundWords.forEach((entry, index) => {
@@ -4429,23 +4567,31 @@
       }
 
       function pickRoundWords() {
-        const count = randomInt(MIN_WORDS, Math.min(MAX_WORDS, state.words.length));
-        return pickWordsByPrefix(count).map((word) => ({
+        const candidateWords = filteredGameWords();
+        if (candidateWords.length === 0) {
+          return [];
+        }
+
+        const minCount = Math.min(MIN_WORDS, candidateWords.length);
+        const maxCount = Math.min(MAX_WORDS, candidateWords.length);
+        const count = randomInt(minCount, maxCount);
+
+        return pickWordsByPrefix(count, candidateWords).map((word) => ({
           word,
           lesson: lessonForWord(word)
         }));
       }
 
-      function pickWordsByPrefix(count) {
+      function pickWordsByPrefix(count, sourceWords = state.words) {
         const prefixRange = normalizePrefixRange(state.prefixMinLength, state.prefixMaxLength);
         const prefixLength = randomInt(prefixRange.min, prefixRange.max);
         if (prefixLength === 0) {
-          return shuffle(state.words).slice(0, count);
+          return shuffle(sourceWords).slice(0, count);
         }
 
-        const groups = prefixGroups(prefixLength);
+        const groups = prefixGroups(prefixLength, sourceWords);
         if (groups.length === 0) {
-          return shuffle(state.words).slice(0, count);
+          return shuffle(sourceWords).slice(0, count);
         }
 
         const completeGroups = groups.filter((group) => group.words.length >= count);
@@ -4459,14 +4605,14 @@
         const group = largestGroups[randomInt(0, largestGroups.length - 1)];
         const selected = shuffle(group.words);
         const selectedSet = new Set(selected);
-        const filler = shuffle(state.words.filter((word) => !selectedSet.has(word))).slice(0, count - selected.length);
+        const filler = shuffle(sourceWords.filter((word) => !selectedSet.has(word))).slice(0, count - selected.length);
 
         return selected.concat(filler);
       }
 
-      function prefixGroups(prefixLength) {
+      function prefixGroups(prefixLength, sourceWords = state.words) {
         const groupsByPrefix = new Map();
-        state.words.forEach((word) => {
+        sourceWords.forEach((word) => {
           const prefix = wordPrefix(word, prefixLength);
           if (prefix.length !== prefixLength) {
             return;
