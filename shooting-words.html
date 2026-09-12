@@ -3278,9 +3278,10 @@
       const FIREWORK_SERIES_GAP_MS = 120;
       const SETTINGS_PASSWORD = "password";
       const DB_NAME = "shootingWordsReadingDb";
-      const DB_VERSION = 2;
+      const DB_VERSION = 4;
       const WORD_STORE = "words";
       const METRICS_STORE = "metrics";
+      const LEGACY_WORD_SOURCE = "legacy-import";
       const SETTINGS_STORAGE_KEY = "shootingWordsSettings";
       const CAPITALIZATION_MODES = new Set(["uppercase", "lowercase", "original"]);
       const SHOOTER_TYPES = new Set(["laser", "dragon", "cannon", "rocket", "bow", "crossbow", "cowboy", "ninja", "zeus", "firefighter"]);
@@ -3297,7 +3298,7 @@
         4: 1.35,
         5: 1
       };
-      const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol"];
+      const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol", "letter_combination", "source"];
       const ALLOWED_PHONETIC_SYMBOLS = new Set([
         "/ă/", "/ĕ/", "/ĭ/", "/ŏ/", "/ŭ/", "/ā/", "/ē/", "/ī/", "/ō/", "/ū/", "/o-o/", "/o˘o/",
         "/ô/", "/ou/", "/oi/", "/är/", "/ôr/", "/âr/", "/ûr/", "/ə/", "/b/", "/d/", "/f/",
@@ -3742,8 +3743,36 @@
 
           request.onupgradeneeded = () => {
             const db = request.result;
+            let wordStore = null;
             if (!db.objectStoreNames.contains(WORD_STORE)) {
-              db.createObjectStore(WORD_STORE, { keyPath: "id", autoIncrement: true });
+              wordStore = db.createObjectStore(WORD_STORE, { keyPath: "id", autoIncrement: true });
+            } else {
+              wordStore = request.transaction.objectStore(WORD_STORE);
+            }
+            if (wordStore && !wordStore.indexNames.contains("source")) {
+              wordStore.createIndex("source", "source");
+            }
+            if (wordStore && !wordStore.indexNames.contains("letter_combination")) {
+              wordStore.createIndex("letter_combination", "letter_combination");
+            }
+            if (wordStore && request.oldVersion < 4) {
+              const cursorRequest = wordStore.openCursor();
+              cursorRequest.onsuccess = () => {
+                const cursor = cursorRequest.result;
+                if (!cursor) {
+                  return;
+                }
+
+                const row = cursor.value;
+                if (!row.source) {
+                  row.source = LEGACY_WORD_SOURCE;
+                }
+                if (typeof row.letter_combination !== "string") {
+                  row.letter_combination = "";
+                }
+                cursor.update(row);
+                cursor.continue();
+              };
             }
             if (!db.objectStoreNames.contains(METRICS_STORE)) {
               const metricsStore = db.createObjectStore(METRICS_STORE, { keyPath: "id", autoIncrement: true });
@@ -3835,7 +3864,7 @@
             throw new Error(`Row ${index + 2} has ${row.length} columns; expected ${EXPECTED_HEADERS.length}.`);
           }
 
-          const [sectionText, lessonText, lessonDescription, word, isSightWord, phoneticSymbol] = row.map((value) => value.trim());
+          const [sectionText, lessonText, lessonDescription, word, isSightWord, phoneticSymbol, letterCombination, source] = row.map((value) => value.trim());
           const section = Number(sectionText);
           const lesson = Number(lessonText);
 
@@ -3863,13 +3892,19 @@
             throw new Error(`Row ${index + 2} has an unknown phonetic_symbol.`);
           }
 
+          if (!source) {
+            throw new Error(`Row ${index + 2} is missing source.`);
+          }
+
           return {
             section,
             lesson,
             lesson_description: lessonDescription,
             word,
             is_sight_word: isSightWord,
-            phonetic_symbol: phoneticSymbol
+            phonetic_symbol: phoneticSymbol,
+            letter_combination: letterCombination,
+            source
           };
         });
       }
