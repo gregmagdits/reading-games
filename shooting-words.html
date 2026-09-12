@@ -591,6 +591,11 @@
         gap: 10px;
       }
 
+      .filter-controls {
+        display: grid;
+        gap: 14px;
+      }
+
       .radio-group {
         display: grid;
         gap: 8px;
@@ -3084,6 +3089,11 @@
             </div>
           </section>
 
+          <section class="settings-section" aria-labelledby="sourceSettingsTitle">
+            <h3 id="sourceSettingsTitle" class="settings-section-title">Source</h3>
+            <div id="sourceOptions" class="radio-group source-options"></div>
+          </section>
+
           <div id="confirmClear" class="confirm-clear" hidden>
             <div>Are you sure you want to clear the data?</div>
             <div class="settings-actions">
@@ -3092,15 +3102,29 @@
             </div>
           </div>
 
-          <label class="field">
-            Section(s)
-            <select id="sectionSelect" multiple disabled></select>
-          </label>
+          <div id="bookFilterControls" class="filter-controls">
+            <label class="field">
+              Section(s)
+              <select id="sectionSelect" multiple disabled></select>
+            </label>
 
-          <label class="field">
-            Lesson(s)
-            <select id="lessonSelect" multiple disabled></select>
-          </label>
+            <label class="field">
+              Lesson(s)
+              <select id="lessonSelect" multiple disabled></select>
+            </label>
+          </div>
+
+          <div id="posterFilterControls" class="filter-controls" hidden>
+            <label class="field">
+              Phoneme(s)
+              <select id="phonemeSelect" multiple disabled></select>
+            </label>
+
+            <label class="field">
+              letter_combination(s)
+              <select id="letterCombinationSelect" multiple disabled></select>
+            </label>
+          </div>
 
           <fieldset class="radio-group">
             <legend>Capitalization</legend>
@@ -3320,8 +3344,11 @@
         db: null,
         dbRows: [],
         currentFilters: {
+          source: "",
           sections: [],
-          lessons: []
+          lessons: [],
+          phonemes: [],
+          letterCombinations: []
         },
         capitalization: "uppercase",
         shooterType: "laser",
@@ -3405,8 +3432,13 @@
       const confirmClearEl = document.getElementById("confirmClear");
       const confirmClearYesEl = document.getElementById("confirmClearYes");
       const confirmClearCancelEl = document.getElementById("confirmClearCancel");
+      const sourceOptionsEl = document.getElementById("sourceOptions");
+      const bookFilterControlsEl = document.getElementById("bookFilterControls");
+      const posterFilterControlsEl = document.getElementById("posterFilterControls");
       const sectionSelectEl = document.getElementById("sectionSelect");
       const lessonSelectEl = document.getElementById("lessonSelect");
+      const phonemeSelectEl = document.getElementById("phonemeSelect");
+      const letterCombinationSelectEl = document.getElementById("letterCombinationSelect");
       const applySettingsButtonEl = document.getElementById("applySettingsButton");
       const cancelSettingsButtonEl = document.getElementById("cancelSettingsButton");
       const settingsStatusEl = document.getElementById("settingsStatus");
@@ -3585,8 +3617,11 @@
           state.words = [];
           state.wordLessons = new Map();
           state.currentFilters = {
+            source: "",
             sections: [],
-            lessons: []
+            lessons: [],
+            phonemes: [],
+            letterCombinations: []
           };
           saveSettings();
           resetGameAfterDataChange();
@@ -3636,8 +3671,11 @@
           state.words = [];
           state.wordLessons = new Map();
           state.currentFilters = {
+            source: "",
             sections: [],
-            lessons: []
+            lessons: [],
+            phonemes: [],
+            letterCombinations: []
           };
           saveSettings();
           resetGameAfterDataChange();
@@ -3650,7 +3688,22 @@
       });
 
       sectionSelectEl.addEventListener("change", () => {
-        rebuildLessonOptions(getSelectedValues(sectionSelectEl), getSelectedValues(lessonSelectEl));
+        rebuildLessonOptions(getSelectedSource(), getSelectedValues(sectionSelectEl), getSelectedValues(lessonSelectEl));
+      });
+
+      sourceOptionsEl.addEventListener("change", () => {
+        rebuildSourceFilterControls({
+          source: getSelectedSource(),
+          selectAll: true
+        });
+      });
+
+      phonemeSelectEl.addEventListener("change", () => {
+        rebuildLetterCombinationOptions(
+          getSelectedSource(),
+          getSelectedValues(phonemeSelectEl),
+          getSelectedValues(letterCombinationSelectEl)
+        );
       });
 
       speedControlEl.addEventListener("input", () => {
@@ -3918,8 +3971,11 @@
           }
 
           state.currentFilters = {
+            source: normalizeSavedSource(saved.source),
             sections: Array.isArray(saved.sections) ? saved.sections.map(String) : [],
-            lessons: Array.isArray(saved.lessons) ? saved.lessons.map(String) : []
+            lessons: Array.isArray(saved.lessons) ? saved.lessons.map(String) : [],
+            phonemes: Array.isArray(saved.phonemes) ? saved.phonemes.map(String) : [],
+            letterCombinations: Array.isArray(saved.letterCombinations) ? saved.letterCombinations.map(String) : []
           };
           if (CAPITALIZATION_MODES.has(saved.capitalization)) {
             state.capitalization = saved.capitalization;
@@ -3934,8 +3990,11 @@
           state.wordFilterSuffix = normalizeWordTextFilter(saved.wordFilterSuffix);
         } catch {
           state.currentFilters = {
+            source: "",
             sections: [],
-            lessons: []
+            lessons: [],
+            phonemes: [],
+            letterCombinations: []
           };
           state.capitalization = "uppercase";
           state.shooterType = "laser";
@@ -3952,6 +4011,9 @@
         localStorage.setItem(SETTINGS_STORAGE_KEY, JSON.stringify({
           sections: state.currentFilters.sections,
           lessons: state.currentFilters.lessons,
+          source: state.currentFilters.source,
+          phonemes: state.currentFilters.phonemes,
+          letterCombinations: state.currentFilters.letterCombinations,
           capitalization: state.capitalization,
           shooterType: state.shooterType,
           shooterVisibility: state.shooterVisibility,
@@ -3965,7 +4027,87 @@
 
       function rebuildSettingsControls(options = {}) {
         const hasData = state.dbRows.length > 0;
-        const sections = uniqueSections();
+        rebuildSourceOptions(options);
+        rebuildSourceFilterControls({
+          source: getSelectedSource(),
+          selectAll: options.selectAll
+        });
+        setCapitalizationSelection(state.capitalization);
+        setPrefixRangeSelection({
+          min: state.prefixMinLength,
+          max: state.prefixMaxLength
+        });
+        setWordTextFilterSelection(state.wordFilterPrefix, state.wordFilterSuffix);
+        setShooterTypeSelection(state.shooterType);
+        setShooterVisibilitySelection(state.shooterVisibility);
+        applyShooterType();
+        setSpeedSelection(state.wordSpeed);
+
+        sourceOptionsEl.querySelectorAll("input").forEach((input) => {
+          input.disabled = !hasData;
+        });
+        sectionSelectEl.disabled = !hasData;
+        lessonSelectEl.disabled = !hasData;
+        phonemeSelectEl.disabled = !hasData;
+        letterCombinationSelectEl.disabled = !hasData;
+        applySettingsButtonEl.disabled = !hasData;
+        clearDatabaseButtonEl.disabled = !hasData;
+      }
+
+      function rebuildSourceOptions(options = {}) {
+        const sources = uniqueSources();
+        const selectedSource = normalizeSelectedSource(
+          options.source || state.currentFilters.source,
+          sources
+        );
+
+        sourceOptionsEl.innerHTML = "";
+        sources.forEach((source) => {
+          const label = document.createElement("label");
+          label.className = "radio-option";
+
+          const input = document.createElement("input");
+          input.type = "radio";
+          input.name = "wordSource";
+          input.value = source;
+          input.checked = source === selectedSource;
+
+          const text = document.createTextNode(sourceLabel(source));
+          label.append(input, text);
+          sourceOptionsEl.appendChild(label);
+        });
+      }
+
+      function rebuildSourceFilterControls(options = {}) {
+        const source = normalizeSelectedSource(options.source, uniqueSources());
+        const isPoster = source === "poster";
+        bookFilterControlsEl.hidden = isPoster;
+        posterFilterControlsEl.hidden = !isPoster;
+
+        if (isPoster) {
+          const phonemes = uniquePhonemes(source);
+          const selectedPhonemes = options.selectAll || state.currentFilters.phonemes.length === 0
+            ? phonemes
+            : state.currentFilters.phonemes.filter((phoneme) => phonemes.includes(phoneme));
+
+          phonemeSelectEl.innerHTML = "";
+          phonemes.forEach((phoneme) => {
+            const option = document.createElement("option");
+            option.value = phoneme;
+            option.textContent = phoneme;
+            option.selected = selectedPhonemes.includes(phoneme);
+            phonemeSelectEl.appendChild(option);
+          });
+
+          rebuildLetterCombinationOptions(
+            source,
+            selectedPhonemes,
+            options.selectAll ? [] : state.currentFilters.letterCombinations
+          );
+          return;
+        }
+
+        const sections = uniqueSections(source);
         const selectedSections = options.selectAll || state.currentFilters.sections.length === 0
           ? sections
           : state.currentFilters.sections.filter((section) => sections.includes(section));
@@ -3979,27 +4121,12 @@
           sectionSelectEl.appendChild(option);
         });
 
-        rebuildLessonOptions(selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
-        setCapitalizationSelection(state.capitalization);
-        setPrefixRangeSelection({
-          min: state.prefixMinLength,
-          max: state.prefixMaxLength
-        });
-        setWordTextFilterSelection(state.wordFilterPrefix, state.wordFilterSuffix);
-        setShooterTypeSelection(state.shooterType);
-        setShooterVisibilitySelection(state.shooterVisibility);
-        applyShooterType();
-        setSpeedSelection(state.wordSpeed);
-
-        sectionSelectEl.disabled = !hasData;
-        lessonSelectEl.disabled = !hasData;
-        applySettingsButtonEl.disabled = !hasData;
-        clearDatabaseButtonEl.disabled = !hasData;
+        rebuildLessonOptions(source, selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
       }
 
-      function rebuildLessonOptions(selectedSections, selectedLessons) {
+      function rebuildLessonOptions(source, selectedSections, selectedLessons) {
         const sectionSet = new Set(selectedSections.map(String));
-        const rows = state.dbRows.filter((row) => sectionSet.size === 0 || sectionSet.has(String(row.section)));
+        const rows = rowsForSource(source).filter((row) => sectionSet.size === 0 || sectionSet.has(String(row.section)));
         const lessons = uniqueLessons(rows);
         const selectedSet = new Set(selectedLessons.map(String).filter((lesson) => lessons.some((item) => item.value === lesson)));
         const shouldSelectAll = selectedSet.size === 0;
@@ -4014,20 +4141,54 @@
         });
       }
 
+      function rebuildLetterCombinationOptions(source, selectedPhonemes, selectedLetterCombinations) {
+        const phonemeSet = new Set(selectedPhonemes.map(String));
+        const combinations = uniqueLetterCombinations(
+          rowsForSource(source).filter((row) => phonemeSet.size === 0 || phonemeSet.has(row.phonetic_symbol))
+        );
+        const selectedSet = new Set(
+          selectedLetterCombinations.map(String).filter((combination) => combinations.includes(combination))
+        );
+        const shouldSelectAll = selectedSet.size === 0;
+
+        letterCombinationSelectEl.innerHTML = "";
+        combinations.forEach((combination) => {
+          const option = document.createElement("option");
+          option.value = combination;
+          option.textContent = combination;
+          option.selected = shouldSelectAll || selectedSet.has(combination);
+          letterCombinationSelectEl.appendChild(option);
+        });
+      }
+
       function applySelectedSettings() {
         if (state.dbRows.length === 0) {
           setSettingsStatus("Import data before applying settings.", true);
           return false;
         }
 
-        const sections = getSelectedValues(sectionSelectEl);
-        const lessons = getSelectedValues(lessonSelectEl);
-        if (sections.length === 0 || lessons.length === 0) {
+        const source = getSelectedSource();
+        const isPoster = source === "poster";
+        const sections = isPoster ? [] : getSelectedValues(sectionSelectEl);
+        const lessons = isPoster ? [] : getSelectedValues(lessonSelectEl);
+        const phonemes = isPoster ? getSelectedValues(phonemeSelectEl) : [];
+        const letterCombinations = isPoster ? getSelectedValues(letterCombinationSelectEl) : [];
+        if (!source) {
+          setSettingsStatus("Choose a source.", true);
+          return false;
+        }
+
+        if (!isPoster && (sections.length === 0 || lessons.length === 0)) {
           setSettingsStatus("Choose at least one section and one lesson.", true);
           return false;
         }
 
-        const selectedRows = filterRows(sections, lessons);
+        if (isPoster && (phonemes.length === 0 || letterCombinations.length === 0)) {
+          setSettingsStatus("Choose at least one phoneme and one letter combination.", true);
+          return false;
+        }
+
+        const selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations });
         const selectedWords = uniqueWords(selectedRows);
         const capitalization = getSelectedCapitalization();
         const shooterType = getSelectedShooterType();
@@ -4040,7 +4201,7 @@
           return false;
         }
 
-        state.currentFilters = { sections, lessons };
+        state.currentFilters = { source, sections, lessons, phonemes, letterCombinations };
         state.capitalization = capitalization;
         state.shooterType = shooterType;
         state.shooterVisibility = shooterVisibility;
@@ -4069,14 +4230,31 @@
           return;
         }
 
-        const sections = normalizeStoredValues(state.currentFilters.sections, uniqueSections());
-        const lessons = normalizeStoredValues(state.currentFilters.lessons, uniqueLessons(state.dbRows).map((lesson) => lesson.value));
-        let selectedRows = filterRows(sections, lessons);
+        const source = normalizeSelectedSource(state.currentFilters.source, uniqueSources());
+        const isPoster = source === "poster";
+        const sections = isPoster ? [] : normalizeStoredValues(state.currentFilters.sections, uniqueSections(source));
+        const lessons = isPoster ? [] : normalizeStoredValues(
+          state.currentFilters.lessons,
+          uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value)
+        );
+        const phonemes = isPoster ? normalizeStoredValues(state.currentFilters.phonemes, uniquePhonemes(source)) : [];
+        const letterCombinations = isPoster ? normalizeStoredValues(
+          state.currentFilters.letterCombinations,
+          uniqueLetterCombinations(rowsForSource(source).filter((row) => phonemes.length === 0 || phonemes.includes(row.phonetic_symbol)))
+        ) : [];
+
+        let selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations });
         let selectedWords = uniqueWords(selectedRows);
 
         if (selectedWords.length < MIN_WORDS) {
-          state.currentFilters = { sections: [], lessons: [] };
-          selectedRows = state.dbRows;
+          state.currentFilters = {
+            source,
+            sections: isPoster ? [] : uniqueSections(source),
+            lessons: isPoster ? [] : uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value),
+            phonemes: isPoster ? uniquePhonemes(source) : [],
+            letterCombinations: isPoster ? uniqueLetterCombinations(rowsForSource(source)) : []
+          };
+          selectedRows = rowsForSource(source);
           selectedWords = uniqueWords(selectedRows);
         }
 
@@ -4084,16 +4262,73 @@
         startButtonEl.disabled = selectedWords.length < MIN_WORDS;
       }
 
-      function filterRows(sections, lessons) {
-        const sectionSet = new Set(sections.map(String));
-        const lessonSet = new Set(lessons.map(String));
-        return state.dbRows.filter((row) => {
+      function filterRows(filters) {
+        const source = normalizeSelectedSource(filters.source, uniqueSources());
+        const rows = rowsForSource(source);
+
+        if (source === "poster") {
+          const phonemeSet = new Set(filters.phonemes.map(String));
+          const letterCombinationSet = new Set(filters.letterCombinations.map(String));
+          return rows.filter((row) => {
+            return phonemeSet.has(String(row.phonetic_symbol)) && letterCombinationSet.has(String(row.letter_combination));
+          });
+        }
+
+        const sectionSet = new Set(filters.sections.map(String));
+        const lessonSet = new Set(filters.lessons.map(String));
+        return rows.filter((row) => {
           return sectionSet.has(String(row.section)) && lessonSet.has(String(row.lesson));
         });
       }
 
-      function uniqueSections() {
-        return [...new Set(state.dbRows.map((row) => String(row.section)))]
+      function rowsForSource(source) {
+        const selectedSource = normalizeSelectedSource(source, uniqueSources());
+        return state.dbRows.filter((row) => row.source === selectedSource);
+      }
+
+      function uniqueSources() {
+        return [...new Set(state.dbRows.map((row) => row.source).filter(Boolean))]
+          .sort((a, b) => {
+            if (a === "poster") {
+              return 1;
+            }
+            if (b === "poster") {
+              return -1;
+            }
+            return sourceLabel(a).localeCompare(sourceLabel(b), undefined, { sensitivity: "base" });
+          });
+      }
+
+      function sourceLabel(source) {
+        if (source === "poster") {
+          return "Poster";
+        }
+
+        return source;
+      }
+
+      function normalizeSavedSource(source) {
+        return typeof source === "string" ? source : "";
+      }
+
+      function normalizeSelectedSource(source, sources) {
+        const allowedSources = sources.length ? sources : uniqueSources();
+        if (allowedSources.includes(source)) {
+          return source;
+        }
+
+        return allowedSources[0] || "";
+      }
+
+      function getSelectedSource() {
+        return normalizeSelectedSource(
+          sourceOptionsEl.querySelector("input[name='wordSource']:checked")?.value,
+          uniqueSources()
+        );
+      }
+
+      function uniqueSections(source) {
+        return [...new Set(rowsForSource(source).map((row) => String(row.section)))]
           .sort((a, b) => Number(a) - Number(b));
       }
 
@@ -4110,6 +4345,18 @@
         });
 
         return [...lessons.values()].sort((a, b) => Number(a.value) - Number(b.value));
+      }
+
+      function uniquePhonemes(source) {
+        const present = new Set(rowsForSource(source).map((row) => row.phonetic_symbol).filter(Boolean));
+        const allowedOrder = [...ALLOWED_PHONETIC_SYMBOLS].filter((phoneme) => present.has(phoneme));
+        const remaining = [...present].filter((phoneme) => !ALLOWED_PHONETIC_SYMBOLS.has(phoneme)).sort();
+        return allowedOrder.concat(remaining);
+      }
+
+      function uniqueLetterCombinations(rows) {
+        return [...new Set(rows.map((row) => row.letter_combination).filter(Boolean))]
+          .sort((a, b) => a.localeCompare(b, undefined, { sensitivity: "base", numeric: true }));
       }
 
       function uniqueWords(rows) {
