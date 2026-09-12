@@ -3301,7 +3301,8 @@
       const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol", "letter_combination", "source"];
       const ALLOWED_PHONETIC_SYMBOLS = new Set([
         "/ă/", "/ĕ/", "/ĭ/", "/ŏ/", "/ŭ/", "/ā/", "/ē/", "/ī/", "/ō/", "/ū/", "/o-o/", "/o˘o/",
-        "/ô/", "/ou/", "/oi/", "/är/", "/ôr/", "/âr/", "/ûr/", "/ə/", "/b/", "/d/", "/f/",
+        "/ô/", "/ö/", "/ü/", "/ou/", "/ow/", "/oi/", "/aw/", "/ar/", "/air/", "/ear/", "/er/",
+        "/or/", "/är/", "/ôr/", "/âr/", "/ûr/", "/ə/", "/b/", "/d/", "/f/",
         "/g/", "/h/", "/j/", "/k/", "/l/", "/m/", "/n/", "/p/", "/kw/", "/r/", "/s/", "/t/",
         "/v/", "/w/", "/ks/", "/y/", "/z/", "/sh/", "/th/", "/zh/", "/ch/", "/ng/", "/hw/"
       ]);
@@ -3868,11 +3869,11 @@
           const section = Number(sectionText);
           const lesson = Number(lessonText);
 
-          if (!Number.isInteger(section) || section < 1) {
+          if (!Number.isInteger(section) || section < 0) {
             throw new Error(`Row ${index + 2} has an invalid section.`);
           }
 
-          if (!Number.isInteger(lesson) || lesson < 1) {
+          if (!Number.isInteger(lesson) || lesson < 0) {
             throw new Error(`Row ${index + 2} has an invalid lesson.`);
           }
 
