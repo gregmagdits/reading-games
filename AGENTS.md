@@ -4,7 +4,10 @@
 
 This is a static reading-game prototype. There is no build system, package manager, or backend.
 
-- `shooting-words.html` is the main game and settings app. It contains HTML, CSS, and JavaScript in one file.
+- `shooting-words.html` is the stable page URL and semantic application shell.
+- `js/app.mjs` is the composition root. Game, settings, storage, catalog, effects, and shooter behavior live in focused native ES modules under `js/`.
+- `js/shooters/` contains one self-contained definition per shooter plus the single registration list in `js/shooters/index.mjs`.
+- `styles/` contains shared base-game, settings, and effects styles. Shooter-specific art, scene, and projectile CSS belongs in its shooter module.
 - `index.html` is the earlier missing-letter picture game.
 - `teaching-reading-words.csv` is the primary word database for the shooting game.
 - `phoneme_examples.csv` is source data that was imported into `teaching-reading-words.csv` with `source=poster`.
@@ -33,8 +36,9 @@ The app uses IndexedDB, so prefer serving through HTTP over opening the file dir
 Before reporting a browser-file change complete, run:
 
 ```bash
-node -e 'const fs=require("fs"); const html=fs.readFileSync("shooting-words.html","utf8"); const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(m=>m[1]); for (const script of scripts) new Function(script); console.log("script parse ok");'
-git diff --check -- shooting-words.html
+find js -name '*.mjs' -print0 | xargs -0 -n1 node --check
+node --test tests/*.test.mjs
+git diff --check
 curl --max-time 2 -I http://127.0.0.1:8000/shooting-words.html
 ```
 
@@ -56,26 +60,11 @@ Rules:
 - `phoneme_examples.csv` maps `phoneme` to `phonetic_symbol`.
 - Keep CSV edits append/transform-safe. Do not delete existing data unless the user explicitly asks.
 
-When changing import validation in `shooting-words.html`, keep it aligned with the CSV schema and existing IndexedDB normalization for older imported rows.
+When changing import validation in `js/word-catalog.mjs`, keep it aligned with the CSV schema and existing IndexedDB normalization for older imported rows.
 
 ## Shooting Game Notes
 
-The settings UI, game state, IndexedDB access, metrics, shooter artwork, and game loop all live in `shooting-words.html`.
-
-When adding a shooter option, update every relevant hook:
-
-- `SHOOTER_TYPES`
-- in-game `[data-shooter-choice]` button
-- settings radio button and visibility checkbox
-- shooter DOM inside `#gun`
-- CSS display rules for hiding/showing the shooter
-- scene background class on `.arena`
-- `applyShooterType()`
-- `shootAt()`
-- projectile function
-- `updateAim()`
-- `getAimPivot()`
-- pivot/tip helpers
+To add a shooter, create one definition module in `js/shooters/` and add one import/entry in `js/shooters/index.mjs`. The registry derives picker/settings controls and delegates scene, aiming, and projectile behavior; do not add shooter-specific branches to game or settings modules.
 
 Shooter art should remain static and self-contained, using CSS and inline SVG data URLs. Keep the first screen the game itself, not a landing page.
 
@@ -92,5 +81,6 @@ When changing filters, preserve both source modes:
 
 ## Style
 
-Keep the app lightweight, playful, and readable for a young child. Avoid adding external dependencies for small UI changes. Match the existing dense single-file style rather than introducing a new architecture.
+Keep the app lightweight, playful, and readable for a young child. Avoid external dependencies and preserve the native-module architecture.
 
+Use Graphify for explicit architecture, dependency, or code-navigation work. Do not rebuild it for routine feature edits; refresh it only when the architecture materially changes or the user asks.

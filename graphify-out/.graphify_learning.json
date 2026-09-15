@@ -1,0 +1,138 @@
+{
+  "generated_at": "2026-09-15T12:28:36.985622+00:00",
+  "nodes": {
+    "agents_shooter_option_hooks": {
+      "code_fingerprint": "e95bb77bd2a0ea3a402f10e76e6887d2b5709664672e9305d4b685102b22744d",
+      "label": "Shooter Option Integration Hooks",
+      "last": "2026-09-14T23:02:53.675205+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:02:53.675205+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a backpack that shoots books. The background should be a library"
+        }
+      ],
+      "score": 0.98715534,
+      "source_file": "AGENTS.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "graphify_out_memory_query_20260914_230253_3577ac6a_add_a_new_shooter_option_where_the_shooter_is_a_ba_shooter_integration_seam": {
+      "code_fingerprint": "dcad31afcf9f23de15a8ac670ca1958e882a46e6c771d7b199897eac948a5b39",
+      "label": "Shooter Integration Seam",
+      "last": "2026-09-14T23:13:50.184087+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:13:50.184087+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a garbage can that shoots garbage. The background should be a garbage truck"
+        }
+      ],
+      "score": 0.987328662,
+      "source_file": "graphify-out/memory/query_20260914_230253_3577ac6a_add_a_new_shooter_option_where_the_shooter_is_a_ba.md",
+      "status": "tentative",
+      "uses": 1
+    },
+    "shooting_words_apply_shooter_type": {
+      "code_fingerprint": "6662aee057b116143abfa2796bd1d7df3d42ff46f354fe233fa26a08597342fb",
+      "label": "Apply Shooter Type",
+      "last": "2026-09-14T23:13:50.184087+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:13:50.184087+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a garbage can that shoots garbage. The background should be a garbage truck"
+        },
+        {
+          "date": "2026-09-14T23:02:53.675205+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a backpack that shoots books. The background should be a library"
+        }
+      ],
+      "score": 1.974484002,
+      "source_file": "shooting-words.html",
+      "status": "preferred",
+      "uses": 2
+    },
+    "shooting_words_get_aim_pivot": {
+      "code_fingerprint": "6662aee057b116143abfa2796bd1d7df3d42ff46f354fe233fa26a08597342fb",
+      "label": "Get Active Shooter Aim Pivot",
+      "last": "2026-09-14T23:13:50.184087+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:13:50.184087+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a garbage can that shoots garbage. The background should be a garbage truck"
+        },
+        {
+          "date": "2026-09-14T23:02:53.675205+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a backpack that shoots books. The background should be a library"
+        }
+      ],
+      "score": 1.974484002,
+      "source_file": "shooting-words.html",
+      "status": "preferred",
+      "uses": 2
+    },
+    "shooting_words_shoot_at": {
+      "code_fingerprint": "6662aee057b116143abfa2796bd1d7df3d42ff46f354fe233fa26a08597342fb",
+      "label": "Dispatch Shot",
+      "last": "2026-09-14T23:13:50.184087+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:13:50.184087+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a garbage can that shoots garbage. The background should be a garbage truck"
+        },
+        {
+          "date": "2026-09-14T23:02:53.675205+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a backpack that shoots books. The background should be a library"
+        }
+      ],
+      "score": 1.974484002,
+      "source_file": "shooting-words.html",
+      "status": "preferred",
+      "uses": 2
+    },
+    "shooting_words_shooter_types": {
+      "code_fingerprint": "6662aee057b116143abfa2796bd1d7df3d42ff46f354fe233fa26a08597342fb",
+      "label": "Shooter Types",
+      "last": "2026-09-14T23:13:50.184087+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:13:50.184087+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a garbage can that shoots garbage. The background should be a garbage truck"
+        }
+      ],
+      "score": 0.987328662,
+      "source_file": "shooting-words.html",
+      "status": "tentative",
+      "uses": 1
+    },
+    "shooting_words_update_aim": {
+      "code_fingerprint": "6662aee057b116143abfa2796bd1d7df3d42ff46f354fe233fa26a08597342fb",
+      "label": "Update Shooter Aim",
+      "last": "2026-09-14T23:13:50.184087+00:00",
+      "provenance": [
+        {
+          "date": "2026-09-14T23:13:50.184087+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a garbage can that shoots garbage. The background should be a garbage truck"
+        },
+        {
+          "date": "2026-09-14T23:02:53.675205+00:00",
+          "outcome": "useful",
+          "q": "add a new shooter option where the shooter is a backpack that shoots books. The background should be a library"
+        }
+      ],
+      "score": 1.974484002,
+      "source_file": "shooting-words.html",
+      "status": "preferred",
+      "uses": 2
+    }
+  },
+  "version": 1
+}

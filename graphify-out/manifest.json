@@ -1,0 +1,212 @@
+{
+  "start-server.sh": {
+    "mtime": 1784047893.9943094,
+    "seen": 1789309287.953926,
+    "ast_hash": "5b28f6463af0944e3277e3ca92c16ee0",
+    "semantic_hash": "5b28f6463af0944e3277e3ca92c16ee0"
+  },
+  "AGENTS.md": {
+    "mtime": 1789308680.075507,
+    "seen": 1789309287.9539332,
+    "ast_hash": "d277b536a0ee236a05593c854c65382a",
+    "semantic_hash": "d277b536a0ee236a05593c854c65382a"
+  },
+  "index.html": {
+    "mtime": 1784047052.2377248,
+    "seen": 1789309287.953936,
+    "ast_hash": "43ea984e48f6037fe5c9da8638213a5f",
+    "semantic_hash": "43ea984e48f6037fe5c9da8638213a5f"
+  },
+  "shooting-words.html": {
+    "mtime": 1789427779.9916394,
+    "seen": 1789428024.196302,
+    "ast_hash": "8df34b1d65442b00603ef03c81472b27",
+    "semantic_hash": "8df34b1d65442b00603ef03c81472b27"
+  },
+  "graphify-out/memory/query_20260914_230253_3577ac6a_add_a_new_shooter_option_where_the_shooter_is_a_ba.md": {
+    "mtime": 1789426973.6774018,
+    "seen": 1789427516.8891335,
+    "ast_hash": "b8945b8b3e773dd44657f660a20e3508",
+    "semantic_hash": "b8945b8b3e773dd44657f660a20e3508"
+  },
+  "graphify-out/memory/query_20260914_231350_581aa647_add_a_new_shooter_option_where_the_shooter_is_a_ga.md": {
+    "mtime": 1789427630.1853566,
+    "seen": 1789428024.1963,
+    "ast_hash": "2f0edebdac34a44d27df7a473948122e",
+    "semantic_hash": "2f0edebdac34a44d27df7a473948122e"
+  },
+  "js/app.mjs": {
+    "mtime": 1789477128.4568968,
+    "seen": 1789480860.3178928,
+    "ast_hash": "8bcb9305c0a8118fe1a3423079eabb2e",
+    "semantic_hash": "8bcb9305c0a8118fe1a3423079eabb2e"
+  },
+  "js/effects.mjs": {
+    "mtime": 1789477241.8472548,
+    "seen": 1789480860.3178954,
+    "ast_hash": "176f7dce82291236afcfedd70802aa4b",
+    "semantic_hash": "176f7dce82291236afcfedd70802aa4b"
+  },
+  "js/game-controller.mjs": {
+    "mtime": 1789481189.1269634,
+    "seen": 1789481252.1351252,
+    "ast_hash": "cc4d340d657514a49395a10a3caead51",
+    "semantic_hash": "cc4d340d657514a49395a10a3caead51"
+  },
+  "js/reading-repository.mjs": {
+    "mtime": 1789477153.4065754,
+    "seen": 1789480860.3178973,
+    "ast_hash": "fec9e9533add4488a0a1a3dab7c2252d",
+    "semantic_hash": "fec9e9533add4488a0a1a3dab7c2252d"
+  },
+  "js/settings-controller.mjs": {
+    "mtime": 1789477114.4255097,
+    "seen": 1789480860.3178978,
+    "ast_hash": "7392390c9d331a1605983f528bfd43d5",
+    "semantic_hash": "7392390c9d331a1605983f528bfd43d5"
+  },
+  "js/settings-store.mjs": {
+    "mtime": 1789477114.2250228,
+    "seen": 1789480860.3178985,
+    "ast_hash": "2bef857e1cd8c43e5c123bd28b7c7ced",
+    "semantic_hash": "2bef857e1cd8c43e5c123bd28b7c7ced"
+  },
+  "js/shooter-registry.mjs": {
+    "mtime": 1789476935.9626799,
+    "seen": 1789480860.317899,
+    "ast_hash": "944e722b1e6914bdb5cbb2b76c04b15b",
+    "semantic_hash": "944e722b1e6914bdb5cbb2b76c04b15b"
+  },
+  "js/shooter-tools.mjs": {
+    "mtime": 1789476867.9786735,
+    "seen": 1789480860.3178995,
+    "ast_hash": "c90204a8f1bfd1b80482ceaa89bc0490",
+    "semantic_hash": "c90204a8f1bfd1b80482ceaa89bc0490"
+  },
+  "js/shooters/backpack.mjs": {
+    "mtime": 1789481235.7787557,
+    "seen": 1789481252.135229,
+    "ast_hash": "0fddae3f8a8f79187431f5c3f7c09a0b",
+    "semantic_hash": "0fddae3f8a8f79187431f5c3f7c09a0b"
+  },
+  "js/shooters/bow.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.1352303,
+    "ast_hash": "5bdb8b0d2d2ea3fec492b0e5c92fca79",
+    "semantic_hash": "5bdb8b0d2d2ea3fec492b0e5c92fca79"
+  },
+  "js/shooters/cannon.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.135231,
+    "ast_hash": "d6de58ed0a271342afe945793c6a4d37",
+    "semantic_hash": "d6de58ed0a271342afe945793c6a4d37"
+  },
+  "js/shooters/carpenter.mjs": {
+    "mtime": 1789481235.7787557,
+    "seen": 1789481252.1352315,
+    "ast_hash": "8c7e02e8b86756b91f40b1935efbfb8b",
+    "semantic_hash": "8c7e02e8b86756b91f40b1935efbfb8b"
+  },
+  "js/shooters/cowboy.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.1352322,
+    "ast_hash": "349de03232f5de86c931181b138c98ca",
+    "semantic_hash": "349de03232f5de86c931181b138c98ca"
+  },
+  "js/shooters/crossbow.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.1352327,
+    "ast_hash": "b59022526664468393a4ed34e1018c43",
+    "semantic_hash": "b59022526664468393a4ed34e1018c43"
+  },
+  "js/shooters/dragon.mjs": {
+    "mtime": 1789481215.2853725,
+    "seen": 1789481252.1352336,
+    "ast_hash": "8f1851c75333683d870426cb00115bb5",
+    "semantic_hash": "8f1851c75333683d870426cb00115bb5"
+  },
+  "js/shooters/firefighter.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.1352344,
+    "ast_hash": "a60fddf8844a9ea59ebc70df027626cd",
+    "semantic_hash": "a60fddf8844a9ea59ebc70df027626cd"
+  },
+  "js/shooters/garbagecan.mjs": {
+    "mtime": 1789481235.7787557,
+    "seen": 1789481252.1352348,
+    "ast_hash": "a94684c790811a1a25422d6cdc9efe71",
+    "semantic_hash": "a94684c790811a1a25422d6cdc9efe71"
+  },
+  "js/shooters/index.mjs": {
+    "mtime": 1789476937.4980311,
+    "seen": 1789480860.3179052,
+    "ast_hash": "ae1a529c276d3b3317c189a3bc9f95cb",
+    "semantic_hash": "ae1a529c276d3b3317c189a3bc9f95cb"
+  },
+  "js/shooters/laser.mjs": {
+    "mtime": 1789481235.7707648,
+    "seen": 1789481252.1352575,
+    "ast_hash": "c59f1e9bfd0ca66657ae218ece60632f",
+    "semantic_hash": "c59f1e9bfd0ca66657ae218ece60632f"
+  },
+  "js/shooters/lawnmower.mjs": {
+    "mtime": 1789481235.7787557,
+    "seen": 1789481252.1352584,
+    "ast_hash": "9486d042bb31b1c2887889741352ccdd",
+    "semantic_hash": "9486d042bb31b1c2887889741352ccdd"
+  },
+  "js/shooters/ninja.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.135259,
+    "ast_hash": "9e322a6434507b01ecfc6ba376804ab6",
+    "semantic_hash": "9e322a6434507b01ecfc6ba376804ab6"
+  },
+  "js/shooters/rocket.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.1352594,
+    "ast_hash": "eed94f00a83c6938671181063fe51add",
+    "semantic_hash": "eed94f00a83c6938671181063fe51add"
+  },
+  "js/shooters/wizard.mjs": {
+    "mtime": 1789481235.7787557,
+    "seen": 1789481252.13526,
+    "ast_hash": "d1befc814902d6eaa477b5685b583a3e",
+    "semantic_hash": "d1befc814902d6eaa477b5685b583a3e"
+  },
+  "js/shooters/zeus.mjs": {
+    "mtime": 1789481235.7747602,
+    "seen": 1789481252.1352608,
+    "ast_hash": "d6716d3d3a2b91d5ce64ed2c821ce051",
+    "semantic_hash": "d6716d3d3a2b91d5ce64ed2c821ce051"
+  },
+  "js/word-catalog.mjs": {
+    "mtime": 1789481158.3084917,
+    "seen": 1789481252.1352618,
+    "ast_hash": "db66f93c7100e3656e205f8f320c2cc5",
+    "semantic_hash": "db66f93c7100e3656e205f8f320c2cc5"
+  },
+  "tests/reading-repository.test.mjs": {
+    "mtime": 1789477386.0614104,
+    "seen": 1789480860.3179603,
+    "ast_hash": "f4b712cb6110fad452cc57d17596ea93",
+    "semantic_hash": "f4b712cb6110fad452cc57d17596ea93"
+  },
+  "tests/settings-store.test.mjs": {
+    "mtime": 1789477385.855321,
+    "seen": 1789480860.317961,
+    "ast_hash": "5446079a12813e970afbd6a95485547a",
+    "semantic_hash": "5446079a12813e970afbd6a95485547a"
+  },
+  "tests/shooter-registry.test.mjs": {
+    "mtime": 1789477385.7502568,
+    "seen": 1789480860.3179615,
+    "ast_hash": "ce673497e065d519ef3e704c601dada6",
+    "semantic_hash": "ce673497e065d519ef3e704c601dada6"
+  },
+  "tests/word-catalog.test.mjs": {
+    "mtime": 1789481172.253386,
+    "seen": 1789481252.135339,
+    "ast_hash": "dd5bbfbd733dcb3ac86c280412c4fc80",
+    "semantic_hash": "dd5bbfbd733dcb3ac86c280412c4fc80"
+  }
+}
