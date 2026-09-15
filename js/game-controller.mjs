@@ -2,7 +2,7 @@ import { ShooterRegistry } from "./shooter-registry.mjs";
 import { shooterDefinitions } from "./shooters/index.mjs";
 import { ReadingRepository } from "./reading-repository.mjs";
 import { SettingsStore, createSettingsNormalizer } from "./settings-store.mjs";
-import { ALL_SOURCES, WordCatalog, normalizeRows as normalizeCatalogRows, selectRoundWords, validateTeachingCsv as validateCatalogCsv } from "./word-catalog.mjs";
+import { ALL_SOURCES, WordCatalog, normalizeRows as normalizeCatalogRows, selectRoundWords, uniqueWords as uniqueCatalogWords, validateTeachingCsv as validateCatalogCsv } from "./word-catalog.mjs";
 import { Effects } from "./effects.mjs";
 import { SettingsController } from "./settings-controller.mjs";
 export class GameController {
@@ -931,7 +931,7 @@ export function startGameApp() {
         }
   
         function uniqueWords(rows) {
-          return [...new Set(rows.map((row) => row.word.trim()).filter(Boolean))];
+          return uniqueCatalogWords(rows);
         }
   
         function setSelectedWordRows(rows) {

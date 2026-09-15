@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { ALL_SOURCES, EXPECTED_HEADERS, WordCatalog, capitalize, filterRows, normalizeRow, prefixGroups, selectRoundWords, validateTeachingCsv } from "../js/word-catalog.mjs";
+import { ALL_SOURCES, EXPECTED_HEADERS, WordCatalog, capitalize, filterRows, normalizeRow, prefixGroups, selectRoundWords, uniqueWords, validateTeachingCsv } from "../js/word-catalog.mjs";
 
 const rows = [
   { section:1, lesson:2, lesson_description:"Short a", word:"cat", is_sight_word:"F", phonetic_symbol:"/ă/", letter_combination:"a", source:"book.csv" },
@@ -30,4 +30,15 @@ test("prefix ranges, capitalization, and round selection are deterministic", () 
   assert.equal(capitalize("Cat", "uppercase"), "CAT"); assert.equal(capitalize("Cat", "lowercase"), "cat"); assert.equal(capitalize("Cat", "original"), "Cat");
   const randomValues = [0, 0, .9]; let index = 0;
   assert.deepEqual(selectRoundWords(["cat", "cap", "dog"], { count:2, minPrefix:2, maxPrefix:2, random:() => randomValues[index++] ?? 0 }), ["cat", "cap"]);
+});
+
+test("words duplicated across sources or letter case cannot appear twice on screen", () => {
+  const duplicateRows = [
+    { word:"cat", source:"book.csv" },
+    { word:"cat", source:"poster" },
+    { word:"Cat", source:"another-book.csv" },
+    { word:"dog", source:"poster" }
+  ];
+  assert.deepEqual(uniqueWords(duplicateRows), ["cat", "dog"]);
+  assert.deepEqual(selectRoundWords(["cat", "cat", "Cat", "dog"], { count:4, minPrefix:0, maxPrefix:0, random:() => .99 }).sort(), ["cat", "dog"]);
 });

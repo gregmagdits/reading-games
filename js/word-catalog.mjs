@@ -66,13 +66,23 @@ export function filterRows(rows, filters = {}) {
 }
 
 export function capitalize(word, mode) { return mode === "lowercase" ? word.toLowerCase() : mode === "original" ? word : word.toUpperCase(); }
+export function uniqueWords(items) {
+  const words = new Map();
+  for (const item of items) {
+    const word = String(typeof item === "string" ? item : item?.word ?? "").trim();
+    const key = word.toLocaleLowerCase();
+    if (word && !words.has(key)) words.set(key, word);
+  }
+  return [...words.values()];
+}
 export function prefixGroups(words, length) {
   const groups = new Map();
   for (const word of words) { const key = word.slice(0, Math.max(0, length)).toLowerCase(); if (!groups.has(key)) groups.set(key, []); groups.get(key).push(word); }
   return groups;
 }
 export function selectRoundWords(words, { count, minPrefix = 1, maxPrefix = minPrefix, random = Math.random } = {}) {
-  const wanted = Math.min(count ?? words.length, words.length);
+  const distinctWords = uniqueWords(words);
+  const wanted = Math.min(count ?? distinctWords.length, distinctWords.length);
   const length = minPrefix + Math.floor(random() * (maxPrefix - minPrefix + 1));
   const shuffle = (values) => {
     const shuffled = [...values];
@@ -82,16 +92,16 @@ export function selectRoundWords(words, { count, minPrefix = 1, maxPrefix = minP
     }
     return shuffled;
   };
-  if (length === 0) return shuffle(words).slice(0, wanted);
-  const groups = [...prefixGroups(words, length).values()].filter((group) => group.length);
-  if (!groups.length) return shuffle(words).slice(0, wanted);
+  if (length === 0) return shuffle(distinctWords).slice(0, wanted);
+  const groups = [...prefixGroups(distinctWords, length).values()].filter((group) => group.length);
+  if (!groups.length) return shuffle(distinctWords).slice(0, wanted);
   const complete = groups.filter((group) => group.length >= wanted);
   if (complete.length) return shuffle(complete[Math.floor(random() * complete.length)]).slice(0, wanted);
   const largestSize = Math.max(...groups.map((group) => group.length));
   const largest = groups.filter((group) => group.length === largestSize);
   const selected = shuffle(largest[Math.floor(random() * largest.length)]);
   const selectedSet = new Set(selected);
-  return selected.concat(shuffle(words.filter((word) => !selectedSet.has(word))).slice(0, wanted - selected.length));
+  return selected.concat(shuffle(distinctWords.filter((word) => !selectedSet.has(word))).slice(0, wanted - selected.length));
 }
 
 export class WordCatalog {
