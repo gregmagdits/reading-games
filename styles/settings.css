@@ -32,8 +32,7 @@
 .shooter-card:focus-visible { outline: 4px solid #70d6ff; outline-offset: 2px; }
 .shooter-card[hidden], .shooter-card:has(input:disabled) { display: none; }
 
-.settings-shooter-card { grid-template-columns: 1fr auto; }
-.settings-shooter-card > label:first-child { display: grid; grid-template-columns: auto 24px 1fr; align-items: center; gap: 6px; cursor: pointer; }
+.settings-shooter-card { grid-template-columns: auto 24px 1fr; cursor: pointer; }
 .settings-shooter-card input { width: 18px; height: 18px; }
 
 @media (max-width: 560px) {

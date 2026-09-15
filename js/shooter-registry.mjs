@@ -8,6 +8,7 @@ export class ShooterRegistry {
   #arena = null;
   #picker = null;
   #settings = null;
+  #visibilitySettings = null;
   #host = null;
 
   constructor(definitions = []) { definitions.forEach((definition) => this.register(definition)); }
@@ -32,6 +33,7 @@ export class ShooterRegistry {
     this.#arena = context.arena;
     this.#picker = context.picker;
     this.#settings = context.settings;
+    this.#visibilitySettings = context.visibilitySettings;
     for (const definition of this.#definitions.values()) this.#runtimes.set(definition.id, definition.mount(context));
     this.renderControls();
     this.select(this.#activeId);
@@ -39,11 +41,15 @@ export class ShooterRegistry {
   }
 
   renderControls() {
-    const cards = (mode) => this.metadata.map(({ id, label, icon, visible }) => mode === "picker"
-      ? `<button class="shooter-card" type="button" data-shooter-choice="${id}" aria-label="Use ${label}" aria-pressed="${id === this.#activeId}"${visible ? "" : " hidden"}><span class="shooter-choice-icon" aria-hidden="true">${icon}</span><span>${label}</span></button>`
-      : `<div class="shooter-card settings-shooter-card" data-shooter-setting="${id}"><label><input type="radio" name="shooterType" value="${id}"${id === this.#activeId ? " checked" : ""}><span aria-hidden="true">${icon}</span><span>${label}</span></label><label class="shooter-visibility-option"><input type="checkbox" name="shooterVisible" value="${id}"${visible ? " checked" : ""}>Show</label></div>`).join("");
-    if (this.#picker) this.#picker.innerHTML = cards("picker");
-    if (this.#settings) this.#settings.innerHTML = cards("settings");
+    if (this.#picker) this.#picker.innerHTML = this.metadata.map(({ id, label, icon, visible }) =>
+      `<button class="shooter-card" type="button" data-shooter-choice="${id}" aria-label="Use ${label}" aria-pressed="${id === this.#activeId}"${visible ? "" : " hidden"}><span class="shooter-choice-icon" aria-hidden="true">${icon}</span><span>${label}</span></button>`
+    ).join("");
+    if (this.#settings) this.#settings.innerHTML = this.metadata.map(({ id, label, icon }) =>
+      `<label class="shooter-card settings-shooter-card" data-shooter-setting="${id}"><input type="radio" name="shooterType" value="${id}"${id === this.#activeId ? " checked" : ""}><span aria-hidden="true">${icon}</span><span>${label}</span></label>`
+    ).join("");
+    if (this.#visibilitySettings) this.#visibilitySettings.innerHTML = this.metadata.map(({ id, label, icon, visible }) =>
+      `<label class="shooter-card settings-shooter-card" data-shooter-visibility="${id}"><input type="checkbox" name="shooterVisible" value="${id}" aria-label="Show ${label} during gameplay"${visible ? " checked" : ""}><span aria-hidden="true">${icon}</span><span>${label}</span></label>`
+    ).join("");
   }
 
   select(id) {
@@ -71,6 +77,7 @@ export class ShooterRegistry {
   setVisibility(visibility) {
     this.#visibility = this.normalizeVisibility(visibility);
     if (this.#picker) for (const button of this.#picker.querySelectorAll("[data-shooter-choice]")) button.hidden = this.#visibility[button.dataset.shooterChoice] === false;
+    if (this.#visibilitySettings) for (const input of this.#visibilitySettings.querySelectorAll("input[name='shooterVisible']")) input.checked = this.#visibility[input.value] !== false;
     return { ...this.#visibility };
   }
 

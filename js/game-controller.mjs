@@ -145,6 +145,7 @@ export function startGameApp() {
         const cancelSettingsButtonEl = document.getElementById("cancelSettingsButton");
         const settingsStatusEl = document.getElementById("settingsStatus");
         const shooterSettingsChoicesEl = document.getElementById("shooterSettingsChoices");
+        const shooterVisibilityChoicesEl = document.getElementById("shooterVisibilityChoices");
         const capitalizationEls = [...document.querySelectorAll("input[name='capitalization']")];
         let shooterTypeEls = [];
         let shooterVisibilityEls = [];
@@ -161,6 +162,7 @@ export function startGameApp() {
           arena: arenaEl,
           picker: shooterPickerEl,
           settings: shooterSettingsChoicesEl,
+          visibilitySettings: shooterVisibilityChoicesEl,
           randomInt,
           timer: window.setTimeout.bind(window)
         });
