@@ -2,7 +2,7 @@ import { ShooterRegistry } from "./shooter-registry.mjs";
 import { shooterDefinitions } from "./shooters/index.mjs";
 import { ReadingRepository } from "./reading-repository.mjs";
 import { SettingsStore, createSettingsNormalizer } from "./settings-store.mjs";
-import { WordCatalog, normalizeRows as normalizeCatalogRows, selectRoundWords, validateTeachingCsv as validateCatalogCsv } from "./word-catalog.mjs";
+import { ALL_SOURCES, WordCatalog, normalizeRows as normalizeCatalogRows, selectRoundWords, validateTeachingCsv as validateCatalogCsv } from "./word-catalog.mjs";
 import { Effects } from "./effects.mjs";
 import { SettingsController } from "./settings-controller.mjs";
 export class GameController {
@@ -623,7 +623,7 @@ export function startGameApp() {
           );
   
           sourceOptionsEl.innerHTML = "";
-          sources.forEach((source) => {
+          [ALL_SOURCES, ...sources].forEach((source) => {
             const label = document.createElement("label");
             label.className = "radio-option";
   
@@ -641,9 +641,14 @@ export function startGameApp() {
   
         function rebuildSourceFilterControls(options = {}) {
           const source = normalizeSelectedSource(options.source, uniqueSources());
+          const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
-          bookFilterControlsEl.hidden = isPoster;
-          posterFilterControlsEl.hidden = !isPoster;
+          bookFilterControlsEl.hidden = isAll || isPoster;
+          posterFilterControlsEl.hidden = isAll || !isPoster;
+
+          if (isAll) {
+            return;
+          }
   
           if (isPoster) {
             const phonemes = uniquePhonemes(source);
@@ -729,17 +734,18 @@ export function startGameApp() {
           }
   
           const source = getSelectedSource();
+          const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
-          const sections = isPoster ? [] : getSelectedValues(sectionSelectEl);
-          const lessons = isPoster ? [] : getSelectedValues(lessonSelectEl);
-          const phonemes = isPoster ? getSelectedValues(phonemeSelectEl) : [];
-          const letterCombinations = isPoster ? getSelectedValues(letterCombinationSelectEl) : [];
+          const sections = isAll || isPoster ? [] : getSelectedValues(sectionSelectEl);
+          const lessons = isAll || isPoster ? [] : getSelectedValues(lessonSelectEl);
+          const phonemes = isPoster && !isAll ? getSelectedValues(phonemeSelectEl) : [];
+          const letterCombinations = isPoster && !isAll ? getSelectedValues(letterCombinationSelectEl) : [];
           if (!source) {
             setSettingsStatus("Choose a source.", true);
             return false;
           }
   
-          if (!isPoster && (sections.length === 0 || lessons.length === 0)) {
+          if (!isAll && !isPoster && (sections.length === 0 || lessons.length === 0)) {
             setSettingsStatus("Choose at least one section and one lesson.", true);
             return false;
           }
@@ -792,14 +798,15 @@ export function startGameApp() {
           }
   
           const source = normalizeSelectedSource(state.currentFilters.source, uniqueSources());
+          const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
-          const sections = isPoster ? [] : normalizeStoredValues(state.currentFilters.sections, uniqueSections(source));
-          const lessons = isPoster ? [] : normalizeStoredValues(
+          const sections = isAll || isPoster ? [] : normalizeStoredValues(state.currentFilters.sections, uniqueSections(source));
+          const lessons = isAll || isPoster ? [] : normalizeStoredValues(
             state.currentFilters.lessons,
             uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value)
           );
-          const phonemes = isPoster ? normalizeStoredValues(state.currentFilters.phonemes, uniquePhonemes(source)) : [];
-          const letterCombinations = isPoster ? normalizeStoredValues(
+          const phonemes = isPoster && !isAll ? normalizeStoredValues(state.currentFilters.phonemes, uniquePhonemes(source)) : [];
+          const letterCombinations = isPoster && !isAll ? normalizeStoredValues(
             state.currentFilters.letterCombinations,
             uniqueLetterCombinations(rowsForSource(source).filter((row) => phonemes.length === 0 || phonemes.includes(row.phonetic_symbol)))
           ) : [];
@@ -810,10 +817,10 @@ export function startGameApp() {
           if (selectedWords.length < MIN_WORDS) {
             state.currentFilters = {
               source,
-              sections: isPoster ? [] : uniqueSections(source),
-              lessons: isPoster ? [] : uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value),
-              phonemes: isPoster ? uniquePhonemes(source) : [],
-              letterCombinations: isPoster ? uniqueLetterCombinations(rowsForSource(source)) : []
+              sections: isAll || isPoster ? [] : uniqueSections(source),
+              lessons: isAll || isPoster ? [] : uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value),
+              phonemes: isPoster && !isAll ? uniquePhonemes(source) : [],
+              letterCombinations: isPoster && !isAll ? uniqueLetterCombinations(rowsForSource(source)) : []
             };
             selectedRows = rowsForSource(source);
             selectedWords = uniqueWords(selectedRows);
@@ -825,6 +832,9 @@ export function startGameApp() {
   
         function filterRows(filters) {
           const source = normalizeSelectedSource(filters.source, uniqueSources());
+          if (source === ALL_SOURCES) {
+            return wordCatalog.filter({ source });
+          }
           if (source === "poster") {
             if (!filters.phonemes.length || !filters.letterCombinations.length) return [];
             return wordCatalog.filter({ source, phonemes: filters.phonemes, letterCombinations: filters.letterCombinations });
@@ -835,6 +845,9 @@ export function startGameApp() {
   
         function rowsForSource(source) {
           const selectedSource = normalizeSelectedSource(source, uniqueSources());
+          if (selectedSource === ALL_SOURCES) {
+            return state.dbRows;
+          }
           return state.dbRows.filter((row) => row.source === selectedSource);
         }
   
@@ -852,6 +865,9 @@ export function startGameApp() {
         }
   
         function sourceLabel(source) {
+          if (source === ALL_SOURCES) {
+            return "All";
+          }
           if (source === "poster") {
             return "Poster";
           }
@@ -865,6 +881,9 @@ export function startGameApp() {
   
         function normalizeSelectedSource(source, sources) {
           const allowedSources = sources.length ? sources : uniqueSources();
+          if (source === ALL_SOURCES) {
+            return ALL_SOURCES;
+          }
           if (allowedSources.includes(source)) {
             return source;
           }

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { EXPECTED_HEADERS, WordCatalog, capitalize, filterRows, normalizeRow, prefixGroups, selectRoundWords, validateTeachingCsv } from "../js/word-catalog.mjs";
+import { ALL_SOURCES, EXPECTED_HEADERS, WordCatalog, capitalize, filterRows, normalizeRow, prefixGroups, selectRoundWords, validateTeachingCsv } from "../js/word-catalog.mjs";
 
 const rows = [
   { section:1, lesson:2, lesson_description:"Short a", word:"cat", is_sight_word:"F", phonetic_symbol:"/ă/", letter_combination:"a", source:"book.csv" },
@@ -20,6 +20,7 @@ test("legacy normalization and source-specific filtering remain compatible", () 
   assert.equal(normalizeRow({ section:0, lesson:0, lesson_description:"Phoneme poster examples", word:"ship" }).source, "poster");
   assert.deepEqual(filterRows(rows, { source:"book.csv", sections:["1"], lessons:["2"] }).map((row) => row.word), ["cat"]);
   assert.deepEqual(filterRows(rows, { source:"poster", phonemes:["/sh/"], letterCombinations:["sh"] }).map((row) => row.word), ["ship"]);
+  assert.deepEqual(filterRows(rows, { source:ALL_SOURCES, sections:["99"], phonemes:["missing"] }).map((row) => row.word), ["cat", "cap", "ship"]);
   const catalog = new WordCatalog(rows); assert.deepEqual(catalog.sources(), ["book.csv", "poster"]); assert.equal(catalog.lessonLookup().get("cat").lesson, 2);
 });
 

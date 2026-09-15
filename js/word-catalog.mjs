@@ -1,5 +1,6 @@
 export const EXPECTED_HEADERS = ["section", "lesson", "lesson_description", "word", "is_sight_word", "phonetic_symbol", "letter_combination", "source"];
 export const LEGACY_WORD_SOURCE = "legacy-import";
+export const ALL_SOURCES = "all";
 
 export function parseCsv(text) {
   const rows = []; let row = []; let value = ""; let quoted = false;
@@ -57,6 +58,7 @@ export function validateTeachingCsv(text, { allowedPhoneticSymbols } = {}) {
 
 export function filterRows(rows, filters = {}) {
   return rows.filter((row) => {
+    if (filters.source === ALL_SOURCES) return true;
     if (filters.source && row.source !== filters.source) return false;
     if (row.source === "poster") return (!filters.phonemes?.length || filters.phonemes.map(String).includes(String(row.phonetic_symbol))) && (!filters.letterCombinations?.length || filters.letterCombinations.map(String).includes(String(row.letter_combination)));
     return (!filters.sections?.length || filters.sections.map(String).includes(String(row.section))) && (!filters.lessons?.length || filters.lessons.map(String).includes(String(row.lesson)));
