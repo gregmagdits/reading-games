@@ -11,6 +11,7 @@ export const PRESET_DEFINITIONS = Object.freeze([
         Object.freeze({ phoneme: "/ă/", letterCombination: "a" }),
         Object.freeze({ phoneme: "/ē/", letterCombination: "ee" }),
         Object.freeze({ phoneme: "/ē/", letterCombination: "ea" }),
+        Object.freeze({ phoneme: "/ē/", letterCombination: "e_e" }),
         Object.freeze({ phoneme: "/ĕ/", letterCombination: "e" }),
         Object.freeze({ phoneme: "/ī/", letterCombination: "i_e" }),
         Object.freeze({ phoneme: "/ĭ/", letterCombination: "i" }),

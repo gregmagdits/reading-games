@@ -6,6 +6,7 @@ import { ALL_SOURCES, WordCatalog, normalizeRows as normalizeCatalogRows, select
 import { Effects } from "./effects.mjs";
 import { SettingsController } from "./settings-controller.mjs";
 import { PRESET_DEFINITIONS, filterRowsByPresets, getPresetSelections, isPresetApplicable, normalizePresetIds } from "./presets.mjs";
+import { CUSTOM_RULE_DEFINITIONS, hasMagicEContrast, isCustomRuleApplicable, isMagicEContrastActive, normalizeCustomRuleIds, selectMagicERoundWords } from "./round-rules.mjs";
 export class GameController {
   constructor({ registry, repository, catalog, effects, random = Math.random, timer = globalThis.setTimeout } = {}) {
     this.registry = registry; this.repository = repository; this.catalog = catalog; this.effects = effects; this.random = random; this.timer = timer;
@@ -62,6 +63,7 @@ export function startGameApp() {
   
         const state = {
           words: [],
+          selectedRows: [],
           wordLessons: new Map(),
           db: null,
           dbRows: [],
@@ -71,7 +73,8 @@ export function startGameApp() {
             lessons: [],
             phonemes: [],
             letterCombinations: [],
-            presets: []
+            presets: [],
+            customRules: []
           },
           capitalization: "uppercase",
           shooterType: "laser",
@@ -138,6 +141,7 @@ export function startGameApp() {
         const confirmClearCancelEl = document.getElementById("confirmClearCancel");
         const sourceOptionsEl = document.getElementById("sourceOptions");
         const presetOptionsEl = document.getElementById("presetOptions");
+        const customRuleOptionsEl = document.getElementById("customRuleOptions");
         const bookFilterControlsEl = document.getElementById("bookFilterControls");
         const posterFilterControlsEl = document.getElementById("posterFilterControls");
         const sectionSelectEl = document.getElementById("sectionSelect");
@@ -203,10 +207,10 @@ export function startGameApp() {
         }
   
         startButtonEl.addEventListener("click", () => {
-          if (state.words.length < MIN_WORDS) {
+          if (!canStartGame()) {
             openSettingsPanel();
             showPasswordForm();
-            setPasswordStatus("Import data and apply a word set before starting.");
+            setPasswordStatus(currentCustomRuleError() || "Import data and apply a word set before starting.");
             return;
           }
   
@@ -337,6 +341,7 @@ export function startGameApp() {
             state.dbRows = rows;
             wordCatalog.replace(rows);
             state.words = [];
+            state.selectedRows = [];
             state.wordLessons = new Map();
             state.currentFilters = {
               source: "",
@@ -344,7 +349,8 @@ export function startGameApp() {
               lessons: [],
               phonemes: [],
               letterCombinations: [],
-              presets: []
+              presets: [],
+              customRules: []
             };
             saveSettings();
             resetGameAfterDataChange();
@@ -393,6 +399,7 @@ export function startGameApp() {
             state.dbRows = [];
             wordCatalog.replace([]);
             state.words = [];
+            state.selectedRows = [];
             state.wordLessons = new Map();
             state.currentFilters = {
               source: "",
@@ -400,7 +407,8 @@ export function startGameApp() {
               lessons: [],
               phonemes: [],
               letterCombinations: [],
-              presets: []
+              presets: [],
+              customRules: []
             };
             saveSettings();
             resetGameAfterDataChange();
@@ -424,7 +432,9 @@ export function startGameApp() {
         sourceOptionsEl.addEventListener("change", () => {
           const source = getSelectedSource();
           const selectedPresets = getSelectedPresetIds();
+          const selectedCustomRules = getSelectedCustomRuleIds();
           rebuildPresetOptions({ source, selectedPresets });
+          rebuildCustomRuleOptions({ source, selectedCustomRules });
           rebuildSourceFilterControls({
             source,
             selectAll: selectedPresets.length === 0,
@@ -522,7 +532,8 @@ export function startGameApp() {
           passwordFormEl.hidden = true;
           settingsFormEl.hidden = false;
           rebuildSettingsControls();
-          setSettingsStatus(state.dbRows.length ? `${state.dbRows.length} rows loaded.` : "No data loaded.");
+          const ruleError = currentCustomRuleError();
+          setSettingsStatus(ruleError || (state.dbRows.length ? `${state.dbRows.length} rows loaded.` : "No data loaded."), Boolean(ruleError));
         }
   
         function setPasswordStatus(message, isError = false) {
@@ -565,7 +576,8 @@ export function startGameApp() {
               lessons: Array.isArray(saved.lessons) ? saved.lessons.map(String) : [],
               phonemes: Array.isArray(saved.phonemes) ? saved.phonemes.map(String) : [],
               letterCombinations: Array.isArray(saved.letterCombinations) ? saved.letterCombinations.map(String) : [],
-              presets: normalizePresetIds(saved.presets)
+              presets: normalizePresetIds(saved.presets),
+              customRules: normalizeCustomRuleIds(saved.customRules)
             };
             if (CAPITALIZATION_MODES.has(saved.capitalization)) {
               state.capitalization = saved.capitalization;
@@ -585,7 +597,8 @@ export function startGameApp() {
               lessons: [],
               phonemes: [],
               letterCombinations: [],
-              presets: []
+              presets: [],
+              customRules: []
             };
             state.capitalization = "uppercase";
             state.shooterType = "laser";
@@ -606,6 +619,7 @@ export function startGameApp() {
             phonemes: state.currentFilters.phonemes,
             letterCombinations: state.currentFilters.letterCombinations,
             presets: state.currentFilters.presets,
+            customRules: state.currentFilters.customRules,
             capitalization: state.capitalization,
             shooterType: state.shooterType,
             shooterVisibility: state.shooterVisibility,
@@ -623,6 +637,10 @@ export function startGameApp() {
           rebuildPresetOptions({
             source: getSelectedSource(),
             selectedPresets: state.currentFilters.presets
+          });
+          rebuildCustomRuleOptions({
+            source: getSelectedSource(),
+            selectedCustomRules: state.currentFilters.customRules
           });
           rebuildSourceFilterControls({
             source: getSelectedSource(),
@@ -645,6 +663,9 @@ export function startGameApp() {
           });
           presetOptionsEl.querySelectorAll("input").forEach((input) => {
             input.disabled = !hasData || !isPresetApplicable(PRESET_DEFINITIONS.find((preset) => preset.id === input.value), getSelectedSource());
+          });
+          customRuleOptionsEl.querySelectorAll("input").forEach((input) => {
+            input.disabled = !hasData || !isCustomRuleApplicable(CUSTOM_RULE_DEFINITIONS.find((rule) => rule.id === input.value), getSelectedSource());
           });
           sectionSelectEl.disabled = !hasData;
           lessonSelectEl.disabled = !hasData;
@@ -707,6 +728,30 @@ export function startGameApp() {
             const preset = PRESET_DEFINITIONS.find((item) => item.id === input.value);
             if (preset && isPresetApplicable(preset, source)) input.checked = false;
           });
+        }
+
+        function rebuildCustomRuleOptions(options = {}) {
+          const source = normalizeSelectedSource(options.source, uniqueSources());
+          const selectedSet = new Set(normalizeCustomRuleIds(options.selectedCustomRules));
+          customRuleOptionsEl.innerHTML = "";
+          CUSTOM_RULE_DEFINITIONS.forEach((rule) => {
+            const label = document.createElement("label");
+            label.className = "settings-checkbox-option";
+
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = "customRule";
+            input.value = rule.id;
+            input.checked = selectedSet.has(rule.id);
+            input.disabled = !isCustomRuleApplicable(rule, source);
+
+            label.append(input, document.createTextNode(rule.label));
+            customRuleOptionsEl.appendChild(label);
+          });
+        }
+
+        function getSelectedCustomRuleIds() {
+          return normalizeCustomRuleIds([...customRuleOptionsEl.querySelectorAll("input[name='customRule']:checked")].map((input) => input.value));
         }
   
         function rebuildSourceFilterControls(options = {}) {
@@ -835,6 +880,7 @@ export function startGameApp() {
           const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
           const presets = getSelectedPresetIds();
+          const customRules = getSelectedCustomRuleIds();
           const presetSelections = getPresetSelections(presets, source);
           const sections = isAll ? presetSelections.sections : isPoster ? [] : getSelectedValues(sectionSelectEl);
           const lessons = isAll ? presetSelections.lessons : isPoster ? [] : getSelectedValues(lessonSelectEl);
@@ -867,8 +913,17 @@ export function startGameApp() {
             setSettingsStatus("The selected data must contain at least two unique words.", true);
             return false;
           }
+
+          const prospectiveWords = filterWordsByText(selectedWords, wordTextFilters);
+          if (
+            isMagicEContrastActive(customRules, source) &&
+            !hasMagicEContrast(selectedRows, prospectiveWords)
+          ) {
+            setSettingsStatus("The current filters do not contain a short and long magic-e pair from the same vowel family.", true);
+            return false;
+          }
   
-          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations, presets };
+          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations, presets, customRules };
           state.capitalization = capitalization;
           state.shooterType = shooterType;
           state.shooterVisibility = shooterVisibility;
@@ -881,7 +936,7 @@ export function startGameApp() {
           saveSettings();
           applyShooterType();
           updateAim();
-          startButtonEl.disabled = false;
+          startButtonEl.disabled = !canStartGame();
           setSettingsStatus(settingsWordCountMessage(selectedWords));
           if (state.running && state.roundOver && state.activeWords.length === 0) {
             startRound();
@@ -892,6 +947,7 @@ export function startGameApp() {
         function applyCurrentFilters() {
           if (state.dbRows.length === 0) {
             state.words = [];
+            state.selectedRows = [];
             state.wordLessons = new Map();
             startButtonEl.disabled = true;
             return;
@@ -901,10 +957,15 @@ export function startGameApp() {
           const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
           const presets = normalizePresetIds(state.currentFilters.presets);
+          const customRules = normalizeCustomRuleIds(state.currentFilters.customRules);
           const presetSelections = getPresetSelections(presets, source);
           const hasApplicablePresets = presets.some((id) => {
             const preset = PRESET_DEFINITIONS.find((item) => item.id === id);
             return preset && isPresetApplicable(preset, source);
+          });
+          const hasApplicableCustomRules = customRules.some((id) => {
+            const rule = CUSTOM_RULE_DEFINITIONS.find((item) => item.id === id);
+            return rule && isCustomRuleApplicable(rule, source);
           });
           const sections = isAll ? presetSelections.sections : isPoster ? [] : normalizeStoredValues(state.currentFilters.sections, uniqueSections(source));
           const lessons = isAll ? presetSelections.lessons : isPoster ? [] : normalizeStoredValues(
@@ -917,25 +978,26 @@ export function startGameApp() {
             uniqueLetterCombinations(rowsForSource(source).filter((row) => phonemes.length === 0 || phonemes.includes(row.phonetic_symbol)))
           ) : [];
   
-          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations, presets };
+          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations, presets, customRules };
           let selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations, presets });
           let selectedWords = uniqueWords(selectedRows);
   
-          if (selectedWords.length < MIN_WORDS && !hasApplicablePresets) {
+          if (selectedWords.length < MIN_WORDS && !hasApplicablePresets && !hasApplicableCustomRules) {
             state.currentFilters = {
               source,
               sections: isAll || isPoster ? [] : uniqueSections(source),
               lessons: isAll || isPoster ? [] : uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value),
               phonemes: isPoster && !isAll ? uniquePhonemes(source) : [],
               letterCombinations: isPoster && !isAll ? uniqueLetterCombinations(rowsForSource(source)) : [],
-              presets
+              presets,
+              customRules
             };
             selectedRows = rowsForSource(source);
             selectedWords = uniqueWords(selectedRows);
           }
   
           setSelectedWordRows(selectedRows);
-          startButtonEl.disabled = selectedWords.length < MIN_WORDS;
+          startButtonEl.disabled = !canStartGame();
         }
   
         function filterRows(filters) {
@@ -1045,6 +1107,7 @@ export function startGameApp() {
         }
   
         function setSelectedWordRows(rows) {
+          state.selectedRows = rows;
           state.words = uniqueWords(rows);
           state.wordLessons = lessonLookup(rows);
         }
@@ -1144,8 +1207,15 @@ export function startGameApp() {
         }
   
         function filteredGameWords(words = state.words) {
-          const prefix = normalizeWordTextFilter(state.wordFilterPrefix);
-          const suffix = normalizeWordTextFilter(state.wordFilterSuffix);
+          return filterWordsByText(words, {
+            prefix: state.wordFilterPrefix,
+            suffix: state.wordFilterSuffix
+          });
+        }
+
+        function filterWordsByText(words, filters) {
+          const prefix = normalizeWordTextFilter(filters.prefix);
+          const suffix = normalizeWordTextFilter(filters.suffix);
           if (!prefix && !suffix) {
             return words;
           }
@@ -1157,6 +1227,26 @@ export function startGameApp() {
               (!suffix || normalizedWord.endsWith(suffix))
             );
           });
+        }
+
+        function canStartGame() {
+          const candidateWords = filteredGameWords();
+          if (candidateWords.length < MIN_WORDS) return false;
+          const source = normalizeSelectedSource(state.currentFilters.source, uniqueSources());
+          if (!isMagicEContrastActive(state.currentFilters.customRules, source)) return true;
+          return hasMagicEContrast(state.selectedRows, candidateWords);
+        }
+
+        function currentCustomRuleError() {
+          if (state.dbRows.length === 0) return "";
+          const source = normalizeSelectedSource(state.currentFilters.source, uniqueSources());
+          if (
+            isMagicEContrastActive(state.currentFilters.customRules, source) &&
+            !hasMagicEContrast(state.selectedRows, filteredGameWords())
+          ) {
+            return "The current filters do not contain a short and long magic-e pair from the same vowel family.";
+          }
+          return "";
         }
   
         function settingsWordCountMessage(words) {
@@ -1462,7 +1552,7 @@ export function startGameApp() {
           state.nextRoundDueAt = 0;
           startScreenEl.hidden = false;
           soundButtonEl.hidden = true;
-          startButtonEl.disabled = state.words.length < MIN_WORDS;
+          startButtonEl.disabled = !canStartGame();
         }
   
         function startRound() {
@@ -1513,7 +1603,15 @@ export function startGameApp() {
           const count = randomInt(minCount, maxCount);
   
           const prefixRange = normalizePrefixRange(state.prefixMinLength, state.prefixMaxLength);
-          return selectRoundWords(candidateWords, { count, minPrefix: prefixRange.min, maxPrefix: prefixRange.max }).map((word) => ({
+          const source = normalizeSelectedSource(state.currentFilters.source, uniqueSources());
+          const words = isMagicEContrastActive(state.currentFilters.customRules, source)
+            ? selectMagicERoundWords(state.selectedRows, candidateWords, {
+                count,
+                minPrefix: prefixRange.min,
+                maxPrefix: prefixRange.max
+              })
+            : selectRoundWords(candidateWords, { count, minPrefix: prefixRange.min, maxPrefix: prefixRange.max });
+          return words.map((word) => ({
             word,
             lesson: lessonForWord(word)
           }));

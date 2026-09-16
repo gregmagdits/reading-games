@@ -9,6 +9,7 @@ const EXPECTED_PAIRS = [
   ["/ă/", "a"],
   ["/ē/", "ee"],
   ["/ē/", "ea"],
+  ["/ē/", "e_e"],
   ["/ĕ/", "e"],
   ["/ī/", "i_e"],
   ["/ĭ/", "i"],
@@ -41,7 +42,7 @@ test("preset selections contain the requested multiselect values", () => {
     sections: [],
     lessons: [],
     phonemes: ["/ā/", "/ă/", "/ē/", "/ĕ/", "/ī/", "/ĭ/", "/ō/", "/ŏ/", "/ū/", "/ŭ/"],
-    letterCombinations: ["a_e", "a", "ee", "ea", "e", "i_e", "i", "o_e", "o", "u_e", "u"]
+    letterCombinations: ["a_e", "a", "ee", "ea", "e_e", "e", "i_e", "i", "o_e", "o", "u_e", "u"]
   });
 });
 

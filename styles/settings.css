@@ -320,13 +320,15 @@
       }
 
 
-      .preset-options {
+      .preset-options,
+      .settings-checkbox-options {
         display: grid;
         gap: 8px;
       }
 
 
-      .preset-option {
+      .preset-option,
+      .settings-checkbox-option {
         display: flex;
         align-items: center;
         gap: 8px;
@@ -335,13 +337,15 @@
       }
 
 
-      .preset-option input {
+      .preset-option input,
+      .settings-checkbox-option input {
         width: 18px;
         height: 18px;
       }
 
 
-      .preset-option:has(input:disabled) {
+      .preset-option:has(input:disabled),
+      .settings-checkbox-option:has(input:disabled) {
         opacity: 0.5;
       }
 

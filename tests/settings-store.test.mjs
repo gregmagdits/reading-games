@@ -8,9 +8,9 @@ test("settings round-trip through an in-memory storage adapter", () => {
   const storage = new MemoryStorage();
   const registry = new ShooterRegistry(shooterDefinitions);
   const store = new SettingsStore({ storage, normalize:createSettingsNormalizer(registry) });
-  store.save({ shooterType:"wizard", shooterVisibility:{ laser:false }, wordSpeed:3 });
+  store.save({ shooterType:"wizard", shooterVisibility:{ laser:false }, wordSpeed:3, customRules:["magic_e_short_long_contrast"] });
   const saved = store.load();
-  assert.equal(saved.shooterType, "wizard"); assert.equal(saved.shooterVisibility.laser, false); assert.equal(saved.shooterVisibility.dragon, true); assert.equal(saved.wordSpeed, 3);
+  assert.equal(saved.shooterType, "wizard"); assert.equal(saved.shooterVisibility.laser, false); assert.equal(saved.shooterVisibility.dragon, true); assert.equal(saved.wordSpeed, 3); assert.deepEqual(saved.customRules, ["magic_e_short_long_contrast"]);
 });
 
 test("unknown stored shooter ids and malformed JSON are safe", () => {
