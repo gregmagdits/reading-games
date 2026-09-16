@@ -5,8 +5,11 @@
 }
 
 .shooter-picker.shooter-card-grid {
-  width: min(420px, calc(100vw - 28px));
-  grid-template-columns: repeat(auto-fit, minmax(108px, 1fr));
+  width: min(180px, calc(100vw - 28px));
+  max-height: min(60vh, 520px);
+  grid-template-columns: minmax(0, 1fr);
+  overflow-y: auto;
+  overscroll-behavior: contain;
 }
 
 .shooter-card {
@@ -36,7 +39,7 @@
 .settings-shooter-card input { width: 18px; height: 18px; }
 
 @media (max-width: 560px) {
-  .shooter-picker.shooter-card-grid { right: 8px; left: 8px; top: auto; bottom: 84px; transform: none; }
+  .shooter-picker.shooter-card-grid { right: 8px; left: auto; top: auto; bottom: 84px; width: min(180px, calc(100vw - 16px)); transform: none; }
   .settings-shooter-grid { grid-template-columns: 1fr; }
 }
 
