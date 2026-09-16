@@ -320,6 +320,32 @@
       }
 
 
+      .preset-options {
+        display: grid;
+        gap: 8px;
+      }
+
+
+      .preset-option {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 16px;
+        font-weight: 600;
+      }
+
+
+      .preset-option input {
+        width: 18px;
+        height: 18px;
+      }
+
+
+      .preset-option:has(input:disabled) {
+        opacity: 0.5;
+      }
+
+
       .speed-control {
         display: grid;
         justify-items: center;

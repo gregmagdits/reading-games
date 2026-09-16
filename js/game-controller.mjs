@@ -5,6 +5,7 @@ import { SettingsStore, createSettingsNormalizer } from "./settings-store.mjs";
 import { ALL_SOURCES, WordCatalog, normalizeRows as normalizeCatalogRows, selectRoundWords, uniqueWords as uniqueCatalogWords, validateTeachingCsv as validateCatalogCsv } from "./word-catalog.mjs";
 import { Effects } from "./effects.mjs";
 import { SettingsController } from "./settings-controller.mjs";
+import { PRESET_DEFINITIONS, filterRowsByPresets, getPresetSelections, isPresetApplicable, normalizePresetIds } from "./presets.mjs";
 export class GameController {
   constructor({ registry, repository, catalog, effects, random = Math.random, timer = globalThis.setTimeout } = {}) {
     this.registry = registry; this.repository = repository; this.catalog = catalog; this.effects = effects; this.random = random; this.timer = timer;
@@ -69,7 +70,8 @@ export function startGameApp() {
             sections: [],
             lessons: [],
             phonemes: [],
-            letterCombinations: []
+            letterCombinations: [],
+            presets: []
           },
           capitalization: "uppercase",
           shooterType: "laser",
@@ -135,6 +137,7 @@ export function startGameApp() {
         const confirmClearYesEl = document.getElementById("confirmClearYes");
         const confirmClearCancelEl = document.getElementById("confirmClearCancel");
         const sourceOptionsEl = document.getElementById("sourceOptions");
+        const presetOptionsEl = document.getElementById("presetOptions");
         const bookFilterControlsEl = document.getElementById("bookFilterControls");
         const posterFilterControlsEl = document.getElementById("posterFilterControls");
         const sectionSelectEl = document.getElementById("sectionSelect");
@@ -340,7 +343,8 @@ export function startGameApp() {
               sections: [],
               lessons: [],
               phonemes: [],
-              letterCombinations: []
+              letterCombinations: [],
+              presets: []
             };
             saveSettings();
             resetGameAfterDataChange();
@@ -395,7 +399,8 @@ export function startGameApp() {
               sections: [],
               lessons: [],
               phonemes: [],
-              letterCombinations: []
+              letterCombinations: [],
+              presets: []
             };
             saveSettings();
             resetGameAfterDataChange();
@@ -408,22 +413,45 @@ export function startGameApp() {
         });
   
         sectionSelectEl.addEventListener("change", () => {
+          clearApplicablePresetChecks(getSelectedSource());
           rebuildLessonOptions(getSelectedSource(), getSelectedValues(sectionSelectEl), getSelectedValues(lessonSelectEl));
+        });
+
+        lessonSelectEl.addEventListener("change", () => {
+          clearApplicablePresetChecks(getSelectedSource());
         });
   
         sourceOptionsEl.addEventListener("change", () => {
+          const source = getSelectedSource();
+          const selectedPresets = getSelectedPresetIds();
+          rebuildPresetOptions({ source, selectedPresets });
+          rebuildSourceFilterControls({
+            source,
+            selectAll: selectedPresets.length === 0,
+            selectedPresets
+          });
+        });
+
+        presetOptionsEl.addEventListener("change", () => {
+          const selectedPresets = getSelectedPresetIds();
           rebuildSourceFilterControls({
             source: getSelectedSource(),
-            selectAll: true
+            selectAll: selectedPresets.length === 0,
+            selectedPresets
           });
         });
   
         phonemeSelectEl.addEventListener("change", () => {
+          clearApplicablePresetChecks(getSelectedSource());
           rebuildLetterCombinationOptions(
             getSelectedSource(),
             getSelectedValues(phonemeSelectEl),
             getSelectedValues(letterCombinationSelectEl)
           );
+        });
+
+        letterCombinationSelectEl.addEventListener("change", () => {
+          clearApplicablePresetChecks(getSelectedSource());
         });
   
         speedControlEl.addEventListener("input", () => {
@@ -536,7 +564,8 @@ export function startGameApp() {
               sections: Array.isArray(saved.sections) ? saved.sections.map(String) : [],
               lessons: Array.isArray(saved.lessons) ? saved.lessons.map(String) : [],
               phonemes: Array.isArray(saved.phonemes) ? saved.phonemes.map(String) : [],
-              letterCombinations: Array.isArray(saved.letterCombinations) ? saved.letterCombinations.map(String) : []
+              letterCombinations: Array.isArray(saved.letterCombinations) ? saved.letterCombinations.map(String) : [],
+              presets: normalizePresetIds(saved.presets)
             };
             if (CAPITALIZATION_MODES.has(saved.capitalization)) {
               state.capitalization = saved.capitalization;
@@ -555,7 +584,8 @@ export function startGameApp() {
               sections: [],
               lessons: [],
               phonemes: [],
-              letterCombinations: []
+              letterCombinations: [],
+              presets: []
             };
             state.capitalization = "uppercase";
             state.shooterType = "laser";
@@ -575,6 +605,7 @@ export function startGameApp() {
             source: state.currentFilters.source,
             phonemes: state.currentFilters.phonemes,
             letterCombinations: state.currentFilters.letterCombinations,
+            presets: state.currentFilters.presets,
             capitalization: state.capitalization,
             shooterType: state.shooterType,
             shooterVisibility: state.shooterVisibility,
@@ -589,9 +620,14 @@ export function startGameApp() {
         function rebuildSettingsControls(options = {}) {
           const hasData = state.dbRows.length > 0;
           rebuildSourceOptions(options);
+          rebuildPresetOptions({
+            source: getSelectedSource(),
+            selectedPresets: state.currentFilters.presets
+          });
           rebuildSourceFilterControls({
             source: getSelectedSource(),
-            selectAll: options.selectAll
+            selectAll: options.selectAll,
+            selectedPresets: state.currentFilters.presets
           });
           setCapitalizationSelection(state.capitalization);
           setPrefixRangeSelection({
@@ -606,6 +642,9 @@ export function startGameApp() {
   
           sourceOptionsEl.querySelectorAll("input").forEach((input) => {
             input.disabled = !hasData;
+          });
+          presetOptionsEl.querySelectorAll("input").forEach((input) => {
+            input.disabled = !hasData || !isPresetApplicable(PRESET_DEFINITIONS.find((preset) => preset.id === input.value), getSelectedSource());
           });
           sectionSelectEl.disabled = !hasData;
           lessonSelectEl.disabled = !hasData;
@@ -638,43 +677,73 @@ export function startGameApp() {
             sourceOptionsEl.appendChild(label);
           });
         }
+
+        function rebuildPresetOptions(options = {}) {
+          const source = normalizeSelectedSource(options.source, uniqueSources());
+          const selectedSet = new Set(normalizePresetIds(options.selectedPresets));
+          presetOptionsEl.innerHTML = "";
+          PRESET_DEFINITIONS.forEach((preset) => {
+            const label = document.createElement("label");
+            label.className = "preset-option";
+
+            const input = document.createElement("input");
+            input.type = "checkbox";
+            input.name = "wordPreset";
+            input.value = preset.id;
+            input.checked = selectedSet.has(preset.id);
+            input.disabled = !isPresetApplicable(preset, source);
+
+            label.append(input, document.createTextNode(preset.label));
+            presetOptionsEl.appendChild(label);
+          });
+        }
+
+        function getSelectedPresetIds() {
+          return normalizePresetIds([...presetOptionsEl.querySelectorAll("input[name='wordPreset']:checked")].map((input) => input.value));
+        }
+
+        function clearApplicablePresetChecks(source) {
+          presetOptionsEl.querySelectorAll("input[name='wordPreset']:checked").forEach((input) => {
+            const preset = PRESET_DEFINITIONS.find((item) => item.id === input.value);
+            if (preset && isPresetApplicable(preset, source)) input.checked = false;
+          });
+        }
   
         function rebuildSourceFilterControls(options = {}) {
           const source = normalizeSelectedSource(options.source, uniqueSources());
           const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
+          const selectedPresets = normalizePresetIds(options.selectedPresets);
+          const presetSelections = getPresetSelections(selectedPresets, source);
+          const hasPresetSelections = selectedPresets.some((id) => {
+            const preset = PRESET_DEFINITIONS.find((item) => item.id === id);
+            return preset && isPresetApplicable(preset, source);
+          });
           bookFilterControlsEl.hidden = isAll || isPoster;
           posterFilterControlsEl.hidden = isAll || !isPoster;
 
           if (isAll) {
+            populatePosterFilterControls(
+              presetSelections.phonemes,
+              presetSelections.letterCombinations,
+              hasPresetSelections
+            );
             return;
           }
   
           if (isPoster) {
-            const phonemes = uniquePhonemes(source);
-            const selectedPhonemes = options.selectAll || state.currentFilters.phonemes.length === 0
-              ? phonemes
-              : state.currentFilters.phonemes.filter((phoneme) => phonemes.includes(phoneme));
-  
-            phonemeSelectEl.innerHTML = "";
-            phonemes.forEach((phoneme) => {
-              const option = document.createElement("option");
-              option.value = phoneme;
-              option.textContent = phoneme;
-              option.selected = selectedPhonemes.includes(phoneme);
-              phonemeSelectEl.appendChild(option);
-            });
-  
-            rebuildLetterCombinationOptions(
-              source,
-              selectedPhonemes,
-              options.selectAll ? [] : state.currentFilters.letterCombinations
+            populatePosterFilterControls(
+              hasPresetSelections ? presetSelections.phonemes : options.selectAll ? [] : state.currentFilters.phonemes,
+              hasPresetSelections ? presetSelections.letterCombinations : options.selectAll ? [] : state.currentFilters.letterCombinations,
+              hasPresetSelections
             );
             return;
           }
   
           const sections = uniqueSections(source);
-          const selectedSections = options.selectAll || state.currentFilters.sections.length === 0
+          const selectedSections = hasPresetSelections
+            ? presetSelections.sections.filter((section) => sections.includes(section))
+            : options.selectAll || state.currentFilters.sections.length === 0
             ? sections
             : state.currentFilters.sections.filter((section) => sections.includes(section));
   
@@ -687,7 +756,36 @@ export function startGameApp() {
             sectionSelectEl.appendChild(option);
           });
   
-          rebuildLessonOptions(source, selectedSections, options.selectAll ? [] : state.currentFilters.lessons);
+          rebuildLessonOptions(
+            source,
+            selectedSections,
+            hasPresetSelections ? presetSelections.lessons : options.selectAll ? [] : state.currentFilters.lessons
+          );
+        }
+
+        function populatePosterFilterControls(selectedPhonemes, selectedLetterCombinations, useExactSelections) {
+          const source = "poster";
+          const phonemes = uniquePhonemes(source);
+          const selected = useExactSelections
+            ? selectedPhonemes.filter((phoneme) => phonemes.includes(phoneme))
+            : selectedPhonemes.length === 0
+              ? phonemes
+              : selectedPhonemes.filter((phoneme) => phonemes.includes(phoneme));
+
+          phonemeSelectEl.innerHTML = "";
+          phonemes.forEach((phoneme) => {
+            const option = document.createElement("option");
+            option.value = phoneme;
+            option.textContent = phoneme;
+            option.selected = selected.includes(phoneme);
+            phonemeSelectEl.appendChild(option);
+          });
+
+          rebuildLetterCombinationOptions(
+            source,
+            selected,
+            selectedLetterCombinations
+          );
         }
   
         function rebuildLessonOptions(source, selectedSections, selectedLessons) {
@@ -736,10 +834,12 @@ export function startGameApp() {
           const source = getSelectedSource();
           const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
-          const sections = isAll || isPoster ? [] : getSelectedValues(sectionSelectEl);
-          const lessons = isAll || isPoster ? [] : getSelectedValues(lessonSelectEl);
-          const phonemes = isPoster && !isAll ? getSelectedValues(phonemeSelectEl) : [];
-          const letterCombinations = isPoster && !isAll ? getSelectedValues(letterCombinationSelectEl) : [];
+          const presets = getSelectedPresetIds();
+          const presetSelections = getPresetSelections(presets, source);
+          const sections = isAll ? presetSelections.sections : isPoster ? [] : getSelectedValues(sectionSelectEl);
+          const lessons = isAll ? presetSelections.lessons : isPoster ? [] : getSelectedValues(lessonSelectEl);
+          const phonemes = isAll ? presetSelections.phonemes : isPoster ? getSelectedValues(phonemeSelectEl) : [];
+          const letterCombinations = isAll ? presetSelections.letterCombinations : isPoster ? getSelectedValues(letterCombinationSelectEl) : [];
           if (!source) {
             setSettingsStatus("Choose a source.", true);
             return false;
@@ -755,7 +855,7 @@ export function startGameApp() {
             return false;
           }
   
-          const selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations });
+          const selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations, presets });
           const selectedWords = uniqueWords(selectedRows);
           const capitalization = getSelectedCapitalization();
           const shooterType = getSelectedShooterType();
@@ -768,7 +868,7 @@ export function startGameApp() {
             return false;
           }
   
-          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations };
+          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations, presets };
           state.capitalization = capitalization;
           state.shooterType = shooterType;
           state.shooterVisibility = shooterVisibility;
@@ -800,27 +900,35 @@ export function startGameApp() {
           const source = normalizeSelectedSource(state.currentFilters.source, uniqueSources());
           const isAll = source === ALL_SOURCES;
           const isPoster = source === "poster";
-          const sections = isAll || isPoster ? [] : normalizeStoredValues(state.currentFilters.sections, uniqueSections(source));
-          const lessons = isAll || isPoster ? [] : normalizeStoredValues(
+          const presets = normalizePresetIds(state.currentFilters.presets);
+          const presetSelections = getPresetSelections(presets, source);
+          const hasApplicablePresets = presets.some((id) => {
+            const preset = PRESET_DEFINITIONS.find((item) => item.id === id);
+            return preset && isPresetApplicable(preset, source);
+          });
+          const sections = isAll ? presetSelections.sections : isPoster ? [] : normalizeStoredValues(state.currentFilters.sections, uniqueSections(source));
+          const lessons = isAll ? presetSelections.lessons : isPoster ? [] : normalizeStoredValues(
             state.currentFilters.lessons,
             uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value)
           );
-          const phonemes = isPoster && !isAll ? normalizeStoredValues(state.currentFilters.phonemes, uniquePhonemes(source)) : [];
-          const letterCombinations = isPoster && !isAll ? normalizeStoredValues(
+          const phonemes = isAll ? presetSelections.phonemes : isPoster ? normalizeStoredValues(state.currentFilters.phonemes, uniquePhonemes(source)) : [];
+          const letterCombinations = isAll ? presetSelections.letterCombinations : isPoster ? normalizeStoredValues(
             state.currentFilters.letterCombinations,
             uniqueLetterCombinations(rowsForSource(source).filter((row) => phonemes.length === 0 || phonemes.includes(row.phonetic_symbol)))
           ) : [];
   
-          let selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations });
+          state.currentFilters = { source, sections, lessons, phonemes, letterCombinations, presets };
+          let selectedRows = filterRows({ source, sections, lessons, phonemes, letterCombinations, presets });
           let selectedWords = uniqueWords(selectedRows);
   
-          if (selectedWords.length < MIN_WORDS) {
+          if (selectedWords.length < MIN_WORDS && !hasApplicablePresets) {
             state.currentFilters = {
               source,
               sections: isAll || isPoster ? [] : uniqueSections(source),
               lessons: isAll || isPoster ? [] : uniqueLessons(rowsForSource(source)).map((lesson) => lesson.value),
               phonemes: isPoster && !isAll ? uniquePhonemes(source) : [],
-              letterCombinations: isPoster && !isAll ? uniqueLetterCombinations(rowsForSource(source)) : []
+              letterCombinations: isPoster && !isAll ? uniqueLetterCombinations(rowsForSource(source)) : [],
+              presets
             };
             selectedRows = rowsForSource(source);
             selectedWords = uniqueWords(selectedRows);
@@ -832,15 +940,17 @@ export function startGameApp() {
   
         function filterRows(filters) {
           const source = normalizeSelectedSource(filters.source, uniqueSources());
+          let rows;
           if (source === ALL_SOURCES) {
-            return wordCatalog.filter({ source });
-          }
-          if (source === "poster") {
+            rows = wordCatalog.filter({ source });
+          } else if (source === "poster") {
             if (!filters.phonemes.length || !filters.letterCombinations.length) return [];
-            return wordCatalog.filter({ source, phonemes: filters.phonemes, letterCombinations: filters.letterCombinations });
+            rows = wordCatalog.filter({ source, phonemes: filters.phonemes, letterCombinations: filters.letterCombinations });
+          } else {
+            if (!filters.sections.length || !filters.lessons.length) return [];
+            rows = wordCatalog.filter({ source, sections: filters.sections, lessons: filters.lessons });
           }
-          if (!filters.sections.length || !filters.lessons.length) return [];
-          return wordCatalog.filter({ source, sections: filters.sections, lessons: filters.lessons });
+          return filterRowsByPresets(rows, filters.presets, source);
         }
   
         function rowsForSource(source) {
