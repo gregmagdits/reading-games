@@ -67,16 +67,17 @@ export function fireProjectile(kind, { aim, tip, pivot, layer, documentRef, rand
     removeAfter(timer, 540, rocket, trail); return;
   }
   const straight = {
-    arrow: ["arrow-shot", "--arrow-start-transform", "--arrow-end-transform", 380],
-    crossbow: ["crossbow-bolt-shot", "--arrow-start-transform", "--arrow-end-transform", 340],
+    arrow: ["arrow-shot", "--arrow-start-transform", "--arrow-end-transform", 380, true],
+    crossbow: ["crossbow-bolt-shot", "--arrow-start-transform", "--arrow-end-transform", 340, true],
     bullet: ["bullet-shot", "--bullet-start-transform", "--bullet-end-transform", 260],
     ninja: ["ninja-star-shot", "--ninja-star-start-transform", "--ninja-star-end-transform", 360],
     sawblade: ["sawblade-shot", "--sawblade-start-transform", "--sawblade-end-transform", 380],
     glue: ["glue-shot", "--glue-start-transform", "--glue-end-transform", 370]
   }[kind];
   if (straight) {
-    const [className, startProp, endProp, duration] = straight;
-    const shot = add(layer, documentRef, className, {}, { [startProp]: start, [endProp]: end });
+    const [className, startProp, endProp, duration, orientToPath] = straight;
+    const rotation = orientToPath ? ` rotate(${angle}rad)` : "";
+    const shot = add(layer, documentRef, className, {}, { [startProp]: `${start}${rotation}`, [endProp]: `${end}${rotation}` });
     if (kind === "arrow") shot.appendChild(Object.assign(documentRef.createElement("div"), { className: "arrow-feather" }));
     if (kind === "crossbow") shot.appendChild(Object.assign(documentRef.createElement("div"), { className: "crossbow-bolt-tail" }));
     if (kind === "bullet") removeAfter(timer, duration, add(layer, documentRef, "six-shooter-flash", { left: `${tip.x}px`, top: `${tip.y}px` }, { "--flash-rotation": `${angle}rad` }));
