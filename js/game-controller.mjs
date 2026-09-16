@@ -7,6 +7,13 @@ import { Effects } from "./effects.mjs";
 import { SettingsController } from "./settings-controller.mjs";
 import { PRESET_DEFINITIONS, filterRowsByPresets, getPresetSelections, isPresetApplicable, normalizePresetIds } from "./presets.mjs";
 import { CUSTOM_RULE_DEFINITIONS, hasMagicEContrast, isCustomRuleApplicable, isMagicEContrastActive, normalizeCustomRuleIds, selectMagicERoundWords } from "./round-rules.mjs";
+
+export function normalizeMaximumWordCount(value, fallback = 4) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) return fallback;
+  return Math.max(2, Math.min(4, Math.round(numericValue)));
+}
+
 export class GameController {
   constructor({ registry, repository, catalog, effects, random = Math.random, timer = globalThis.setTimeout } = {}) {
     this.registry = registry; this.repository = repository; this.catalog = catalog; this.effects = effects; this.random = random; this.timer = timer;
@@ -28,7 +35,7 @@ export function startGameApp() {
         const settingsStore = new SettingsStore({ storage: window.localStorage, normalize: createSettingsNormalizer(shooterRegistry) });
         const settingsController = new SettingsController({ registry: shooterRegistry, store: settingsStore });
         const MIN_WORDS = 2;
-        const MAX_WORDS = 4;
+        const DEFAULT_MAXIMUM_WORDS = 4;
         const RESULT_DELAY_MS = 1200;
         const TIMEOUT_DELAY_MS = 260;
         const FIREWORK_SERIES_GAP_MS = 120;
@@ -80,6 +87,7 @@ export function startGameApp() {
           shooterType: "laser",
           shooterVisibility: defaultShooterVisibility(),
           wordSpeed: MAX_WORD_SPEED,
+          maximumWords: DEFAULT_MAXIMUM_WORDS,
           prefixMinLength: DEFAULT_MIN_PREFIX_LENGTH,
           prefixMaxLength: DEFAULT_MAX_PREFIX_LENGTH,
           wordFilterPrefix: "",
@@ -160,6 +168,7 @@ export function startGameApp() {
         const maxPrefixLengthInputEl = document.getElementById("maxPrefixLengthInput");
         const wordFilterPrefixInputEl = document.getElementById("wordFilterPrefixInput");
         const wordFilterSuffixInputEl = document.getElementById("wordFilterSuffixInput");
+        const maximumWordsInputEl = document.getElementById("maximumWordsInput");
         const speedControlEl = document.getElementById("speedControl");
         const speedNeedleEl = document.getElementById("speedNeedle");
         const speedValueEl = document.getElementById("speedValue");
@@ -585,6 +594,7 @@ export function startGameApp() {
             state.shooterType = normalizeShooterType(saved.shooterType);
             state.shooterVisibility = normalizeShooterVisibility(saved.shooterVisibility);
             state.wordSpeed = normalizeWordSpeed(saved.wordSpeed);
+            state.maximumWords = normalizeMaximumWordCount(saved.maximumWords, DEFAULT_MAXIMUM_WORDS);
             const prefixRange = normalizeSavedPrefixRange(saved);
             state.prefixMinLength = prefixRange.min;
             state.prefixMaxLength = prefixRange.max;
@@ -604,6 +614,7 @@ export function startGameApp() {
             state.shooterType = "laser";
             state.shooterVisibility = defaultShooterVisibility();
             state.wordSpeed = MAX_WORD_SPEED;
+            state.maximumWords = DEFAULT_MAXIMUM_WORDS;
             state.prefixMinLength = DEFAULT_MIN_PREFIX_LENGTH;
             state.prefixMaxLength = DEFAULT_MAX_PREFIX_LENGTH;
             state.wordFilterPrefix = "";
@@ -624,6 +635,7 @@ export function startGameApp() {
             shooterType: state.shooterType,
             shooterVisibility: state.shooterVisibility,
             wordSpeed: state.wordSpeed,
+            maximumWords: state.maximumWords,
             prefixMinLength: state.prefixMinLength,
             prefixMaxLength: state.prefixMaxLength,
             wordFilterPrefix: state.wordFilterPrefix,
@@ -653,6 +665,7 @@ export function startGameApp() {
             max: state.prefixMaxLength
           });
           setWordTextFilterSelection(state.wordFilterPrefix, state.wordFilterSuffix);
+          setMaximumWordCountSelection(state.maximumWords);
           setShooterTypeSelection(state.shooterType);
           setShooterVisibilitySelection(state.shooterVisibility);
           applyShooterType();
@@ -907,6 +920,7 @@ export function startGameApp() {
           const shooterType = getSelectedShooterType();
           const shooterVisibility = getSelectedShooterVisibility();
           const wordSpeed = getSelectedWordSpeed();
+          const maximumWords = getSelectedMaximumWordCount();
           const prefixRange = getSelectedPrefixRange();
           const wordTextFilters = getSelectedWordTextFilters();
           if (selectedWords.length < MIN_WORDS) {
@@ -928,6 +942,7 @@ export function startGameApp() {
           state.shooterType = shooterType;
           state.shooterVisibility = shooterVisibility;
           state.wordSpeed = wordSpeed;
+          state.maximumWords = maximumWords;
           state.prefixMinLength = prefixRange.min;
           state.prefixMaxLength = prefixRange.max;
           state.wordFilterPrefix = wordTextFilters.prefix;
@@ -1491,6 +1506,14 @@ export function startGameApp() {
         function getWordSpeedMultiplier() {
           return WORD_SPEED_MULTIPLIERS[state.wordSpeed] || WORD_SPEED_MULTIPLIERS[MAX_WORD_SPEED];
         }
+
+        function getSelectedMaximumWordCount() {
+          return normalizeMaximumWordCount(maximumWordsInputEl.value, DEFAULT_MAXIMUM_WORDS);
+        }
+
+        function setMaximumWordCountSelection(value) {
+          maximumWordsInputEl.value = String(normalizeMaximumWordCount(value, DEFAULT_MAXIMUM_WORDS));
+        }
   
         function formatDisplayWord(word) {
           if (state.capitalization === "lowercase") {
@@ -1599,7 +1622,7 @@ export function startGameApp() {
           }
   
           const minCount = Math.min(MIN_WORDS, candidateWords.length);
-          const maxCount = Math.min(MAX_WORDS, candidateWords.length);
+          const maxCount = Math.min(state.maximumWords, candidateWords.length);
           const count = randomInt(minCount, maxCount);
   
           const prefixRange = normalizePrefixRange(state.prefixMinLength, state.prefixMaxLength);
